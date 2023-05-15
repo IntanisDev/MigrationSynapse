@@ -1,0 +1,97 @@
+{
+	"name": "DF_StgDailySalesPlan_v2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Mover_Base_DailySalesPlan_v2",
+						"type": "DatasetReference"
+					},
+					"name": "OrgArchivoCsvV2",
+					"description": "Importar datos de Mover_Base_DailySalesPlanv2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Stg_DailySalesPlan_v2",
+						"type": "DatasetReference"
+					},
+					"name": "DesDBEspejov2",
+					"description": "Exportar datos a Base_Stg_DailySalesPlan_V2"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Region as string,",
+				"          STORE_CTRY_CD as string,",
+				"          RTL_STORE_NAME as string,",
+				"          RTL_STORE_ID as string,",
+				"          ERP_SRC_CD as string,",
+				"          FQTR as string,",
+				"          {Store Target Date} as string,",
+				"          { Daily Store AFP } as string,",
+				"          { Daily Store Plan } as string,",
+				"          { Daily Store PER} as string,",
+				"          { Daily Store Frcst 4} as string,",
+				"          {Conversion Plan} as string,",
+				"          {UPT Plan} as string,",
+				"          {Currency } as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> OrgArchivoCsvV2",
+				"OrgArchivoCsvV2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          REGION as string,",
+				"          STORE_CTRY_CD as string,",
+				"          RTL_STORE_NAME as string,",
+				"          RTL_STORE_ID as string,",
+				"          ERP_SRC_CD as string,",
+				"          FQTR as string,",
+				"          STORE_TARGET_DATE as string,",
+				"          DAILY_STORE_AFP as string,",
+				"          DAILY_STORE_PLAN as string,",
+				"          DAILY_STORE_FRCST_4 as string,",
+				"          DAILY_STORE_FRCST_7 as string,",
+				"          DAILY_STORE_FRCST_10 as string,",
+				"          DAILY_STORE_PER as string,",
+				"          CONVERSION_PLAN as string,",
+				"          UPT_PLAN as string,",
+				"          CURRENCY as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          REGION = Region,",
+				"          STORE_CTRY_CD,",
+				"          RTL_STORE_NAME,",
+				"          RTL_STORE_ID,",
+				"          ERP_SRC_CD,",
+				"          FQTR,",
+				"          STORE_TARGET_DATE = {Store Target Date},",
+				"          DAILY_STORE_AFP = { Daily Store AFP },",
+				"          DAILY_STORE_PLAN = { Daily Store Plan },",
+				"          DAILY_STORE_PER = { Daily Store PER},",
+				"          DAILY_STORE_FRCST_4 = { Daily Store Frcst 4},",
+				"          CONVERSION_PLAN = {Conversion Plan},",
+				"          UPT_PLAN = {UPT Plan},",
+				"          CURRENCY = {Currency }",
+				"     )) ~> DesDBEspejov2"
+			]
+		}
+	}
+}

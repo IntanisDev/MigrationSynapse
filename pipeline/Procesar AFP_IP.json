@@ -1,0 +1,36 @@
+{
+	"name": "Procesar AFP_IP",
+	"properties": {
+		"activities": [
+			{
+				"name": "AFP_IP",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=CROVwPkYFsLI4zG%2fnpJ1PTo%2bSc%2b%2fLcmYC0v8x9MxKRc%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Venta AFP IP",
+						"Partition": "vw_Venta_AFP_IP_2022"
+					},
+					"timeout": "00:05:00",
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0825_Ventas"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-02-16T15:17:27Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

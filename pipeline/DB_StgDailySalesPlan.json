@@ -1,0 +1,107 @@
+{
+	"name": "DB_StgDailySalesPlan",
+	"properties": {
+		"activities": [
+			{
+				"name": "Llena Tabla Espejo",
+				"description": "Copia la informacion del archivo CSV en una tabla espejo en la base de datos",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_StgDailySalesPlan",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Limpia Tabla Final",
+				"description": "Ejecuta SP para limpieza de la tabla final antes de insertar registros y asi evitar duplicados",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Llena Tabla Espejo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[sales].[DailySalesPlan_Delete]"
+				},
+				"linkedServiceName": {
+					"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"DBName": "edw_prd"
+					}
+				}
+			},
+			{
+				"name": "Inserta en Tabla Final",
+				"description": "Inserta segun query el Daily Sales Plan a la tabla final",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Limpia Tabla Final",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[sales].[DailySalesPlan_Insert]"
+				},
+				"linkedServiceName": {
+					"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"DBName": "edw_prd"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0000_Daily_Sales_Plan"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T19:20:51Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

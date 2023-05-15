@@ -1,0 +1,32 @@
+{
+	"name": "Mover_BaseABP_CL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/89_Mover_Archivo"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(formatDateTime(utcnow(),'yyyyMMdd'),'_',formatDateTime(utcnow(),'hhmmss'),'_ZCLSD071_ABPLV_.txt')",
+					"type": "Expression"
+				},
+				"folderPath": "0_landing_zone/Cubo_Venta/BackupFiles",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,34 @@
+{
+	"name": "des_ProductFashionGrade",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ProductFashionGradeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "FashionGradeCode",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "ProductFashionGrade"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,65 @@
+{
+	"name": "ZCLMM039_WM_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo_Logistico/DataLake"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('ZCLSD039_WM_',formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1),'yyyyMMdd'),'.CSV')",
+					"type": "Expression"
+				},
+				"folderPath": "0_landing_zone/Cubo_Logistico",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FECHA EJECUCION",
+				"type": "String"
+			},
+			{
+				"name": "CENTRO",
+				"type": "String"
+			},
+			{
+				"name": "ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "NRO ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "TIPO ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "NRO ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK DISPONIBLE",
+				"type": "String"
+			},
+			{
+				"name": "STOCK TOTAL",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

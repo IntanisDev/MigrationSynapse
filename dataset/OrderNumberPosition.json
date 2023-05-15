@@ -1,0 +1,39 @@
+{
+	"name": "OrderNumberPosition",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "OrderNumberPositionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OrderNumberId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Position",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "OrderNumberPosition"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

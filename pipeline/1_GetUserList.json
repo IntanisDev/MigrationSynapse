@@ -1,0 +1,599 @@
+{
+	"name": "1_GetUserList",
+	"properties": {
+		"activities": [
+			{
+				"name": "Token",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://customerapi.geovictoria.com/api/v1/Login",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"value": "@concat('{\n    \"User\":\"',pipeline().parameters.User,'\",\n    \"Password\":\"',pipeline().parameters.Password,'\"\n}')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "UserList",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "POST",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "@{activity('Token').output.token}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['Id']"
+								},
+								"sink": {
+									"path": "$['Id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Identifier']"
+								},
+								"sink": {
+									"path": "$['Identifier']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Name']"
+								},
+								"sink": {
+									"path": "$['Name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['LastName']"
+								},
+								"sink": {
+									"path": "$['LastName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Enabled']"
+								},
+								"sink": {
+									"path": "$['Enabled']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PositionDescription']"
+								},
+								"sink": {
+									"path": "$['PositionDescription']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Email']"
+								},
+								"sink": {
+									"path": "$['Email']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SchedulerId']"
+								},
+								"sink": {
+									"path": "$['SchedulerId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SchedulerStart']"
+								},
+								"sink": {
+									"path": "$['SchedulerStart']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SchedulerPeriodStart']"
+								},
+								"sink": {
+									"path": "$['SchedulerPeriodStart']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ContractDate']"
+								},
+								"sink": {
+									"path": "$['ContractDate']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EndContractDate']"
+								},
+								"sink": {
+									"path": "$['EndContractDate']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "UserListRest",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "userListJson",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "UserListParquet",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "UserList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['Id']"
+								},
+								"sink": {
+									"name": "Id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Identifier']"
+								},
+								"sink": {
+									"name": "Identifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Name']"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['LastName']"
+								},
+								"sink": {
+									"name": "LastName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Enabled']"
+								},
+								"sink": {
+									"name": "Enabled",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PositionDescription']"
+								},
+								"sink": {
+									"name": "PositionDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Email']"
+								},
+								"sink": {
+									"name": "Email",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SchedulerId']"
+								},
+								"sink": {
+									"name": "SchedulerId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SchedulerStart']"
+								},
+								"sink": {
+									"name": "SchedulerStart",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SchedulerPeriodStart']"
+								},
+								"sink": {
+									"name": "SchedulerPeriodStart",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ContractDate']"
+								},
+								"sink": {
+									"name": "ContractDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EndContractDate']"
+								},
+								"sink": {
+									"name": "EndContractDate",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "userListJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "userListParquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "UserListActivos",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "UserListParquet",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Filtra_UsuariosActivos",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "2_AttendanceBook",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "UserListActivos",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "2_AttendanceBook",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Token": {
+							"value": "@{activity('Token').output.token}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "3_Consolida_Libro_Asistencia",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "2_AttendanceBook",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "3_Parseo_Turnos_Accesos",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "4_Libro_Asistencia_standar_zone",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "3_Consolida_Libro_Asistencia",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "4_Libro_Asistencia_standar_zone",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "4_Turnos_Standar_Zone",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "3_Consolida_Libro_Asistencia",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "4_Turnos_Standar_Zone",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "5_GV_Copia_Asistencia_Capa_Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "4_Libro_Asistencia_standar_zone",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "5_GV_Copia_Asistencia_Capa_Consumo",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "5_GV_Copia_Turnos_Capa_Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "4_Turnos_Standar_Zone",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "5_GV_Copia_Turnos_Capa_Consumo",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "4_Usuarios_to_StandarZone",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "UserListActivos",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "4_Usuarios_to_StandarZone",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "5_GV_Copia_Usuarios_Capa_Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "4_Usuarios_to_StandarZone",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "5_GV_Copia_Usuarios_Capa_Consumo",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "6_GeoVictoria_to_staging_CL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "5_GV_Copia_Asistencia_Capa_Consumo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "5_GV_Copia_Turnos_Capa_Consumo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "6_GeoVictoria_to_staging_CL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"User": {
+				"type": "string",
+				"defaultValue": "b5ca83"
+			},
+			"Password": {
+				"type": "string",
+				"defaultValue": "83fb8637"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/RRHH/GeoVictoria"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-07T03:58:32Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

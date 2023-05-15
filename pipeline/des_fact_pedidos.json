@@ -1,0 +1,542 @@
+{
+	"name": "des_fact_pedidos",
+	"properties": {
+		"description": "Copia fact_pedidos desde desarrollo",
+		"activities": [
+			{
+				"name": "fact_pedidos",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "truncate table [logistica].[fact_pedidos]",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FechaExtrae",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "FechaExtrae",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "origen",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "origen",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PEDIDO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PEDIDO",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SOCIEDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SOCIEDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FEC_CREACION",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "FEC_CREACION",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "centro_su",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "centro_su",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Clasedoc",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Clasedoc",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "posicion",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "posicion",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "StoreCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerTaxCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CustomerTaxCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Tienda_Cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tienda_Cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Marca",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Marca",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Local",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Local",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "material",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "material",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CantPedido",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantPedido",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CantPedidoDia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantPedidoDia",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ano",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ano",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "cantEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEntregaDia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "cantEntregaDia",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEmbalada",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "cantEmbalada",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEmbaladaDia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "cantEmbaladaDia",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CantDespachado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantDespachado",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CantDespachadoDia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantDespachadoDia",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CantRecepcionado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantRecepcionado",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SinEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SinEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CantRecepcionadoDia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantRecepcionadoDia",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "enproceso",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "enproceso",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "entransito",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "entransito",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "IndBorrado",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "IndBorrado",
+									"type": "String",
+									"physicalType": "char"
+								}
+							},
+							{
+								"source": {
+									"name": "IndEntreFin",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "IndEntreFin",
+									"type": "String",
+									"physicalType": "char"
+								}
+							},
+							{
+								"source": {
+									"name": "tuboCD",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "tuboCD",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WIPEmbaladas",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "WIPEmbaladas",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CONTADOR",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CONTADOR",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "lead_time",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "lead_time",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "lead_time_despacho",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "lead_time_despacho",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "fecha_entrega",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "fecha_entrega",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "fecha_embalaje",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "fecha_embalaje",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "fecha_despacho",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "fecha_despacho",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "fecha_movimiento",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "fecha_movimiento",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "des_Fact_pedidos",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "fact_pedidos",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Copia Desarrollo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-06T02:35:42Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,36 @@
+{
+	"name": "StoreCoverage_OnPremise_CON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/04 Consumption"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('StoreCoverage_OnPremise_',formatDateTime(adddays(utcnow(), -1),'yyyyMMdd'),'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "3_consumption_zone/DATALAKE/DL_STOCK",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

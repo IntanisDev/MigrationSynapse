@@ -1,0 +1,62 @@
+{
+	"name": "BASE_TRAFICO_DIARIO_bkp_febrero_marzo_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_BI_PRD_STAGING",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "CORRELATIVO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Devicekey",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "MALL",
+				"type": "varchar"
+			},
+			{
+				"name": "ZONA",
+				"type": "varchar"
+			},
+			{
+				"name": "NOMBRE",
+				"type": "varchar"
+			},
+			{
+				"name": "TIMESTAMP_INICIO",
+				"type": "varchar"
+			},
+			{
+				"name": "TIMESTAMP_FIN",
+				"type": "varchar"
+			},
+			{
+				"name": "ENTRADAS",
+				"type": "varchar"
+			},
+			{
+				"name": "SALIDAS",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BASE_TRAFICO_DIARIO_bkp_Marzo"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

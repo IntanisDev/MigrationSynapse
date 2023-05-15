@@ -1,0 +1,446 @@
+{
+	"name": "TRX_GLPCA",
+	"properties": {
+		"description": "EC-PCA: Partidas individuales reales",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Transaccional/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "RCLNT",
+				"type": "varchar"
+			},
+			{
+				"name": "GL_SIRID",
+				"type": "varchar"
+			},
+			{
+				"name": "RLDNR",
+				"type": "varchar"
+			},
+			{
+				"name": "RRCTY",
+				"type": "varchar"
+			},
+			{
+				"name": "RVERS",
+				"type": "varchar"
+			},
+			{
+				"name": "RYEAR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RTCUR",
+				"type": "varchar"
+			},
+			{
+				"name": "RUNIT",
+				"type": "varchar"
+			},
+			{
+				"name": "DRCRK",
+				"type": "varchar"
+			},
+			{
+				"name": "POPER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DOCCT",
+				"type": "varchar"
+			},
+			{
+				"name": "DOCNR",
+				"type": "varchar"
+			},
+			{
+				"name": "DOCLN",
+				"type": "varchar"
+			},
+			{
+				"name": "RBUKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "RPRCTR",
+				"type": "varchar"
+			},
+			{
+				"name": "RHOART",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RFAREA",
+				"type": "varchar"
+			},
+			{
+				"name": "KOKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "RACCT",
+				"type": "varchar"
+			},
+			{
+				"name": "HRKFT",
+				"type": "varchar"
+			},
+			{
+				"name": "RASSC",
+				"type": "varchar"
+			},
+			{
+				"name": "EPRCTR",
+				"type": "varchar"
+			},
+			{
+				"name": "ACTIV",
+				"type": "varchar"
+			},
+			{
+				"name": "AFABE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OCLNT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBUKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "SPRCTR",
+				"type": "varchar"
+			},
+			{
+				"name": "SHOART",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SFAREA",
+				"type": "varchar"
+			},
+			{
+				"name": "TSL",
+				"type": "varchar"
+			},
+			{
+				"name": "HSL",
+				"type": "varchar"
+			},
+			{
+				"name": "KSL",
+				"type": "varchar"
+			},
+			{
+				"name": "MSL",
+				"type": "varchar"
+			},
+			{
+				"name": "CPUDT",
+				"type": "varchar"
+			},
+			{
+				"name": "CPUTM",
+				"type": "varchar"
+			},
+			{
+				"name": "USNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "SGTXT",
+				"type": "varchar"
+			},
+			{
+				"name": "AUTOM",
+				"type": "varchar"
+			},
+			{
+				"name": "DOCTY",
+				"type": "varchar"
+			},
+			{
+				"name": "BLDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "BUDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "WSDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "REFDOCNR",
+				"type": "varchar"
+			},
+			{
+				"name": "REFRYEAR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REFDOCLN",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REFDOCCT",
+				"type": "varchar"
+			},
+			{
+				"name": "REFACTIV",
+				"type": "varchar"
+			},
+			{
+				"name": "AWTYP",
+				"type": "varchar"
+			},
+			{
+				"name": "AWORG",
+				"type": "varchar"
+			},
+			{
+				"name": "WERKS",
+				"type": "varchar"
+			},
+			{
+				"name": "GSBER",
+				"type": "varchar"
+			},
+			{
+				"name": "KOSTL",
+				"type": "varchar"
+			},
+			{
+				"name": "LSTAR",
+				"type": "varchar"
+			},
+			{
+				"name": "AUFNR",
+				"type": "varchar"
+			},
+			{
+				"name": "AUFPL",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ANLN1",
+				"type": "varchar"
+			},
+			{
+				"name": "ANLN2",
+				"type": "varchar"
+			},
+			{
+				"name": "MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "BWKEY",
+				"type": "varchar"
+			},
+			{
+				"name": "BWTAR",
+				"type": "varchar"
+			},
+			{
+				"name": "ANBWA",
+				"type": "varchar"
+			},
+			{
+				"name": "KUNNR",
+				"type": "varchar"
+			},
+			{
+				"name": "LIFNR",
+				"type": "varchar"
+			},
+			{
+				"name": "RMVCT",
+				"type": "varchar"
+			},
+			{
+				"name": "EBELN",
+				"type": "varchar"
+			},
+			{
+				"name": "EBELP",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "KSTRG",
+				"type": "varchar"
+			},
+			{
+				"name": "ERKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "PAOBJNR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PASUBNR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PS_PSP_PNR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "KDAUF",
+				"type": "varchar"
+			},
+			{
+				"name": "KDPOS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FKART",
+				"type": "varchar"
+			},
+			{
+				"name": "VKORG",
+				"type": "varchar"
+			},
+			{
+				"name": "VTWEG",
+				"type": "varchar"
+			},
+			{
+				"name": "AUBEL",
+				"type": "varchar"
+			},
+			{
+				"name": "AUPOS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SPART",
+				"type": "varchar"
+			},
+			{
+				"name": "VBELN",
+				"type": "varchar"
+			},
+			{
+				"name": "POSNR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VKGRP",
+				"type": "varchar"
+			},
+			{
+				"name": "VKBUR",
+				"type": "varchar"
+			},
+			{
+				"name": "VBUND",
+				"type": "varchar"
+			},
+			{
+				"name": "LOGSYS",
+				"type": "varchar"
+			},
+			{
+				"name": "ALEBN",
+				"type": "varchar"
+			},
+			{
+				"name": "AWSYS",
+				"type": "varchar"
+			},
+			{
+				"name": "VERSA",
+				"type": "varchar"
+			},
+			{
+				"name": "STFLG",
+				"type": "varchar"
+			},
+			{
+				"name": "STOKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "STAGR",
+				"type": "varchar"
+			},
+			{
+				"name": "GRTYP",
+				"type": "varchar"
+			},
+			{
+				"name": "REP_MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "CO_PRZNR",
+				"type": "varchar"
+			},
+			{
+				"name": "IMKEY",
+				"type": "varchar"
+			},
+			{
+				"name": "DABRZ",
+				"type": "varchar"
+			},
+			{
+				"name": "VALUT",
+				"type": "varchar"
+			},
+			{
+				"name": "RSCOPE",
+				"type": "varchar"
+			},
+			{
+				"name": "AWREF_REV",
+				"type": "varchar"
+			},
+			{
+				"name": "AWORG_REV",
+				"type": "varchar"
+			},
+			{
+				"name": "BWART",
+				"type": "varchar"
+			},
+			{
+				"name": "BLART",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GLPCA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

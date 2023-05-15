@@ -1,0 +1,186 @@
+{
+	"name": "Prisma_Ventas_DL_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Prisma_Ventas.txt",
+				"folderPath": "0_landing_zone/OnPremise",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "INVC_SID",
+				"type": "String"
+			},
+			{
+				"name": "FISCAL_DOC_ID",
+				"type": "String"
+			},
+			{
+				"name": "TRACKING_NO",
+				"type": "String"
+			},
+			{
+				"name": "INVC_NO",
+				"type": "String"
+			},
+			{
+				"name": "SBS_NO",
+				"type": "String"
+			},
+			{
+				"name": "SBS_NAME",
+				"type": "String"
+			},
+			{
+				"name": "STORE_NO",
+				"type": "String"
+			},
+			{
+				"name": "STORE_NAME",
+				"type": "String"
+			},
+			{
+				"name": "POS_FLAG1",
+				"type": "String"
+			},
+			{
+				"name": "POS_FLAG2",
+				"type": "String"
+			},
+			{
+				"name": "POS_FLAG3",
+				"type": "String"
+			},
+			{
+				"name": "CREATED_DATE",
+				"type": "String"
+			},
+			{
+				"name": "PROC_STATUS",
+				"type": "String"
+			},
+			{
+				"name": "STATUS",
+				"type": "String"
+			},
+			{
+				"name": "WORKSTATION",
+				"type": "String"
+			},
+			{
+				"name": "INVC_TYPE",
+				"type": "String"
+			},
+			{
+				"name": "TENDER_TYPE",
+				"type": "String"
+			},
+			{
+				"name": "TENDER_NO",
+				"type": "String"
+			},
+			{
+				"name": "TAKEN",
+				"type": "String"
+			},
+			{
+				"name": "GIVEN",
+				"type": "String"
+			},
+			{
+				"name": "AMT",
+				"type": "String"
+			},
+			{
+				"name": "CRD_TYPE",
+				"type": "String"
+			},
+			{
+				"name": "DOC_NO",
+				"type": "String"
+			},
+			{
+				"name": "TENDER_NAME",
+				"type": "String"
+			},
+			{
+				"name": "CRD_NAME",
+				"type": "String"
+			},
+			{
+				"name": "INFO1",
+				"type": "String"
+			},
+			{
+				"name": "FIRST_NAME",
+				"type": "String"
+			},
+			{
+				"name": "LAST_NAME",
+				"type": "String"
+			},
+			{
+				"name": "SO_NO",
+				"type": "String"
+			},
+			{
+				"name": "EMPL_NAME",
+				"type": "String"
+			},
+			{
+				"name": "RPRO_FULL_NAME",
+				"type": "String"
+			},
+			{
+				"name": "QTY",
+				"type": "String"
+			},
+			{
+				"name": "ALU",
+				"type": "String"
+			},
+			{
+				"name": "DESCRIPTION1",
+				"type": "String"
+			},
+			{
+				"name": "DESCRIPTION2",
+				"type": "String"
+			},
+			{
+				"name": "DESCRIPTION3",
+				"type": "String"
+			},
+			{
+				"name": "DESCRIPTION4",
+				"type": "String"
+			},
+			{
+				"name": "ATTR",
+				"type": "String"
+			},
+			{
+				"name": "SIZ",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

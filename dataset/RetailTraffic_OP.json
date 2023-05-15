@@ -1,0 +1,51 @@
+{
+	"name": "RetailTraffic_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_BI_PRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "RetailTrafficId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Traffic",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HourId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RetailTraffic"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

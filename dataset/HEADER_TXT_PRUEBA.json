@@ -1,0 +1,38 @@
+{
+	"name": "HEADER_TXT_PRUEBA",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string",
+				"defaultValue": "HEADER"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/02_DataLake"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().FileName,'---',utcnow())",
+					"type": "Expression"
+				},
+				"folderPath": "0_landing_zone/Cubo_Venta/InputFiles",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

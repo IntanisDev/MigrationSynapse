@@ -1,0 +1,335 @@
+{
+	"name": "2_Parse_to_parquet",
+	"properties": {
+		"description": "Parsea archivo jason a parquet por marca",
+		"activities": [
+			{
+				"name": "Parse_Dockers_to_parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "marca",
+								"value": "Dockers"
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['dimensionValues'][0]['value']"
+								},
+								"sink": {
+									"name": "fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['dimensionValues'][2]['value']"
+								},
+								"sink": {
+									"name": "pais",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['dimensionValues'][1]['value']"
+								},
+								"sink": {
+									"name": "ciudad",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['dimensionValues'][3]['value']"
+								},
+								"sink": {
+									"name": "browser",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][0]['value']"
+								},
+								"sink": {
+									"name": "activeUsers",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][1]['value']"
+								},
+								"sink": {
+									"name": "engagedSessions",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][2]['value']"
+								},
+								"sink": {
+									"name": "eventCount",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][3]['value']"
+								},
+								"sink": {
+									"name": "newUsers",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][4]['value']"
+								},
+								"sink": {
+									"name": "Sessions",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][5]['value']"
+								},
+								"sink": {
+									"name": "totalRevenue",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][6]['value']"
+								},
+								"sink": {
+									"name": "totalUsers",
+									"type": "Int16"
+								}
+							}
+						],
+						"collectionReference": "$['rows']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_dockers",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GA_dockers",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Parse_Levis_to_parquet",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Parse_Dockers_to_parquet",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['dimensionValues'][0]['value']"
+								},
+								"sink": {
+									"name": "fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['dimensionValues'][2]['value']"
+								},
+								"sink": {
+									"name": "pais",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['dimensionValues'][1]['value']"
+								},
+								"sink": {
+									"name": "ciudad",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['dimensionValues'][3]['value']"
+								},
+								"sink": {
+									"name": "browser",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][0]['value']"
+								},
+								"sink": {
+									"name": "activeUsers",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][1]['value']"
+								},
+								"sink": {
+									"name": "engagedSessions",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][2]['value']"
+								},
+								"sink": {
+									"name": "eventCount",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][3]['value']"
+								},
+								"sink": {
+									"name": "newUsers",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][4]['value']"
+								},
+								"sink": {
+									"name": "Sessions",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][5]['value']"
+								},
+								"sink": {
+									"name": "totalRevenue",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][6]['value']"
+								},
+								"sink": {
+									"name": "totalUsers",
+									"type": "Int16"
+								}
+							}
+						],
+						"collectionReference": "$['rows']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_levis",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GA_levis",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Social Media/Google Analytics/Detalle"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-04T00:54:44Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

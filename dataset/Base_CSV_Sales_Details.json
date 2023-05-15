@@ -1,0 +1,477 @@
+{
+	"name": "Base_CSV_Sales_Details",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "STORE_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "TRANSTYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "TRANS_DESCRIPTION",
+				"type": "varchar"
+			},
+			{
+				"name": "CAIS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSNUM",
+				"type": "varchar"
+			},
+			{
+				"name": "LINE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRODUCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT_SCANNED",
+				"type": "varchar"
+			},
+			{
+				"name": "WAIST",
+				"type": "varchar"
+			},
+			{
+				"name": "SIZE",
+				"type": "varchar"
+			},
+			{
+				"name": "QTY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRICE_ORIGINAL",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "PRICE_PERMANENT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "PRICE_PROMOTIONAL",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "PRICE_SOLD",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "TAX_CATEGORY_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PROD_PICK_DATE",
+				"type": "varchar"
+			},
+			{
+				"name": "RETURN_REASON_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REASON_CODE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REASON_DESCRIPTION",
+				"type": "varchar"
+			},
+			{
+				"name": "RETURN_STORE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RETURN_SALESCODE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SERIAL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SPECIAL",
+				"type": "varchar"
+			},
+			{
+				"name": "UPDTOTLS",
+				"type": "varchar"
+			},
+			{
+				"name": "LEVEL1_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LEVEL3_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LEVEL4_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LEVEL2_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PACK_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PACK_SEQUENCE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BIN_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BIN_DESCRIPTION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PICK_LATER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BIN_STORE_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "NUMBER_OF_POINT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSMIT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSMIT_SA",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TS_ID",
+				"type": "char"
+			},
+			{
+				"name": "QTY_RELATED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QTY_RELATED2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RETURN_TRANSNUM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RETURN_CAIS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AVG_COST_UNIT_SOLD",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "PRCH_SESSIONNUMBER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAX_AMOUNT1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "TAX_AMOUNT2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAX_AMOUNT3",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "STOCK_UPDATED",
+				"type": "varchar"
+			},
+			{
+				"name": "GLOBAL_TAX_CODE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GLOBAL_TAX_DESCRIPTION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAX_RATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REGION_TAX_CODE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REGION_TAX_DESCRIPTION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REGION_TAX_RATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAXCUMULATED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PACKQTY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "POSTINGDATE",
+				"type": "char"
+			},
+			{
+				"name": "RETURN_LINE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RETAIL_LINE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "STAFF_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LINE_USERVIEW",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LINETYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "IS_VISIBLE",
+				"type": "varchar"
+			},
+			{
+				"name": "VOID_FLAG",
+				"type": "varchar"
+			},
+			{
+				"name": "VOID_REF_LINE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GIFT_SOLD_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GIFT_STORE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GIFT_SEQUENCE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GIFT_AMOUNT_SOLD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GIFT_TRANSDATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GIFT_TRANSTIME",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EXTERNAL_LINENUM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REF_LINEID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CONTEXT_REASON_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PROMOTIONHEADERID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TOTAL_ADVANTAGE_VALUE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DISCOUNT_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AMOUNT_DISCOUNT",
+				"type": "decimal",
+				"precision": 31,
+				"scale": 13
+			},
+			{
+				"name": "PERCENT_DISCOUNT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NEWPRICE_DISCOUNT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DESCRIPTION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MARKDOWN",
+				"type": "varchar"
+			},
+			{
+				"name": "SERVICE_AMT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SERVICE_DESCRIPTION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PAID_IN_OUT_AMT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PAID_IN_OUT_NOTE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "STAFF_NAME",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ZERO_sTORE_CODE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRICE_PERMANENT_CENT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "COUNTRY",
+				"type": "varchar"
+			},
+			{
+				"name": "TYPE_CURRENCY",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Sales_Details"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

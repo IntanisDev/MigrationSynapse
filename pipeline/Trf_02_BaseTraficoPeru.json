@@ -1,0 +1,299 @@
+{
+	"name": "Trf_02_BaseTraficoPeru",
+	"properties": {
+		"activities": [
+			{
+				"name": "Trf_PE_FTP_to_Trf_PE_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "cubo_trafico/Trafico.txt"
+					},
+					{
+						"name": "Destination",
+						"value": "edwlakeprd/0_landing_zone/Cubo_Trafico/Trafico.txt"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "COD_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NOMBRE_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NOMBRE_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DIAHORA_INICIO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DIAHORA_INICIO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DIAHORA_FIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DIAHORA_FIN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ENTRADAS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ENTRADAS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SALIDAS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SALIDAS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Trafico_Peru_FTP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Trafico_Peru_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Trf_PE_DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Trf_PE_FTP_to_Trf_PE_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Trf PERU - TraficoHistoricoPeru",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continueOnError": true
+				}
+			},
+			{
+				"name": "MoverArchivo",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Trf_PE_DL_to_BD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Trafico_Peru_DL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mover_Trafico_Peru_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Borrar_Archivo",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "MoverArchivo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Trafico_Peru_DL",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-20T19:31:18Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

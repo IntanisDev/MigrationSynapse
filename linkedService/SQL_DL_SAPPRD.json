@@ -1,0 +1,17 @@
+{
+	"name": "SQL_DL_SAPPRD",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "Base de datos del Onpremise productivo que recibe la información desde SAP PRD",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=10.81.206.50;initial catalog=DL_SAPPRD;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhNDE2MzU2Yy1hNmM5LTRhYTUtYWRhNi1hZjU3OWQ3OGE4MzAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

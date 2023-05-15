@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-sql--edw-prd",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/ab9b1e55-f9f6-4019-a98a-a331e6120081/resourceGroups/edw-prd/providers/Microsoft.Synapse/workspaces/edw-prd",
+		"groupId": "sql",
+		"fqdns": [
+			"edw-prd.aac88815-c6b8-4dd2-b322-a9d716777a70.sql.azuresynapse.net"
+		]
+	}
+}

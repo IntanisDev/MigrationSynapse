@@ -1,0 +1,422 @@
+{
+	"name": "SALE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SaleId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransactionDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "AuditTrailId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QualityId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GenderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Revenues",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "NetSale",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleCost",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Margin",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleQuantity",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleABP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "CostABP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "MarginABP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleQuantityABP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "M2",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SalesM2",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Transactions",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount1",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount2",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount3",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount4",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount5",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount6",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount7",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount8",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount9",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Discount10",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "ShimId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Stock",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "StockConsigned",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "StockValue",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "MarginInterCompany",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleInterCompany",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "ProfitMarginInterCompany",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "MarginPreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "NetSalePreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "RevenuesPreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleCostPreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleQuantityPreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "WeightedAverageCost",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "WeightedAveragePrice",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "BusinessClasificationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionGradeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionSeasonId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductGenericId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductModelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MarginInterCompanyPreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SalesM2PreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "MarginInterCompanyPreviousYearComparable",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "MarginPreviousYearComparable",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "NetSalePreviousYearComparable",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "RevenuesPreviousYearComparable",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleCostPreviousYearComparable",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleQuantityPreviousYearComparable",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SalesM2PreviousYearComparable",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "CurrencyId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockDC",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "StockInTransit",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "PercentageParticipationSale",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "PercentageParticipationSalePreviousYear",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Sale"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

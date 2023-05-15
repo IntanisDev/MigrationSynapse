@@ -1,0 +1,63 @@
+{
+	"name": "ZCLMM039_WM_STOCK_ACTUAL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo_Logistico/SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FECHA_EJECUCION",
+				"type": "date"
+			},
+			{
+				"name": "CENTRO",
+				"type": "varchar"
+			},
+			{
+				"name": "ALMACEN",
+				"type": "varchar"
+			},
+			{
+				"name": "NRO_ALMACEN",
+				"type": "varchar"
+			},
+			{
+				"name": "TIPO_ALMACEN",
+				"type": "varchar"
+			},
+			{
+				"name": "NRO_ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK_DISPONIBLE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "STOCK_TOTAL",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CONTADOR",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "ZCLMM039_WM_STOCK_ACTUAL"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

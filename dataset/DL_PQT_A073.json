@@ -1,0 +1,26 @@
+{
+	"name": "DL_PQT_A073",
+	"properties": {
+		"description": "Artículo por OrgVta/CanDistr",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "A073.parquet",
+				"folderPath": "3_consumption_zone/Datalake/DL_PRECIOS/A073",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,95 @@
+{
+	"name": "vw_SellOut_Inventory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PaisOrigen",
+				"type": "varchar"
+			},
+			{
+				"name": "Fecha",
+				"type": "varchar"
+			},
+			{
+				"name": "Cadena",
+				"type": "varchar"
+			},
+			{
+				"name": "Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "CodigoProducto",
+				"type": "varchar"
+			},
+			{
+				"name": "PC13",
+				"type": "varchar"
+			},
+			{
+				"name": "Talla1",
+				"type": "varchar"
+			},
+			{
+				"name": "Talla2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UPC",
+				"type": "varchar"
+			},
+			{
+				"name": "SkuCliente",
+				"type": "varchar"
+			},
+			{
+				"name": "UnidadesVendidas",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "VentaNeta",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "CostoUnidadesVendidas",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "UnidadesInventario",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "InventarioVenta",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "InventarioCosto",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vw_SELLOUT_INVENTORY"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

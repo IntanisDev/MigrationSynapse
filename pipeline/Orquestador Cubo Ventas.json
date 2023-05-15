@@ -1,0 +1,66 @@
+{
+	"name": "Orquestador Cubo Ventas",
+	"properties": {
+		"activities": [
+			{
+				"name": "Tablas de Dimension",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Procesar_Cubo_Ventas_Dim",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Tablas Factuales",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Tablas de Dimension",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Procesar_Cubo_Ventas_Fact",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Tablas Cubo 2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Tablas Factuales",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Procesar_Cubo_Ventas_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9999_Procesar_Cubo_Ventas"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-18T23:52:25Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

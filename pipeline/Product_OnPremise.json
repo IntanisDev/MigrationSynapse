@@ -1,0 +1,57 @@
+{
+	"name": "Product_OnPremise",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Product_OP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_Product_AZ",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-21T20:02:42Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

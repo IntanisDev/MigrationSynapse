@@ -1,0 +1,28 @@
+{
+	"name": "DM_DD07L_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/02 RAW"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_DD07L.csv",
+				"folderPath": "1_raw_data/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "'"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

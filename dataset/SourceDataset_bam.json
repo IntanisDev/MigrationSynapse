@@ -1,0 +1,17 @@
+{
+	"name": "SourceDataset_bam",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_VENTAS"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

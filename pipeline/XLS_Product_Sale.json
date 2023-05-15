@@ -1,0 +1,81 @@
+{
+	"name": "XLS_Product_Sale",
+	"properties": {
+		"activities": [
+			{
+				"name": "XLS_Product_Sale",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT [Country Code]\n      ,[Country Name]\n      ,[Legacy Store Number]\n      ,[SAP Store Number]\n      ,[Store Name]\n      ,[Product MDM - Brand Name]\n      ,[Product MDM - Consumer Name]\n      ,[Product MDM - Category Name]\n      ,[Product MDM - Subcategory Name]\n      ,[Product MDM - Sub Class Name]\n      ,[Product MDM - Global Fit Platform Name]\n      ,[Product MDM - Product Code]\n      ,[Time - Transaction Date (YYYYMMDD)]\n      ,[CAR : Retail Sales Net - Units - TY]\n      ,[Gross Sales - Value]\n      ,[CAR : Retail Sales Net - Value]\n      ,[Retail Discounts - Value]\n      ,[Retail Discounts %]\n      ,[Retail Sales Net - Margin]\n      ,[Standard Cost]\n      ,[Margin %]\n  FROM [andes].[vw_Report_Product_Sales2]\n  WHERE [Time - Transaction Date (YYYYMMDD)] BETWEEN '20230101' AND '20230630'\n  ORDER BY [Time - Transaction Date (YYYYMMDD)] desc, [Country Code], [Legacy Store Number]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "edw-prd-WorkspaceDefaultStorage",
+								"type": "LinkedServiceReference"
+							},
+							"path": "edwlakeprd"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "XLS_Product_Sale_Origen",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "XLS_Product_Sale_Destino",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-04-19T20:17:03Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

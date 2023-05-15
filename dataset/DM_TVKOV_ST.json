@@ -1,0 +1,70 @@
+{
+	"name": "DM_TVKOV_ST",
+	"properties": {
+		"description": "Canales de Dsitribución por Organización de Ventas",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_TVKOV.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG",
+				"type": "String"
+			},
+			{
+				"name": "VTWKO",
+				"type": "String"
+			},
+			{
+				"name": "VTWAU",
+				"type": "String"
+			},
+			{
+				"name": "VTWKU",
+				"type": "String"
+			},
+			{
+				"name": "VLGFI",
+				"type": "String"
+			},
+			{
+				"name": "VLTYP",
+				"type": "String"
+			},
+			{
+				"name": "VLKEB",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

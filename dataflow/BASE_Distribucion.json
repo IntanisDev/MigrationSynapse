@@ -1,0 +1,31 @@
+{
+	"name": "BASE_Distribucion",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_BaseDistribucion",
+						"type": "DatasetReference"
+					},
+					"name": "ConsDistribucion"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DistribucionDB",
+						"type": "DatasetReference"
+					},
+					"name": "DistribucionDB"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tPERIODO as string,\n\t\tMARCA as string,\n\t\tCANAL as string,\n\t\t{PAÍS} as string,\n\t\t{1} as string,\n\t\t{2} as string,\n\t\t{3} as string,\n\t\t{4} as string,\n\t\t{5} as string,\n\t\t{6} as string,\n\t\t{7} as string,\n\t\t{8} as string,\n\t\t{9} as string,\n\t\t{10} as string,\n\t\t{11} as string,\n\t\t{12} as string,\n\t\t{13} as string,\n\t\t{14} as string,\n\t\t{15} as string,\n\t\t{16} as string,\n\t\t{17} as string,\n\t\t{18} as string,\n\t\t{19} as string,\n\t\t{20} as string,\n\t\t{21} as string,\n\t\t{22} as string,\n\t\t{23} as string,\n\t\t{24} as string,\n\t\t{25} as string,\n\t\t{26} as string,\n\t\t{27} as string,\n\t\t{28} as string,\n\t\t{29} as string,\n\t\t{30} as string,\n\t\t{31} as string,\n\t\t{32} as string,\n\t\t{33} as string,\n\t\t{34} as string,\n\t\t{35} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> ConsDistribucion\nConsDistribucion sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tPERIODO as string,\n\t\tMARCA as string,\n\t\tCANAL as string,\n\t\tPAIS as string,\n\t\t{1} as string,\n\t\t{2} as string,\n\t\t{3} as string,\n\t\t{4} as string,\n\t\t{5} as string,\n\t\t{6} as string,\n\t\t{7} as string,\n\t\t{8} as string,\n\t\t{9} as string,\n\t\t{10} as string,\n\t\t{11} as string,\n\t\t{12} as string,\n\t\t{13} as string,\n\t\t{14} as string,\n\t\t{15} as string,\n\t\t{16} as string,\n\t\t{17} as string,\n\t\t{18} as string,\n\t\t{19} as string,\n\t\t{20} as string,\n\t\t{21} as string,\n\t\t{22} as string,\n\t\t{23} as string,\n\t\t{24} as string,\n\t\t{25} as string,\n\t\t{26} as string,\n\t\t{27} as string,\n\t\t{28} as string,\n\t\t{29} as string,\n\t\t{30} as string,\n\t\t{31} as string,\n\t\t{32} as string,\n\t\t{33} as string,\n\t\t{34} as string,\n\t\t{35} as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tPERIODO,\n\t\tMARCA,\n\t\tCANAL,\n\t\tPAIS = {PAÍS},\n\t\t{1},\n\t\t{2},\n\t\t{3},\n\t\t{4},\n\t\t{5},\n\t\t{6},\n\t\t{7},\n\t\t{8},\n\t\t{9},\n\t\t{10},\n\t\t{11},\n\t\t{12},\n\t\t{13},\n\t\t{14},\n\t\t{15},\n\t\t{16},\n\t\t{17},\n\t\t{18},\n\t\t{19},\n\t\t{20},\n\t\t{21},\n\t\t{22},\n\t\t{23},\n\t\t{24},\n\t\t{25},\n\t\t{26},\n\t\t{27},\n\t\t{28},\n\t\t{29},\n\t\t{30},\n\t\t{31},\n\t\t{32},\n\t\t{33},\n\t\t{34},\n\t\t{35}\n\t)) ~> DistribucionDB"
+		}
+	}
+}

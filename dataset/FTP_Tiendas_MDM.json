@@ -1,0 +1,135 @@
+{
+	"name": "FTP_Tiendas_MDM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "MDM Tiendas",
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "Tiendas MDM.xlsx",
+				"folderPath": "tiendas_mdm"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Store_Name",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "Comp_Store",
+				"type": "String"
+			},
+			{
+				"name": "RE_Status",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "Country_Group",
+				"type": "String"
+			},
+			{
+				"name": "SAP_ID",
+				"type": "String"
+			},
+			{
+				"name": "Centro_Costos",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "Mall_Name",
+				"type": "String"
+			},
+			{
+				"name": "Mall_Group",
+				"type": "String"
+			},
+			{
+				"name": "District",
+				"type": "String"
+			},
+			{
+				"name": "District_Manager",
+				"type": "String"
+			},
+			{
+				"name": "Retail_Channel",
+				"type": "String"
+			},
+			{
+				"name": "Format",
+				"type": "String"
+			},
+			{
+				"name": "Business_Model",
+				"type": "String"
+			},
+			{
+				"name": "Store_Brand",
+				"type": "String"
+			},
+			{
+				"name": "Partner_Name",
+				"type": "String"
+			},
+			{
+				"name": "Open_Date",
+				"type": "String"
+			},
+			{
+				"name": "Close_Date",
+				"type": "String"
+			},
+			{
+				"name": "Comp_Reset",
+				"type": "String"
+			},
+			{
+				"name": "Gross_Selling_Size",
+				"type": "String"
+			},
+			{
+				"name": "Gross_Size",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Capacity",
+				"type": "String"
+			},
+			{
+				"name": "Latitude",
+				"type": "String"
+			},
+			{
+				"name": "Longitude",
+				"type": "String"
+			},
+			{
+				"name": "Tailor",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

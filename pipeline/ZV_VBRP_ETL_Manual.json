@@ -1,0 +1,66 @@
+{
+	"name": "ZV_VBRP_ETL_Manual",
+	"properties": {
+		"activities": [
+			{
+				"name": "VBRP RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_TX_ZV_VBRP_Manual",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "VBRP STD",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "VBRP RAW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_TX_ZV_VBRP_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "VBRP CON",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "VBRP STD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_TX_ZV_VBRP_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Transacciones"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-08T17:01:16Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

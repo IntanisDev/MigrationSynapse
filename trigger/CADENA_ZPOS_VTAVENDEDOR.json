@@ -1,0 +1,25 @@
+{
+	"name": "CADENA_ZPOS_VTAVENDEDOR",
+	"properties": {
+		"description": "Ejecuta la carga del dato maestro relacion entre vendedor y boleta",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ZPOS_VTAVENDEDOR_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-06-08T07:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

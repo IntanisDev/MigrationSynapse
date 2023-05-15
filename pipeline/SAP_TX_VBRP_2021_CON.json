@@ -1,0 +1,37 @@
+{
+	"name": "SAP_TX_VBRP_2021_CON",
+	"properties": {
+		"activities": [
+			{
+				"name": "SAP_TX_VBRP_2021_CON",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "SAP_TX_VBRP_2021_CON",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Coarse"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Consumption"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-12T15:49:32Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

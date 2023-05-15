@@ -1,0 +1,325 @@
+{
+	"name": "Procesar Cubo Sellin Sellout DIM",
+	"properties": {
+		"activities": [
+			{
+				"name": "Cliente",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Destinatario_Mercancia",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Cliente"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Cubicaje",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Parametros_Sell",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Cubicaje"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Destinatario_Mercancia",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Metas_Sellout",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Destinatario_Mercancia"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Genero",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Periodo",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Genero"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Marca",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Genero",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Marca"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Material",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Cliente",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Material"
+					},
+					"timeout": "00:02:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Material_Descripcion",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Material",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Material_Descripcion"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Metas_Sellout",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Cubicaje",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Metas_Sellout"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Parametros_Sell",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Sociedad",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Parametros_Sell"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Periodo",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Periodo"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Sociedad",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Marca",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Sellin SellOut DataLake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Sociedad"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/09 Ejecucion de Cubos"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-16T13:13:03Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

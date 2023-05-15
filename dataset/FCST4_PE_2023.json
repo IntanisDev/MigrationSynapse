@@ -1,0 +1,91 @@
+{
+	"name": "FCST4_PE_2023",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "FCST4_PE_2023.csv",
+				"folderPath": "0_landing_zone/Cubo_Venta/Forecast_2023",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Periodo",
+				"type": "String"
+			},
+			{
+				"name": "Sociedad",
+				"type": "String"
+			},
+			{
+				"name": "D�a",
+				"type": "String"
+			},
+			{
+				"name": "Canal Distribuci�n",
+				"type": "String"
+			},
+			{
+				"name": "Cliente",
+				"type": "String"
+			},
+			{
+				"name": "Tienda /Centro",
+				"type": "String"
+			},
+			{
+				"name": "Tipo de Articulo",
+				"type": "String"
+			},
+			{
+				"name": "Marca",
+				"type": "String"
+			},
+			{
+				"name": "Calidad",
+				"type": "String"
+			},
+			{
+				"name": "Genero ",
+				"type": "String"
+			},
+			{
+				"name": "Linea",
+				"type": "String"
+			},
+			{
+				"name": "Tipo",
+				"type": "String"
+			},
+			{
+				"name": "Prenda",
+				"type": "String"
+			},
+			{
+				"name": " Venta M$ ",
+				"type": "String"
+			},
+			{
+				"name": " Costo M$ ",
+				"type": "String"
+			},
+			{
+				"name": " Volumen de Venta ",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

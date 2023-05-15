@@ -1,0 +1,53 @@
+{
+	"name": "Trafico_Peru_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FtpServer_tiendaRMS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "Trafico.txt",
+				"folderPath": "Peru_RMSData"
+			},
+			"columnDelimiter": "\t",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COD_TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "NOMBRE_TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "DIAHORA_INICIO",
+				"type": "String"
+			},
+			{
+				"name": "DIAHORA_FIN",
+				"type": "String"
+			},
+			{
+				"name": "ENTRADAS",
+				"type": "String"
+			},
+			{
+				"name": "SALIDAS",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

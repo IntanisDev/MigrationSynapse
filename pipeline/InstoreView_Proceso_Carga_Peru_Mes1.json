@@ -1,0 +1,126 @@
+{
+	"name": "InstoreView_Proceso_Carga_Peru_Mes1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Venta Peru Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "06 InstoreView_Venta_Peru",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Peru Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru Consumo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "04 InstoreView_Stock_Peru_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Peru ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "08 InstoreView_Venta_Peru_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Peru ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Peru Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "06 InstoreView_Stock_Peru_ST_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Peru Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "08 InstoreView_Venta_Peru_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Peru Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Peru ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "06 InstoreView_Stock_Peru_CON_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/04 Proceso ETL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-25T15:14:04Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

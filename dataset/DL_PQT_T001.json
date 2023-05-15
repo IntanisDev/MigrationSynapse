@@ -1,0 +1,26 @@
+{
+	"name": "DL_PQT_T001",
+	"properties": {
+		"description": "Sociedades\n",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "T001.parquet",
+				"folderPath": "3_consumption_zone/Datalake/DL_DATOS_MAESTROS/T001",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

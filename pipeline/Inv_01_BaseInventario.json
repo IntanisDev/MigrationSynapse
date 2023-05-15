@@ -1,0 +1,655 @@
+{
+	"name": "Inv_01_BaseInventario",
+	"properties": {
+		"activities": [
+			{
+				"name": "Inv_CL_FTP_to_Inv_CL_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "cubo_inventario/ZCLMM063_SAP_inventariolv.txt"
+					},
+					{
+						"name": "Destination",
+						"value": "edwlakeprd/0_landing_zone/Cubo_Inventario/ZCLMM063_SAP_inventariolv.txt"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ALMACEN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ALMACEN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRODUCTO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PRODUCTO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STOCK",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STOCK",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VALORIZACION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "VALORIZACION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STK.BLOQUEADO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STK.BLOQUEADO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STK.CONF",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STK.CONF",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STK.ENTREGA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STK.ENTREGA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STK.DISPONIBLE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STK.DISPONIBLE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Inventario_Chile_FTP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Inventario_Chile_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Inv_CL_DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Inv_CL_FTP_to_Inv_CL_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Inv CHILE - BaseInventario",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continueOnError": true
+				}
+			},
+			{
+				"name": "Inv_BO_FTP_to_Inv_BO_DL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Inv_CL_DL_to_BD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "Cubo_Ventas/20220112_084934_ZPESD075_BASE_VENTASLV_.txt"
+					},
+					{
+						"name": "Destination",
+						"value": "edwlakeprd/0_landing_zone/Cubo_Venta/20220112_084934_ZPESD075_BASE_VENTASLV_.txt"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "COD_CENTRO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_CENTRO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_ALMACEN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_ALMACEN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_ARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_ARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STOCK",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STOCK",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STOCK_VALORIZADO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STOCK_VALORIZADO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STOCK_CONSIGNACION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STOCK_CONSIGNACION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Inventario_Bolivia_FTP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Inventario_Bolivia_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Inv_BO_DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Inv_BO_FTP_to_Inv_BO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Inv BOLIVIA - BaseInventario",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continueOnError": true
+				}
+			},
+			{
+				"name": "BaseInventario01",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Inv_BO_DL_to_BD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[BaseInventario01]"
+				}
+			},
+			{
+				"name": "Mover Inventario CL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "BaseInventario01",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Inventario_Chile_DL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mover_Inventario_CL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Mover inventario BOL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Mover Inventario CL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Inventario_Bolivia_DL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mover_Inventario_BOL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "borrar inventario CL",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Mover inventario BOL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Inventario_Chile_DL",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "borrar inventario BOL",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "borrar inventario CL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Inventario_Bolivia_DL",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0905_Inventario"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-20T19:35:18Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

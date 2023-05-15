@@ -1,0 +1,57 @@
+{
+	"name": "03 CARGA_VENTA_CHILE_ST_MANUAL",
+	"properties": {
+		"activities": [
+			{
+				"name": "DF CARGA VENTA CHILE MANUAL",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_CARGA_VENTA_CHILE_ST_MANUAL",
+						"type": "DataFlowReference",
+						"parameters": {
+							"nombreArchivo": {
+								"value": "'@{concat('CE11000_202208.csv')}'",
+								"type": "Expression"
+							}
+						},
+						"datasetParameters": {
+							"CE11000A": {
+								"OutputFileName": "CE11000_202208.csv",
+								"Folder": "2022"
+							},
+							"CE11000B": {
+								"OutputFileName": "CE11000_202208.csv",
+								"Folder": "2022"
+							},
+							"CE11000ST": {
+								"OutputFileName": "CE11000_202208.csv",
+								"Folder": "2022"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/02 Retail/02 Standard"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-21T18:48:20Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

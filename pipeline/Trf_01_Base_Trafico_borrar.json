@@ -1,0 +1,122 @@
+{
+	"name": "Trf_01_Base_Trafico_borrar",
+	"properties": {
+		"activities": [
+			{
+				"name": "RetailTraffic synapse a OP",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT  cast(SUBSTRING([DIAHORA_INICIO],1,4) + '-' + SUBSTRING([DIAHORA_INICIO],6,2)  + '-' + SUBSTRING([DIAHORA_INICIO],9,2) as date) fecha\n\t\t  , (select HourId from [sales].[Hour] \n\t\t\t where InitialHour <=cast('1900-01-01 ' + substring([DIAHORA_INICIO],12,5)   as datetime2) \n\t\t\tand \n\t\t\tcast('1900-01-01 ' +  \n\t\t\tsubstring([DIAHORA_INICIO],12,5) as datetime2) <[Hour].EndHour\n\t\t\t\n\t\t\t) HourId\n\t\t  ,Store.StoreId\n\t\t  ,cast([ENTRADAS] as int) entradas\n\t\t  --,[SALIDAS]\n\t\t  ,SaleOrganisation.SaleOrganisationId\n\t  FROM   [staging].[TRAFICO_HISTORICO_PERU]\n\t  inner join (select StoreId, StoreCode from [sales].Store where Visible=1) Store on Store.StoreCode=COD_TIENDA\n\t  inner join [sales].SaleOrganisation on SaleOrganisation.SaleOrganisationCode= '2000'\nwhere  cast(SUBSTRING([DIAHORA_INICIO],1,10) as date) between '20220301' and '20220331'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "StoreId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "StoreId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "fecha",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "TimePeriodId",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "entradas",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Traffic",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "HourId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "HourId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleOrganisationId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SaleOrganisationId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "RetailTraffic",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "RetailTraffic_OP",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-06T23:08:22Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

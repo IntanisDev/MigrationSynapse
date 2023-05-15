@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_bam",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "az4SynapseQAGlobal",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_VENTAS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

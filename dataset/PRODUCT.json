@@ -1,0 +1,140 @@
+{
+	"name": "PRODUCT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "MasterData"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VariantCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Variant",
+				"type": "varchar"
+			},
+			{
+				"name": "VariantGroup",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Color",
+				"type": "varchar"
+			},
+			{
+				"name": "Size",
+				"type": "varchar"
+			},
+			{
+				"name": "Large",
+				"type": "varchar"
+			},
+			{
+				"name": "FashionGrade",
+				"type": "varchar"
+			},
+			{
+				"name": "FashionSeason",
+				"type": "varchar"
+			},
+			{
+				"name": "StationYear",
+				"type": "varchar"
+			},
+			{
+				"name": "IsActive",
+				"type": "bit"
+			},
+			{
+				"name": "StartDateActive",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "EndDateActive",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "PC9",
+				"type": "varchar"
+			},
+			{
+				"name": "PC13",
+				"type": "varchar"
+			},
+			{
+				"name": "GenericCod",
+				"type": "varchar"
+			},
+			{
+				"name": "ProductType",
+				"type": "varchar"
+			},
+			{
+				"name": "Royalty",
+				"type": "varchar"
+			},
+			{
+				"name": "UPCCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Shim",
+				"type": "varchar"
+			},
+			{
+				"name": "FashionGradeCode",
+				"type": "varchar"
+			},
+			{
+				"name": "FashionSeasonCode",
+				"type": "varchar"
+			},
+			{
+				"name": "RoyaltyCode",
+				"type": "varchar"
+			},
+			{
+				"name": "GenericDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "CloseOutLabelLSCo",
+				"type": "varchar"
+			},
+			{
+				"name": "ValuationLabelLSCo",
+				"type": "varchar"
+			},
+			{
+				"name": "BaseProductMaster",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Product"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

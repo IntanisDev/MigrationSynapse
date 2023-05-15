@@ -1,0 +1,122 @@
+{
+	"name": "KNMT_OD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "VKORG",
+				"type": "varchar"
+			},
+			{
+				"name": "VTWEG",
+				"type": "varchar"
+			},
+			{
+				"name": "KUNNR",
+				"type": "varchar"
+			},
+			{
+				"name": "MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "ERNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "ERDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "SORTL",
+				"type": "varchar"
+			},
+			{
+				"name": "KDMAT",
+				"type": "varchar"
+			},
+			{
+				"name": "POSTX",
+				"type": "varchar"
+			},
+			{
+				"name": "LPRIO",
+				"type": "varchar"
+			},
+			{
+				"name": "MINLF",
+				"type": "decimal",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "MEINS",
+				"type": "varchar"
+			},
+			{
+				"name": "CHSPL",
+				"type": "varchar"
+			},
+			{
+				"name": "KZTLF",
+				"type": "varchar"
+			},
+			{
+				"name": "ANTLF",
+				"type": "decimal",
+				"precision": 1,
+				"scale": 0
+			},
+			{
+				"name": "UNTTO",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 1
+			},
+			{
+				"name": "UEBTO",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 1
+			},
+			{
+				"name": "UEBTK",
+				"type": "varchar"
+			},
+			{
+				"name": "WERKS",
+				"type": "varchar"
+			},
+			{
+				"name": "RDPRF",
+				"type": "varchar"
+			},
+			{
+				"name": "MEGRU",
+				"type": "varchar"
+			},
+			{
+				"name": "J_1BTXSDC",
+				"type": "varchar"
+			},
+			{
+				"name": "VWPOS",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "KNMT"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

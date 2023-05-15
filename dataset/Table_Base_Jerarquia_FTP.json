@@ -1,0 +1,109 @@
+{
+	"name": "Table_Base_Jerarquia_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "ZCLMM059_BASE_JERARQUIALV_.txt",
+				"folderPath": "cubo_ventas"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COD_ARTICULO      ",
+				"type": "String"
+			},
+			{
+				"name": "COD_GENERICO      ",
+				"type": "String"
+			},
+			{
+				"name": "COD_COLOR         ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_COLOR                              ",
+				"type": "String"
+			},
+			{
+				"name": "TALLA             ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TALLA                              ",
+				"type": "String"
+			},
+			{
+				"name": "COD_MARCA      ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_MARCA                              ",
+				"type": "String"
+			},
+			{
+				"name": "COD_CALIDAD    ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_CALIDAD                            ",
+				"type": "String"
+			},
+			{
+				"name": "COD_GENERO     ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_GENERO                             ",
+				"type": "String"
+			},
+			{
+				"name": "COD_LINEA      ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_LINEA                              ",
+				"type": "String"
+			},
+			{
+				"name": "COD_TIPO       ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TIPO                               ",
+				"type": "String"
+			},
+			{
+				"name": "COD_PRENDA     ",
+				"type": "String"
+			},
+			{
+				"name": "DESC_PRENDA                             ",
+				"type": "String"
+			},
+			{
+				"name": "COD_ARTICULO_FABRICA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_ARTICULO_FABRICA",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

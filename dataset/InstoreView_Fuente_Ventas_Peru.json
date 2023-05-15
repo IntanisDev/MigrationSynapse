@@ -1,0 +1,36 @@
+{
+	"name": "InstoreView_Fuente_Ventas_Peru",
+	"properties": {
+		"description": "Instore View fuente para Ventas",
+		"linkedServiceName": {
+			"referenceName": "HTTP_InstoreView_Peru",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"nombre_archivo": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/InstoreView/01 Fuente"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@substring(dataset().nombre_archivo,42,sub(length(dataset().nombre_archivo),42))",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

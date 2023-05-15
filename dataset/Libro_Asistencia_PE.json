@@ -1,0 +1,121 @@
+{
+	"name": "Libro_Asistencia_PE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria_PE/3 Consumption Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "4_sensitive_zone/DL_RRHH/GEOVICTORIA_PE/ASISTENCIA/LIBRO_ASISTENCIA",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "DATE"
+			},
+			{
+				"name": "Type",
+				"type": "UTF8"
+			},
+			{
+				"name": "FechaHoraMovimiento",
+				"type": "INT96"
+			},
+			{
+				"name": "Origin",
+				"type": "UTF8"
+			},
+			{
+				"name": "UploadDate",
+				"type": "INT96"
+			},
+			{
+				"name": "ShiftPunchType",
+				"type": "UTF8"
+			},
+			{
+				"name": "AssignedInBook",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "Delay",
+				"type": "INT32"
+			},
+			{
+				"name": "BreakDelay",
+				"type": "INT32"
+			},
+			{
+				"name": "EarlyLeave",
+				"type": "INT32"
+			},
+			{
+				"name": "WorkedHours",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "Absent",
+				"type": "UTF8"
+			},
+			{
+				"name": "Holiday",
+				"type": "UTF8"
+			},
+			{
+				"name": "Worked",
+				"type": "UTF8"
+			},
+			{
+				"name": "NonWorkedHours",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "Identifier",
+				"type": "UTF8"
+			},
+			{
+				"name": "Name",
+				"type": "UTF8"
+			},
+			{
+				"name": "LastName",
+				"type": "UTF8"
+			},
+			{
+				"name": "Enabled",
+				"type": "UTF8"
+			},
+			{
+				"name": "GroupDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "PositionDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "Email",
+				"type": "UTF8"
+			},
+			{
+				"name": "fechaProceso",
+				"type": "DATE"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

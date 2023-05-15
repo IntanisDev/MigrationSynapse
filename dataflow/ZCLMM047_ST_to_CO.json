@@ -1,0 +1,60 @@
+{
+	"name": "ZCLMM047_ST_to_CO",
+	"properties": {
+		"folder": {
+			"name": "SW_Productividad/02 ST_to_CO"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM047_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM047_CO",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          UNID_MANIPULACION as string,",
+				"          RUT as string,",
+				"          OPERADOR as string,",
+				"          CANTIDAD as string,",
+				"          FEC_INICIO as string,",
+				"          HORA_INICIO as string,",
+				"          FEC_TERMINO as string,",
+				"          HORA_TERMINO as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(CANTIDAD = toInteger(substringIndex(CANTIDAD, ',', 1))) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('ZCLMM047_ENVIO_',toString(currentUTC()-hours(4), 'yyyyMMdd'),'.parquet') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

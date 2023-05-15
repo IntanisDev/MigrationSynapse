@@ -1,0 +1,25 @@
+{
+	"name": "R-CierrreMes",
+	"properties": {
+		"description": "Reproceso programado, Cierre de Mes - Lunes 28 de Noviembre -> Actualización Calendario Fiscal",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Orquestador Cubo Ventas",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-11-28T00:00:01",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

@@ -1,0 +1,281 @@
+{
+	"name": "TX_KONP_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/02 RAW"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_KONP.csv",
+				"folderPath": "1_raw_data/DATALAKE/DL_PRECIOS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "'"
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "KNUMH",
+				"type": "String"
+			},
+			{
+				"name": "KOPOS",
+				"type": "String"
+			},
+			{
+				"name": "KAPPL",
+				"type": "String"
+			},
+			{
+				"name": "KSCHL",
+				"type": "String"
+			},
+			{
+				"name": "KNUMT",
+				"type": "String"
+			},
+			{
+				"name": "STFKZ",
+				"type": "String"
+			},
+			{
+				"name": "KZBZG",
+				"type": "String"
+			},
+			{
+				"name": "KSTBM",
+				"type": "String"
+			},
+			{
+				"name": "KONMS",
+				"type": "String"
+			},
+			{
+				"name": "KSTBW",
+				"type": "String"
+			},
+			{
+				"name": "KONWS",
+				"type": "String"
+			},
+			{
+				"name": "KRECH",
+				"type": "String"
+			},
+			{
+				"name": "KBETR",
+				"type": "String"
+			},
+			{
+				"name": "KONWA",
+				"type": "String"
+			},
+			{
+				"name": "KPEIN",
+				"type": "String"
+			},
+			{
+				"name": "KMEIN",
+				"type": "String"
+			},
+			{
+				"name": "PRSCH",
+				"type": "String"
+			},
+			{
+				"name": "KUMZA",
+				"type": "String"
+			},
+			{
+				"name": "KUMNE",
+				"type": "String"
+			},
+			{
+				"name": "MEINS",
+				"type": "String"
+			},
+			{
+				"name": "MXWRT",
+				"type": "String"
+			},
+			{
+				"name": "GKWRT",
+				"type": "String"
+			},
+			{
+				"name": "PKWRT",
+				"type": "String"
+			},
+			{
+				"name": "FKWRT",
+				"type": "String"
+			},
+			{
+				"name": "RSWRT",
+				"type": "String"
+			},
+			{
+				"name": "KWAEH",
+				"type": "String"
+			},
+			{
+				"name": "UKBAS",
+				"type": "String"
+			},
+			{
+				"name": "KZNEP",
+				"type": "String"
+			},
+			{
+				"name": "KUNNR",
+				"type": "String"
+			},
+			{
+				"name": "LIFNR",
+				"type": "String"
+			},
+			{
+				"name": "MWSK1",
+				"type": "String"
+			},
+			{
+				"name": "LOEVM_KO",
+				"type": "String"
+			},
+			{
+				"name": "ZAEHK_IND",
+				"type": "String"
+			},
+			{
+				"name": "BOMAT",
+				"type": "String"
+			},
+			{
+				"name": "KBRUE",
+				"type": "String"
+			},
+			{
+				"name": "KSPAE",
+				"type": "String"
+			},
+			{
+				"name": "BOSTA",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA_PI",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA_AG",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA_SQ",
+				"type": "String"
+			},
+			{
+				"name": "VALTG",
+				"type": "String"
+			},
+			{
+				"name": "VALDT",
+				"type": "String"
+			},
+			{
+				"name": "ZTERM",
+				"type": "String"
+			},
+			{
+				"name": "ANZAUF",
+				"type": "String"
+			},
+			{
+				"name": "MIKBAS",
+				"type": "String"
+			},
+			{
+				"name": "MXKBAS",
+				"type": "String"
+			},
+			{
+				"name": "KOMXWRT",
+				"type": "String"
+			},
+			{
+				"name": "KLF_STG",
+				"type": "String"
+			},
+			{
+				"name": "KLF_KAL",
+				"type": "String"
+			},
+			{
+				"name": "VKKAL",
+				"type": "String"
+			},
+			{
+				"name": "AKTNR",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA_BO",
+				"type": "String"
+			},
+			{
+				"name": "MWSK2",
+				"type": "String"
+			},
+			{
+				"name": "VERTT",
+				"type": "String"
+			},
+			{
+				"name": "VERTN",
+				"type": "String"
+			},
+			{
+				"name": "VBEWA",
+				"type": "String"
+			},
+			{
+				"name": "MDFLG",
+				"type": "String"
+			},
+			{
+				"name": "KFRST",
+				"type": "String"
+			},
+			{
+				"name": "UASTA",
+				"type": "String"
+			},
+			{
+				"name": "_BEV1_ECRTT",
+				"type": "String"
+			},
+			{
+				"name": "_BEV1_ECRTN",
+				"type": "String"
+			},
+			{
+				"name": "_BEV1_ECEWA",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,41 @@
+{
+	"name": "DM_CUENTAS_USGAAP",
+	"properties": {
+		"folder": {
+			"name": "Finanzas/Master Data/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "plan_cuenta",
+				"type": "varchar"
+			},
+			{
+				"name": "cuenta_sap",
+				"type": "varchar"
+			},
+			{
+				"name": "descripcion_sap",
+				"type": "varchar"
+			},
+			{
+				"name": "cuenta_usgaap",
+				"type": "varchar"
+			},
+			{
+				"name": "descripcion_usgaap",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "finanzas",
+			"table": "cuentas_usgaap"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

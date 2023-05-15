@@ -1,0 +1,281 @@
+{
+	"name": "2_Parse_to_parquet_resumen_hist",
+	"properties": {
+		"description": "Parsea archivo jason a parquet por marca",
+		"activities": [
+			{
+				"name": "Parse_Dockers_to_parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "marca",
+								"value": "Dockers"
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['dimensionValues'][0]['value']"
+								},
+								"sink": {
+									"name": "fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][0]['value']"
+								},
+								"sink": {
+									"name": "activeUsers",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][1]['value']"
+								},
+								"sink": {
+									"name": "engagedSessions",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][2]['value']"
+								},
+								"sink": {
+									"name": "eventCount",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][3]['value']"
+								},
+								"sink": {
+									"name": "newUsers",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][4]['value']"
+								},
+								"sink": {
+									"name": "Sessions",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][5]['value']"
+								},
+								"sink": {
+									"name": "totalRevenue",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][6]['value']"
+								},
+								"sink": {
+									"name": "totalUsers",
+									"type": "Int32"
+								}
+							}
+						],
+						"collectionReference": "$['rows']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_dockers_resumen_hist",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GA_dockers_resumen_hist",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Parse_Levis_to_parquet",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Parse_Dockers_to_parquet",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['dimensionValues'][0]['value']"
+								},
+								"sink": {
+									"name": "fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][0]['value']"
+								},
+								"sink": {
+									"name": "activeUsers",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][1]['value']"
+								},
+								"sink": {
+									"name": "engagedSessions",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][2]['value']"
+								},
+								"sink": {
+									"name": "eventCount",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][3]['value']"
+								},
+								"sink": {
+									"name": "newUsers",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][4]['value']"
+								},
+								"sink": {
+									"name": "Sessions",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][5]['value']"
+								},
+								"sink": {
+									"name": "totalRevenue",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['metricValues'][6]['value']"
+								},
+								"sink": {
+									"name": "totalUsers",
+									"type": "Int32"
+								}
+							}
+						],
+						"collectionReference": "$['rows']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_levis_resumen_hist",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GA_levis_resumen_hist",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Social Media/Google Analytics/Resumen Historico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-04T20:34:32Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

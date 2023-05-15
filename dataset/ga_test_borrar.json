@@ -1,0 +1,67 @@
+{
+	"name": "ga_test_borrar",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "fecha",
+				"type": "date"
+			},
+			{
+				"name": "activeUsers",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "engagedSessions",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "eventCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "newUsers",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sessions",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "totalRevenue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "totalUsers",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "marca",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "ga_test_borrar"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

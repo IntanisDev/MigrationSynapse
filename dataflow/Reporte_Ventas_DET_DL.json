@@ -1,0 +1,31 @@
+{
+	"name": "Reporte_Ventas_DET_DL",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0825_Retail"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Retail_Detalle_DL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Retail_Base_Detalle",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tSigla_Tienda as string,\n\t\tTienda as string,\n\t\tTipo as string,\n\t\tNumero as string,\n\t\tItem as string,\n\t\tFecha as string,\n\t\tHora as string,\n\t\tColor as string,\n\t\tTalla as string,\n\t\tUpc as string,\n\t\t{Codigo Barra} as string,\n\t\t{Porcentaje Iva} as string,\n\t\t{Monto Iva} as string,\n\t\tCantidad as string,\n\t\t{Precio Venta} as string,\n\t\tCosto as string,\n\t\t{Precio Full} as string,\n\t\tUsuario as string,\n\t\tTotal as string,\n\t\tTotal_Costo as string,\n\t\tDescuento as string,\n\t\t{Porcentaje Descuento} as string,\n\t\tGenerico as string,\n\t\tDescripcion as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tSigla_Tienda as string,\n\t\tTienda as string,\n\t\tTipo as string,\n\t\tNumero as string,\n\t\tItem as string,\n\t\tFecha as string,\n\t\tHora as string,\n\t\tColor as string,\n\t\tTalla as string,\n\t\tUpc as string,\n\t\tCodigo_Barra as string,\n\t\tPorcentaje_Iva as string,\n\t\tMonto_Iva as string,\n\t\tCantidad as string,\n\t\tPrecio_Venta as string,\n\t\tCosto as string,\n\t\tPrecio_Full as string,\n\t\tUsuario as string,\n\t\tTotal as string,\n\t\tTotal_Costo as string,\n\t\tDescuento as string,\n\t\tPorcentaje_Descuento as string,\n\t\tGenerico as string,\n\t\tDescripcion as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSigla_Tienda,\n\t\tTienda,\n\t\tTipo,\n\t\tNumero,\n\t\tItem,\n\t\tFecha,\n\t\tHora,\n\t\tColor,\n\t\tTalla,\n\t\tUpc,\n\t\tCodigo_Barra = {Codigo Barra},\n\t\tPorcentaje_Iva = {Porcentaje Iva},\n\t\tMonto_Iva = {Monto Iva},\n\t\tCantidad,\n\t\tPrecio_Venta = {Precio Venta},\n\t\tCosto,\n\t\tPrecio_Full = {Precio Full},\n\t\tUsuario,\n\t\tTotal,\n\t\tTotal_Costo,\n\t\tDescuento,\n\t\tPorcentaje_Descuento = {Porcentaje Descuento},\n\t\tGenerico,\n\t\tDescripcion\n\t)) ~> sink1"
+		}
+	}
+}

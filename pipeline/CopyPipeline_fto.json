@@ -1,0 +1,1704 @@
+{
+	"name": "CopyPipeline_fto",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_fto",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_fto",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.schema}.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "edwlakeprd/test_area/testOndemand/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".csv"
+									}
+								},
+								"enableStaging": true,
+								"stagingSettings": {
+									"linkedServiceName": {
+										"referenceName": "edw-prd-WorkspaceDefaultStorage",
+										"type": "LinkedServiceReference"
+									},
+									"path": "edwlakeprd/temp_area"
+								},
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_fto",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Location_Andes"
+						},
+						"destination": {
+							"fileName": "andes.vw_Location_Andes.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Product_Sales"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Product_Sales.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Product_Sales2"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Product_Sales2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Product_Sales_2021_06"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Product_Sales_2021_06.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Product_Sales_2021_12"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Product_Sales_2021_12.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Product_Sales_2022_06"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Product_Sales_2022_06.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Product_Sales_2022_12"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Product_Sales_2022_12.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Sales_Retail"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Sales_Retail.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Sales_Retail2"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Sales_Retail2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Sales_Retail_2021"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Sales_Retail_2021.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "andes",
+							"table": "vw_Report_Sales_Retail_2022"
+						},
+						"destination": {
+							"fileName": "andes.vw_Report_Sales_Retail_2022.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "avance_venta"
+						},
+						"destination": {
+							"fileName": "CONZONE.avance_venta.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "DM_CENTRO_BENEFICIO"
+						},
+						"destination": {
+							"fileName": "CONZONE.DM_CENTRO_BENEFICIO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "DM_CENTRO_COSTO"
+						},
+						"destination": {
+							"fileName": "CONZONE.DM_CENTRO_COSTO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "DM_CUENTA_MAYOR"
+						},
+						"destination": {
+							"fileName": "CONZONE.DM_CUENTA_MAYOR.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "DM_SOCIEDAD_FI"
+						},
+						"destination": {
+							"fileName": "CONZONE.DM_SOCIEDAD_FI.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "DM_WAREHOUSE"
+						},
+						"destination": {
+							"fileName": "CONZONE.DM_WAREHOUSE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "fecha_actualizacion"
+						},
+						"destination": {
+							"fileName": "CONZONE.fecha_actualizacion.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "GASTOS"
+						},
+						"destination": {
+							"fileName": "CONZONE.GASTOS.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "GASTOS_PRESUPUESTO"
+						},
+						"destination": {
+							"fileName": "CONZONE.GASTOS_PRESUPUESTO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "GASTOS_RESUMEN"
+						},
+						"destination": {
+							"fileName": "CONZONE.GASTOS_RESUMEN.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "CONZONE",
+							"table": "vw_avance_venta"
+						},
+						"destination": {
+							"fileName": "CONZONE.vw_avance_venta.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "A073"
+						},
+						"destination": {
+							"fileName": "dbo.A073.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "avance_venta_diaria"
+						},
+						"destination": {
+							"fileName": "dbo.avance_venta_diaria.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Calendario"
+						},
+						"destination": {
+							"fileName": "dbo.Calendario.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "CEPC"
+						},
+						"destination": {
+							"fileName": "dbo.CEPC.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "CEPCT"
+						},
+						"destination": {
+							"fileName": "dbo.CEPCT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Clase_Factura"
+						},
+						"destination": {
+							"fileName": "dbo.Clase_Factura.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "CSKS"
+						},
+						"destination": {
+							"fileName": "dbo.CSKS.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "CSKT"
+						},
+						"destination": {
+							"fileName": "dbo.CSKT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Daily_Sales"
+						},
+						"destination": {
+							"fileName": "dbo.Daily_Sales.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "DM_Cubicaje"
+						},
+						"destination": {
+							"fileName": "dbo.DM_Cubicaje.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "DM_GENERO"
+						},
+						"destination": {
+							"fileName": "dbo.DM_GENERO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "DM_MARCA"
+						},
+						"destination": {
+							"fileName": "dbo.DM_MARCA.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "EINA"
+						},
+						"destination": {
+							"fileName": "dbo.EINA.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "EINE"
+						},
+						"destination": {
+							"fileName": "dbo.EINE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "EKBE"
+						},
+						"destination": {
+							"fileName": "dbo.EKBE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "EKKO"
+						},
+						"destination": {
+							"fileName": "dbo.EKKO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "EKPO"
+						},
+						"destination": {
+							"fileName": "dbo.EKPO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "fecha_actualizacion"
+						},
+						"destination": {
+							"fileName": "dbo.fecha_actualizacion.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "GLPCA"
+						},
+						"destination": {
+							"fileName": "dbo.GLPCA.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "google_analytics_res_PE"
+						},
+						"destination": {
+							"fileName": "dbo.google_analytics_res_PE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "google_analytics_resumen_PE"
+						},
+						"destination": {
+							"fileName": "dbo.google_analytics_resumen_PE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "google_analytics_resumenPE"
+						},
+						"destination": {
+							"fileName": "dbo.google_analytics_resumenPE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "HOMOLOGA_TRAFICO"
+						},
+						"destination": {
+							"fileName": "dbo.HOMOLOGA_TRAFICO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "HOMOLOGA_TRAFICO_FUPBI"
+						},
+						"destination": {
+							"fileName": "dbo.HOMOLOGA_TRAFICO_FUPBI.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Horas"
+						},
+						"destination": {
+							"fileName": "dbo.Horas.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "InstoreView_Stock"
+						},
+						"destination": {
+							"fileName": "dbo.InstoreView_Stock.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "InstoreView_Stock_v2"
+						},
+						"destination": {
+							"fileName": "dbo.InstoreView_Stock_v2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "InstoreView_Venta"
+						},
+						"destination": {
+							"fileName": "dbo.InstoreView_Venta.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "InstoreView_Venta_Prueba"
+						},
+						"destination": {
+							"fileName": "dbo.InstoreView_Venta_Prueba.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "InstoreView_Venta_v2"
+						},
+						"destination": {
+							"fileName": "dbo.InstoreView_Venta_v2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "INVENTARIO"
+						},
+						"destination": {
+							"fileName": "dbo.INVENTARIO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Kna1"
+						},
+						"destination": {
+							"fileName": "dbo.Kna1.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "KNB1"
+						},
+						"destination": {
+							"fileName": "dbo.KNB1.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "KNMT"
+						},
+						"destination": {
+							"fileName": "dbo.KNMT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "KNVP"
+						},
+						"destination": {
+							"fileName": "dbo.KNVP.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "KONP"
+						},
+						"destination": {
+							"fileName": "dbo.KONP.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "MAKT"
+						},
+						"destination": {
+							"fileName": "dbo.MAKT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Mara"
+						},
+						"destination": {
+							"fileName": "dbo.Mara.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "MARA2"
+						},
+						"destination": {
+							"fileName": "dbo.MARA2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "MARA3"
+						},
+						"destination": {
+							"fileName": "dbo.MARA3.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "MARA_PRUEBA"
+						},
+						"destination": {
+							"fileName": "dbo.MARA_PRUEBA.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "MEAN"
+						},
+						"destination": {
+							"fileName": "dbo.MEAN.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Metas_Sellout"
+						},
+						"destination": {
+							"fileName": "dbo.Metas_Sellout.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Parametros_Sell"
+						},
+						"destination": {
+							"fileName": "dbo.Parametros_Sell.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "pedidos"
+						},
+						"destination": {
+							"fileName": "dbo.pedidos.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "PPTO_ABP"
+						},
+						"destination": {
+							"fileName": "dbo.PPTO_ABP.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "SKA1"
+						},
+						"destination": {
+							"fileName": "dbo.SKA1.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "skat"
+						},
+						"destination": {
+							"fileName": "dbo.skat.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Stock"
+						},
+						"destination": {
+							"fileName": "dbo.Stock.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "StoreCoverage"
+						},
+						"destination": {
+							"fileName": "dbo.StoreCoverage.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "T001"
+						},
+						"destination": {
+							"fileName": "dbo.T001.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "T144"
+						},
+						"destination": {
+							"fileName": "dbo.T144.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "T144T"
+						},
+						"destination": {
+							"fileName": "dbo.T144T.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "T6WFGT"
+						},
+						"destination": {
+							"fileName": "dbo.T6WFGT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "T6WST"
+						},
+						"destination": {
+							"fileName": "dbo.T6WST.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Tasa_cambio"
+						},
+						"destination": {
+							"fileName": "dbo.Tasa_cambio.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "TIENDAS_M2"
+						},
+						"destination": {
+							"fileName": "dbo.TIENDAS_M2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "TimePeriod"
+						},
+						"destination": {
+							"fileName": "dbo.TimePeriod.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Tipo_cambio"
+						},
+						"destination": {
+							"fileName": "dbo.Tipo_cambio.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "TRAFICO"
+						},
+						"destination": {
+							"fileName": "dbo.TRAFICO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "trx_libro_asistencia"
+						},
+						"destination": {
+							"fileName": "dbo.trx_libro_asistencia.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "TVFK"
+						},
+						"destination": {
+							"fileName": "dbo.TVFK.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "TVFKT"
+						},
+						"destination": {
+							"fileName": "dbo.TVFKT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "TVTWT"
+						},
+						"destination": {
+							"fileName": "dbo.TVTWT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "VBAP"
+						},
+						"destination": {
+							"fileName": "dbo.VBAP.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "VBPA"
+						},
+						"destination": {
+							"fileName": "dbo.VBPA.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "VBRK"
+						},
+						"destination": {
+							"fileName": "dbo.VBRK.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "VBRP"
+						},
+						"destination": {
+							"fileName": "dbo.VBRP.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Vendedor"
+						},
+						"destination": {
+							"fileName": "dbo.Vendedor.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Ventas"
+						},
+						"destination": {
+							"fileName": "dbo.Ventas.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Ventas_prueba_moneda"
+						},
+						"destination": {
+							"fileName": "dbo.Ventas_prueba_moneda.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "VentasAGRUP"
+						},
+						"destination": {
+							"fileName": "dbo.VentasAGRUP.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "VentasAGRUP1"
+						},
+						"destination": {
+							"fileName": "dbo.VentasAGRUP1.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Centro"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Centro.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Cubicaje"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Cubicaje.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_DestinatarioMercancia"
+						},
+						"destination": {
+							"fileName": "dbo.vw_DestinatarioMercancia.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_DM_Cubicaje"
+						},
+						"destination": {
+							"fileName": "dbo.vw_DM_Cubicaje.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_geovictoria_usuarios"
+						},
+						"destination": {
+							"fileName": "dbo.vw_geovictoria_usuarios.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_homologa_ean11"
+						},
+						"destination": {
+							"fileName": "dbo.vw_homologa_ean11.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_HomologaMaterial"
+						},
+						"destination": {
+							"fileName": "dbo.vw_HomologaMaterial.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Inventario"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Inventario.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_INVENTARIO_ECOMMERCE"
+						},
+						"destination": {
+							"fileName": "dbo.vw_INVENTARIO_ECOMMERCE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_INVENTARIO_OUTLET"
+						},
+						"destination": {
+							"fileName": "dbo.vw_INVENTARIO_OUTLET.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_INVENTARIO_RETAIL"
+						},
+						"destination": {
+							"fileName": "dbo.vw_INVENTARIO_RETAIL.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Kna1"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Kna1.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Mara"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Mara.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Mara_Atributos"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Mara_Atributos.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Mara_Descripcion"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Mara_Descripcion.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Metas_Sellout"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Metas_Sellout.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_PARAMETROS_SELL"
+						},
+						"destination": {
+							"fileName": "dbo.vw_PARAMETROS_SELL.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_pedidos"
+						},
+						"destination": {
+							"fileName": "dbo.vw_pedidos.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Periodo"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Periodo.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Periodo_ant"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Periodo_ant.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELL_IN"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELL_IN.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELL_IN_v2"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELL_IN_v2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELLOUT_CLIENTES"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELLOUT_CLIENTES.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELLOUT_INVENTORY"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELLOUT_INVENTORY.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELLOUT_PRODUCTOS"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELLOUT_PRODUCTOS.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELLOUT_STOCK"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELLOUT_STOCK.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELLOUT_VENTA"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELLOUT_VENTA.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_SELLOUT_VENTA_v2"
+						},
+						"destination": {
+							"fileName": "dbo.vw_SELLOUT_VENTA_v2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Sociedad"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Sociedad.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_TIENDAS"
+						},
+						"destination": {
+							"fileName": "dbo.vw_TIENDAS.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_TIENDAS_ECOMMERCE"
+						},
+						"destination": {
+							"fileName": "dbo.vw_TIENDAS_ECOMMERCE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_TIENDAS_OUTLET"
+						},
+						"destination": {
+							"fileName": "dbo.vw_TIENDAS_OUTLET.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_TIENDAS_RETAIL"
+						},
+						"destination": {
+							"fileName": "dbo.vw_TIENDAS_RETAIL.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_tipo_Cambio"
+						},
+						"destination": {
+							"fileName": "dbo.vw_tipo_Cambio.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_TipoMoneda"
+						},
+						"destination": {
+							"fileName": "dbo.vw_TipoMoneda.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Trafico"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Trafico.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Trans"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Trans.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_venta_dia_actual"
+						},
+						"destination": {
+							"fileName": "dbo.vw_venta_dia_actual.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_venta_diaria"
+						},
+						"destination": {
+							"fileName": "dbo.vw_venta_diaria.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "vw_Ventas"
+						},
+						"destination": {
+							"fileName": "dbo.vw_Ventas.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "WRF1"
+						},
+						"destination": {
+							"fileName": "dbo.WRF1.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "WRF_FIBER_CODES"
+						},
+						"destination": {
+							"fileName": "dbo.WRF_FIBER_CODES.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ZDATALAKE"
+						},
+						"destination": {
+							"fileName": "dbo.ZDATALAKE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ZMM000"
+						},
+						"destination": {
+							"fileName": "dbo.ZMM000.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ZPOS_VTAVENDEDOR"
+						},
+						"destination": {
+							"fileName": "dbo.ZPOS_VTAVENDEDOR.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ZV_VBPA"
+						},
+						"destination": {
+							"fileName": "dbo.ZV_VBPA.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ZV_VBRP"
+						},
+						"destination": {
+							"fileName": "dbo.ZV_VBRP.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ZVMM058CARACT"
+						},
+						"destination": {
+							"fileName": "dbo.ZVMM058CARACT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ZVMM058CARACT2"
+						},
+						"destination": {
+							"fileName": "dbo.ZVMM058CARACT2.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "trx_libro_asistencia"
+						},
+						"destination": {
+							"fileName": "geovictoria.trx_libro_asistencia.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "trx_libro_asistencia_PE"
+						},
+						"destination": {
+							"fileName": "geovictoria.trx_libro_asistencia_PE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "turnos"
+						},
+						"destination": {
+							"fileName": "geovictoria.turnos.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "turnos_PE"
+						},
+						"destination": {
+							"fileName": "geovictoria.turnos_PE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "usuarios"
+						},
+						"destination": {
+							"fileName": "geovictoria.usuarios.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "usuarios_PE"
+						},
+						"destination": {
+							"fileName": "geovictoria.usuarios_PE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "google_analytics",
+							"table": "google_analytics"
+						},
+						"destination": {
+							"fileName": "google_analytics.google_analytics.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "google_analytics",
+							"table": "google_analytics_resumen"
+						},
+						"destination": {
+							"fileName": "google_analytics.google_analytics_resumen.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "google_analytics",
+							"table": "google_analytics_resumen_PE"
+						},
+						"destination": {
+							"fileName": "google_analytics.google_analytics_resumen_PE.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "google_analytics",
+							"table": "vw_google_analytics"
+						},
+						"destination": {
+							"fileName": "google_analytics.vw_google_analytics.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "google_analytics",
+							"table": "vw_google_analytics_TEST"
+						},
+						"destination": {
+							"fileName": "google_analytics.vw_google_analytics_TEST.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "STDZONE",
+							"table": "DM_CENTRO_BENEFICIO"
+						},
+						"destination": {
+							"fileName": "STDZONE.DM_CENTRO_BENEFICIO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "STDZONE",
+							"table": "DM_CENTRO_COSTO"
+						},
+						"destination": {
+							"fileName": "STDZONE.DM_CENTRO_COSTO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "STDZONE",
+							"table": "DM_CUENTA_MAYOR"
+						},
+						"destination": {
+							"fileName": "STDZONE.DM_CUENTA_MAYOR.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "STDZONE",
+							"table": "DM_FISCVARIANT"
+						},
+						"destination": {
+							"fileName": "STDZONE.DM_FISCVARIANT.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "STDZONE",
+							"table": "GASTOS"
+						},
+						"destination": {
+							"fileName": "STDZONE.GASTOS.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "STDZONE",
+							"table": "GASTOS_PRESUPUESTO"
+						},
+						"destination": {
+							"fileName": "STDZONE.GASTOS_PRESUPUESTO.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "STDZONE",
+							"table": "GASTOS_RESUMEN"
+						},
+						"destination": {
+							"fileName": "STDZONE.GASTOS_RESUMEN.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_Resumen"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_Resumen.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_Usuarios"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_Usuarios.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_ZCLMM047"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_ZCLMM047.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_ZCLMM049"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_ZCLMM049.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_ZCLMM050"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_ZCLMM050.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_ZCLMM051"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_ZCLMM051.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_ZCLMM052"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_ZCLMM052.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_ZCLMM053"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_ZCLMM053.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "vw_ZCLMM054"
+						},
+						"destination": {
+							"fileName": "SWPROD.vw_ZCLMM054.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "ZCLMM047"
+						},
+						"destination": {
+							"fileName": "SWPROD.ZCLMM047.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "ZCLMM049"
+						},
+						"destination": {
+							"fileName": "SWPROD.ZCLMM049.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "ZCLMM050"
+						},
+						"destination": {
+							"fileName": "SWPROD.ZCLMM050.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "ZCLMM051"
+						},
+						"destination": {
+							"fileName": "SWPROD.ZCLMM051.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "ZCLMM052"
+						},
+						"destination": {
+							"fileName": "SWPROD.ZCLMM052.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "ZCLMM053"
+						},
+						"destination": {
+							"fileName": "SWPROD.ZCLMM053.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SWPROD",
+							"table": "ZCLMM054"
+						},
+						"destination": {
+							"fileName": "SWPROD.ZCLMM054.txt"
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-12T05:47:49Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

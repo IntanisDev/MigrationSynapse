@@ -1,0 +1,157 @@
+{
+	"name": "StoreCoverage_OnPremise_ST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('StoreCoverage_OnPremise_',formatDateTime(adddays(utcnow(), -1),'yyyyMMdd'),'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "2_standar_zone/DATALAKE/DL_STOCK",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "StoreCoverageId",
+				"type": "String"
+			},
+			{
+				"name": "BrandId",
+				"type": "String"
+			},
+			{
+				"name": "ClothingPieceId",
+				"type": "String"
+			},
+			{
+				"name": "ClothingPieceTypeId",
+				"type": "String"
+			},
+			{
+				"name": "Coverage",
+				"type": "String"
+			},
+			{
+				"name": "GenderId",
+				"type": "String"
+			},
+			{
+				"name": "LineId",
+				"type": "String"
+			},
+			{
+				"name": "ProductId",
+				"type": "String"
+			},
+			{
+				"name": "QualityId",
+				"type": "String"
+			},
+			{
+				"name": "SaleQuantity",
+				"type": "String"
+			},
+			{
+				"name": "ShimId",
+				"type": "String"
+			},
+			{
+				"name": "Stock",
+				"type": "String"
+			},
+			{
+				"name": "StoreId",
+				"type": "String"
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "String"
+			},
+			{
+				"name": "ProductFashionGradeId",
+				"type": "String"
+			},
+			{
+				"name": "ProductFashionSeasonId",
+				"type": "String"
+			},
+			{
+				"name": "ProductGenericId",
+				"type": "String"
+			},
+			{
+				"name": "ProductModelId",
+				"type": "String"
+			},
+			{
+				"name": "StockValued",
+				"type": "String"
+			},
+			{
+				"name": "NetSale",
+				"type": "String"
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "String"
+			},
+			{
+				"name": "NetSaleUSD",
+				"type": "String"
+			},
+			{
+				"name": "WarehouseId",
+				"type": "String"
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "String"
+			},
+			{
+				"name": "CustomerId",
+				"type": "String"
+			},
+			{
+				"name": "Margin",
+				"type": "String"
+			},
+			{
+				"name": "SaleCost",
+				"type": "String"
+			},
+			{
+				"name": "StockAvailable",
+				"type": "String"
+			},
+			{
+				"name": "StockConf",
+				"type": "String"
+			},
+			{
+				"name": "StockDelivery",
+				"type": "String"
+			},
+			{
+				"name": "StockLocked",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

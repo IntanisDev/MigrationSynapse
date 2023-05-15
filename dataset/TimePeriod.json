@@ -1,0 +1,23 @@
+{
+	"name": "TimePeriod",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "TimePeriod"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "SFTP Mexico",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "SFTP creado para disponibilizar la venta de Dockers Chile-Perú",
+		"annotations": [],
+		"type": "Sftp",
+		"typeProperties": {
+			"host": "filesharelevi.blob.core.windows.net",
+			"port": 22,
+			"skipHostKeyValidation": true,
+			"authenticationType": "Basic",
+			"userName": "filesharelevi.levisftpuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwNjhlZGU4NS00OWU1LTRiZDAtYjYzZS1hOGUxZmE0ZDBjNDEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

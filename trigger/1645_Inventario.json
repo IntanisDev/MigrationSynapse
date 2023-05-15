@@ -1,0 +1,24 @@
+{
+	"name": "1645_Inventario",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "06_Inventario_Cadena",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-03T16:45:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

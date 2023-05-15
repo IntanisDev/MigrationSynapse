@@ -1,0 +1,26 @@
+{
+	"name": "Csv_Mexico_TO_SFTP_v2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Retail_Andes_BI",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "VentasMexico.csv.txt"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

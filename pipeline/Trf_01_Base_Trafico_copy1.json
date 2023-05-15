@@ -1,0 +1,273 @@
+{
+	"name": "Trf_01_Base_Trafico_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar_API_TO_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['devicekey']"
+								},
+								"sink": {
+									"name": "devicekey"
+								}
+							},
+							{
+								"source": {
+									"path": "$['MALL']"
+								},
+								"sink": {
+									"name": "MALL"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ZONA']"
+								},
+								"sink": {
+									"name": "ZONA"
+								}
+							},
+							{
+								"source": {
+									"path": "$['NOMBRE']"
+								},
+								"sink": {
+									"name": "NOMBRE"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIMESTAMP_INICIO']"
+								},
+								"sink": {
+									"name": "TIMESTAMP_INICIO"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIMESTAMP_FIN']"
+								},
+								"sink": {
+									"name": "TIMESTAMP_FIN"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ENTRADAS']"
+								},
+								"sink": {
+									"name": "ENTRADAS"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SALIDAS']"
+								},
+								"sink": {
+									"name": "SALIDAS"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Trafico_API",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BaseTraficoDiario_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copiar_DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copiar_API_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Base_Trafico_Diario",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Mover Trafico",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copiar_DL_to_BD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BaseTraficoDiario_DL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mover_Base_Trafico",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Delete1",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Mover Trafico",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "BaseTraficoDiario_DL",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-20T19:31:22Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

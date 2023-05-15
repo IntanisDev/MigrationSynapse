@@ -1,0 +1,46 @@
+{
+	"name": "des_MarginDistribution",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "MarginDistributionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Margin",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreGrouping",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "MarginDistribution"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

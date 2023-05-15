@@ -1,0 +1,7 @@
+{
+	"name": "edw-pivote-prd",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Entorno hacia la maquina edw-pivote-prd-vm"
+	}
+}

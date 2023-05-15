@@ -1,0 +1,66 @@
+{
+	"name": "Retail_proceso_carga_Reproceso_2",
+	"properties": {
+		"activities": [
+			{
+				"name": "CE11000 RW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03 CARGA_VENTA_CHILE_RW_MANUAL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "CE11000 ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CE11000 RW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "01 CARGA_VENTA_CHILE_ST_AUTOMATICO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "CE11000 CM",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CE11000 ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "01 VENTA_CHILE_CON_AUTOMATICO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/02 Retail/04 Carga ETL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-09T15:04:35Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

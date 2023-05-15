@@ -1,0 +1,87 @@
+{
+	"name": "16_Store",
+	"properties": {
+		"activities": [
+			{
+				"name": "Store01",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[Store01]"
+				}
+			},
+			{
+				"name": "Store02",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Store01",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[Store02]"
+				}
+			},
+			{
+				"name": "Store03",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Store02",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[Store03]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-23T16:32:18Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

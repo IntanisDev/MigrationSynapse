@@ -1,0 +1,142 @@
+{
+	"name": "6_GeoVictoria_Asistencia_to_staging_PE",
+	"properties": {
+		"folder": {
+			"name": "RRHH/Libro Asistencia"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Libro_Asistencia_PE",
+						"type": "DatasetReference"
+					},
+					"name": "AsistenciaPE"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "LibroAsistencia",
+						"type": "DatasetReference"
+					},
+					"name": "LibroAsistencia",
+					"rejectedDataLinkedService": {
+						"referenceName": "edw-prd-WorkspaceDefaultStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "PaisPE"
+				},
+				{
+					"name": "AgregaPE"
+				},
+				{
+					"name": "ultimoMesPE"
+				},
+				{
+					"name": "AlterRow1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Date as date,",
+				"          Type as string,",
+				"          FechaHoraMovimiento as timestamp,",
+				"          Origin as string,",
+				"          UploadDate as timestamp,",
+				"          ShiftPunchType as string,",
+				"          AssignedInBook as boolean,",
+				"          Delay as integer,",
+				"          BreakDelay as integer,",
+				"          EarlyLeave as integer,",
+				"          WorkedHours as double,",
+				"          Absent as string,",
+				"          Holiday as string,",
+				"          Worked as string,",
+				"          NonWorkedHours as double,",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as string,",
+				"          GroupDescription as string,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          fechaProceso as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> AsistenciaPE",
+				"ultimoMesPE derive(Pais = \"Perú\",",
+				"          COD_SOCIEDAD = \"2000\") ~> PaisPE",
+				"PaisPE aggregate(groupBy(Pais,",
+				"          Date,",
+				"          Id,",
+				"          Identifier,",
+				"          Worked,",
+				"          Name,",
+				"          LastName,",
+				"          Enabled,",
+				"          GroupDescription,",
+				"          PositionDescription,",
+				"          Email,",
+				"          COD_SOCIEDAD),",
+				"     WorkedHours = avg(WorkedHours),",
+				"          NonWorkedHours = avg(NonWorkedHours)) ~> AgregaPE",
+				"AsistenciaPE filter(between(Date,addDays(currentDate('America/Santiago'),-30),currentDate('America/Santiago')) && ( fechaProceso == addDays(currentDate('America/Santiago'),-1))) ~> ultimoMesPE",
+				"AgregaPE alterRow(upsertIf(true())) ~> AlterRow1",
+				"AlterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Pais as string,",
+				"          COD_SOCIEDAD as string,",
+				"          Date as date,",
+				"          WorkedHours as double,",
+				"          Worked as string,",
+				"          NonWorkedHours as double,",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as string,",
+				"          GroupDescription as string,",
+				"          PositionDescription as string,",
+				"          Email as string",
+				"     ),",
+				"     deletable:true,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:true,",
+				"     keys:['Pais','Date','Id','Identifier'],",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Pais,",
+				"          Date,",
+				"          WorkedHours,",
+				"          Worked,",
+				"          NonWorkedHours,",
+				"          Id,",
+				"          Identifier,",
+				"          Name,",
+				"          LastName,",
+				"          Enabled,",
+				"          GroupDescription,",
+				"          PositionDescription,",
+				"          Email,",
+				"          COD_SOCIEDAD",
+				"     )) ~> LibroAsistencia"
+			]
+		}
+	}
+}

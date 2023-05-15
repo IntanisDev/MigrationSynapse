@@ -1,0 +1,66 @@
+{
+	"name": "RMS_TIENDAS",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Tiendas_RMS_DL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Tiendas_RMS_BD",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          StoreNo as string,",
+				"          StoreCode as string,",
+				"          StoreName as string,",
+				"          TradeName as string,",
+				"          StoreId as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          COD_TIENDA as string,",
+				"          STORE_NO as decimal(5,0),",
+				"          DESC_TIENDA as string,",
+				"          TradeName as string,",
+				"          StoreId as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          COD_TIENDA = StoreCode,",
+				"          STORE_NO = StoreNo,",
+				"          DESC_TIENDA = StoreName,",
+				"          TradeName,",
+				"          StoreId",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

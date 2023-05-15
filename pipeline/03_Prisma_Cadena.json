@@ -1,0 +1,26 @@
+{
+	"name": "03_Prisma_Cadena",
+	"properties": {
+		"activities": [
+			{
+				"name": "Prisma",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Prisma_Ventas",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones/bkp"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T20:48:50Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,99 @@
+{
+	"name": "03 InstoreView_Venta_Chile_ST_Automatico_v2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar InstoreView St -1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_ST_Automatico_v2",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Copiar InstoreView St -2",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copiar InstoreView St -1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_ST_Automatico_v2_2",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Copiar InstoreView St -3",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copiar InstoreView St -2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_ST_Automatico_v2_3",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/02 Standar"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T18:00:28Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

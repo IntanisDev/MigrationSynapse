@@ -1,0 +1,24 @@
+{
+	"name": "Trigger 2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "TX_INVENTARIO_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-06-03T07:05:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

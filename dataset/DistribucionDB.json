@@ -1,0 +1,180 @@
+{
+	"name": "DistribucionDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "PERIODO",
+				"type": "varchar"
+			},
+			{
+				"name": "MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "CANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "PAIS",
+				"type": "varchar"
+			},
+			{
+				"name": "1",
+				"type": "varchar"
+			},
+			{
+				"name": "2",
+				"type": "varchar"
+			},
+			{
+				"name": "3",
+				"type": "varchar"
+			},
+			{
+				"name": "4",
+				"type": "varchar"
+			},
+			{
+				"name": "5",
+				"type": "varchar"
+			},
+			{
+				"name": "6",
+				"type": "varchar"
+			},
+			{
+				"name": "7",
+				"type": "varchar"
+			},
+			{
+				"name": "8",
+				"type": "varchar"
+			},
+			{
+				"name": "9",
+				"type": "varchar"
+			},
+			{
+				"name": "10",
+				"type": "varchar"
+			},
+			{
+				"name": "11",
+				"type": "varchar"
+			},
+			{
+				"name": "12",
+				"type": "varchar"
+			},
+			{
+				"name": "13",
+				"type": "varchar"
+			},
+			{
+				"name": "14",
+				"type": "varchar"
+			},
+			{
+				"name": "15",
+				"type": "varchar"
+			},
+			{
+				"name": "16",
+				"type": "varchar"
+			},
+			{
+				"name": "17",
+				"type": "varchar"
+			},
+			{
+				"name": "18",
+				"type": "varchar"
+			},
+			{
+				"name": "19",
+				"type": "varchar"
+			},
+			{
+				"name": "20",
+				"type": "varchar"
+			},
+			{
+				"name": "21",
+				"type": "varchar"
+			},
+			{
+				"name": "22",
+				"type": "varchar"
+			},
+			{
+				"name": "23",
+				"type": "varchar"
+			},
+			{
+				"name": "24",
+				"type": "varchar"
+			},
+			{
+				"name": "25",
+				"type": "varchar"
+			},
+			{
+				"name": "26",
+				"type": "varchar"
+			},
+			{
+				"name": "27",
+				"type": "varchar"
+			},
+			{
+				"name": "28",
+				"type": "varchar"
+			},
+			{
+				"name": "29",
+				"type": "varchar"
+			},
+			{
+				"name": "30",
+				"type": "varchar"
+			},
+			{
+				"name": "31",
+				"type": "varchar"
+			},
+			{
+				"name": "32",
+				"type": "varchar"
+			},
+			{
+				"name": "33",
+				"type": "varchar"
+			},
+			{
+				"name": "34",
+				"type": "varchar"
+			},
+			{
+				"name": "35",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "TMP_Distribucion"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

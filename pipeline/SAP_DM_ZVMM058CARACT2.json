@@ -1,0 +1,672 @@
+{
+	"name": "SAP_DM_ZVMM058CARACT2",
+	"properties": {
+		"description": "Maestro de Clientes",
+		"activities": [
+			{
+				"name": "Copiar DM_ZVMM058CARACT2",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Hasta Estado Terminado",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_ZVMM058CARACT2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_ZVMM058CARACT2_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Log_OK",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copiar DM_ZVMM058CARACT2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "select\n'@{formatDateTime(utcnow(),'yyyy-MM-ddTHH:mm:ss')}' as fecha_proceso,\n'@{pipeline().Pipeline}' as nombre,\n'@{pipeline().RunId}' as id_proceso,\n'RAW' as zona,\n'DM KNA1' as fuente,\n'DM KNA1 DL' as destino,\n'OK' as estado,\n'@{activity('Copiar DM_ZVMM058CARACT2').output.rowsRead}' filas_leidas,\n'@{activity('Copiar DM_ZVMM058CARACT2').output.rowsCopied}' filas_insertadas,\n'@{activity('Copiar DM_ZVMM058CARACT2').output.copyDuration}' duracion\n\n\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "fecha_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "zona",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Capa",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Canalizacion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "id_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Id_ejecucion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fuente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fuente",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "destino",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Destino",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "estado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Estado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_leidas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_leidas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_insertadas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_insertadas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "duracion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Duracion",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_Articulos",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tabla_Log_Errores",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Log_ERROR",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copiar DM_ZVMM058CARACT2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "select\n'@{formatDateTime(utcnow(),'yyyy-MM-ddTHH:mm:ss')}' as fecha_proceso,\n'@{pipeline().Pipeline}' as nombre,\n'@{pipeline().RunId}' as id_proceso,\n'RAW' as zona,\n'DM KNA1' as fuente,\n'DM KNA1 DL' as destino,\n'Error' as estado,\n'@{activity('Copiar DM_ZVMM058CARACT2').output.rowsRead}' filas_leidas,\n'0' filas_insertadas,\n'@{activity('Copiar DM_ZVMM058CARACT2').output.copyDuration}' duracion,\n'001' as codigo_error,\n'Error en Actividad de Copiado' as mensaje_error\n\n\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "fecha_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "zona",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Capa",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Canalizacion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "id_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Id_ejecucion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fuente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fuente",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "destino",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Destino",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "estado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Estado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_leidas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_leidas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_insertadas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_insertadas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "duracion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Duracion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "codigo_error",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Codigo_error",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "mensaje_error",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Descripcion_error",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_Articulos",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tabla_Log_Errores",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Borrar Tabla ZVMM058CARACT2",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[Borrar_Tabla_ZVMM058CARACT2]"
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_DL_SAPPRD",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Llamar WS Principal",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Borrar Tabla ZVMM058CARACT2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "http://10.81.206.42:8000/sap/bc/srt/rfc/sap/zws_datalake/500/zws_datalake/zws_datalake",
+					"connectVia": {
+						"referenceName": "edw-pivote-prd",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "text/xml;charset=UTF-8"
+					},
+					"body": {
+						"value": "@concat('\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:sap-com:document:sap:soap:functions:mc-style\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <urn:ZfmDatalake>\n         <!--Optional:-->\n         <PCond1></PCond1>\n         <!--Optional:-->\n         <PCond2></PCond2>\n         <PTabla>ZVMM058CARACT2</PTabla>\n      </urn:ZfmDatalake>\n   </soapenv:Body>\n</soapenv:Envelope>\n\n')",
+						"type": "Expression"
+					},
+					"linkedServices": [
+						{
+							"referenceName": "SAP_PRD",
+							"type": "LinkedServiceReference"
+						}
+					],
+					"disableCertValidation": true,
+					"authentication": {
+						"type": "Basic",
+						"username": "RFC_DATALAKE",
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			},
+			{
+				"name": "Salida WS Principal",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Llamar WS Principal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Salida_WS_Tranx",
+					"value": {
+						"value": "@string(activity('Llamar WS Principal').output)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Variable ID Control",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Salida WS Principal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ID_Control",
+					"value": {
+						"value": "@substring(variables('Salida_WS_Tranx'),add(indexOf(variables('Salida_WS_Tranx'),'Mensaje'),8),sub(add(lastIndexOf(variables('Salida_WS_Tranx'),'</Mensaje'),0),add(indexof(variables('Salida_WS_Tranx'),'Mensaje'),8)))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Hasta Estado Terminado",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Variable ID Control",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('Ctrl_Estado'),'TERMINADO')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "LLamar WS Control",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "http://10.81.206.42:8000/sap/bc/srt/rfc/sap/zws_datalake_job/500/zws_datalake_job/zws_datalake_job",
+								"connectVia": {
+									"referenceName": "edw-pivote-prd",
+									"type": "IntegrationRuntimeReference"
+								},
+								"method": "POST",
+								"headers": {
+									"Content-Type": "text/xml;charset=UTF-8"
+								},
+								"body": {
+									"value": "@concat('<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:sap-com:document:sap:soap:functions:mc-style\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <urn:ZfmDatalakeJob>\n         <Namejob>',variables('ID_Control'),'</Namejob>\n      </urn:ZfmDatalakeJob>\n   </soapenv:Body>\n</soapenv:Envelope>')",
+									"type": "Expression"
+								},
+								"linkedServices": [
+									{
+										"referenceName": "SAP_PRD",
+										"type": "LinkedServiceReference"
+									}
+								],
+								"authentication": {
+									"type": "Basic",
+									"username": "RFC_DATALAKE",
+									"password": {
+										"type": "SecureString",
+										"value": "**********"
+									}
+								}
+							}
+						},
+						{
+							"name": "Salida WS Control",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "LLamar WS Control",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Salida_WS_Control",
+								"value": {
+									"value": "@string(activity('LLamar WS Control').output)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Variable Estado Control",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Salida WS Control",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Ctrl_Estado",
+								"value": {
+									"value": "@substring(variables('Salida_WS_Control'),add(indexOf(variables('Salida_WS_Control'),'REstado'),8),sub(add(lastIndexOf(variables('Salida_WS_Control'),'</REstado'),0),add(indexof(variables('Salida_WS_Control'),'REstado'),8)))",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			}
+		],
+		"variables": {
+			"Salida_WS_Tranx": {
+				"type": "String"
+			},
+			"ID_Control": {
+				"type": "String"
+			},
+			"Ctrl_Mandante": {
+				"type": "String"
+			},
+			"Ctrl_Job_Name": {
+				"type": "String"
+			},
+			"Ctrl_Filas_Leidas": {
+				"type": "String"
+			},
+			"Ctrl_Filas_Error": {
+				"type": "String"
+			},
+			"Ctrl_Filas_Insertadas": {
+				"type": "String"
+			},
+			"Ctrl_Fecha_Inicio": {
+				"type": "String"
+			},
+			"Ctrl_Hora_Inicio": {
+				"type": "String"
+			},
+			"Ctrl_Fecha_Fin": {
+				"type": "String"
+			},
+			"Ctrl_Hora_Fin": {
+				"type": "String"
+			},
+			"Ctrl_Estado": {
+				"type": "String"
+			},
+			"Ctrl_Observacion": {
+				"type": "String"
+			},
+			"Salida_WS_Control": {
+				"type": "String"
+			},
+			"Periodos": {
+				"type": "Array"
+			},
+			"Nombre_Archivo_Periodo": {
+				"type": "String"
+			},
+			"Continuar_Proceso": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/01 Datos Maestros/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-22T13:41:28Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "SQL_DL_SAPPRD_SD",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "RGL: Base de datos de paso para procesos SAP a Datalake ( version Azure )",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=10.20.100.71;initial catalog=DL_SAPPRD_SD;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkMjljNjkzYy01ZTdhLTQ0MDUtYTYwOS03OTJhOGJmYTBjOWMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

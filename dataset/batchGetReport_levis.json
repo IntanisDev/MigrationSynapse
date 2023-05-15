@@ -1,0 +1,19 @@
+{
+	"name": "batchGetReport_levis",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Google Analytics Reports",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Social Media/Google Analytics/0 Landing Zone/Rest"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/v1beta/properties/266555601:runReport"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

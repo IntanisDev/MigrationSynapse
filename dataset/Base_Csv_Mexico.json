@@ -1,0 +1,76 @@
+{
+	"name": "Base_Csv_Mexico",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Store_name",
+				"type": "varchar"
+			},
+			{
+				"name": "Sap_id",
+				"type": "varchar"
+			},
+			{
+				"name": "Trans_date",
+				"type": "varchar"
+			},
+			{
+				"name": "Gross_Sales",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Net_Sales",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Discounts",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Margin",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "COGS",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Units",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Transactions",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Traffic",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "vw_ArchivoVtaMex"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

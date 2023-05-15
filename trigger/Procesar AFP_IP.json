@@ -1,0 +1,32 @@
+{
+	"name": "Procesar AFP_IP",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Procesar AFP_IP",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-02-15T08:15:00",
+				"timeZone": "Argentina Standard Time",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						8
+					]
+				}
+			}
+		}
+	}
+}

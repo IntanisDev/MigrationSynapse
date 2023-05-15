@@ -1,0 +1,59 @@
+{
+	"name": "SAP_DM_MAKT_CON",
+	"properties": {
+		"description": "Textos breves de artículos",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_MAKT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_MAKT",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          MATNR as string,",
+				"          SPRAS as string,",
+				"          MAKTX as string,",
+				"          MAKTG as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          MATNR,",
+				"          SPRAS,",
+				"          MAKTX,",
+				"          MAKTG",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

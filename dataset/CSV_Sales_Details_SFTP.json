@@ -1,0 +1,27 @@
+{
+	"name": "CSV_Sales_Details_SFTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Hana_Tst",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"fileName": "ANDES_SALESDETAIL_20230220.txt",
+				"folderPath": "/TEST_ANDES"
+			},
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": ""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

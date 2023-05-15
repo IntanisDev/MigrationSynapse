@@ -1,0 +1,27 @@
+{
+	"name": "CURRENT_DATETIME",
+	"properties": {
+		"folder": {
+			"name": "Contenido Técnico"
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "fecha_actualizacion",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "CONZONE",
+			"table": "vw_timestamp"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,683 @@
+{
+	"name": "0_Ping_sistemasFuente",
+	"properties": {
+		"activities": [
+			{
+				"name": "GoogleAnalytics",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "getToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "GoogleAnalyticsApis",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Token_GeoVictoria",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "GoogleAnalytics",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://customerapi.geovictoria.com/api/v1/Login",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"value": "@concat('{\n    \"User\":\"',pipeline().parameters.User,'\",\n    \"Password\":\"',pipeline().parameters.Password,'\"\n}')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "MailErrorGV",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Token_GeoVictoria",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"message": "Error en conexion a GeoVictoria desde pipeline con Job ID @{pipeline().RunId}.",
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"receiver": "@{pipeline().parameters.receiver}"
+					}
+				}
+			},
+			{
+				"name": "MailErrorGA",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "GoogleAnalytics",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"message": "Error en conexion al servicio Google Analytics desde pipeline con Job ID @{pipeline().RunId}.",
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"receiver": "@{pipeline().parameters.receiver}"
+					}
+				}
+			},
+			{
+				"name": "API Trafico CL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token_GeoVictoria",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Trafic_API_Test",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Trafic_DL_Test",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "MailErrorTraficCL",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "API Trafico CL",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"message": "Error en conexion a FUBPI para cargar trafico, desde pipeline con Job ID @{pipeline().RunId}.",
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"receiver": "@{pipeline().parameters.receiver}"
+					}
+				}
+			},
+			{
+				"name": "FTP BI PRD",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "API Trafico CL",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SAP ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SAP ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Open Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Open Date",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Gross Size",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Gross Size",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_Tiendas_M2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_Tiendas_M2_DL_TEST",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "MailErrorFTPBI",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "FTP BI PRD",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"message": "Error en conexion al servidor FTP BI on Premise 10.81.206.50, desde pipeline con Job ID @{pipeline().RunId}.",
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"receiver": "@{pipeline().parameters.receiver}"
+					}
+				}
+			},
+			{
+				"name": "OraclePrisma",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "FTP BI PRD",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT *\nFROM REPORTUSER.VW_VENTAS_PRISMA\nWHERE FECHA_DOCUMENTO >=  (sysdate-1);",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "STORE_NO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TIENDA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "FECHA_DOCUMENTO",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"name": "NETO",
+									"type": "Double"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"name": "UNIDADES",
+									"type": "Double"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"name": "FUENTE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 6
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "2V_BI_Ventas_Prisma",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "2V_BI_Ventas_Prisma_DL_TEST",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "MailErrorPrisma",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "OraclePrisma",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"message": "Error en conexion al servidor Oracle Prisma 10.81.206.17:1521/rproods, desde pipeline con Job ID @{pipeline().RunId}.",
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"receiver": "@{pipeline().parameters.receiver}"
+					}
+				}
+			},
+			{
+				"name": "Token_BeFlow",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "OraclePrisma",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@concat('https://q3ghsfg1t3.execute-api.us-east-1.amazonaws.com/prod/customReport?resType=csv&reportType=logs&fromDate=',formatDateTime(addDays(utcNow(),-1),'yyyy-MM-dd'),'T12:00:00-04:00&toDate=',formatDateTime(addDays(utcNow(),-1),'yyyy-MM-dd'),'T18:00:00-04:00')",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"connection-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmRlc29tcyIsImF1ZCI6Im9tcyIsImp0aSI6ImI1YmJkOTM0LWNiZmMtNGFmNi05ZDdkLTUyNTg3NTgyZWNkYSIsIm1lcmNoYW50X2lkIjoiNjIyZjY5MmQ4MzBiMTI1NzVmOGE2YmVjIiwiaWF0IjoxNjQ3NDg4MzY0fQ.tySwmBkPeo_DARHaUsqP46kpPmYYcvP8ZEFTqLMB_KA",
+						"type": "text"
+					},
+					"body": {
+						"view_type": "diario",
+						"dates": [
+							"2021-12-01",
+							"2021-12-02",
+							"2021-12-03",
+							"2021-12-04",
+							"2021-12-05",
+							"2021-12-06",
+							"2021-12-07",
+							"2021-12-08",
+							"2021-12-09",
+							"2021-12-10",
+							"2021-12-11",
+							"2021-12-12",
+							"2021-12-13",
+							"2021-12-14",
+							"2021-12-15",
+							"2021-12-16",
+							"2021-12-17",
+							"2021-12-18",
+							"2021-12-19",
+							"2021-12-20",
+							"2021-12-21",
+							"2021-12-22",
+							"2021-12-23",
+							"2021-12-24",
+							"2021-12-25",
+							"2021-12-26",
+							"2021-12-27",
+							"2021-12-28",
+							"2021-12-29",
+							"2021-12-30",
+							"2021-12-31"
+						],
+						"views": [
+							"Unidades",
+							"Costos B2B",
+							"Ventas B2B",
+							"Precios B2B",
+							"Contribución",
+							"MG (%)",
+							"Ventas PVP s/IVA"
+						],
+						"compress": false,
+						"chain_codes": [],
+						"hierarchy": {
+							"Rut": [],
+							"Cadena": [],
+							"Sub Cadena": [],
+							"Región": [],
+							"Local": [],
+							"Comuna": [],
+							"Nombre de Local": [],
+							"Linea": [],
+							"SKU": [],
+							"EAN": [],
+							"Marca": [],
+							"Descripción Producto": [],
+							"Genero": [],
+							"Modelo": [],
+							"Talla": [],
+							"Temporada": [],
+							"Estilo": [],
+							"Código Local": [],
+							"Dirección": [],
+							"Categoría": []
+						}
+					},
+					"httpRequestTimeout": "00:10:00"
+				}
+			},
+			{
+				"name": "MailErrorBeflow",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Token_BeFlow",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"message": "Error en conexion a la API BeFlow desde pipeline con Job ID @{pipeline().RunId}.",
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"receiver": "@{pipeline().parameters.receiver}"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"User": {
+				"type": "string",
+				"defaultValue": "b5ca83"
+			},
+			"Password": {
+				"type": "string",
+				"defaultValue": "83fb8637"
+			},
+			"receiver": {
+				"type": "string",
+				"defaultValue": "aparedes@intanis.com;rcordero@levi.com;bbarahona@intanis.com;fnazer@levi.com;btorres@levi.com"
+			}
+		},
+		"folder": {
+			"name": "Contenido Técnico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-04-03T16:31:02Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

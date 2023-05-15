@@ -1,0 +1,35 @@
+{
+	"name": "KpiLogisticoUrl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "KpiLogisticoHttp",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"nombre_archivo": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/05_API_Rest"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@substring(dataset().nombre_archivo,73,sub(length(dataset().nombre_archivo),73))",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

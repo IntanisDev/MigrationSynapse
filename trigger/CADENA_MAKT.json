@@ -1,0 +1,25 @@
+{
+	"name": "CADENA_MAKT",
+	"properties": {
+		"description": "Ejecuta la carga del dato maestro Textos breves de artículos",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "MAKT_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-29T03:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

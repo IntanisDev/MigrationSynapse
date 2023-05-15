@@ -1,0 +1,75 @@
+{
+	"name": "Tabla_Log_Errores",
+	"properties": {
+		"description": "Tabla de Log de Errores en BD",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/Log_Errores"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Fecha",
+				"type": "varchar"
+			},
+			{
+				"name": "Capa",
+				"type": "varchar"
+			},
+			{
+				"name": "Canalizacion",
+				"type": "varchar"
+			},
+			{
+				"name": "Id_ejecucion",
+				"type": "varchar"
+			},
+			{
+				"name": "Fuente",
+				"type": "varchar"
+			},
+			{
+				"name": "Destino",
+				"type": "varchar"
+			},
+			{
+				"name": "Estado",
+				"type": "varchar"
+			},
+			{
+				"name": "Filas_leidas",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Filas_insertadas",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Duracion",
+				"type": "varchar"
+			},
+			{
+				"name": "Codigo_error",
+				"type": "varchar"
+			},
+			{
+				"name": "Descripcion_error",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "datalake",
+			"table": "log_errores"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

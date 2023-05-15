@@ -1,0 +1,109 @@
+{
+	"name": "6_GeoVictoria_Usuarios_to_staging_PE",
+	"properties": {
+		"folder": {
+			"name": "RRHH/Datos Maestros"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Usuarios_PE",
+						"type": "DatasetReference"
+					},
+					"name": "UsrPeru"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "usuarios_geovictoria",
+						"type": "DatasetReference"
+					},
+					"name": "EDWPRD",
+					"rejectedDataLinkedService": {
+						"referenceName": "edw-prd-WorkspaceDefaultStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "PaisPE"
+				},
+				{
+					"name": "ActivosPE"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as integer,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          SchedulerId as string,",
+				"          SchedulerStart as timestamp,",
+				"          SchedulerPeriodStart as timestamp,",
+				"          ContractDate as timestamp,",
+				"          EndContractDate as timestamp,",
+				"          FechaExtraccion as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> UsrPeru",
+				"UsrPeru derive(Pais = \"Perú\") ~> PaisPE",
+				"PaisPE filter(Enabled==1 && between(toDate(FechaExtraccion),addDays(currentDate('America/Santiago'),-7),currentDate('America/Santiago'))) ~> ActivosPE",
+				"ActivosPE sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Pais as string,",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as integer,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          SchedulerId as string,",
+				"          SchedulerStart as timestamp,",
+				"          SchedulerPeriodStart as timestamp,",
+				"          ContractDate as timestamp,",
+				"          EndContractDate as timestamp,",
+				"          FechaExtraccion as date",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     preSQLs:[(\"delete from geovictoria.usuarios where Pais = 'Perú' and fechaExtraccion >= DATEADD(day, -7, CAST(GETDATE() AT TIME ZONE 'Venezuela Standard Time' AS date))\")],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Pais,",
+				"          Id,",
+				"          Identifier,",
+				"          Name,",
+				"          LastName,",
+				"          Enabled,",
+				"          PositionDescription,",
+				"          Email,",
+				"          SchedulerId,",
+				"          SchedulerStart,",
+				"          SchedulerPeriodStart,",
+				"          ContractDate,",
+				"          EndContractDate,",
+				"          FechaExtraccion",
+				"     )) ~> EDWPRD"
+			]
+		}
+	}
+}

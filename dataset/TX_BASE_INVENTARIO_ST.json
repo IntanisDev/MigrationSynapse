@@ -1,0 +1,77 @@
+{
+	"name": "TX_BASE_INVENTARIO_ST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('TX_BASE_INVENTARIO_',formatDateTime(adddays(utcnow(), -1),'yyyyMMdd'),'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "2_standar_zone/DATALAKE/DL_STOCK",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COD_CENTRO",
+				"type": "String"
+			},
+			{
+				"name": "COD_ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "COD_ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_VALORIZADO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_CONSIGNACION",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_BLOQUEADO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_CONF",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_ENTREGA",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_DISPONIBLE",
+				"type": "String"
+			},
+			{
+				"name": "TIMEPERIODID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

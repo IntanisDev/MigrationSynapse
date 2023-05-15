@@ -1,0 +1,94 @@
+{
+	"name": "TX_Carga_AFP_2022_CL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 Fuente"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Carga",
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "Carga AFP 2022 CL.xlsx",
+				"folderPath": "datalake"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Periodo",
+				"type": "String"
+			},
+			{
+				"name": "Sociedad",
+				"type": "String"
+			},
+			{
+				"name": "Día",
+				"type": "String"
+			},
+			{
+				"name": "Canal Distribución",
+				"type": "String"
+			},
+			{
+				"name": "Cliente",
+				"type": "String"
+			},
+			{
+				"name": "Tienda /Centro",
+				"type": "String"
+			},
+			{
+				"name": "Tipo de Articulo",
+				"type": "String"
+			},
+			{
+				"name": "Marca",
+				"type": "String"
+			},
+			{
+				"name": "Calidad",
+				"type": "String"
+			},
+			{
+				"name": "Genero ",
+				"type": "String"
+			},
+			{
+				"name": "Linea",
+				"type": "String"
+			},
+			{
+				"name": "Tipo",
+				"type": "String"
+			},
+			{
+				"name": "Prenda",
+				"type": "String"
+			},
+			{
+				"name": "Venta M$",
+				"type": "String"
+			},
+			{
+				"name": "Costo M$",
+				"type": "String"
+			},
+			{
+				"name": "Volumen de Venta",
+				"type": "String"
+			},
+			{
+				"name": "Grado de Moda",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

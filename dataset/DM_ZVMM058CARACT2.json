@@ -1,0 +1,62 @@
+{
+	"name": "DM_ZVMM058CARACT2",
+	"properties": {
+		"description": "Maestro de Clientes",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/01 Fuente"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "ATNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "ATINN",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ATZHL",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MAFID",
+				"type": "varchar"
+			},
+			{
+				"name": "KLART",
+				"type": "varchar"
+			},
+			{
+				"name": "ADZHL",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ATWRT",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ZVMM058CARACT2"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

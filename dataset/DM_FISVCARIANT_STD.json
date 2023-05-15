@@ -1,0 +1,78 @@
+{
+	"name": "DM_FISVCARIANT_STD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/2 Standar Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_FISCVARIANT_STD.PARQUET",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "UTF8"
+			},
+			{
+				"name": "PERIV",
+				"type": "UTF8"
+			},
+			{
+				"name": "XKALE",
+				"type": "UTF8"
+			},
+			{
+				"name": "XJABH",
+				"type": "UTF8"
+			},
+			{
+				"name": "ANZBP",
+				"type": "INT32"
+			},
+			{
+				"name": "ANZSP",
+				"type": "INT32"
+			},
+			{
+				"name": "BDATJ",
+				"type": "INT32"
+			},
+			{
+				"name": "BUMON",
+				"type": "INT32"
+			},
+			{
+				"name": "BUTAG",
+				"type": "INT32"
+			},
+			{
+				"name": "POPER",
+				"type": "INT32"
+			},
+			{
+				"name": "RELJR",
+				"type": "UTF8"
+			},
+			{
+				"name": "SPRAS",
+				"type": "UTF8"
+			},
+			{
+				"name": "LTEXT",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,268 @@
+{
+	"name": "Ventas_Peru_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FtpServer_tiendaRMS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "ZPESD075_BASE_VENTASLV_.txt"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "WINDOWS-1252",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SOCIEDAD_CO",
+				"type": "String"
+			},
+			{
+				"name": "COD_SOCIEDAD",
+				"type": "String"
+			},
+			{
+				"name": "DESC_SOCIEDAD",
+				"type": "String"
+			},
+			{
+				"name": "NRO_DOCUMENTO",
+				"type": "String"
+			},
+			{
+				"name": "POSICION",
+				"type": "String"
+			},
+			{
+				"name": "COD_CEBE",
+				"type": "String"
+			},
+			{
+				"name": "DESC_CEBE",
+				"type": "String"
+			},
+			{
+				"name": "PERIODO",
+				"type": "String"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "String"
+			},
+			{
+				"name": "COD_CLIENTE",
+				"type": "String"
+			},
+			{
+				"name": "NOMBRE_CLIENTE",
+				"type": "String"
+			},
+			{
+				"name": "COD_TIPOTIENDA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TIPOTIENDA",
+				"type": "String"
+			},
+			{
+				"name": "COD_TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_MARCA",
+				"type": "String"
+			},
+			{
+				"name": "COD_ORG_VTA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_ORG_VTA",
+				"type": "String"
+			},
+			{
+				"name": "COD_CANAL",
+				"type": "String"
+			},
+			{
+				"name": "DESC_CANAL",
+				"type": "String"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "String"
+			},
+			{
+				"name": "DESC_CALIDAD",
+				"type": "String"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "String"
+			},
+			{
+				"name": "DESC_GENERO",
+				"type": "String"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_LINEA",
+				"type": "String"
+			},
+			{
+				"name": "COD_TIPO",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TIPO",
+				"type": "String"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_PRENDA",
+				"type": "String"
+			},
+			{
+				"name": "COD_TIPOARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TIPOARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "COD_ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "DESC_ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "COD_GENERICO",
+				"type": "String"
+			},
+			{
+				"name": "DESC_GENERICO",
+				"type": "String"
+			},
+			{
+				"name": "COD_MODELO",
+				"type": "String"
+			},
+			{
+				"name": "COD_COLOR",
+				"type": "String"
+			},
+			{
+				"name": "TALLA",
+				"type": "String"
+			},
+			{
+				"name": "LARGO",
+				"type": "String"
+			},
+			{
+				"name": "UNIDADES",
+				"type": "String"
+			},
+			{
+				"name": "COD_TEMPORADA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TEMPORADA",
+				"type": "String"
+			},
+			{
+				"name": "COD_GRADOMODA",
+				"type": "String"
+			},
+			{
+				"name": "DESC_GRADOMODA",
+				"type": "String"
+			},
+			{
+				"name": "INGRESOS",
+				"type": "String"
+			},
+			{
+				"name": "COSTOS",
+				"type": "String"
+			},
+			{
+				"name": "DESC_CONSIGNACION",
+				"type": "String"
+			},
+			{
+				"name": "DESC_PROMOCION",
+				"type": "String"
+			},
+			{
+				"name": "DESC_CLOSEOUT",
+				"type": "String"
+			},
+			{
+				"name": "DESC_PRONTOPAGO",
+				"type": "String"
+			},
+			{
+				"name": "DESC_PERSONAL",
+				"type": "String"
+			},
+			{
+				"name": "DESC_CLIENTE",
+				"type": "String"
+			},
+			{
+				"name": "MONEDA",
+				"type": "String"
+			},
+			{
+				"name": "GTIN",
+				"type": "String"
+			},
+			{
+				"name": "COD_GRADOMODA_PERU",
+				"type": "String"
+			},
+			{
+				"name": "DESC_GRADOMODA_PERU",
+				"type": "String"
+			},
+			{
+				"name": "ANO_ESTACION",
+				"type": "String"
+			},
+			{
+				"name": "ID_VENDEDOR",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

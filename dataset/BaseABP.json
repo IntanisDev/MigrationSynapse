@@ -1,0 +1,108 @@
+{
+	"name": "BaseABP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "PERIODO",
+				"type": "varchar"
+			},
+			{
+				"name": "NRO_DOCUMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "MONEDA",
+				"type": "varchar"
+			},
+			{
+				"name": "SOCIEDAD_CO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CEBE",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "CODIGO_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPOARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "INGRESOS_ABP",
+				"type": "varchar"
+			},
+			{
+				"name": "COSTOABP",
+				"type": "varchar"
+			},
+			{
+				"name": "UNIDADES_ABP",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GRADOMODA",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_ABP"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

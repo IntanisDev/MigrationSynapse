@@ -1,0 +1,64 @@
+{
+	"name": "TX_Base_Inventario",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 Fuente"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_CENTRO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ALMACEN",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK_VALORIZADO",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK_CONSIGNACION",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK_BLOQUEADO",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK_CONF",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK_ENTREGA",
+				"type": "varchar"
+			},
+			{
+				"name": "STOCK_DISPONIBLE",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_INVENTARIO"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

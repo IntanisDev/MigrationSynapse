@@ -1,0 +1,25 @@
+{
+	"name": "CADENA_WRF_FIBER_CODEST",
+	"properties": {
+		"description": "Ejecuta la carga del dato maestro Denominaciones de códigos de fibras",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "WRF_FIBER_CODEST_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-29T03:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

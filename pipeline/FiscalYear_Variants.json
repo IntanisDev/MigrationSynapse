@@ -1,0 +1,419 @@
+{
+	"name": "FiscalYear_Variants",
+	"properties": {
+		"description": "Variantes Año Fiscal",
+		"activities": [
+			{
+				"name": "ATTR",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PERIV",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PERIV",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XKALE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "XKALE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XJABH",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "XJABH",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ANZBP",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ANZBP",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "ANZSP",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ANZSP",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_T009",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_FISCVARIANT_ATTR_RAW",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "TEXT",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ATTR2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PERIV",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PERIV",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LTEXT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LTEXT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_T009T",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_FISCVARIANT_TEXT_RAW",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "ATTR2",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ATTR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PERIV",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PERIV",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BDATJ",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BDATJ",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "BUMON",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BUMON",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "BUTAG",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BUTAG",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "POPER",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "POPER",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "RELJR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RELJR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_T009B",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_FISCVARIANT_ATTR2_RAW",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DM_FISVCARIANT_STD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "TEXT",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "4_Periodos",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Finanzas/Master Data"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-03-22T00:55:44Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

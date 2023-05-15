@@ -1,0 +1,31 @@
+{
+	"name": "TRX_GASTOS_CON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Transaccional/3 Consumption Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('PI_GASTOS_',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy-MM-dd'),'.PARQUET')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('3_consumption_zone/Datalake/DL_FINANCIERO/GASTOS/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'MM'),'/')",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,70 @@
+{
+	"name": "userListJson_PE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria_PE/0 Landing Zone/Json"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('UserList_',formatDateTime(addDays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1),'yyyy-MM-dd'),'.JSON')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('0_landing_zone/RRHH/GeoVictoria_PE/Json/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'MM'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Id": {
+					"type": "string"
+				},
+				"Identifier": {
+					"type": "string"
+				},
+				"Name": {
+					"type": "string"
+				},
+				"LastName": {
+					"type": "string"
+				},
+				"Enabled": {
+					"type": "string"
+				},
+				"PositionDescription": {
+					"type": "string"
+				},
+				"Email": {
+					"type": "string"
+				},
+				"SchedulerId": {
+					"type": "string"
+				},
+				"SchedulerStart": {
+					"type": "string"
+				},
+				"SchedulerPeriodStart": {
+					"type": "string"
+				},
+				"ContractDate": {
+					"type": "string"
+				},
+				"EndContractDate": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

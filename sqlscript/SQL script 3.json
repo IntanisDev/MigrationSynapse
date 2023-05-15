@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [MANDT]\n,[KUNNR]\n,[LAND1]\n,[NAME1]\n,[NAME2]\n,[ORT01]\n,[PSTLZ]\n,[REGIO]\n,[SORTL]\n,[STRAS]\n,[TELF1]\n,[TELFX]\n,[XCPDK]\n,[ADRNR]\n,[MCOD1]\n,[MCOD2]\n,[MCOD3]\n,[ANRED]\n,[AUFSD]\n,[BAHNE]\n,[BAHNS]\n,[BBBNR]\n,[BBSNR]\n,[BEGRU]\n,[BRSCH]\n,[BUBKZ]\n,[DATLT]\n,[ERDAT]\n,[ERNAM]\n,[EXABL]\n,[FAKSD]\n,[FISKN]\n,[KNAZK]\n,[KNRZA]\n,[KONZS]\n,[KTOKD]\n,[KUKLA]\n,[LIFNR]\n,[LIFSD]\n,[LOCCO]\n,[LOEVM]\n,[NAME3]\n,[NAME4]\n,[NIELS]\n,[ORT02]\n,[PFACH]\n,[PSTL2]\n,[COUNC]\n,[CITYC]\n,[RPMKR]\n,[SPERR]\n,[SPRAS]\n,[STCD1]\n,[STCD2]\n,[STKZA]\n,[STKZU]\n,[TELBX]\n,[TELF2]\n,[TELTX]\n,[TELX1]\n,[LZONE]\n,[XZEMP]\n,[VBUND]\n,[STCEG]\n,[DEAR1]\n,[DEAR2]\n,[DEAR3]\n,[DEAR4]\n,[DEAR5]\n,[GFORM]\n,[BRAN1]\n,[BRAN2]\n,[BRAN3]\n,[BRAN4]\n,[BRAN5]\n,[EKONT]\n,[UMSAT]\n,[UMJAH]\n,[UWAER]\n,[JMZAH]\n,[JMJAH]\n,[KATR1]\n,[KATR2]\n,[KATR3]\n,[KATR4]\n,[KATR5]\n,[KATR6]\n,[KATR7]\n,[KATR8]\n,[KATR9]\n,[KATR10]\n,[STKZN]\n,[UMSA1]\n,[TXJCD]\n,[PERIV]\n,[ABRVW]\n,[INSPBYDEBI]\n,[INSPATDEBI]\n,[KTOCD]\n,[PFORT]\n,[WERKS]\n,[DTAMS]\n,[DTAWS]\n,[DUEFL]\n,[HZUOR]\n,[SPERZ]\n,[ETIKG]\n,[CIVVE]\n,[MILVE]\n,[KDKG1]\n,[KDKG2]\n,[KDKG3]\n,[KDKG4]\n,[KDKG5]\n,[XKNZA]\n,[FITYP]\n,[STCDT]\n,[STCD3]\n,[STCD4]\n,[XICMS]\n,[XXIPI]\n,[XSUBT]\n,[CFOPC]\n,[TXLW1]\n,[TXLW2]\n,[CCC01]\n,[CCC02]\n,[CCC03]\n,[CCC04]\n,[CASSD]\n,[KNURL]\n,[J_1KFREPRE]\n,[J_1KFTBUS]\n,[J_1KFTIND]\n,[CONFS]\n,[UPDAT]\n,[UPTIM]\n,[NODEL]\n,[DEAR6]\n,[_VSO_R_PALHGT]\n,[_VSO_R_PAL_UL]\n,[_VSO_R_PK_MAT]\n,[_VSO_R_MATPAL]\n,[_VSO_R_I_NO_LYR]\n,[_VSO_R_ONE_MAT]\n,[_VSO_R_ONE_SORT]\n,[_VSO_R_ULD_SIDE]\n,[_VSO_R_LOAD_PREF]\n,[_VSO_R_DPOINT]\n,[ALC]\n,[PMT_OFFICE]\n,[FEE_SCHEDULE]\n,[DUNS]\n,[DUNS4]\n,[PSOFG]\n,[PSOIS]\n,[PSON1]\n,[PSON2]\n,[PSON3]\n,[PSOVN]\n,[PSOTL]\n,[PSOHS]\n,[PSOST]\n,[PSOO1]\n,[PSOO2]\n,[PSOO3]\n,[PSOO4]\n,[PSOO5]\n FROM [dbo].[Kna1]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "consumption",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

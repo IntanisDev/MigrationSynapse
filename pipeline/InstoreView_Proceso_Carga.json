@@ -1,0 +1,246 @@
+{
+	"name": "InstoreView_Proceso_Carga",
+	"properties": {
+		"activities": [
+			{
+				"name": "Venta Chile Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "01 InstoreView_Venta_Chile_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Peru Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Chile Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "02 InstoreView_Venta_Peru_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Chile Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03 InstoreView_Stock_Chile_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Peru Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Chile Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "04 InstoreView_Stock_Peru_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Chile ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Peru Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Venta_Chile_ST_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Peru ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Chile ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Venta_Peru_ST_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Chile ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Stock_Chile_ST_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Peru ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Chile ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Stock_Peru_ST_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Chile Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Peru ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Venta_CON_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Peru Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Chile Consumo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Venta_Peru_CON_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Chile Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru Consumo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Stock_CON_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Peru Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Chile Consumo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "InstoreView_Stock_Peru_CON_Automatico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/04 Proceso ETL/Desactivados"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-25T15:10:20Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,31 @@
+{
+	"name": "BaseHomologacionVar",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_Homologacion_Var_DL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BASE_HOMOLOGACION_VAR",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\t{COD_ORG_VTA    } as string,\n\t\t{COD_CANAL } as string,\n\t\t{COD_CLIENTE    } as string,\n\t\t{COD_ARTICULO_TJC  } as string,\n\t\tCOD_ARTICULO_CLIENTE as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_ORG_VTA as string,\n\t\tCOD_CANAL as string,\n\t\tCOD_CLIENTE as string,\n\t\tCOD_ARTICULO_TJC as string,\n\t\tCOD_ARTICULO_CLIENTE as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_ORG_VTA = {COD_ORG_VTA    },\n\t\tCOD_CANAL = {COD_CANAL },\n\t\tCOD_CLIENTE = {COD_CLIENTE    },\n\t\tCOD_ARTICULO_TJC = {COD_ARTICULO_TJC  },\n\t\tCOD_ARTICULO_CLIENTE\n\t)) ~> sink1"
+		}
+	}
+}

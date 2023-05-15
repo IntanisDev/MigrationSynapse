@@ -1,0 +1,67 @@
+{
+	"name": "T144_ETL",
+	"properties": {
+		"description": "Proceso de carga tabla Prescripciones de envase para almacenar artículos",
+		"activities": [
+			{
+				"name": "T144 RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T144",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "T144 STANDAR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "T144 RAW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T144_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "T144 CONSUMO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "T144 STANDAR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T144_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Datos Maestros"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-27T22:11:00Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

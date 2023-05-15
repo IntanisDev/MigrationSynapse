@@ -1,0 +1,57 @@
+{
+	"name": "SAP_DM_TIENDAS_M2_CON",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_Tiendas_M2_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_TIENDAS_M2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {SAP ID} as string,",
+				"          {Open Date} as string,",
+				"          {Gross Size} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(COD_TIENDA = {SAP ID},",
+				"          OPEN_DATE = toDate({Open Date}),",
+				"          GROSS_SIZE = toDecimal({Gross Size},18,2)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          COD_TIENDA,",
+				"          OPEN_DATE,",
+				"          GROSS_SIZE",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

@@ -1,0 +1,152 @@
+{
+	"name": "03_Ventas_Cadena_BO",
+	"properties": {
+		"activities": [
+			{
+				"name": "Vta_03_BaseVentas_BO",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_03_BaseVentas_BO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Vta_03_FactNewSale_BO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Vta_03_BaseVentas_BO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_03_FactNewSale_BO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_Product",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Vta_03_FactNewSale_BO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_03_Product_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_ProductAttributes",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_Product",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_04_ProductAttributes",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "MailErrorVentasCadena",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Vta_03_BaseVentas_BO",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"value": "{\"message\":\"Estimados:\nLa canalización de ventas para Bolivia falló, favor revisar a la brevedad.\nSaludos @{pipeline().RunId}.\",\"dataFactoryName\":\"@{pipeline().DataFactory}\",\"pipelineName\":\"@{pipeline().Pipeline}\",\"receiver\":\"@{pipeline().parameters.receiver}\"}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "03_RetailTicketsByStore_Selectivo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_ProductAttributes",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03_RetailTicketsByStore_Selectivo",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"User": {
+				"type": "string",
+				"defaultValue": "b5ca83"
+			},
+			"Password": {
+				"type": "string",
+				"defaultValue": "83fb8637"
+			},
+			"receiver": {
+				"type": "string",
+				"defaultValue": "aparedes@intanis.com;bbarahona@intanis.com;pbarrera@intanis.com;ncanales@intanis.com"
+			}
+		},
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-08T20:24:55Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,214 @@
+{
+	"name": "DM_CEPC",
+	"properties": {
+		"description": "Tabla de datos maestros del profit center",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "PRCTR",
+				"type": "varchar"
+			},
+			{
+				"name": "DATBI",
+				"type": "varchar"
+			},
+			{
+				"name": "KOKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "DATAB",
+				"type": "varchar"
+			},
+			{
+				"name": "ERSDA",
+				"type": "varchar"
+			},
+			{
+				"name": "USNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "MERKMAL",
+				"type": "varchar"
+			},
+			{
+				"name": "ABTEI",
+				"type": "varchar"
+			},
+			{
+				"name": "VERAK",
+				"type": "varchar"
+			},
+			{
+				"name": "VERAK_USER",
+				"type": "varchar"
+			},
+			{
+				"name": "WAERS",
+				"type": "varchar"
+			},
+			{
+				"name": "NPRCTR",
+				"type": "varchar"
+			},
+			{
+				"name": "LAND1",
+				"type": "varchar"
+			},
+			{
+				"name": "ANRED",
+				"type": "varchar"
+			},
+			{
+				"name": "NAME1",
+				"type": "varchar"
+			},
+			{
+				"name": "NAME2",
+				"type": "varchar"
+			},
+			{
+				"name": "NAME3",
+				"type": "varchar"
+			},
+			{
+				"name": "NAME4",
+				"type": "varchar"
+			},
+			{
+				"name": "ORT01",
+				"type": "varchar"
+			},
+			{
+				"name": "ORT02",
+				"type": "varchar"
+			},
+			{
+				"name": "STRAS",
+				"type": "varchar"
+			},
+			{
+				"name": "PFACH",
+				"type": "varchar"
+			},
+			{
+				"name": "PSTLZ",
+				"type": "varchar"
+			},
+			{
+				"name": "PSTL2",
+				"type": "varchar"
+			},
+			{
+				"name": "SPRAS",
+				"type": "varchar"
+			},
+			{
+				"name": "TELBX",
+				"type": "varchar"
+			},
+			{
+				"name": "TELF1",
+				"type": "varchar"
+			},
+			{
+				"name": "TELF2",
+				"type": "varchar"
+			},
+			{
+				"name": "TELFX",
+				"type": "varchar"
+			},
+			{
+				"name": "TELTX",
+				"type": "varchar"
+			},
+			{
+				"name": "TELX1",
+				"type": "varchar"
+			},
+			{
+				"name": "DATLT",
+				"type": "varchar"
+			},
+			{
+				"name": "DRNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "KHINR",
+				"type": "varchar"
+			},
+			{
+				"name": "BUKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "VNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "RECID",
+				"type": "varchar"
+			},
+			{
+				"name": "ETYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "TXJCD",
+				"type": "varchar"
+			},
+			{
+				"name": "REGIO",
+				"type": "varchar"
+			},
+			{
+				"name": "KVEWE",
+				"type": "varchar"
+			},
+			{
+				"name": "KAPPL",
+				"type": "varchar"
+			},
+			{
+				"name": "KALSM",
+				"type": "varchar"
+			},
+			{
+				"name": "LOGSYSTEM",
+				"type": "varchar"
+			},
+			{
+				"name": "LOCK_IND",
+				"type": "varchar"
+			},
+			{
+				"name": "PCA_TEMPLATE",
+				"type": "varchar"
+			},
+			{
+				"name": "SEGMENT",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CEPC"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

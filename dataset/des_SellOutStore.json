@@ -1,0 +1,34 @@
+{
+	"name": "des_SellOutStore",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SellOutStoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "SellOutStore"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,26 @@
+{
+	"name": "Lake_delimited",
+	"properties": {
+		"Name": "Lake_delimited",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Description": "Data Lake por Texto Delimitado",
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://edwlakeprd@edwlakeprd.dfs.core.windows.net/Lake_delimited",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "edw-prd-WorkspaceDefaultStorage"
+			}
+		},
+		"PublishStatus": "PUBLISHED",
+		"ObjectVersion": 1,
+		"ObjectId": "99b345c6-7179-4a5a-a91d-011fb3f17fbe"
+	},
+	"type": "DATABASE"
+}

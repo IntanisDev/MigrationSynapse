@@ -1,0 +1,66 @@
+{
+	"name": "SAP_DM_CEPCT_CON",
+	"properties": {
+		"description": "Textos de datos maestros de CeBe",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_CEPCT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_CEPCT",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          PRCTR as string,",
+				"          DATBI as string,",
+				"          KOKRS as string,",
+				"          KTEXT as string,",
+				"          LTEXT as string,",
+				"          MCTXT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          SPRAS,",
+				"          PRCTR,",
+				"          DATBI,",
+				"          KOKRS,",
+				"          KTEXT,",
+				"          LTEXT,",
+				"          MCTXT",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

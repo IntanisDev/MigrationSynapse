@@ -1,0 +1,82 @@
+{
+	"name": "DM_SOCIEDAD_FI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/3 Consumption Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_SOCIEDAD_FI.PARQUET",
+				"folderPath": "3_consumption_zone/Datalake/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Mandante",
+				"type": "UTF8"
+			},
+			{
+				"name": "Sociedad",
+				"type": "UTF8"
+			},
+			{
+				"name": "Sociedad_Texto",
+				"type": "UTF8"
+			},
+			{
+				"name": "Ciudad",
+				"type": "UTF8"
+			},
+			{
+				"name": "Pais",
+				"type": "UTF8"
+			},
+			{
+				"name": "Moneda",
+				"type": "UTF8"
+			},
+			{
+				"name": "Idioma",
+				"type": "UTF8"
+			},
+			{
+				"name": "Plan_de_cuentas",
+				"type": "UTF8"
+			},
+			{
+				"name": "Desviacion_TC_porcentaje",
+				"type": "UTF8"
+			},
+			{
+				"name": "Variante_ejercicio",
+				"type": "UTF8"
+			},
+			{
+				"name": "Ind_asignacion",
+				"type": "UTF8"
+			},
+			{
+				"name": "Sociedad_GL",
+				"type": "UTF8"
+			},
+			{
+				"name": "Direccion",
+				"type": "UTF8"
+			},
+			{
+				"name": "Entidad_CP",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

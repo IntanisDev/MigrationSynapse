@@ -1,0 +1,31 @@
+{
+	"name": "Base_GTIN",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_Base_GTIN_DL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_GTIN",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\t{COD_ARTICULO      } as string,\n\t\t{CORRELATIVO } as string,\n\t\t{GTIN              } as string,\n\t\t{TIPO_GTIN } as string,\n\t\tIND_GTIN as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_ARTICULO as string,\n\t\tCORRELATIVO as string,\n\t\tGTIN as string,\n\t\tTIPO_GTIN as string,\n\t\tIND_GTIN as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_ARTICULO = {COD_ARTICULO      },\n\t\tCORRELATIVO = {CORRELATIVO },\n\t\tGTIN = {GTIN              },\n\t\tTIPO_GTIN = {TIPO_GTIN },\n\t\tIND_GTIN\n\t)) ~> sink1"
+		}
+	}
+}

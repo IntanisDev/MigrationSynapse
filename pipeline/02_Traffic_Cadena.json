@@ -1,0 +1,67 @@
+{
+	"name": "02_Traffic_Cadena",
+	"properties": {
+		"activities": [
+			{
+				"name": "Base_Trafico",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Base_Trafico_Tiendas",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Trf_01_Base_Trafico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Retail_Traffic",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Base_Trafico",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Trf_03_RetailTrafico",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Base_Trafico_Tiendas",
+				"description": "tiendas que vienen de la api de FollowUp",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Trf_01_Base_Trafico_Tiendas",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-02-22T11:57:08Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

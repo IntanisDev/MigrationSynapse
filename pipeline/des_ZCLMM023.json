@@ -1,0 +1,277 @@
+{
+	"name": "des_ZCLMM023",
+	"properties": {
+		"activities": [
+			{
+				"name": "ZCLMM023",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "truncate table staging.ZCLMM023",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FechaExtrae",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "FechaExtrae",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "PEDIDO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PEDIDO",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SOCIEDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SOCIEDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FEC_CREACION",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "FEC_CREACION",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "Centro_Salida",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Centro_Salida",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Clasedoc",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Clasedoc",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "posicion",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "posicion",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Tienda_Cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tienda_Cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "material",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "material",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CantPedido",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantPedido",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ano",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ano",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "cantEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEmbalada",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "cantEmbalada",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CantDespachado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantDespachado",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CantRecepcionado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CantRecepcionado",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SinEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SinEntrega",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CONTADOR",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CONTADOR",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "des_ZCLMM023",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ZCLMM023",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Copia Desarrollo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-02T12:22:04Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,101 @@
+{
+	"name": "DF_CARGA_ZV_VBPA_ST",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/02 Retail/02 Standar"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DL_ZV_VBPA",
+						"type": "DatasetReference"
+					},
+					"name": "ZVVBPARW"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_ZV_VBPA_ST",
+						"type": "DatasetReference"
+					},
+					"name": "ZVVBPAST"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"parameters{",
+				"     nombreArchivo as string (concat('ZV_VBPA_',substring(FKDAT,1,6),'.csv'))",
+				"}",
+				"source(output(",
+				"          MANDT as string,",
+				"          VBELN as string,",
+				"          POSNR as string,",
+				"          FKDAT as string,",
+				"          PARVW as string,",
+				"          KUNNR as string,",
+				"          LIFNR as string,",
+				"          PERNR as string,",
+				"          PARNR as string,",
+				"          ADRNR as string,",
+				"          ABLAD as string,",
+				"          LAND1 as string,",
+				"          ADRDA as string,",
+				"          XCPDK as string,",
+				"          HITYP as string,",
+				"          PRFRE as string,",
+				"          BOKRE as string,",
+				"          HISTUNR as string,",
+				"          KNREF as string,",
+				"          LZONE as string,",
+				"          HZUOR as string,",
+				"          STCEG as string,",
+				"          PARVW_FF as string,",
+				"          ADRNP as string,",
+				"          KALE as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ZVVBPARW",
+				"ZVVBPARW sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          MANDT as string,",
+				"          VBELN as string,",
+				"          POSNR as string,",
+				"          FKDAT as string,",
+				"          PARVW as string,",
+				"          KUNNR as string,",
+				"          LIFNR as string,",
+				"          PERNR as string,",
+				"          PARNR as string,",
+				"          ADRNR as string,",
+				"          ABLAD as string,",
+				"          LAND1 as string,",
+				"          ADRDA as string,",
+				"          XCPDK as string,",
+				"          HITYP as string,",
+				"          PRFRE as string,",
+				"          BOKRE as string,",
+				"          HISTUNR as string,",
+				"          KNREF as string,",
+				"          LZONE as string,",
+				"          HZUOR as string,",
+				"          STCEG as string,",
+				"          PARVW_FF as string,",
+				"          ADRNP as string,",
+				"          KALE as string",
+				"     ),",
+				"     partitionFileNames:[($nombreArchivo)],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> ZVVBPAST"
+			]
+		}
+	}
+}

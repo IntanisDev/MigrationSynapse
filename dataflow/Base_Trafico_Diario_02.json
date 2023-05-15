@@ -1,0 +1,35 @@
+{
+	"name": "Base_Trafico_Diario_02",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "BASE_TRAFICO_DIARIO_FUPBI",
+						"type": "DatasetReference"
+					},
+					"name": "DL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Trafico_Diario",
+						"type": "DatasetReference"
+					},
+					"name": "BD"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CODSOCIEDAD"
+				}
+			],
+			"script": "source(output(\n\t\tid as string,\n\t\ttime as timestamp,\n\t\tstore_id as string,\n\t\tenters as string,\n\t\texits as string,\n\t\tchild_enters as string,\n\t\tchild_exits as string,\n\t\tfootfall_in as string,\n\t\tfootfall_out as string,\n\t\tsales_count as string,\n\t\ttotal_quantity as string,\n\t\ttotal_amount as string,\n\t\tstay_time as string,\n\t\tcustomers_count as string,\n\t\tavg_customers_count as string,\n\t\tmale_enters as string,\n\t\tfemale_enters as string,\n\t\tmale_percentage as string,\n\t\tfemale_percentage as string,\n\t\tchild_enters_demo as string,\n\t\tyoung_enters as string,\n\t\tadult_enters as string,\n\t\tsenior_enters as string,\n\t\tchild_percentage as string,\n\t\tyoung_adult_percentage as string,\n\t\tadult_percentage as string,\n\t\tsenior_percentage as string,\n\t\tmale_child_enters as string,\n\t\tmale_young_adult_enters as string,\n\t\tmale_adult_enters as string,\n\t\tmale_senior_enters as string,\n\t\tmale_child_percentage as string,\n\t\tmale_young_percentage as string,\n\t\tmale_adult_percentage as string,\n\t\tmale_senior_percentage as string,\n\t\tfemale_child_enters as string,\n\t\tfemale_young_adult_enters as string,\n\t\tfemale_adult_enters as string,\n\t\tfemale_senior_enters as string,\n\t\tfemale_child_percentage as string,\n\t\tfemale_young_percentage as string,\n\t\tfemale_adult_percentage as string,\n\t\tfemale_senior_percentage as string,\n\t\tavg_ticket_amount as string,\n\t\titems_by_ticket as string,\n\t\tconversion_rate as string,\n\t\ttime_var as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table',\n\tstaged: true) ~> DL\nDL derive(COD_SOCIEDAD = 1000) ~> CODSOCIEDAD\nCODSOCIEDAD sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCORRELATIVO as integer,\n\t\tDevicekey as string,\n\t\tCOD_SOCIEDAD as string,\n\t\tMALL as string,\n\t\tZONA as string,\n\t\tNOMBRE as string,\n\t\tTIMESTAMP_INICIO as string,\n\t\tTIMESTAMP_FIN as string,\n\t\tENTRADAS as string,\n\t\tSALIDAS as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_SOCIEDAD,\n\t\tZONA = store_id,\n\t\tTIMESTAMP_INICIO = time,\n\t\tTIMESTAMP_FIN = time,\n\t\tENTRADAS = enters,\n\t\tSALIDAS = exits\n\t)) ~> BD"
+		}
+	}
+}

@@ -1,0 +1,62 @@
+{
+	"name": "XLS_Incentive_Plan_Origen",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Country Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Country Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Legacy Store Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer MDM - Store Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer MDM - Store Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Time - Fiscal Year Period (YYYYMMM)",
+				"type": "varchar"
+			},
+			{
+				"name": "Time - Fiscal Week",
+				"type": "varchar"
+			},
+			{
+				"name": "Time - Transaction Date (YYYYMMDD)",
+				"type": "char"
+			},
+			{
+				"name": "Plan / Store Target",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Incentive_Plan"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

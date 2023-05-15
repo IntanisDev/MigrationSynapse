@@ -1,0 +1,60 @@
+{
+	"name": "TRX_TCURR",
+	"properties": {
+		"description": "Tipos de cambio",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Transaccional/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "KURST",
+				"type": "varchar"
+			},
+			{
+				"name": "FCURR",
+				"type": "varchar"
+			},
+			{
+				"name": "TCURR",
+				"type": "varchar"
+			},
+			{
+				"name": "GDATU",
+				"type": "varchar"
+			},
+			{
+				"name": "UKURS",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 5
+			},
+			{
+				"name": "FFACT",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 0
+			},
+			{
+				"name": "TFACT",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TCURR"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

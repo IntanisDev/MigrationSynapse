@@ -1,0 +1,31 @@
+{
+	"name": "BaseArticulos_CL",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_BaseArticulo_Chile_DL",
+						"type": "DatasetReference"
+					},
+					"name": "BaseArticulosChileDL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Articulos",
+						"type": "DatasetReference"
+					},
+					"name": "BDStaging"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tCOD_CATEGORIA as string,\n\t\tCOD_GENERICO as string,\n\t\tCOD_ARTICULO as string,\n\t\tDESC_ARTICULO as string,\n\t\tCOD_MODELO as string,\n\t\tCOD_COLOR as string,\n\t\tTALLA as string,\n\t\tLARGO as string,\n\t\tCOD_GRADOMODA as string,\n\t\tDESC_GRADOMODA as string,\n\t\tCOD_TEMPORADA as string,\n\t\tDESC_TEMPORADA as string,\n\t\tANO_ESTACION as string,\n\t\tCOD_GRADOMODA_PERU as string,\n\t\tDESC_GRADOMODA_PERU as string,\n\t\tCOD_TEMPORADA_PERU as string,\n\t\tDESC_TEMPORADA_PERU as string,\n\t\tANO_ESTACION_PERU as string,\n\t\tDESC_ANOE_PERU as string,\n\t\tCOD_ROYALTY as string,\n\t\tDESC_ROYALTY as string,\n\t\tGRUPO_ARTICULO as string,\n\t\tGTIN as string,\n\t\tPC9 as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> BaseArticulosChileDL\nBaseArticulosChileDL sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_CATEGORIA as string,\n\t\tCOD_GENERICO as string,\n\t\tCOD_ARTICULO as string,\n\t\tDESC_ARTICULO as string,\n\t\tCOD_MODELO as string,\n\t\tCOD_COLOR as string,\n\t\tTALLA as string,\n\t\tLARGO as string,\n\t\tCOD_GRADOMODA as string,\n\t\tDESC_GRADOMODA as string,\n\t\tCOD_TEMPORADA as string,\n\t\tDESC_TEMPORADA as string,\n\t\tANO_ESTACION as string,\n\t\tCOD_GRADOMODA_PERU as string,\n\t\tDESC_GRADOMODA_PERU as string,\n\t\tCOD_TEMPORADA_PERU as string,\n\t\tDESC_TEMPORADA_PERU as string,\n\t\tANO_ESTACION_PERU as string,\n\t\tDESC_ANOE_PERU as string,\n\t\tCOD_ROYALTY as string,\n\t\tDESC_ROYALTY as string,\n\t\tGRUPO_ARTICULO as string,\n\t\tGTIN as string,\n\t\tPRODUCTO_TEMPORAL as integer,\n\t\tBASE_MAESTRO as integer,\n\t\tPC13 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_CATEGORIA,\n\t\tCOD_GENERICO,\n\t\tCOD_ARTICULO,\n\t\tDESC_ARTICULO,\n\t\tCOD_MODELO,\n\t\tCOD_COLOR,\n\t\tTALLA,\n\t\tLARGO,\n\t\tCOD_GRADOMODA,\n\t\tDESC_GRADOMODA,\n\t\tCOD_TEMPORADA,\n\t\tDESC_TEMPORADA,\n\t\tANO_ESTACION,\n\t\tCOD_GRADOMODA_PERU,\n\t\tDESC_GRADOMODA_PERU,\n\t\tCOD_TEMPORADA_PERU,\n\t\tDESC_TEMPORADA_PERU,\n\t\tANO_ESTACION_PERU,\n\t\tDESC_ANOE_PERU,\n\t\tCOD_ROYALTY,\n\t\tDESC_ROYALTY,\n\t\tGRUPO_ARTICULO,\n\t\tGTIN,\n\t\tPC13 = PC9\n\t),\n\tpartitionBy('roundRobin', 5)) ~> BDStaging"
+		}
+	}
+}

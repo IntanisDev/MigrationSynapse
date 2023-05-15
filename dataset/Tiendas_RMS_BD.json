@@ -1,0 +1,44 @@
+{
+	"name": "Tiendas_RMS_BD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_NO",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 0
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "TradeName",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "TIENDAS_RMS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

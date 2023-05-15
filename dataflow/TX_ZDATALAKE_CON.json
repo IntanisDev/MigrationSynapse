@@ -1,0 +1,75 @@
+{
+	"name": "TX_ZDATALAKE_CON",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_ZDATALAKE_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_ZDATALAKE",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          JOBNAME as string,",
+				"          R_PROCESO as string,",
+				"          R_ERRORES as string,",
+				"          R_PROCESADOS as string,",
+				"          R_FECHA_INI as string,",
+				"          R_HORA_INI as string,",
+				"          R_ESTADO as string,",
+				"          R_FECHA_TER as string,",
+				"          R_HORA_TER as string,",
+				"          OBSERVACION as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(R_PROCESO = toInteger(R_PROCESO),",
+				"          R_ERRORES = toInteger(R_ERRORES),",
+				"          R_PROCESADOS = toInteger(R_PROCESADOS)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          JOBNAME,",
+				"          R_PROCESO,",
+				"          R_ERRORES,",
+				"          R_PROCESADOS,",
+				"          R_FECHA_INI,",
+				"          R_HORA_INI,",
+				"          R_ESTADO,",
+				"          R_FECHA_TER,",
+				"          R_HORA_TER,",
+				"          OBSERVACION",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

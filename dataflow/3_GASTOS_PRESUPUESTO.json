@@ -1,0 +1,163 @@
+{
+	"name": "3_GASTOS_PRESUPUESTO",
+	"properties": {
+		"description": "Carga Partidas Individuales de Gastos",
+		"folder": {
+			"name": "Finanzas/Gastos"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TRX_PRESUPUESTO_RAW",
+						"type": "DatasetReference"
+					},
+					"name": "GastosPPTO"
+				},
+				{
+					"linkedService": {
+						"referenceName": "Synapse PRD edw_prd",
+						"type": "LinkedServiceReference"
+					},
+					"name": "MappingCeco"
+				},
+				{
+					"dataset": {
+						"referenceName": "DM_SOCIEDAD_FI",
+						"type": "DatasetReference"
+					},
+					"name": "DMSociedadFI"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "TRX_PRESUPUESTO_GASTOS_STD",
+						"type": "DatasetReference"
+					},
+					"name": "STDPPTOGASTOS"
+				}
+			],
+			"transformations": [
+				{
+					"name": "buscaMapping"
+				},
+				{
+					"name": "selectPlanCuentas"
+				},
+				{
+					"name": "buscaPlanCuentas"
+				},
+				{
+					"name": "Mandante"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Tipo Escenario} as string,",
+				"          Sociedad as string,",
+				"          {Período} as string,",
+				"          {Código centro Costo SAP} as string,",
+				"          {Código Cuenta Contable SAP} as string,",
+				"          {Código Cuenta USGAAP} as string,",
+				"          {Código Canal } as string,",
+				"          {Código Marca} as string,",
+				"          {Código Categoría} as string,",
+				"          {Código Género} as string,",
+				"          {Concepto P&L} as string,",
+				"          {Monto en CLP} as double '000,000,000.000'",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> GastosPPTO",
+				"source(output(",
+				"          sociedad as string,",
+				"          centro_costo as string,",
+				"          descripcion as string,",
+				"          canal as string,",
+				"          marca as string,",
+				"          grupo_p_l as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'finanzas',",
+				"     tableName: 'mapping_Ceco_PL',",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     staged: true) ~> MappingCeco",
+				"source(output(",
+				"          Mandante as string,",
+				"          Sociedad as string,",
+				"          Sociedad_Texto as string,",
+				"          Ciudad as string,",
+				"          Pais as string,",
+				"          Moneda as string,",
+				"          Idioma as string,",
+				"          Plan_de_cuentas as string,",
+				"          Desviacion_TC_porcentaje as string,",
+				"          Variante_ejercicio as string,",
+				"          Ind_asignacion as string,",
+				"          Sociedad_GL as string,",
+				"          Direccion as string,",
+				"          Entidad_CP as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> DMSociedadFI",
+				"Mandante, MappingCeco lookup(GastosPPTO@Sociedad == MappingCeco@sociedad",
+				"     && {Código centro Costo SAP} == centro_costo,",
+				"     multiple: false,",
+				"     pickup: 'first',",
+				"     asc(centro_costo, true),",
+				"     broadcast: 'auto')~> buscaMapping",
+				"DMSociedadFI select(mapColumn(",
+				"          Mandante,",
+				"          Sociedad,",
+				"          Plan_de_cuentas",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectPlanCuentas",
+				"buscaMapping, selectPlanCuentas lookup(Mandante@MANDANTE == selectPlanCuentas@Mandante",
+				"     && GastosPPTO@Sociedad == selectPlanCuentas@Sociedad,",
+				"     multiple: false,",
+				"     pickup: 'first',",
+				"     asc(Plan_de_cuentas, true),",
+				"     broadcast: 'auto')~> buscaPlanCuentas",
+				"GastosPPTO derive(MANDANTE = '500') ~> Mandante",
+				"buscaPlanCuentas sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('PRESUPUESTO_GASTOS_',toString(addDays(currentDate(),-1)),'.PARQUET'))],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Tipo_Escenario = {Tipo Escenario},",
+				"          Sociedad = GastosPPTO@Sociedad,",
+				"          PerIodo = {Período},",
+				"          centro_costo_SAP = {Código centro Costo SAP},",
+				"          cuenta_contable_SAP = {Código Cuenta Contable SAP},",
+				"          cuenta_USGAAP = {Código Cuenta USGAAP},",
+				"          canal = {Código Canal },",
+				"          marca = {Código Marca},",
+				"          categoria = {Código Categoría},",
+				"          genero = {Código Género},",
+				"          concepto = {Concepto P&L},",
+				"          monto = {Monto en CLP},",
+				"          centro_costo,",
+				"          descripcion,",
+				"          canal_ceco = canal,",
+				"          marca_ceco = marca,",
+				"          grupo_p_l,",
+				"          Plan_de_cuentas",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> STDPPTOGASTOS"
+			]
+		}
+	}
+}

@@ -1,0 +1,566 @@
+{
+	"name": "TX_EKKO",
+	"properties": {
+		"description": "Cabecera documento compras",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 Fuente"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "EBELN",
+				"type": "varchar"
+			},
+			{
+				"name": "BUKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "BSTYP",
+				"type": "varchar"
+			},
+			{
+				"name": "BSART",
+				"type": "varchar"
+			},
+			{
+				"name": "BSAKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "LOEKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "STATU",
+				"type": "varchar"
+			},
+			{
+				"name": "AEDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "ERNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "PINCR",
+				"type": "varchar"
+			},
+			{
+				"name": "LPONR",
+				"type": "varchar"
+			},
+			{
+				"name": "LIFNR",
+				"type": "varchar"
+			},
+			{
+				"name": "SPRAS",
+				"type": "varchar"
+			},
+			{
+				"name": "ZTERM",
+				"type": "varchar"
+			},
+			{
+				"name": "ZBD1T",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "ZBD2T",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "ZBD3T",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "ZBD1P",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 3
+			},
+			{
+				"name": "ZBD2P",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 3
+			},
+			{
+				"name": "EKORG",
+				"type": "varchar"
+			},
+			{
+				"name": "EKGRP",
+				"type": "varchar"
+			},
+			{
+				"name": "WAERS",
+				"type": "varchar"
+			},
+			{
+				"name": "WKURS",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 5
+			},
+			{
+				"name": "KUFIX",
+				"type": "varchar"
+			},
+			{
+				"name": "BEDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "KDATB",
+				"type": "varchar"
+			},
+			{
+				"name": "KDATE",
+				"type": "varchar"
+			},
+			{
+				"name": "BWBDT",
+				"type": "varchar"
+			},
+			{
+				"name": "ANGDT",
+				"type": "varchar"
+			},
+			{
+				"name": "BNDDT",
+				"type": "varchar"
+			},
+			{
+				"name": "GWLDT",
+				"type": "varchar"
+			},
+			{
+				"name": "AUSNR",
+				"type": "varchar"
+			},
+			{
+				"name": "ANGNR",
+				"type": "varchar"
+			},
+			{
+				"name": "IHRAN",
+				"type": "varchar"
+			},
+			{
+				"name": "IHREZ",
+				"type": "varchar"
+			},
+			{
+				"name": "VERKF",
+				"type": "varchar"
+			},
+			{
+				"name": "TELF1",
+				"type": "varchar"
+			},
+			{
+				"name": "LLIEF",
+				"type": "varchar"
+			},
+			{
+				"name": "KUNNR",
+				"type": "varchar"
+			},
+			{
+				"name": "KONNR",
+				"type": "varchar"
+			},
+			{
+				"name": "ABGRU",
+				"type": "varchar"
+			},
+			{
+				"name": "AUTLF",
+				"type": "varchar"
+			},
+			{
+				"name": "WEAKT",
+				"type": "varchar"
+			},
+			{
+				"name": "RESWK",
+				"type": "varchar"
+			},
+			{
+				"name": "LBLIF",
+				"type": "varchar"
+			},
+			{
+				"name": "INCO1",
+				"type": "varchar"
+			},
+			{
+				"name": "INCO2",
+				"type": "varchar"
+			},
+			{
+				"name": "KTWRT",
+				"type": "decimal",
+				"precision": 17,
+				"scale": 2
+			},
+			{
+				"name": "SUBMI",
+				"type": "varchar"
+			},
+			{
+				"name": "KNUMV",
+				"type": "varchar"
+			},
+			{
+				"name": "KALSM",
+				"type": "varchar"
+			},
+			{
+				"name": "STAFO",
+				"type": "varchar"
+			},
+			{
+				"name": "LIFRE",
+				"type": "varchar"
+			},
+			{
+				"name": "EXNUM",
+				"type": "varchar"
+			},
+			{
+				"name": "UNSEZ",
+				"type": "varchar"
+			},
+			{
+				"name": "LOGSY",
+				"type": "varchar"
+			},
+			{
+				"name": "UPINC",
+				"type": "varchar"
+			},
+			{
+				"name": "STAKO",
+				"type": "varchar"
+			},
+			{
+				"name": "FRGGR",
+				"type": "varchar"
+			},
+			{
+				"name": "FRGSX",
+				"type": "varchar"
+			},
+			{
+				"name": "FRGKE",
+				"type": "varchar"
+			},
+			{
+				"name": "FRGZU",
+				"type": "varchar"
+			},
+			{
+				"name": "FRGRL",
+				"type": "varchar"
+			},
+			{
+				"name": "LANDS",
+				"type": "varchar"
+			},
+			{
+				"name": "LPHIS",
+				"type": "varchar"
+			},
+			{
+				"name": "ADRNR",
+				"type": "varchar"
+			},
+			{
+				"name": "STCEG_L",
+				"type": "varchar"
+			},
+			{
+				"name": "STCEG",
+				"type": "varchar"
+			},
+			{
+				"name": "ABSGR",
+				"type": "varchar"
+			},
+			{
+				"name": "ADDNR",
+				"type": "varchar"
+			},
+			{
+				"name": "KORNR",
+				"type": "varchar"
+			},
+			{
+				"name": "MEMORY",
+				"type": "varchar"
+			},
+			{
+				"name": "PROCSTAT",
+				"type": "varchar"
+			},
+			{
+				"name": "RLWRT",
+				"type": "decimal",
+				"precision": 17,
+				"scale": 2
+			},
+			{
+				"name": "REVNO",
+				"type": "varchar"
+			},
+			{
+				"name": "SCMPROC",
+				"type": "varchar"
+			},
+			{
+				"name": "REASON_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "MEMORYTYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "RETTP",
+				"type": "varchar"
+			},
+			{
+				"name": "RETPC",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "DPTYP",
+				"type": "varchar"
+			},
+			{
+				"name": "DPPCT",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "DPAMT",
+				"type": "decimal",
+				"precision": 13,
+				"scale": 2
+			},
+			{
+				"name": "DPDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "MSR_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "HIERARCHY_EXISTS",
+				"type": "varchar"
+			},
+			{
+				"name": "THRESHOLD_EXISTS",
+				"type": "varchar"
+			},
+			{
+				"name": "LEGAL_CONTRACT",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCRIPTION",
+				"type": "varchar"
+			},
+			{
+				"name": "RELEASE_DATE",
+				"type": "varchar"
+			},
+			{
+				"name": "FORCE_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "FORCE_CNT",
+				"type": "varchar"
+			},
+			{
+				"name": "RELOC_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "RELOC_SEQ_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "SOURCE_LOGSYS",
+				"type": "varchar"
+			},
+			{
+				"name": "ZZEXFDATE",
+				"type": "varchar"
+			},
+			{
+				"name": "ZZORDERID",
+				"type": "varchar"
+			},
+			{
+				"name": "ZZSCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "POHF_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "EQ_EINDT",
+				"type": "varchar"
+			},
+			{
+				"name": "EQ_WERKS",
+				"type": "varchar"
+			},
+			{
+				"name": "FIXPO",
+				"type": "varchar"
+			},
+			{
+				"name": "EKGRP_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "WERKS_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "CONTRACT_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "PSTYP_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "FIXPO_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "KEY_ID_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "AUREL_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "DELPER_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "EINDT_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "LTSNR_ALLOW",
+				"type": "varchar"
+			},
+			{
+				"name": "OTB_LEVEL",
+				"type": "varchar"
+			},
+			{
+				"name": "OTB_COND_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "KEY_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "OTB_VALUE",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "OTB_CURR",
+				"type": "varchar"
+			},
+			{
+				"name": "OTB_RES_VALUE",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "OTB_SPEC_VALUE",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "SPR_RSN_PROFILE",
+				"type": "varchar"
+			},
+			{
+				"name": "BUDG_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "OTB_STATUS",
+				"type": "varchar"
+			},
+			{
+				"name": "OTB_REASON",
+				"type": "varchar"
+			},
+			{
+				"name": "CHECK_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "CON_OTB_REQ",
+				"type": "varchar"
+			},
+			{
+				"name": "CON_PREBOOK_LEV",
+				"type": "varchar"
+			},
+			{
+				"name": "CON_DISTR_LEV",
+				"type": "varchar"
+			},
+			{
+				"name": "ZZDUMMY",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "EKKO"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

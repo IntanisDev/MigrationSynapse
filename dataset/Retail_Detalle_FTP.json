@@ -1,0 +1,125 @@
+{
+	"name": "Retail_Detalle_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FtpServer_tiendaRMS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "DETALLE.TXT",
+				"folderPath": "DataW Retail"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sigla_Tienda",
+				"type": "String"
+			},
+			{
+				"name": "Tienda",
+				"type": "String"
+			},
+			{
+				"name": "Tipo",
+				"type": "String"
+			},
+			{
+				"name": "Numero",
+				"type": "String"
+			},
+			{
+				"name": "Item",
+				"type": "String"
+			},
+			{
+				"name": "Fecha",
+				"type": "String"
+			},
+			{
+				"name": "Hora",
+				"type": "String"
+			},
+			{
+				"name": "Color",
+				"type": "String"
+			},
+			{
+				"name": "Talla",
+				"type": "String"
+			},
+			{
+				"name": "Upc",
+				"type": "String"
+			},
+			{
+				"name": "Codigo Barra",
+				"type": "String"
+			},
+			{
+				"name": "Porcentaje Iva",
+				"type": "String"
+			},
+			{
+				"name": "Monto Iva",
+				"type": "String"
+			},
+			{
+				"name": "Cantidad",
+				"type": "String"
+			},
+			{
+				"name": "Precio Venta",
+				"type": "String"
+			},
+			{
+				"name": "Costo",
+				"type": "String"
+			},
+			{
+				"name": "Precio Full",
+				"type": "String"
+			},
+			{
+				"name": "Usuario",
+				"type": "String"
+			},
+			{
+				"name": "Total",
+				"type": "String"
+			},
+			{
+				"name": "Total_Costo",
+				"type": "String"
+			},
+			{
+				"name": "Descuento",
+				"type": "String"
+			},
+			{
+				"name": "Porcentaje Descuento",
+				"type": "String"
+			},
+			{
+				"name": "Generico",
+				"type": "String"
+			},
+			{
+				"name": "Descripcion",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

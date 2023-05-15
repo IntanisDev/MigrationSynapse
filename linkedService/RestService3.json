@@ -1,0 +1,28 @@
+{
+	"name": "RestService3",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://levis.fupbi.com/api/ext/v1/stores",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"X-User-Email": {
+					"type": "SecureString",
+					"value": "**********"
+				},
+				"X-User-Token": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		},
+		"description": "API Trafico"
+	}
+}

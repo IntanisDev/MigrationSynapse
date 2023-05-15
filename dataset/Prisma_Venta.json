@@ -1,0 +1,204 @@
+{
+	"name": "Prisma_Venta",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "INVC_SID",
+				"type": "varchar"
+			},
+			{
+				"name": "FISCAL_DOC_ID",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "TRACKING_NO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "INVC_NO",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "SBS_NO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SBS_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STORE_NO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "STORE_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "POS_FLAG1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "POS_FLAG2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "POS_FLAG3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATED_DATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PROC_STATUS",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "STATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WORKSTATION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "INVC_TYPE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_TYPE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_NO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAKEN",
+				"type": "decimal",
+				"precision": 16,
+				"scale": 4
+			},
+			{
+				"name": "GIVEN",
+				"type": "decimal",
+				"precision": 16,
+				"scale": 4
+			},
+			{
+				"name": "AMT",
+				"type": "decimal",
+				"precision": 16,
+				"scale": 4
+			},
+			{
+				"name": "CRD_TYPE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DOC_NO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TENDER_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CRD_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "INFO1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FIRST_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LAST_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SO_NO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EMPL_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RPRO_FULL_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QTY",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 3
+			},
+			{
+				"name": "ALU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DESCRIPTION1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DESCRIPTION2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DESCRIPTION3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DESCRIPTION4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ATTR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SIZ",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "Prisma_Ventas"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

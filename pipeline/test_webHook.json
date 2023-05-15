@@ -1,0 +1,37 @@
+{
+	"name": "test_webHook",
+	"properties": {
+		"activities": [
+			{
+				"name": "ProcesaStore",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=JNcMst4yfcXc7DIDf%2f0PJVejMR4opzafpcawHcEjuEI%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*",
+						"Connection": "keep-alive"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboLogistico",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Store"
+					},
+					"timeout": "00:05:00",
+					"reportStatusOnCallBack": false,
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-01-14T02:32:08Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,80 @@
+{
+	"name": "03_Ventas_Orquestador",
+	"properties": {
+		"activities": [
+			{
+				"name": "03_Ventas_Cadena_CL",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03_Ventas_Cadena_CL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "03_Ventas_Cadena_PE",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "03_Ventas_Cadena_CL",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03_Ventas_Cadena_PE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "03_Ventas_Cadena_BO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "03_Ventas_Cadena_PE",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03_Ventas_Cadena_BO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"User": {
+				"type": "string",
+				"defaultValue": "b5ca83"
+			},
+			"Password": {
+				"type": "string",
+				"defaultValue": "83fb8637"
+			},
+			"receiver": {
+				"type": "string",
+				"defaultValue": "aparedes@intanis.com;bbarahona@intanis.com;pbarrera@intanis.com;ncanales@intanis.com"
+			}
+		},
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-08T19:49:21Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

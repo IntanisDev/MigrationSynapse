@@ -1,0 +1,17 @@
+{
+	"name": "SQL_BI_PRD",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "SQL Server BI",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=10.81.206.50;initial catalog=DM_LEVISALES;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjZTE0M2RlOS05ODYwLTQwNmQtOTc0Zi00ZGZlYzcwOWMxNGMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

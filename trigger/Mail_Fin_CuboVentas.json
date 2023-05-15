@@ -1,0 +1,29 @@
+{
+	"name": "Mail_Fin_CuboVentas",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Mail_Fin_Cubo",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"User": "b5ca83",
+					"Password": "83fb8637",
+					"receiver": "aparedes@intanis.com;rcordero@levi.com;bbarahona@intanis.com;fnazer@levi.com;btorres@levi.com;ncanales@intanis.com"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-04-22T08:50:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

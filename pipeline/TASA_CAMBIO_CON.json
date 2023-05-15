@@ -1,0 +1,37 @@
+{
+	"name": "TASA_CAMBIO_CON",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_TASA_CAMBIO",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/01 Datos Maestros/03 Consumption"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-30T18:27:53Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

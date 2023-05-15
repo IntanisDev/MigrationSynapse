@@ -1,0 +1,52 @@
+{
+	"name": "Mail_Fin_Cubo",
+	"properties": {
+		"activities": [
+			{
+				"name": "MailFinCuboVentas",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-06.eastus2.logic.azure.com:443/workflows/3f0fb45a74614ed4bf2c3495b6f95547/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=i82uxwo2bzjBFus5SC-rCVdAA0fItlZVqWSnEchWHe4",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"value": "{\"message\":\"Estimados:\nEl proceso de carga de información en el cubo de ventas ha finalizado correctamente. Ya se pueden revisar los reportes de ventas.\nSaludos @{pipeline().RunId}.\",\"dataFactoryName\":\"@{pipeline().DataFactory}\",\"pipelineName\":\"@{pipeline().Pipeline}\",\"receiver\":\"@{pipeline().parameters.receiver}\"}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"User": {
+				"type": "string",
+				"defaultValue": "b5ca83"
+			},
+			"Password": {
+				"type": "string",
+				"defaultValue": "83fb8637"
+			},
+			"receiver": {
+				"type": "string",
+				"defaultValue": "aparedes@intanis.com;rcordero@levi.com;bbarahona@intanis.com;fnazer@levi.com;btorres@levi.com;ncanales@intanis.com"
+			}
+		},
+		"folder": {
+			"name": "Cubo Ventas/9999_Procesar_Cubo_Ventas"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-04-22T19:46:01Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

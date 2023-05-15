@@ -1,0 +1,58 @@
+{
+	"name": "StoreCoverage_ETL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select\n\tBrandId,\n\tClothingPieceId,\n\tClothingPieceTypeId,\n\tCoverage,\n\tGenderId,\n\tLineId,\n\tProductId,\n\tQualityId,\n\tSaleQuantity,\n\tShimId,\n\tStock,\n\tStoreId,\n\tTimePeriodId,\n\tProductFashionGradeId,\n\tProductFashionSeasonId,\n\tProductGenericId,\n\tProductModelId,\n\tStockValued,\n\tNetSale,\n\tSaleOrganisationId,\n\tNetSaleUSD,\n\tWarehouseId,\n\tSaleChannelId,\n\tCustomerId,\n\tMargin,\n\tSaleCost,\n\tStockAvailable,\n\tStockConf,\n\tStockDelivery,\n\tStockLocked\nfrom storecoverage\nwhere timeperiodid>='2022-06-06'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "StoreCoverage_OP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "StoreCoverage",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-14T22:19:45Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,2014 @@
+{
+	"name": "Centro_Costo",
+	"properties": {
+		"activities": [
+			{
+				"name": "ATTR",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOKRS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KOKRS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOSTL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KOSTL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATBI",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DATBI",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATAB",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DATAB",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZKP",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BKZKP",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PKZKP",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PKZKP",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BUKRS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BUKRS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "GSBER",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GSBER",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOSAR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KOSAR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VERAK",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VERAK",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VERAK_USER",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VERAK_USER",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "WAERS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WAERS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KALSM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KALSM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TXJCD",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TXJCD",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PRCTR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PRCTR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "WERKS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WERKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LOGSYSTEM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LOGSYSTEM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ERSDA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ERSDA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "USNAM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "USNAM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZKS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BKZKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZER",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BKZER",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZOB",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BKZOB",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PKZKS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PKZKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PKZER",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PKZER",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VMETH",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VMETH",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MGEFL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MGEFL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ABTEI",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ABTEI",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NKOST",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NKOST",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KVEWE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KVEWE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KAPPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KAPPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOSZSCHL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KOSZSCHL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LAND1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LAND1",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ANRED",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ANRED",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NAME1",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NAME2",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NAME3",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NAME4",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ORT01",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ORT01",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ORT02",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ORT02",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "STRAS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "STRAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PFACH",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PFACH",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PSTLZ",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PSTLZ",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PSTL2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PSTL2",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "REGIO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "REGIO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELBX",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TELBX",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELF1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TELF1",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELF2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TELF2",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELFX",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TELFX",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELTX",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TELTX",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELX1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TELX1",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATLT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DATLT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DRNAM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DRNAM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KHINR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KHINR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CCKEY",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CCKEY",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOMPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KOMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "STAKZ",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "STAKZ",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJNR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OBJNR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FUNKT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FUNKT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "AFUNK",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AFUNK",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CPI_TEMPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CPI_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CPD_TEMPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CPD_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FUNC_AREA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FUNC_AREA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SCI_TEMPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SCI_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SCD_TEMPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SCD_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VNAME",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VNAME",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "RECID",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RECID",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ETYPE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETYPE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "JV_OTYPE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "JV_OTYPE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "JV_JIBCL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "JV_JIBCL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "JV_JIBSA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "JV_JIBSA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FERC_IND",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FERC_IND",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_CSKS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_CECO_ATTR_RAW",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "TEXT",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ATTR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOKRS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KOKRS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOSTL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KOSTL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATBI",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DATBI",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KTEXT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KTEXT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LTEXT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LTEXT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MCTXT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MCTXT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_CSKT",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_CECO_TEXT_RAW",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "STD_CENTRO_COSTO",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "TEXT",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "1_Centros_Costo",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "CON_CENTRO_COSTO",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "STD_CENTRO_COSTO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "KOKRS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Sociedad_CO",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOSTL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Centro_Costo",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATBI",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Fecha_fin_validez",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATAB",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Fecha_inicio_validez",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZKP",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "bloqueo_contabilizaciones_primarias",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PKZKP",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "bloqueo_planificacion",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BUKRS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Sociedad",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "GSBER",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Division",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOSAR",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Clase_centro_costo",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VERAK",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Responsable",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VERAK_USER",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Usuario_Responsable",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "WAERS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Moneda",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KALSM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Esquema_calculo_costo",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TXJCD",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Domicilio_fiscal",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PRCTR",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Centro_beneficio",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "WERKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Centro",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LOGSYSTEM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Sistema_logico",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ERSDA",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Fecha_entrada",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "USNAM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Nombre_autor",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "bloqueo_contabilizaciones_sec",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZER",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "bloqueo_contabilizaciones_ingreso",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BKZOB",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "bloqueo_actualizacion_comprometidos",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PKZKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "bloqueo_planificacion_costes_secundarios",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PKZER",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "bloqueo_planificacion_ingresos",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VMETH",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "metodos_facturacion_permitidos",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MGEFL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "ind_volumenes_consumo",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ABTEI",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Departamento",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NKOST",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Centro_costo_sucesor",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KVEWE",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Utilizacion_tabla_condiciones",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KAPPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Aplicacion",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOSZSCHL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Clave_recargos_COS",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LAND1",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Clave_pais",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ANRED",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Tratamiento",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME1",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Nombre_1",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME2",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Nombre_2",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME3",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Nombre_3",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME4",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Nombre_4",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ORT01",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Poblacion",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ORT02",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Distrito",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "STRAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Calle",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PFACH",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Apartado",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PSTLZ",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Codigo_postal",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PSTL2",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Codigo_postal_apartado",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "REGIO",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Region",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Clave_idioma",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELBX",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Numero_telebox",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELF1",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Telefono_1",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELF2",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Telefono_2",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELFX",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Telefax",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELTX",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "teletex",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TELX1",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "telex",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATLT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Linea_transmision_datos",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DRNAM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Nombre_Impresora",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KHINR",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Area_jerarquia_estandar",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CCKEY",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Clave_colector_costos",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KOMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Flag_integridad",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "STAKZ",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "objeto_estadistico",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJNR",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Numero_objeto",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FUNKT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Funcion_centro_coste",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "AFUNK",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Funcion_alternativa_centro_coste",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CPI_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Modelo_planificacion_formula_independiente",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CPD_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Modelo_planificacion_formula_dependiente",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FUNC_AREA",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Area_funcional",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SCI_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Modelo_Imputacion_depend_actividad",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SCD_TEMPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Modelo_Facturacion_depend_actividad",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VNAME",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Joint_Venture",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "RECID",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Tipo_coste",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ETYPE",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Clase_participacion",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "JV_OTYPE",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Tipo_objeto_Joint_Venture",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "JV_JIBCL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Clase_JIB_JIBE",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "JV_JIBSA",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Subclase_JIB_JIBE",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FERC_IND",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Regulatory_indicator",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KTEXT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Descripcion_Corta",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LTEXT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Descripcion_Larga",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MCTXT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Concepto_busqueda",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_CENTRO_COSTO_STD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_CENTRO_COSTO_CON",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Finanzas/Master Data"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-02-17T01:17:07Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

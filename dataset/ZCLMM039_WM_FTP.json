@@ -1,0 +1,63 @@
+{
+	"name": "ZCLMM039_WM_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo_Logistico/FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": {
+					"value": "@concat('ZCLSD039_WM_',formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1),'yyyyMMdd'),'.CSV')",
+					"type": "Expression"
+				},
+				"folderPath": "cubo_logistico"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FECHA EJECUCION",
+				"type": "String"
+			},
+			{
+				"name": "CENTRO",
+				"type": "String"
+			},
+			{
+				"name": "ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "NRO ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "TIPO ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "NRO ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK DISPONIBLE",
+				"type": "String"
+			},
+			{
+				"name": "STOCK TOTAL",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,20 @@
+{
+	"name": "TRX_PARTIDAS_GASTO_HISTORICO_RAW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL PRD Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Transaccional/1 Raw Data/SQL On Demand"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GLPCA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

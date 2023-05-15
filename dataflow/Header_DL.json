@@ -1,0 +1,35 @@
+{
+	"name": "Header_DL",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0825_Retail"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Retail_Header_DL",
+						"type": "DatasetReference"
+					},
+					"name": "HeaderDL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Retail_Base_Cabecera",
+						"type": "DatasetReference"
+					},
+					"name": "RetailBaseCabecera"
+				}
+			],
+			"transformations": [
+				{
+					"name": "OrganisationId"
+				}
+			],
+			"script": "source(output(\n\t\tSigla_Tienda as string,\n\t\tTienda as string,\n\t\tTipo as string,\n\t\tNumero as string,\n\t\tFecha as string,\n\t\tHora as string,\n\t\tEstado as string,\n\t\tUsuario as string,\n\t\tCajero as string,\n\t\tSubtotal as string,\n\t\tTotal as string,\n\t\t{Porcentaje Iva} as string,\n\t\t{Monto Iva} as string,\n\t\tItems as string,\n\t\tRut as string,\n\t\tNombre as string,\n\t\tApellidos as string,\n\t\tDireccion as string,\n\t\tComuna as string,\n\t\tTelefono as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> HeaderDL\nHeaderDL derive(OrganisationId = 1297) ~> OrganisationId\nOrganisationId sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tSigla_Tienda as string,\n\t\tTienda as string,\n\t\tTipo as string,\n\t\tNumero as string,\n\t\tFecha as string,\n\t\tHora as string,\n\t\tPorcentaje_Iva as string,\n\t\tMonto_Iva as string,\n\t\tUsuario as string,\n\t\tTotal as string,\n\t\tEstado as string,\n\t\tCajero as string,\n\t\tSubtotal as string,\n\t\tItems as string,\n\t\tRut as string,\n\t\tNombre as string,\n\t\tApellidos as string,\n\t\tDireccion as string,\n\t\tComuna as string,\n\t\tTelefono as string,\n\t\tOrganisationId as integer,\n\t\tMedioPago as string,\n\t\tOrigen as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSigla_Tienda,\n\t\tTienda,\n\t\tTipo,\n\t\tNumero,\n\t\tFecha,\n\t\tHora,\n\t\tPorcentaje_Iva = {Porcentaje Iva},\n\t\tMonto_Iva = {Monto Iva},\n\t\tUsuario,\n\t\tTotal,\n\t\tEstado,\n\t\tCajero,\n\t\tSubtotal,\n\t\tItems,\n\t\tRut,\n\t\tNombre,\n\t\tApellidos,\n\t\tDireccion,\n\t\tComuna,\n\t\tTelefono,\n\t\tOrganisationId\n\t)) ~> RetailBaseCabecera"
+		}
+	}
+}

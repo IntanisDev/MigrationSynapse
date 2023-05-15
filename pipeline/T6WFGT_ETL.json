@@ -1,0 +1,67 @@
+{
+	"name": "T6WFGT_ETL",
+	"properties": {
+		"description": "Proceso de carga tabla Grado de confección",
+		"activities": [
+			{
+				"name": "T6WFGT RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T6WFGT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "T6WFGT STANDAR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "T6WFGT RAW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T6WFGT_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "T6WFGT CONSUMO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "T6WFGT STANDAR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T6WFGT_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Datos Maestros"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-27T21:33:22Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

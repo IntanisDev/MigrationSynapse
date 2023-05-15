@@ -1,0 +1,942 @@
+{
+	"name": "Vta_03_BaseVentas_BO",
+	"properties": {
+		"activities": [
+			{
+				"name": "Vta_BO_FTP_to_Vta_BO_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "cubo_ventas/20220112_084934_ventas.txt"
+					},
+					{
+						"name": "Destination",
+						"value": "edw-prd/0_landing_zone/Cubo_Venta/20220112_084934_ventas.txt"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "DESC_SOCIEDAD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_SOCIEDAD",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NRO_DOCUMENTO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NRO_DOCUMENTO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POSICION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "POSICION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_CEBE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_CEBE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_CEBE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_CEBE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PERIODO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PERIODO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FECHA_DOCUMENTO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FECHA_DOCUMENTO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_CLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_CLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NOMBRE_CLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NOMBRE_CLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TIPOTIENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_TIPOTIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TIPOTIENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_TIPOTIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_MARCA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_MARCA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_MARCA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_MARCA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_ORG_VTA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_ORG_VTA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_ORG_VTA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_ORG_VTA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_CANAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_CANAL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_CANAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_CANAL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_CALIDAD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_CALIDAD",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_CALIDAD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_CALIDAD",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GENERO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_GENERO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_GENERO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_GENERO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_LINEA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_LINEA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_LINEA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_LINEA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TIPO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_TIPO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TIPO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_TIPO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_PRENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_PRENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_PRENDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_PRENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TIPOARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_TIPOARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TIPOARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_TIPOARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_ARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_ARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_ARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_ARTICULO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GENERICO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_GENERICO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_GENERICO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_GENERICO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_MODELO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_MODELO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_COLOR",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_COLOR",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TALLA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TALLA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LARGO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LARGO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UNIDADES",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "UNIDADES",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TEMPORADA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_TEMPORADA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TEMPORADA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_TEMPORADA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GRADOMODA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COD_GRADOMODA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_GRADOMODA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_GRADOMODA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INGRESOS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "INGRESOS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COSTOS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COSTOS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_CONSIGNACION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_CONSIGNACION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_PROMOCION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_PROMOCION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_CLOSEOUT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_CLOSEOUT",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_PRONTOPAGO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_PRONTOPAGO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_PERSONAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_PERSONAL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_CLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESC_CLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MONEDA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MONEDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "GTIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "GTIN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ANO_ESTACION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ANO_ESTACION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Ventas_Bolivia_FTP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Ventas_Bolivia_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Vta_BO_DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Vta_BO_FTP_to_Vta_BO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Vta BOLIVIA - BaseVentas",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continueOnError": true
+				}
+			},
+			{
+				"name": "Mover Venta BOL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "BaseVentaUpd",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Ventas_Bolivia_DL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mover_Base_Venta_BOL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "borrar venta BOL",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Mover Venta BOL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Ventas_Bolivia_DL",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "Insertar_Ventas_BOL_to_Base_Ventas",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Vta_BO_DL_to_BD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[Insertar_Ventas_BOL_v2]"
+				}
+			},
+			{
+				"name": "BaseVentaUpd",
+				"description": "actualiza tabla BaseVenta, el campo DESC_TIPO lo deja como '(ninguno)' cuando es 'Sin Tipo'",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Insertar_Ventas_BOL_to_Base_Ventas",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[BaseVentaUpd]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0825_Ventas/02 Por Pais"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-08T18:51:08Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

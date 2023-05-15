@@ -1,0 +1,183 @@
+{
+	"name": "SAP_TX_A073_SYN",
+	"properties": {
+		"description": "Copia datos desde SQL BI PRD a SQL Synapse",
+		"activities": [
+			{
+				"name": "A073",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"isolationLevel": "ReadUncommitted",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "KAPPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KAPPL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "KSCHL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KSCHL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "VKORG",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VKORG",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "VTWEG",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VTWEG",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MATNR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MATNR",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "VRKME",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VRKME",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DATBI",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DATBI",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DATAB",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DATAB",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "KNUMH",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KNUMH",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TX_A073",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "A073_SYN",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-21T04:24:34Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

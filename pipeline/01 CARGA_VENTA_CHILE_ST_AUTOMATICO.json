@@ -1,0 +1,123 @@
+{
+	"name": "01 CARGA_VENTA_CHILE_ST_AUTOMATICO",
+	"properties": {
+		"activities": [
+			{
+				"name": "Obtener Periodos Cargados",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select distinct SUBSTRING(BUDAT,1,6)  as periodo from [dbo].[CE11000]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "TX_CE11000",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Recorrer Periodos",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Obtener Periodos Cargados",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Obtener Periodos Cargados').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "DF CARGA VENTA CHILE",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "1.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "DF_CARGA_VENTA_CHILE_ST_AUTOMATICO",
+									"type": "DataFlowReference",
+									"parameters": {
+										"nombreArchivo": {
+											"value": "'@{concat('CE11000_', item().periodo,'.csv')}'",
+											"type": "Expression"
+										}
+									},
+									"datasetParameters": {
+										"CE11000A": {
+											"OutputFileName": {
+												"value": "@concat('CE11000_',item().periodo,'.csv')",
+												"type": "Expression"
+											},
+											"Folder": {
+												"value": "@substring(string(item().periodo),0 ,4 )",
+												"type": "Expression"
+											}
+										},
+										"CE11000B": {
+											"OutputFileName": {
+												"value": "@concat('CE11000_',item().periodo,'.csv')",
+												"type": "Expression"
+											},
+											"Folder": {
+												"value": "@substring(string(item().periodo),0 ,4 )",
+												"type": "Expression"
+											}
+										},
+										"CE11000ST": {
+											"OutputFileName": {
+												"value": "@concat('CE11000_',item().periodo,'.csv')",
+												"type": "Expression"
+											},
+											"Folder": {
+												"value": "@substring(string(item().periodo),0 ,4 )",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/02 Retail/02 Standard"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-21T16:33:15Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

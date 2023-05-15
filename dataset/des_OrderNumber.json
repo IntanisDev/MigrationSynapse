@@ -1,0 +1,34 @@
+{
+	"name": "des_OrderNumber",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "OrderNumberId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OrderNo",
+				"type": "varchar"
+			},
+			{
+				"name": "IsClosed",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "OrderNumber"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

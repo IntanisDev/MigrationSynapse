@@ -1,0 +1,127 @@
+{
+	"name": "SAP_DM_T006_ST",
+	"properties": {
+		"description": "Unidades de Medida",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/01 Standard"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_T006_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_T006_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          MSEHI as string,",
+				"          KZEX3 as string,",
+				"          KZEX6 as string,",
+				"          ANDEC as string,",
+				"          KZKEH as string,",
+				"          KZWOB as string,",
+				"          KZ1EH as string,",
+				"          KZ2EH as string,",
+				"          DIMID as string,",
+				"          ZAEHL as string,",
+				"          NENNR as string,",
+				"          EXP10 as string,",
+				"          ADDKO as string,",
+				"          EXPON as string,",
+				"          DECAN as string,",
+				"          ISOCODE as string,",
+				"          PRIMARY as string,",
+				"          TEMP_VALUE as string,",
+				"          TEMP_UNIT as string,",
+				"          FAMUNIT as string,",
+				"          PRESS_VAL as string,",
+				"          PRESS_UNIT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(KZEX3=='X') ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          MSEHI as string,",
+				"          KZEX3 as string,",
+				"          KZEX6 as string,",
+				"          ANDEC as string,",
+				"          KZKEH as string,",
+				"          KZWOB as string,",
+				"          KZ1EH as string,",
+				"          KZ2EH as string,",
+				"          DIMID as string,",
+				"          ZAEHL as string,",
+				"          NENNR as string,",
+				"          EXP10 as string,",
+				"          ADDKO as string,",
+				"          EXPON as string,",
+				"          DECAN as string,",
+				"          ISOCODE as string,",
+				"          PRIMARY as string,",
+				"          TEMP_VALUE as string,",
+				"          TEMP_UNIT as string,",
+				"          FAMUNIT as string,",
+				"          PRESS_VAL as string,",
+				"          PRESS_UNIT as string",
+				"     ),",
+				"     partitionFileNames:['DM_T006.csv'],",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          MSEHI,",
+				"          KZEX3,",
+				"          KZEX6,",
+				"          ANDEC,",
+				"          KZKEH,",
+				"          KZWOB,",
+				"          KZ1EH,",
+				"          KZ2EH,",
+				"          DIMID,",
+				"          ZAEHL,",
+				"          NENNR,",
+				"          EXP10,",
+				"          ADDKO,",
+				"          EXPON,",
+				"          DECAN,",
+				"          ISOCODE,",
+				"          PRIMARY,",
+				"          TEMP_VALUE,",
+				"          TEMP_UNIT,",
+				"          FAMUNIT,",
+				"          PRESS_VAL,",
+				"          PRESS_UNIT",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

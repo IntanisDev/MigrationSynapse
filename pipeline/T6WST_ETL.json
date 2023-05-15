@@ -1,0 +1,67 @@
+{
+	"name": "T6WST_ETL",
+	"properties": {
+		"description": "Proceso de carga tabla Textos para descr. Agrup. Temporadas",
+		"activities": [
+			{
+				"name": "T6WST RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T6WST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "T6WST STANDAR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "T6WST RAW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T6WST_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "T6WST CONSUMO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "T6WST STANDAR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_T6WST_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Datos Maestros"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-27T21:36:37Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,80 @@
+{
+	"name": "ZCLMM047_RW_to_ST",
+	"properties": {
+		"folder": {
+			"name": "SW_Productividad/01 RW_to_ST"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM047_RW",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM047_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Column1 as string,",
+				"          Column2 as string,",
+				"          Column3 as string,",
+				"          Column4 as string,",
+				"          Column5 as string,",
+				"          Column6 as string,",
+				"          Column7 as string,",
+				"          Column8 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          UNID_MANIPULACION = Column1,",
+				"          RUT = Column2,",
+				"          OPERADOR = Column3,",
+				"          CANTIDAD = Column4,",
+				"          FEC_INICIO = Column5,",
+				"          HORA_INICIO = Column6,",
+				"          FEC_TERMINO = Column7,",
+				"          HORA_TERMINO = Column8",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          UNID_MANIPULACION as string,",
+				"          RUT as string,",
+				"          OPERADOR as string,",
+				"          CANTIDAD as string,",
+				"          FEC_INICIO as string,",
+				"          HORA_INICIO as string,",
+				"          FEC_TERMINO as string,",
+				"          HORA_TERMINO as string",
+				"     ),",
+				"     partitionFileNames:[(concat('ZCLMM047_ENVIO_',toString(currentUTC()-hours(4), 'yyyyMMdd'),'.csv') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

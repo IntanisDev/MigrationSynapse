@@ -1,0 +1,46 @@
+{
+	"name": "05_Inventario_Cadena",
+	"properties": {
+		"activities": [
+			{
+				"name": "Base_Inventario",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Inv_01_BaseInventario",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Store_Coverage",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Base_Inventario",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Inv_02_StoreCoverage",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T20:49:02Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

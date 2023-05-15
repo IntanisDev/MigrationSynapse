@@ -1,0 +1,54 @@
+{
+	"name": "Vw_Sellout_Clientes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Pais",
+				"type": "varchar"
+			},
+			{
+				"name": "CodigoCliente",
+				"type": "varchar"
+			},
+			{
+				"name": "CodigoTienda",
+				"type": "varchar"
+			},
+			{
+				"name": "NombreCliente",
+				"type": "varchar"
+			},
+			{
+				"name": "NombreTienda",
+				"type": "varchar"
+			},
+			{
+				"name": "GrupoCliente",
+				"type": "varchar"
+			},
+			{
+				"name": "Canal",
+				"type": "varchar"
+			},
+			{
+				"name": "Comuna",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vw_SELLOUT_CLIENTES"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

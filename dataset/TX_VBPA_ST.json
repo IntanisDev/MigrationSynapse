@@ -1,0 +1,129 @@
+{
+	"name": "TX_VBPA_ST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ZV_VBPA_202210.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS/2022",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "VBELN",
+				"type": "String"
+			},
+			{
+				"name": "POSNR",
+				"type": "String"
+			},
+			{
+				"name": "FKDAT",
+				"type": "String"
+			},
+			{
+				"name": "PARVW",
+				"type": "String"
+			},
+			{
+				"name": "KUNNR",
+				"type": "String"
+			},
+			{
+				"name": "LIFNR",
+				"type": "String"
+			},
+			{
+				"name": "PERNR",
+				"type": "String"
+			},
+			{
+				"name": "PARNR",
+				"type": "String"
+			},
+			{
+				"name": "ADRNR",
+				"type": "String"
+			},
+			{
+				"name": "ABLAD",
+				"type": "String"
+			},
+			{
+				"name": "LAND1",
+				"type": "String"
+			},
+			{
+				"name": "ADRDA",
+				"type": "String"
+			},
+			{
+				"name": "XCPDK",
+				"type": "String"
+			},
+			{
+				"name": "HITYP",
+				"type": "String"
+			},
+			{
+				"name": "PRFRE",
+				"type": "String"
+			},
+			{
+				"name": "BOKRE",
+				"type": "String"
+			},
+			{
+				"name": "HISTUNR",
+				"type": "String"
+			},
+			{
+				"name": "KNREF",
+				"type": "String"
+			},
+			{
+				"name": "LZONE",
+				"type": "String"
+			},
+			{
+				"name": "HZUOR",
+				"type": "String"
+			},
+			{
+				"name": "STCEG",
+				"type": "String"
+			},
+			{
+				"name": "PARVW_FF",
+				"type": "String"
+			},
+			{
+				"name": "ADRNP",
+				"type": "String"
+			},
+			{
+				"name": "KALE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

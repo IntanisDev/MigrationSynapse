@@ -1,0 +1,313 @@
+{
+	"name": "des_MATERIAL",
+	"properties": {
+		"activities": [
+			{
+				"name": "MATERIAL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "truncate table masterdata.material",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "NRO_MATERIAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NRO_MATERIAL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_MATERIAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_MATERIAL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TIPO_TEMPORADA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TIPO_TEMPORADA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ANO_ESTACION",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ANO_ESTACION",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_TEMPORADA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_TEMPORADA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_COLOR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_COLOR",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_COLOR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESC_COLOR",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TALLA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TALLA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TALLA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESC_TALLA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_MARCA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_MARCA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_MARCA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_MARCA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_CALIDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_CALIDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_CALIDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_CALIDAD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GENERO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_GENERO",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_GENERO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_GENERO",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_LINEA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_LINEA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_LINEA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_LINEA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TIPO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_TIPO",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_TIPO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_TIPO",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_PRENDA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_PRENDA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCR_PRENDA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESCR_PRENDA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ZCLMM025",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "MATERIAL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Copia Desarrollo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-11-30T00:49:54Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

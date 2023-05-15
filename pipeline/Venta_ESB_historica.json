@@ -1,0 +1,1990 @@
+{
+	"name": "Venta_ESB_historica",
+	"properties": {
+		"description": "Carga datos diarios de JSON a Parquet",
+		"activities": [
+			{
+				"name": "VentaSAPParquetArray",
+				"description": "Carga las boletas con un varios productos",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"maxConcurrentConnections": 0,
+							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "0_landing_zone/Retail/ESB/XML/2022/12/18/",
+								"type": "Expression"
+							},
+							"wildcardFileName": "VENTASAP-*.XML",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"detectDataType": true,
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 4,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODPAISVTA']"
+								},
+								"sink": {
+									"name": "CODPAISVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODEMPRVTA']"
+								},
+								"sink": {
+									"name": "CODEMPRVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODWERKS']"
+								},
+								"sink": {
+									"name": "CODWERKS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODWERKSRET']"
+								},
+								"sink": {
+									"name": "CODWERKSRET",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['NUMVTA']"
+								},
+								"sink": {
+									"name": "NUMVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['FECHVTA']"
+								},
+								"sink": {
+									"name": "FECHVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['FECHENTR']"
+								},
+								"sink": {
+									"name": "FECHENTR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_RUT']"
+								},
+								"sink": {
+									"name": "CLI_RUT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_TIPIDENT']"
+								},
+								"sink": {
+									"name": "CLI_TIPIDENT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_NOMBRE']"
+								},
+								"sink": {
+									"name": "CLI_NOMBRE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_APELLIDOS']"
+								},
+								"sink": {
+									"name": "CLI_APELLIDOS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_TELEFONO']"
+								},
+								"sink": {
+									"name": "CLI_TELEFONO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_GIRO']"
+								},
+								"sink": {
+									"name": "CLI_GIRO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_DIREC']"
+								},
+								"sink": {
+									"name": "CLI_DIREC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_NUM']"
+								},
+								"sink": {
+									"name": "CLI_NUM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_COMUNA']"
+								},
+								"sink": {
+									"name": "CLI_COMUNA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_CIUDAD']"
+								},
+								"sink": {
+									"name": "CLI_CIUDAD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_REGION']"
+								},
+								"sink": {
+									"name": "CLI_REGION",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_PAIS']"
+								},
+								"sink": {
+									"name": "CLI_PAIS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['TIPDOCEMIT']"
+								},
+								"sink": {
+									"name": "TIPDOCEMIT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['REFERENCIA']"
+								},
+								"sink": {
+									"name": "I_CAB_REFERENCIA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['FECHREF']"
+								},
+								"sink": {
+									"name": "FECHREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['DESCTREC']"
+								},
+								"sink": {
+									"name": "DESCTREC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['RETTDA']"
+								},
+								"sink": {
+									"name": "RETTDA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['TIPDOCREF']"
+								},
+								"sink": {
+									"name": "TIPDOCREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODPOS']"
+								},
+								"sink": {
+									"name": "CODPOS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['POS']"
+								},
+								"sink": {
+									"name": "POS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['TOTMEDPAG']"
+								},
+								"sink": {
+									"name": "TOTMEDPAG",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODAUT']"
+								},
+								"sink": {
+									"name": "CODAUT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODTARJ']"
+								},
+								"sink": {
+									"name": "CODTARJ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['NOMTARJ']"
+								},
+								"sink": {
+									"name": "NOMTARJ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['NROCUOTA']"
+								},
+								"sink": {
+									"name": "NROCUOTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['BANCO']"
+								},
+								"sink": {
+									"name": "BANCO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['TIPCAMB']"
+								},
+								"sink": {
+									"name": "TIPCAMB",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODMON']"
+								},
+								"sink": {
+									"name": "CODMON",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['POS']"
+								},
+								"sink": {
+									"name": "PRODPOS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CODPROD']"
+								},
+								"sink": {
+									"name": "CODPROD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CANT']"
+								},
+								"sink": {
+									"name": "CANT",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['MONTO']"
+								},
+								"sink": {
+									"name": "MONTO",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['MTODESC']"
+								},
+								"sink": {
+									"name": "MTODESC",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FECHREF']"
+								},
+								"sink": {
+									"name": "PRODFECHREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SIGNO']"
+								},
+								"sink": {
+									"name": "SIGNO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['REFERENCIA']"
+								},
+								"sink": {
+									"name": "REFERENCIA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VENDEDOR']"
+								},
+								"sink": {
+									"name": "VENDEDOR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CAJA']"
+								},
+								"sink": {
+									"name": "CAJA",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "VENTASAP_XML_0_FULL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "VENTASAP_RAW_FULL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "VentaSAPParquetItem",
+				"description": "Carga las boletas con un solo producto",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"maxConcurrentConnections": 0,
+							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "0_landing_zone/Retail/ESB/XML/2022/12/18/",
+								"type": "Expression"
+							},
+							"wildcardFileName": "VENTASAP-*.XML",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"detectDataType": true,
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 4,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODPOS']"
+								},
+								"sink": {
+									"name": "CODPOS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['POS']"
+								},
+								"sink": {
+									"name": "POS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['TOTMEDPAG']"
+								},
+								"sink": {
+									"name": "TOTMEDPAG",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODAUT']"
+								},
+								"sink": {
+									"name": "CODAUT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODTARJ']"
+								},
+								"sink": {
+									"name": "CODTARJ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['NOMTARJ']"
+								},
+								"sink": {
+									"name": "NOMTARJ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['NROCUOTA']"
+								},
+								"sink": {
+									"name": "NROCUOTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['BANCO']"
+								},
+								"sink": {
+									"name": "BANCO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['TIPCAMB']"
+								},
+								"sink": {
+									"name": "TIPCAMB",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['MEDPAGO']['item']['CODMON']"
+								},
+								"sink": {
+									"name": "CODMON",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODPAISVTA']"
+								},
+								"sink": {
+									"name": "CODPAISVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODEMPRVTA']"
+								},
+								"sink": {
+									"name": "CODEMPRVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODWERKS']"
+								},
+								"sink": {
+									"name": "CODWERKS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CODWERKSRET']"
+								},
+								"sink": {
+									"name": "CODWERKSRET",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['NUMVTA']"
+								},
+								"sink": {
+									"name": "NUMVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['FECHVTA']"
+								},
+								"sink": {
+									"name": "FECHVTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['FECHENTR']"
+								},
+								"sink": {
+									"name": "FECHENTR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_RUT']"
+								},
+								"sink": {
+									"name": "CLI_RUT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_TIPIDENT']"
+								},
+								"sink": {
+									"name": "CLI_TIPIDENT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_NOMBRE']"
+								},
+								"sink": {
+									"name": "CLI_NOMBRE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_APELLIDOS']"
+								},
+								"sink": {
+									"name": "CLI_APELLIDOS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_TELEFONO']"
+								},
+								"sink": {
+									"name": "CLI_TELEFONO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_GIRO']"
+								},
+								"sink": {
+									"name": "CLI_GIRO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_DIREC']"
+								},
+								"sink": {
+									"name": "CLI_DIREC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_NUM']"
+								},
+								"sink": {
+									"name": "CLI_NUM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_COMUNA']"
+								},
+								"sink": {
+									"name": "CLI_COMUNA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_CIUDAD']"
+								},
+								"sink": {
+									"name": "CLI_CIUDAD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_REGION']"
+								},
+								"sink": {
+									"name": "CLI_REGION",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['CLI_PAIS']"
+								},
+								"sink": {
+									"name": "CLI_PAIS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['TIPDOCEMIT']"
+								},
+								"sink": {
+									"name": "TIPDOCEMIT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['REFERENCIA']"
+								},
+								"sink": {
+									"name": "I_CAB_REFERENCIA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['FECHREF']"
+								},
+								"sink": {
+									"name": "FECHREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['DESCTREC']"
+								},
+								"sink": {
+									"name": "DESCTREC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['RETTDA']"
+								},
+								"sink": {
+									"name": "RETTDA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_CAB']['TIPDOCREF']"
+								},
+								"sink": {
+									"name": "TIPDOCREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['POS']"
+								},
+								"sink": {
+									"name": "PRODPOS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['CODPROD']"
+								},
+								"sink": {
+									"name": "CODPROD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['CANT']"
+								},
+								"sink": {
+									"name": "CANT",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['MONTO']"
+								},
+								"sink": {
+									"name": "MONTO",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['MTODESC']"
+								},
+								"sink": {
+									"name": "MTODESC",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['FECHREF']"
+								},
+								"sink": {
+									"name": "PRODFECHREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['SIGNO']"
+								},
+								"sink": {
+									"name": "SIGNO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['REFERENCIA']"
+								},
+								"sink": {
+									"name": "REFERENCIA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['VENDEDOR']"
+								},
+								"sink": {
+									"name": "VENDEDOR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['soap:Envelope']['soap:Body']['urn:ZWSSD_VENTA']['I_DET1']['PRODUCTO']['item']['CAJA']"
+								},
+								"sink": {
+									"name": "CAJA",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "VENTASAP_XML_0_FULL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "VENTASAP_RAW_FULL_SINGLE",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "STD_VTA_SAP_FULL",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "VentaSAPParquetArray",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "VentaSAPParquetItem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "STD_VTA_SAP_FULL",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Copia venta STD a Consumo",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "STD_VTA_SAP_FULL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "\nSELECT * FROM [dbo].[vw_venta_diaria]\nWHERE PRODFECHREF BETWEEN CAST(dateadd(day, - 6, (GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'Pacific SA Standard Time')) AS DATE)\n\t\tAND CAST(dateadd(day, - 1, (GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'Pacific SA Standard Time')) AS DATE)",
+						"queryTimeout": "02:00:00",
+						"isolationLevel": "ReadUncommitted",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CODPAISVTA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODPAISVTA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODEMPRVTA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODEMPRVTA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODWERKS",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODWERKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODWERKSRET",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODWERKSRET",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMVTA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "NUMVTA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TIPDOCEMIT",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "TIPDOCEMIT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "I_CAB_REFERENCIA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "I_CAB_REFERENCIA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCTREC",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DESCTREC",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "RETTDA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "RETTDA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TIPDOCREF",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "TIPDOCREF",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODPOS",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODPOS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TOTMEDPAG",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TOTMEDPAG",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "CODAUT",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODAUT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODTARJ",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODTARJ",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NOMTARJ",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "NOMTARJ",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NROCUOTA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "NROCUOTA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BANCO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "BANCO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODMON",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODMON",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PRODPOS",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "PRODPOS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODPROD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CODPROD",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CANT",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CANT",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "MONTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MONTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "MTODESC",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MTODESC",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "PRODFECHREF",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "PRODFECHREF",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "REFERENCIA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "REFERENCIA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VENDEDOR",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "VENDEDOR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MATNR",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "MATNR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "EAN11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "EAN11",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MTART",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "MTART",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MAKTG",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "MAKTG",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FECHA_CREACION",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "FECHA_CREACION",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "GRUPO_ARTICULO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "GRUPO_ARTICULO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "GENERICO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "GENERICO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "AÑO_ESTACION",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "AÑO_ESTACION",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TALLA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "TALLA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MODELO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "MODELO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BLOQUEO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "BLOQUEO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TEMPORADA_PERU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_TEMPORADA_PERU",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_TEMPORADA_PERU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_TEMPORADA_PERU",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_AÑO_ESTACION_PERU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_AÑO_ESTACION_PERU",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_AÑO_ESTACION_PERU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_AÑO_ESTACION_PERU",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GRADO_MODA_PERU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_GRADO_MODA_PERU",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_GRADO_MODA_PERU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_GRADO_MODA_PERU",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GRADO_MODA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_GRADO_MODA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TEMPORADA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_TEMPORADA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_ROYALTI",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_ROYALTI",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_GRADO_MODA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_GRADO_MODA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_TEMPORADA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_TEMPORADA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_ROYALTI",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_ROYALTI",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_COLOR",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_COLOR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_COLOR",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_COLOR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_MARCA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_MARCA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_MARCA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_MARCA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GENERO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_GENERO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_GENERO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_GENERO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_LINEA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_LINEA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_LINEA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_LINEA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_TIPO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_TIPO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_TIPO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_TIPO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_PRENDA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_PRENDA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_PRENDA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_PRENDA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_LARGO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_LARGO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_LARGO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_LARGO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_GENERICO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_GENERICO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "COD_CALIDAD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "COD_CALIDAD",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DENOMINACION_CALIDAD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DENOMINACION_CALIDAD",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PC9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "PC9",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PC13",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "PC13",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ORGVTA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ORGVTA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CCENTRO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CCENTRO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NOMBRE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NOMBRE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CCANAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CCANAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DCANAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DCANAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "sociedad",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "sociedad",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Identifier",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Identifier",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LastName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "LastName",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PositionDescription",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "PositionDescription",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "VENTASAP_STD_VISTA_VENTA",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "VENTASAP_DIARIA_CON_HISTORICO",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Retail/Venta Diaria/Procesos Manuales"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-18T23:43:29Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

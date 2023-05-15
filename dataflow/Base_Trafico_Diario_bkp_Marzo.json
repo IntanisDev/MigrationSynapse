@@ -1,0 +1,35 @@
+{
+	"name": "Base_Trafico_Diario_bkp_Marzo",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "BaseTraficoDiario_DL",
+						"type": "DatasetReference"
+					},
+					"name": "DL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Trafico_Diario_bkp_Marzo",
+						"type": "DatasetReference"
+					},
+					"name": "BD"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CODSOCIEDAD"
+				}
+			],
+			"script": "source(output(\n\t\tdevicekey as string,\n\t\tCOD_SOCIEDAD as string,\n\t\tMALL as string,\n\t\tZONA as string,\n\t\tNOMBRE as string,\n\t\tTIMESTAMP_INICIO as string,\n\t\tTIMESTAMP_FIN as string,\n\t\tENTRADAS as string,\n\t\tSALIDAS as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> DL\nDL derive(COD_SOCIEDAD = 1000) ~> CODSOCIEDAD\nCODSOCIEDAD sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCORRELATIVO as integer,\n\t\tDevicekey as string,\n\t\tCOD_SOCIEDAD as string,\n\t\tMALL as string,\n\t\tZONA as string,\n\t\tNOMBRE as string,\n\t\tTIMESTAMP_INICIO as string,\n\t\tTIMESTAMP_FIN as string,\n\t\tENTRADAS as string,\n\t\tSALIDAS as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDevicekey = devicekey,\n\t\tCOD_SOCIEDAD,\n\t\tMALL,\n\t\tZONA,\n\t\tNOMBRE,\n\t\tTIMESTAMP_INICIO,\n\t\tTIMESTAMP_FIN,\n\t\tENTRADAS,\n\t\tSALIDAS\n\t)) ~> BD"
+		}
+	}
+}

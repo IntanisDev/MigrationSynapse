@@ -1,0 +1,199 @@
+{
+	"name": "des_Fact_pedidos",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Logistica"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FechaExtrae",
+				"type": "date"
+			},
+			{
+				"name": "origen",
+				"type": "varchar"
+			},
+			{
+				"name": "PEDIDO",
+				"type": "varchar"
+			},
+			{
+				"name": "SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "FEC_CREACION",
+				"type": "date"
+			},
+			{
+				"name": "centro_su",
+				"type": "varchar"
+			},
+			{
+				"name": "Clasedoc",
+				"type": "varchar"
+			},
+			{
+				"name": "posicion",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerTaxCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Tienda_Cliente",
+				"type": "varchar"
+			},
+			{
+				"name": "Marca",
+				"type": "varchar"
+			},
+			{
+				"name": "Tipo_Local",
+				"type": "varchar"
+			},
+			{
+				"name": "material",
+				"type": "varchar"
+			},
+			{
+				"name": "CantPedido",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantPedidoDia",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Temporada",
+				"type": "varchar"
+			},
+			{
+				"name": "ano",
+				"type": "varchar"
+			},
+			{
+				"name": "cantEntrega",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cantEntregaDia",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cantEmbalada",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cantEmbaladaDia",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantDespachado",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantDespachadoDia",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantRecepcionado",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SinEntrega",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantRecepcionadoDia",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "enproceso",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "entransito",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IndBorrado",
+				"type": "char"
+			},
+			{
+				"name": "IndEntreFin",
+				"type": "char"
+			},
+			{
+				"name": "tuboCD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WIPEmbaladas",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CONTADOR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "lead_time",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "lead_time_despacho",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fecha_entrega",
+				"type": "date"
+			},
+			{
+				"name": "fecha_embalaje",
+				"type": "date"
+			},
+			{
+				"name": "fecha_despacho",
+				"type": "date"
+			},
+			{
+				"name": "fecha_movimiento",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "logistica",
+			"table": "fact_pedidos"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

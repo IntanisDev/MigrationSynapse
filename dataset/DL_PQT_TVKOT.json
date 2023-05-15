@@ -1,0 +1,26 @@
+{
+	"name": "DL_PQT_TVKOT",
+	"properties": {
+		"description": "Textos de organizaciones de Venta",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TVKOT.parquet",
+				"folderPath": "3_consumption_zone/Datalake/DL_DATOS_MAESTROS/TVKOT",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

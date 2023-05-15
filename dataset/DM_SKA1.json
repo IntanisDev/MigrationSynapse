@@ -1,0 +1,94 @@
+{
+	"name": "DM_SKA1",
+	"properties": {
+		"description": "Maestro de cta.mayor (plan de cuentas)",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "KTOPL",
+				"type": "varchar"
+			},
+			{
+				"name": "SAKNR",
+				"type": "varchar"
+			},
+			{
+				"name": "XBILK",
+				"type": "varchar"
+			},
+			{
+				"name": "SAKAN",
+				"type": "varchar"
+			},
+			{
+				"name": "BILKT",
+				"type": "varchar"
+			},
+			{
+				"name": "ERDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "ERNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "GVTYP",
+				"type": "varchar"
+			},
+			{
+				"name": "KTOKS",
+				"type": "varchar"
+			},
+			{
+				"name": "MUSTR",
+				"type": "varchar"
+			},
+			{
+				"name": "VBUND",
+				"type": "varchar"
+			},
+			{
+				"name": "XLOEV",
+				"type": "varchar"
+			},
+			{
+				"name": "XSPEA",
+				"type": "varchar"
+			},
+			{
+				"name": "XSPEB",
+				"type": "varchar"
+			},
+			{
+				"name": "XSPEP",
+				"type": "varchar"
+			},
+			{
+				"name": "MCOD1",
+				"type": "varchar"
+			},
+			{
+				"name": "FUNC_AREA",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SKA1"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

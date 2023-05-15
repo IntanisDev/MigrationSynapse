@@ -1,0 +1,53 @@
+{
+	"name": "Datos_Cubicaje_Destino",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Capacitacion"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Cubicaje_Destino.csv",
+				"folderPath": "1_raw_data/Capacitacion",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FECHA",
+				"type": "String"
+			},
+			{
+				"name": "CCLIENTE",
+				"type": "String"
+			},
+			{
+				"name": "CADENA",
+				"type": "String"
+			},
+			{
+				"name": "CDESTINATARIOMERCANCIA",
+				"type": "String"
+			},
+			{
+				"name": "DESTINATARIOMERCANCIA",
+				"type": "String"
+			},
+			{
+				"name": "M2",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

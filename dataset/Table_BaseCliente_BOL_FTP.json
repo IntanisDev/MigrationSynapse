@@ -1,0 +1,81 @@
+{
+	"name": "Table_BaseCliente_BOL_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "cliente.txt",
+				"folderPath": "Bolivia"
+			},
+			"columnDelimiter": "|",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "CODIGO",
+				"type": "String"
+			},
+			{
+				"name": "ORG_VTA ",
+				"type": "String"
+			},
+			{
+				"name": "CANAL",
+				"type": "String"
+			},
+			{
+				"name": "SECTOR",
+				"type": "String"
+			},
+			{
+				"name": "PAIS",
+				"type": "String"
+			},
+			{
+				"name": "NOMBRE",
+				"type": "String"
+			},
+			{
+				"name": "POBLACION",
+				"type": "String"
+			},
+			{
+				"name": "DISTRITO",
+				"type": "String"
+			},
+			{
+				"name": "REGION",
+				"type": "String"
+			},
+			{
+				"name": "CALLE",
+				"type": "String"
+			},
+			{
+				"name": "LOCAL_ID",
+				"type": "String"
+			},
+			{
+				"name": "MONEDA",
+				"type": "String"
+			},
+			{
+				"name": "COND_PAGO",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

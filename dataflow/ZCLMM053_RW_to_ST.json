@@ -1,0 +1,92 @@
+{
+	"name": "ZCLMM053_RW_to_ST",
+	"properties": {
+		"folder": {
+			"name": "SW_Productividad/01 RW_to_ST"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM053_RW",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM053_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Column1 as string,",
+				"          Column2 as string,",
+				"          Column3 as string,",
+				"          Column4 as string,",
+				"          Column5 as string,",
+				"          Column6 as string,",
+				"          Column7 as string,",
+				"          Column8 as string,",
+				"          Column9 as string,",
+				"          Column10 as string,",
+				"          Column11 as string,",
+				"          Column12 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          FACTURA = Column1,",
+				"          ORG_VENTAS = Column2,",
+				"          FEC_CREACION = Column3,",
+				"          CLASE_FACT = Column4,",
+				"          STATUS = Column5,",
+				"          FEC_FACTURA = Column6,",
+				"          RESPONSABLE = Column7,",
+				"          CANAL = Column8,",
+				"          POSICION = Column9,",
+				"          CANTIDAD = Column10,",
+				"          ARTICULO = Column11,",
+				"          D_ARTICULO = Column12",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          FACTURA as string,",
+				"          ORG_VENTAS as string,",
+				"          FEC_CREACION as string,",
+				"          CLASE_FACT as string,",
+				"          STATUS as string,",
+				"          FEC_FACTURA as string,",
+				"          RESPONSABLE as string,",
+				"          CANAL as string,",
+				"          POSICION as string,",
+				"          CANTIDAD as string,",
+				"          ARTICULO as string,",
+				"          D_ARTICULO as string",
+				"     ),",
+				"     partitionFileNames:[(concat('ZCLMM053_V2_',toString(currentUTC()-hours(4), 'yyyyMMdd'),'.csv') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

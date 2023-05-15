@@ -1,0 +1,42 @@
+{
+	"name": "des_Line",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "LongDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "LineCode",
+				"type": "varchar"
+			},
+			{
+				"name": "LineType",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Line"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

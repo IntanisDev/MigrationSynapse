@@ -1,0 +1,30 @@
+{
+	"name": "des_Shim",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ShimId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Descripcion",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Shim"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

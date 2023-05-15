@@ -1,0 +1,74 @@
+{
+	"name": "GA_CONSOLIDADO_HIST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Social Media/Google Analytics/3 Consumption/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "GA_CONSOLIDADO.PARQUET",
+				"folderPath": "3_consumption_zone/Datalake/DL_MARKETING/GOOGLE_ANALYTICS/GA_VISITAS_RESUMEN/",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "fecha",
+				"type": "INT96"
+			},
+			{
+				"name": "pais",
+				"type": "UTF8"
+			},
+			{
+				"name": "ciudad",
+				"type": "UTF8"
+			},
+			{
+				"name": "browser",
+				"type": "UTF8"
+			},
+			{
+				"name": "activeUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "engagedSessions",
+				"type": "INT32"
+			},
+			{
+				"name": "eventCount",
+				"type": "INT32"
+			},
+			{
+				"name": "newUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "Sessions",
+				"type": "INT32"
+			},
+			{
+				"name": "totalRevenue",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "totalUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "marca",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

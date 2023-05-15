@@ -1,0 +1,66 @@
+{
+	"name": "InstoreView_Proceso_Carga_Peru_Reproceso",
+	"properties": {
+		"activities": [
+			{
+				"name": "Venta Peru Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "06 InstoreView_Venta_Peru_Reproceso",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Peru ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "08 InstoreView_Venta_Peru_ST_Reproceso",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Peru Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Peru ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "08 InstoreView_Venta_Peru_CON_Reproceso",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/04 Proceso ETL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-24T16:42:53Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

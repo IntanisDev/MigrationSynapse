@@ -1,0 +1,67 @@
+{
+	"name": "MEAN_ETL",
+	"properties": {
+		"description": "Proceso de carga tabla Maestro Materiales - Homologación EAN11",
+		"activities": [
+			{
+				"name": "MEAN RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_MEAN",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "MEAN STANDAR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "MEAN RAW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_MEAN_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "MEAN CONSUMO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "MEAN STANDAR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_MEAN_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Datos Maestros"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-15T02:01:18Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

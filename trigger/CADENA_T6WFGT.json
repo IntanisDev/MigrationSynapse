@@ -1,0 +1,25 @@
+{
+	"name": "CADENA_T6WFGT",
+	"properties": {
+		"description": "Ejecuta la carga del dato maestro Grado de confección",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "T6WFGT_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-29T03:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

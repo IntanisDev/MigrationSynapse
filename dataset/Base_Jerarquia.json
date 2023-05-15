@@ -1,0 +1,109 @@
+{
+	"name": "Base_Jerarquia",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_GENERICO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_COLOR",
+				"type": "varchar"
+			},
+			{
+				"name": "TALLA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_COLOR",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TALLA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ARTICULO_FABRICA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_ARTICULO_FABRICA",
+				"type": "varchar"
+			},
+			{
+				"name": "BASE_MAESTRO",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_JERARQUIA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

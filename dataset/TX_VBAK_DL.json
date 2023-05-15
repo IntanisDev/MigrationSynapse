@@ -1,0 +1,538 @@
+{
+	"name": "TX_VBAK_DL",
+	"properties": {
+		"description": "Documento de ventas: Datos de cabecera",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/02 RAW"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_VBAK.csv",
+				"folderPath": "1_raw_data/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "'"
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "VBELN",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT",
+				"type": "String"
+			},
+			{
+				"name": "ERZET",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "ANGDT",
+				"type": "String"
+			},
+			{
+				"name": "BNDDT",
+				"type": "String"
+			},
+			{
+				"name": "AUDAT",
+				"type": "String"
+			},
+			{
+				"name": "VBTYP",
+				"type": "String"
+			},
+			{
+				"name": "TRVOG",
+				"type": "String"
+			},
+			{
+				"name": "AUART",
+				"type": "String"
+			},
+			{
+				"name": "AUGRU",
+				"type": "String"
+			},
+			{
+				"name": "GWLDT",
+				"type": "String"
+			},
+			{
+				"name": "SUBMI",
+				"type": "String"
+			},
+			{
+				"name": "LIFSK",
+				"type": "String"
+			},
+			{
+				"name": "FAKSK",
+				"type": "String"
+			},
+			{
+				"name": "NETWR",
+				"type": "String"
+			},
+			{
+				"name": "WAERK",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG",
+				"type": "String"
+			},
+			{
+				"name": "SPART",
+				"type": "String"
+			},
+			{
+				"name": "VKGRP",
+				"type": "String"
+			},
+			{
+				"name": "VKBUR",
+				"type": "String"
+			},
+			{
+				"name": "GSBER",
+				"type": "String"
+			},
+			{
+				"name": "GSKST",
+				"type": "String"
+			},
+			{
+				"name": "GUEBG",
+				"type": "String"
+			},
+			{
+				"name": "GUEEN",
+				"type": "String"
+			},
+			{
+				"name": "KNUMV",
+				"type": "String"
+			},
+			{
+				"name": "VDATU",
+				"type": "String"
+			},
+			{
+				"name": "VPRGR",
+				"type": "String"
+			},
+			{
+				"name": "AUTLF",
+				"type": "String"
+			},
+			{
+				"name": "VBKLA",
+				"type": "String"
+			},
+			{
+				"name": "VBKLT",
+				"type": "String"
+			},
+			{
+				"name": "KALSM",
+				"type": "String"
+			},
+			{
+				"name": "VSBED",
+				"type": "String"
+			},
+			{
+				"name": "FKARA",
+				"type": "String"
+			},
+			{
+				"name": "AWAHR",
+				"type": "String"
+			},
+			{
+				"name": "KTEXT",
+				"type": "String"
+			},
+			{
+				"name": "BSTNK",
+				"type": "String"
+			},
+			{
+				"name": "BSARK",
+				"type": "String"
+			},
+			{
+				"name": "BSTDK",
+				"type": "String"
+			},
+			{
+				"name": "BSTZD",
+				"type": "String"
+			},
+			{
+				"name": "IHREZ",
+				"type": "String"
+			},
+			{
+				"name": "BNAME",
+				"type": "String"
+			},
+			{
+				"name": "TELF1",
+				"type": "String"
+			},
+			{
+				"name": "MAHZA",
+				"type": "String"
+			},
+			{
+				"name": "MAHDT",
+				"type": "String"
+			},
+			{
+				"name": "KUNNR",
+				"type": "String"
+			},
+			{
+				"name": "KOSTL",
+				"type": "String"
+			},
+			{
+				"name": "STAFO",
+				"type": "String"
+			},
+			{
+				"name": "STWAE",
+				"type": "String"
+			},
+			{
+				"name": "AEDAT",
+				"type": "String"
+			},
+			{
+				"name": "KVGR1",
+				"type": "String"
+			},
+			{
+				"name": "KVGR2",
+				"type": "String"
+			},
+			{
+				"name": "KVGR3",
+				"type": "String"
+			},
+			{
+				"name": "KVGR4",
+				"type": "String"
+			},
+			{
+				"name": "KVGR5",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA",
+				"type": "String"
+			},
+			{
+				"name": "KOKRS",
+				"type": "String"
+			},
+			{
+				"name": "PS_PSP_PNR",
+				"type": "String"
+			},
+			{
+				"name": "KURST",
+				"type": "String"
+			},
+			{
+				"name": "KKBER",
+				"type": "String"
+			},
+			{
+				"name": "KNKLI",
+				"type": "String"
+			},
+			{
+				"name": "GRUPP",
+				"type": "String"
+			},
+			{
+				"name": "SBGRP",
+				"type": "String"
+			},
+			{
+				"name": "CTLPC",
+				"type": "String"
+			},
+			{
+				"name": "CMWAE",
+				"type": "String"
+			},
+			{
+				"name": "CMFRE",
+				"type": "String"
+			},
+			{
+				"name": "CMNUP",
+				"type": "String"
+			},
+			{
+				"name": "CMNGV",
+				"type": "String"
+			},
+			{
+				"name": "AMTBL",
+				"type": "String"
+			},
+			{
+				"name": "HITYP_PR",
+				"type": "String"
+			},
+			{
+				"name": "ABRVW",
+				"type": "String"
+			},
+			{
+				"name": "ABDIS",
+				"type": "String"
+			},
+			{
+				"name": "VGBEL",
+				"type": "String"
+			},
+			{
+				"name": "OBJNR",
+				"type": "String"
+			},
+			{
+				"name": "BUKRS_VF",
+				"type": "String"
+			},
+			{
+				"name": "TAXK1",
+				"type": "String"
+			},
+			{
+				"name": "TAXK2",
+				"type": "String"
+			},
+			{
+				"name": "TAXK3",
+				"type": "String"
+			},
+			{
+				"name": "TAXK4",
+				"type": "String"
+			},
+			{
+				"name": "TAXK5",
+				"type": "String"
+			},
+			{
+				"name": "TAXK6",
+				"type": "String"
+			},
+			{
+				"name": "TAXK7",
+				"type": "String"
+			},
+			{
+				"name": "TAXK8",
+				"type": "String"
+			},
+			{
+				"name": "TAXK9",
+				"type": "String"
+			},
+			{
+				"name": "XBLNR",
+				"type": "String"
+			},
+			{
+				"name": "ZUONR",
+				"type": "String"
+			},
+			{
+				"name": "VGTYP",
+				"type": "String"
+			},
+			{
+				"name": "KALSM_CH",
+				"type": "String"
+			},
+			{
+				"name": "AGRZR",
+				"type": "String"
+			},
+			{
+				"name": "AUFNR",
+				"type": "String"
+			},
+			{
+				"name": "QMNUM",
+				"type": "String"
+			},
+			{
+				"name": "VBELN_GRP",
+				"type": "String"
+			},
+			{
+				"name": "SCHEME_GRP",
+				"type": "String"
+			},
+			{
+				"name": "ABRUF_PART",
+				"type": "String"
+			},
+			{
+				"name": "ABHOD",
+				"type": "String"
+			},
+			{
+				"name": "ABHOV",
+				"type": "String"
+			},
+			{
+				"name": "ABHOB",
+				"type": "String"
+			},
+			{
+				"name": "RPLNR",
+				"type": "String"
+			},
+			{
+				"name": "VZEIT",
+				"type": "String"
+			},
+			{
+				"name": "STCEG_L",
+				"type": "String"
+			},
+			{
+				"name": "LANDTX",
+				"type": "String"
+			},
+			{
+				"name": "XEGDR",
+				"type": "String"
+			},
+			{
+				"name": "ENQUEUE_GRP",
+				"type": "String"
+			},
+			{
+				"name": "DAT_FZAU",
+				"type": "String"
+			},
+			{
+				"name": "FMBDAT",
+				"type": "String"
+			},
+			{
+				"name": "VSNMR_V",
+				"type": "String"
+			},
+			{
+				"name": "HANDLE",
+				"type": "String"
+			},
+			{
+				"name": "PROLI",
+				"type": "String"
+			},
+			{
+				"name": "CONT_DG",
+				"type": "String"
+			},
+			{
+				"name": "CRM_GUID",
+				"type": "String"
+			},
+			{
+				"name": "UPD_TMSTMP",
+				"type": "String"
+			},
+			{
+				"name": "MSR_ID",
+				"type": "String"
+			},
+			{
+				"name": "SWENR",
+				"type": "String"
+			},
+			{
+				"name": "SMENR",
+				"type": "String"
+			},
+			{
+				"name": "PHASE",
+				"type": "String"
+			},
+			{
+				"name": "MTLAUR",
+				"type": "String"
+			},
+			{
+				"name": "STAGE",
+				"type": "String"
+			},
+			{
+				"name": "HB_CONT_REASON",
+				"type": "String"
+			},
+			{
+				"name": "HB_EXPDATE",
+				"type": "String"
+			},
+			{
+				"name": "HB_RESDATE",
+				"type": "String"
+			},
+			{
+				"name": "MILL_APPL_ID",
+				"type": "String"
+			},
+			{
+				"name": "LOGSYSB",
+				"type": "String"
+			},
+			{
+				"name": "KALCD",
+				"type": "String"
+			},
+			{
+				"name": "MULTI",
+				"type": "String"
+			},
+			{
+				"name": "WTYSC_CLM_HDR",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

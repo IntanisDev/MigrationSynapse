@@ -1,0 +1,45 @@
+{
+	"name": "RETAIL_BASE_TIENDAS",
+	"properties": {
+		"folder": {
+			"name": "Retail/Master Data"
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "Sigla Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "Numero Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "Centro SAP",
+				"type": "varchar"
+			},
+			{
+				"name": "Descripcion Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "Rut",
+				"type": "varchar"
+			},
+			{
+				"name": "Razon Social",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "RETAIL_BASE_TIENDAS"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

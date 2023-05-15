@@ -1,0 +1,93 @@
+{
+	"name": "StoreCoverage_OnPremise_CON2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('StoreCoverage_OnPremise_',formatDateTime(adddays(utcnow(), -1),'yyyyMMdd'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "3_consumption_zone/Datalake/DL_STOCK",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "UTF8"
+			},
+			{
+				"name": "WERKS",
+				"type": "UTF8"
+			},
+			{
+				"name": "LGORT",
+				"type": "UTF8"
+			},
+			{
+				"name": "MATNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "LABST",
+				"type": "DECIMAL",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "VALCOST",
+				"type": "DECIMAL",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "SPEME",
+				"type": "DECIMAL",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "S_PED",
+				"type": "DECIMAL",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "S_ENT",
+				"type": "DECIMAL",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "S_DISP",
+				"type": "DECIMAL",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "FECHA",
+				"type": "UTF8"
+			},
+			{
+				"name": "HORA",
+				"type": "UTF8"
+			},
+			{
+				"name": "FECHA_STOCK",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

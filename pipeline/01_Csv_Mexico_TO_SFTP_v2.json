@@ -1,0 +1,201 @@
+{
+	"name": "01_Csv_Mexico_TO_SFTP_v2",
+	"properties": {
+		"activities": [
+			{
+				"name": "ArchivoVtaMexico",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "FileServerWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Store_name",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Store_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Sap_id",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Sap_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Trans_date",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Trans_date",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Gross_Sales",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Gross_Sales",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Net_Sales",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Net_Sales",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Discounts",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Discounts",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Margin",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Margin",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COGS",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "COGS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Units",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Units",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Transactions",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Transactions",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Traffic",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Traffic",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_Csv_Mexico",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Csv_Mexico_TO_SFTP_v2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0000_CSV_Mexico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-03-21T23:14:37Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

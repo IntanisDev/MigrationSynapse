@@ -1,0 +1,19 @@
+{
+	"name": "AttendanceBookREST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GeoVictoria PRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria/0 Landing Zone/Rest"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/api/v1/AttendanceBook"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

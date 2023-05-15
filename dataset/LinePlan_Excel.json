@@ -1,0 +1,27 @@
+{
+	"name": "LinePlan_Excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/LinePlan"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "H2-22 LP",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Formato LP Control de cuotas Carga - formato.xlsx",
+				"folderPath": "1_raw_data/DATALAKE/DL_LINEPLAN",
+				"fileSystem": "edwlakeprd"
+			},
+			"range": "A11:BH5000",
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

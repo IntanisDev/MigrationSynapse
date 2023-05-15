@@ -1,0 +1,25 @@
+{
+	"name": "MKT_GAnalyticsPE",
+	"properties": {
+		"description": "Carga Google Analytics Peru",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "1_Carga_Google_Analytics_resumen_PE",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-11-06T08:30:00",
+				"timeZone": "SA Pacific Standard Time"
+			}
+		}
+	}
+}

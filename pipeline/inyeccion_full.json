@@ -1,0 +1,261 @@
+{
+	"name": "inyeccion_full",
+	"properties": {
+		"activities": [
+			{
+				"name": "WS Principal",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "http://10.81.206.42:8000/sap/bc/srt/rfc/sap/zws_datalake/500/zws_datalake/zws_datalake",
+					"connectVia": {
+						"referenceName": "edw-pivote-prd",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "text/xml;charset=UTF-8"
+					},
+					"body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:sap-com:document:sap:soap:functions:mc-style\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <urn:ZfmDatalake>\n         <!--Optional:-->\n         <PCond1>AND KUNNR EQ 'B001'</PCond1>\n         <!--Optional:-->\n         <PCond2></PCond2>\n         <PTabla>KNA1</PTabla>\n      </urn:ZfmDatalake>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"linkedServices": [
+						{
+							"referenceName": "SAP_PRD",
+							"type": "LinkedServiceReference"
+						}
+					],
+					"disableCertValidation": true,
+					"authentication": {
+						"type": "Basic",
+						"username": "sf_freesap",
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			},
+			{
+				"name": "Salida WS Principal",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "WS Principal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Salida_WS_Tranx",
+					"value": {
+						"value": "@string(activity('WS Principal').output)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Variable ID Control",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Salida WS Principal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ID_Control",
+					"value": {
+						"value": "@substring(variables('Salida_WS_Tranx'),add(indexOf(variables('Salida_WS_Tranx'),'Mensaje'),8),sub(add(lastIndexOf(variables('Salida_WS_Tranx'),'</Mensaje'),0),add(indexof(variables('Salida_WS_Tranx'),'Mensaje'),8)))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Hasta Estado Terminado",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Variable ID Control",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('Ctrl_Estado'),'TERMINADO')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "WS Control",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "http://10.81.206.42:8000/sap/bc/srt/rfc/sap/zws_datalake_job/500/zws_datalake_job/zws_datalake_job",
+								"connectVia": {
+									"referenceName": "edw-pivote-prd",
+									"type": "IntegrationRuntimeReference"
+								},
+								"method": "POST",
+								"headers": {
+									"Content-Type": "text/xml;charset=UTF-8"
+								},
+								"body": {
+									"value": "@concat('<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:sap-com:document:sap:soap:functions:mc-style\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <urn:ZfmDatalakeJob>\n         <Namejob>',variables('ID_Control'),'</Namejob>\n      </urn:ZfmDatalakeJob>\n   </soapenv:Body>\n</soapenv:Envelope>')",
+									"type": "Expression"
+								},
+								"linkedServices": [
+									{
+										"referenceName": "SAP_PRD",
+										"type": "LinkedServiceReference"
+									}
+								],
+								"authentication": {
+									"type": "Basic",
+									"username": "sf_freesap",
+									"password": {
+										"type": "SecureString",
+										"value": "**********"
+									}
+								}
+							}
+						},
+						{
+							"name": "Salida WS Control",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "WS Control",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Salida_WS_Control",
+								"value": {
+									"value": "@string(activity('WS Control').output)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Variable Estado Control",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Salida WS Control",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Ctrl_Estado",
+								"value": {
+									"value": "@substring(variables('Salida_WS_Control'),add(indexOf(variables('Salida_WS_Control'),'REstado'),8),sub(add(lastIndexOf(variables('Salida_WS_Control'),'</REstado'),0),add(indexof(variables('Salida_WS_Control'),'REstado'),8)))",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Hasta Estado Terminado",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Ctrl_Estado",
+					"value": {
+						"value": "@substring(variables('Salida_WS_Control'),add(indexOf(variables('Salida_WS_Control'),'RProcesados'),12),sub(add(lastIndexOf(variables('Salida_WS_Control'),'</RProcesados'),0),add(indexof(variables('Salida_WS_Control'),'RProcesados'),12)))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"Salida_WS_Tranx": {
+				"type": "String"
+			},
+			"ID_Control": {
+				"type": "String"
+			},
+			"Ctrl_Mandante": {
+				"type": "String"
+			},
+			"Ctrl_Job_Name": {
+				"type": "String"
+			},
+			"Ctrl_Filas_Leidas": {
+				"type": "String"
+			},
+			"Ctrl_Filas_Error": {
+				"type": "String"
+			},
+			"Ctrl_Filas_Insertadas": {
+				"type": "String"
+			},
+			"Ctrl_Fecha_Inicio": {
+				"type": "String"
+			},
+			"Ctrl_Hora_Inicio": {
+				"type": "String"
+			},
+			"Ctrl_Fecha_Fin": {
+				"type": "String"
+			},
+			"Ctrl_Hora_Fin": {
+				"type": "String"
+			},
+			"Ctrl_Estado": {
+				"type": "String"
+			},
+			"Ctrl_Observacion": {
+				"type": "String"
+			},
+			"Salida_WS_Control": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/Prueba_inyeccion_full"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-01T09:46:51Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,409 @@
+{
+	"name": "InstoreView_2021_Venta",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar datos a 2021 Venta",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Fechas",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Fechas",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Canal",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Canal",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cadena",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cadena",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Sub Cadena",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sub Cadena",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Región",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Región",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Local",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Local",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Comuna",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Comuna",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Nombre de Local",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Nombre de Local",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Código Local",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Código Local",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Dirección",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Dirección",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Linea",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Linea",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SKU",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SKU",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Marca",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Marca",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Descripción Producto",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Descripción Producto",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Genero",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Genero",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Modelo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Modelo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Talla",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Talla",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Estilo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Estilo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Categoría",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Categoría",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cód. Cadena",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cód. Cadena",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Precios B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Precios B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Contribución",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Contribución",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MG (%)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MG (%)",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InstoreView_2021_Fuente_Ventas",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InstoreView_2021_Venta_DL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/01 RAW/BKP"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T17:48:49Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,27 @@
+{
+	"name": "HttpServerApi",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://levis.fupbi.com/api/ext/v1/hourly_event_sale_facts.csv",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"X-User-Email": {
+					"type": "SecureString",
+					"value": "**********"
+				},
+				"X-User-Token": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

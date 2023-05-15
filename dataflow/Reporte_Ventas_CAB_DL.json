@@ -1,0 +1,35 @@
+{
+	"name": "Reporte_Ventas_CAB_DL",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0825_Retail"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Retail_Reporte_Ventas_Cab_DL",
+						"type": "DatasetReference"
+					},
+					"name": "CAB"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Retail_Base_Cabecera",
+						"type": "DatasetReference"
+					},
+					"name": "StagingDB"
+				}
+			],
+			"transformations": [
+				{
+					"name": "OrganisationId"
+				}
+			],
+			"script": "source(output(\n\t\tSigla as string,\n\t\tNumero_Tienda as string,\n\t\tTipo_Documento as string,\n\t\tNumero_Documento as string,\n\t\tFecha_Documento as string,\n\t\tHora_Documento as string,\n\t\tEstado_Recepcion as string,\n\t\tUsuario as string,\n\t\tCajero as string,\n\t\tSubtotal as string,\n\t\tTotal as string,\n\t\tPorcentaje_Iva as string,\n\t\tMonto_Iva as string,\n\t\tCantidad_Items as string,\n\t\tRut_Compania as string,\n\t\tNombre as string,\n\t\tApellidos as string,\n\t\tDireccion as string,\n\t\tE_Mail as string,\n\t\tFono as string,\n\t\tMedioPago as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinferDriftedColumnTypes: true,\n\tignoreNoFilesFound: false) ~> CAB\nCAB derive(OrganisationId = 1354,\n\t\tSigla = substring(Sigla, 1, 50),\n\t\tNumero_Tienda = substring(Numero_Tienda, 1, 50),\n\t\tTipo_Documento = substring(Tipo_Documento, 1, 50),\n\t\tNumero_Documento = substring(Numero_Documento, 1, 50),\n\t\tFecha_Documento = substring(Fecha_Documento, 1, 50),\n\t\tHora_Documento = substring(Hora_Documento, 1, 50),\n\t\tPorcentaje_Iva = substring(Porcentaje_Iva, 1, 50),\n\t\tMonto_Iva = substring(Monto_Iva, 1, 50),\n\t\tUsuario = substring(Usuario, 1, 50),\n\t\tTotal = substring(Total, 1, 50),\n\t\tEstado_Recepcion = substring(Estado_Recepcion, 1, 50),\n\t\tCajero = substring(Cajero, 1, 50),\n\t\tSubtotal = substring(Subtotal, 1, 50),\n\t\tCantidad_Items = substring(Cantidad_Items, 1, 50),\n\t\tRut_Compania = substring(Rut_Compania, 1, 50),\n\t\tNombre = substring(Nombre, 1, 50),\n\t\tApellidos = substring(Apellidos, 1, 50),\n\t\tDireccion = substring(Direccion, 1, 50),\n\t\tFono = substring(Fono, 1, 50),\n\t\tMedioPago = substring(MedioPago, 1, 50)) ~> OrganisationId\nOrganisationId sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tSigla_Tienda as string,\n\t\tTienda as string,\n\t\tTipo as string,\n\t\tNumero as string,\n\t\tFecha as string,\n\t\tHora as string,\n\t\tPorcentaje_Iva as string,\n\t\tMonto_Iva as string,\n\t\tUsuario as string,\n\t\tTotal as string,\n\t\tEstado as string,\n\t\tCajero as string,\n\t\tSubtotal as string,\n\t\tItems as string,\n\t\tRut as string,\n\t\tNombre as string,\n\t\tApellidos as string,\n\t\tDireccion as string,\n\t\tComuna as string,\n\t\tTelefono as string,\n\t\tOrganisationId as integer,\n\t\tMedioPago as string,\n\t\tOrigen as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSigla_Tienda = Sigla,\n\t\tTienda = Numero_Tienda,\n\t\tTipo = Tipo_Documento,\n\t\tNumero = Numero_Documento,\n\t\tFecha = Fecha_Documento,\n\t\tHora = Hora_Documento,\n\t\tPorcentaje_Iva,\n\t\tMonto_Iva,\n\t\tUsuario,\n\t\tTotal,\n\t\tEstado = Estado_Recepcion,\n\t\tCajero,\n\t\tSubtotal,\n\t\tItems = Cantidad_Items,\n\t\tRut = Rut_Compania,\n\t\tNombre,\n\t\tApellidos,\n\t\tDireccion,\n\t\tTelefono = Fono,\n\t\tOrganisationId,\n\t\tMedioPago\n\t)) ~> StagingDB"
+		}
+	}
+}

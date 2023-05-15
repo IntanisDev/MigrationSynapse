@@ -1,0 +1,233 @@
+{
+	"name": "DM_TIMEPERIOD_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/02 RAW"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_TIMEPERIOD.csv",
+				"folderPath": "1_raw_data/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "TimePeriodId",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "DateName",
+				"type": "String"
+			},
+			{
+				"name": "DayOfMonth",
+				"type": "String"
+			},
+			{
+				"name": "DayOfMonthName",
+				"type": "String"
+			},
+			{
+				"name": "HalfYear",
+				"type": "String"
+			},
+			{
+				"name": "HalfYearDate",
+				"type": "String"
+			},
+			{
+				"name": "HalfYearName",
+				"type": "String"
+			},
+			{
+				"name": "Month",
+				"type": "String"
+			},
+			{
+				"name": "MonthDate",
+				"type": "String"
+			},
+			{
+				"name": "MonthName",
+				"type": "String"
+			},
+			{
+				"name": "PreviousDate",
+				"type": "String"
+			},
+			{
+				"name": "PreviousHalfYearDate",
+				"type": "String"
+			},
+			{
+				"name": "PreviousHalfYearName",
+				"type": "String"
+			},
+			{
+				"name": "PreviousMonthDate",
+				"type": "String"
+			},
+			{
+				"name": "PreviousMonthName",
+				"type": "String"
+			},
+			{
+				"name": "PreviousTrimesterDate",
+				"type": "String"
+			},
+			{
+				"name": "PreviousTrimesterName",
+				"type": "String"
+			},
+			{
+				"name": "PreviousWeekDate",
+				"type": "String"
+			},
+			{
+				"name": "PreviousWeekName",
+				"type": "String"
+			},
+			{
+				"name": "PreviousYear",
+				"type": "String"
+			},
+			{
+				"name": "PreviousYearDate",
+				"type": "String"
+			},
+			{
+				"name": "PreviousYearName",
+				"type": "String"
+			},
+			{
+				"name": "Quarter",
+				"type": "String"
+			},
+			{
+				"name": "QuarterDate",
+				"type": "String"
+			},
+			{
+				"name": "QuarterName",
+				"type": "String"
+			},
+			{
+				"name": "Trimester",
+				"type": "String"
+			},
+			{
+				"name": "TrimesterDate",
+				"type": "String"
+			},
+			{
+				"name": "TrimesterName",
+				"type": "String"
+			},
+			{
+				"name": "Week",
+				"type": "String"
+			},
+			{
+				"name": "WeekDate",
+				"type": "String"
+			},
+			{
+				"name": "WeekName",
+				"type": "String"
+			},
+			{
+				"name": "WeekRange",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "YearDate",
+				"type": "String"
+			},
+			{
+				"name": "YearName",
+				"type": "String"
+			},
+			{
+				"name": "FiscalHalfYear",
+				"type": "String"
+			},
+			{
+				"name": "FiscalMonthDate",
+				"type": "String"
+			},
+			{
+				"name": "FiscalMonthName",
+				"type": "String"
+			},
+			{
+				"name": "FiscalQuarterName",
+				"type": "String"
+			},
+			{
+				"name": "FiscalWeekName",
+				"type": "String"
+			},
+			{
+				"name": "FiscalYear",
+				"type": "String"
+			},
+			{
+				"name": "FiscalWeekDate",
+				"type": "String"
+			},
+			{
+				"name": "InicioMesFical",
+				"type": "String"
+			},
+			{
+				"name": "ant1",
+				"type": "String"
+			},
+			{
+				"name": "ant2",
+				"type": "String"
+			},
+			{
+				"name": "w_ant1",
+				"type": "String"
+			},
+			{
+				"name": "InicioQuarterFiscal",
+				"type": "String"
+			},
+			{
+				"name": "q_ant1",
+				"type": "String"
+			},
+			{
+				"name": "InicioAnoFiscal",
+				"type": "String"
+			},
+			{
+				"name": "y_ant1",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

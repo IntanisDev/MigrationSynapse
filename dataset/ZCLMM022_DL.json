@@ -1,0 +1,117 @@
+{
+	"name": "ZCLMM022_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo_Logistico/DataLake"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('ZCLMM022_',formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1),'yyyyMMdd'),'.CSV')",
+					"type": "Expression"
+				},
+				"folderPath": "0_landing_zone/Cubo_Logistico",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FechaExtrae",
+				"type": "String"
+			},
+			{
+				"name": "PEDIDO",
+				"type": "String"
+			},
+			{
+				"name": "SOCIEDAD",
+				"type": "String"
+			},
+			{
+				"name": "FEC_CREACION",
+				"type": "String"
+			},
+			{
+				"name": "centro_su",
+				"type": "String"
+			},
+			{
+				"name": "clasedoc",
+				"type": "String"
+			},
+			{
+				"name": "posicion",
+				"type": "String"
+			},
+			{
+				"name": "Tienda/Cliente",
+				"type": "String"
+			},
+			{
+				"name": "material",
+				"type": "String"
+			},
+			{
+				"name": "CantPedido",
+				"type": "String"
+			},
+			{
+				"name": "Temporada",
+				"type": "String"
+			},
+			{
+				"name": "a�o",
+				"type": "String"
+			},
+			{
+				"name": "cantEntrega",
+				"type": "String"
+			},
+			{
+				"name": "cantEmbalado",
+				"type": "String"
+			},
+			{
+				"name": "CantDespachado",
+				"type": "String"
+			},
+			{
+				"name": "CantRecepcionado",
+				"type": "String"
+			},
+			{
+				"name": "SinEntrega",
+				"type": "String"
+			},
+			{
+				"name": "enproceso",
+				"type": "String"
+			},
+			{
+				"name": "entransito",
+				"type": "String"
+			},
+			{
+				"name": "IndBorrado",
+				"type": "String"
+			},
+			{
+				"name": "IndEntreFin",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

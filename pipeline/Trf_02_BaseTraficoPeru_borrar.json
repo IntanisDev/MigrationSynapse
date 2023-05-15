@@ -1,0 +1,45 @@
+{
+	"name": "Trf_02_BaseTraficoPeru_borrar",
+	"properties": {
+		"activities": [
+			{
+				"name": "Trf_PE_DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Trf PERU - TraficoHistoricoPeru",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continueOnError": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-06T22:27:27Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

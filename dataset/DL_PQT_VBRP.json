@@ -1,0 +1,26 @@
+{
+	"name": "DL_PQT_VBRP",
+	"properties": {
+		"description": "Factura: Datos Posición",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_VBRP.parquet",
+				"folderPath": "3_consumption_zone/Datalake/DL_DATOS_MAESTROS/VBRP",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

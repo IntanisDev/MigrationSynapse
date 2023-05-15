@@ -1,0 +1,120 @@
+{
+	"name": "Retail_Base_Detalle",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Sigla_Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "Tipo",
+				"type": "varchar"
+			},
+			{
+				"name": "Numero",
+				"type": "varchar"
+			},
+			{
+				"name": "Item",
+				"type": "varchar"
+			},
+			{
+				"name": "Fecha",
+				"type": "varchar"
+			},
+			{
+				"name": "Hora",
+				"type": "varchar"
+			},
+			{
+				"name": "Color",
+				"type": "varchar"
+			},
+			{
+				"name": "Talla",
+				"type": "varchar"
+			},
+			{
+				"name": "Upc",
+				"type": "varchar"
+			},
+			{
+				"name": "Codigo_Barra",
+				"type": "varchar"
+			},
+			{
+				"name": "Porcentaje_Iva",
+				"type": "varchar"
+			},
+			{
+				"name": "Monto_Iva",
+				"type": "varchar"
+			},
+			{
+				"name": "Cantidad",
+				"type": "varchar"
+			},
+			{
+				"name": "Precio_Venta",
+				"type": "varchar"
+			},
+			{
+				"name": "Costo",
+				"type": "varchar"
+			},
+			{
+				"name": "Precio_Full",
+				"type": "varchar"
+			},
+			{
+				"name": "Usuario",
+				"type": "varchar"
+			},
+			{
+				"name": "Total",
+				"type": "varchar"
+			},
+			{
+				"name": "Total_Costo",
+				"type": "varchar"
+			},
+			{
+				"name": "Descuento",
+				"type": "varchar"
+			},
+			{
+				"name": "Porcentaje_Descuento",
+				"type": "varchar"
+			},
+			{
+				"name": "Generico",
+				"type": "varchar"
+			},
+			{
+				"name": "Descripcion",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "RETAIL_BASE_DETALLE"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

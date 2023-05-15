@@ -1,0 +1,142 @@
+{
+	"name": "4_Periodos",
+	"properties": {
+		"folder": {
+			"name": "Finanzas/Datos Maestros"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_FISCVARIANT_ATTR_RAW",
+						"type": "DatasetReference"
+					},
+					"name": "DMFISCVARIANTATTR"
+				},
+				{
+					"dataset": {
+						"referenceName": "DM_FISCVARIANT_TEXT_RAW",
+						"type": "DatasetReference"
+					},
+					"name": "DMFISCVARIANTTEXT"
+				},
+				{
+					"dataset": {
+						"referenceName": "DM_FISCVARIANT_ATTR2_RAW",
+						"type": "DatasetReference"
+					},
+					"name": "DMFISCVARIANTATTR2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_FISVCARIANT_STD",
+						"type": "DatasetReference"
+					},
+					"name": "DMFISVCARIANTSTD"
+				}
+			],
+			"transformations": [
+				{
+					"name": "idiomaCSKT"
+				},
+				{
+					"name": "TXT"
+				},
+				{
+					"name": "ATTR"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          PERIV as string,",
+				"          XKALE as string,",
+				"          XJABH as string,",
+				"          ANZBP as integer,",
+				"          ANZSP as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> DMFISCVARIANTATTR",
+				"source(output(",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          PERIV as string,",
+				"          LTEXT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> DMFISCVARIANTTEXT",
+				"source(output(",
+				"          MANDT as string,",
+				"          PERIV as string,",
+				"          BDATJ as integer,",
+				"          BUMON as integer,",
+				"          BUTAG as integer,",
+				"          POPER as integer,",
+				"          RELJR as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> DMFISCVARIANTATTR2",
+				"DMFISCVARIANTTEXT filter(SPRAS=='S') ~> idiomaCSKT",
+				"ATTR, idiomaCSKT join(DMFISCVARIANTATTR@MANDT == DMFISCVARIANTTEXT@MANDT",
+				"     && DMFISCVARIANTATTR@PERIV == DMFISCVARIANTTEXT@PERIV,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> TXT",
+				"DMFISCVARIANTATTR, DMFISCVARIANTATTR2 join(DMFISCVARIANTATTR@MANDT == DMFISCVARIANTATTR2@MANDT",
+				"     && DMFISCVARIANTATTR@PERIV == DMFISCVARIANTATTR2@PERIV,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> ATTR",
+				"TXT sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          MANDT as string,",
+				"          PERIV as string,",
+				"          XKALE as string,",
+				"          XJABH as string,",
+				"          ANZBP as integer,",
+				"          ANZSP as integer,",
+				"          BDATJ as integer,",
+				"          BUMON as integer,",
+				"          BUTAG as integer,",
+				"          POPER as integer,",
+				"          RELJR as string,",
+				"          SPRAS as string,",
+				"          LTEXT as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:['DM_FISCVARIANT_STD.PARQUET'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     mapColumn(",
+				"          MANDT = DMFISCVARIANTATTR@MANDT,",
+				"          PERIV = DMFISCVARIANTATTR@PERIV,",
+				"          XKALE,",
+				"          XJABH,",
+				"          ANZBP,",
+				"          ANZSP,",
+				"          BDATJ,",
+				"          BUMON,",
+				"          BUTAG,",
+				"          POPER,",
+				"          RELJR,",
+				"          SPRAS,",
+				"          LTEXT",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> DMFISVCARIANTSTD"
+			]
+		}
+	}
+}

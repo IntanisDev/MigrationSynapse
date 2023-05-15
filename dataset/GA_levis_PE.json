@@ -1,0 +1,31 @@
+{
+	"name": "GA_levis_PE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Social Media/Google Analytics/1 Raw Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('levis_visitas_',formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1),'yyyyMMdd'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('1_raw_data/DATALAKE/DL_MARKETING/DL_GOOGLEANALYTICS_PE/PARQUET/',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1)), 'MM'))",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,66 @@
+{
+	"name": "DM_ZWM_CORR_COD_BAR_ST",
+	"properties": {
+		"description": "Relación Locales Cliente vs Levi",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_ZWM_CORR_COD_BAR.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "KUNNR",
+				"type": "String"
+			},
+			{
+				"name": "KUNN2",
+				"type": "String"
+			},
+			{
+				"name": "CODLOCAL",
+				"type": "String"
+			},
+			{
+				"name": "DESCRIP",
+				"type": "String"
+			},
+			{
+				"name": "NROBJ",
+				"type": "String"
+			},
+			{
+				"name": "NRNR",
+				"type": "String"
+			},
+			{
+				"name": "PREFIJO",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

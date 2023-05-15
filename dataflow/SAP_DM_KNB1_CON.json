@@ -1,0 +1,130 @@
+{
+	"name": "SAP_DM_KNB1_CON",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_KNB1_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_KNB1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as short,",
+				"          KUNNR as integer,",
+				"          BUKRS as integer,",
+				"          PERNR as integer,",
+				"          ERDAT as string,",
+				"          ERNAM as string,",
+				"          SPERR as string,",
+				"          LOEVM as string,",
+				"          ZUAWA as string,",
+				"          BUSAB as string,",
+				"          AKONT as integer,",
+				"          BEGRU as string,",
+				"          KNRZE as string,",
+				"          KNRZB as string,",
+				"          ZAMIM as string,",
+				"          ZAMIV as string,",
+				"          ZAMIR as string,",
+				"          ZAMIB as string,",
+				"          ZAMIO as string,",
+				"          ZWELS as string,",
+				"          XVERR as string,",
+				"          ZAHLS as string,",
+				"          ZTERM as string,",
+				"          WAKON as string,",
+				"          VZSKZ as string,",
+				"          ZINDT as short,",
+				"          ZINRT as integer,",
+				"          EIKTO as string,",
+				"          ZSABE as string,",
+				"          KVERM as string,",
+				"          FDGRV as string,",
+				"          VRBKZ as string,",
+				"          VLIBB as float,",
+				"          VRSZL as boolean,",
+				"          VRSPR as boolean,",
+				"          VRSNR as string,",
+				"          VERDT as short,",
+				"          PERKZ as string,",
+				"          XDEZV as string,",
+				"          XAUSZ as string,",
+				"          WEBTR as double,",
+				"          REMIT as string,",
+				"          DATLZ as short,",
+				"          XZVER as string,",
+				"          TOGRU as string,",
+				"          KULTG as boolean,",
+				"          HBKID as string,",
+				"          XPORE as string,",
+				"          BLNKZ as string,",
+				"          ALTKN as string,",
+				"          ZGRUP as string,",
+				"          URLID as string,",
+				"          MGRUP as string,",
+				"          LOCKB as string,",
+				"          UZAWE as string,",
+				"          EKVBD as string,",
+				"          SREGL as string,",
+				"          XEDIP as string,",
+				"          FRGRP as string,",
+				"          VRSDG as string,",
+				"          TLFXS as string,",
+				"          INTAD as string,",
+				"          XKNZB as string,",
+				"          GUZTE as string,",
+				"          GRICD as string,",
+				"          GRIDT as string,",
+				"          WBRSL as string,",
+				"          CONFS as string,",
+				"          UPDAT as short,",
+				"          UPTIM as short,",
+				"          NODEL as string,",
+				"          TLFNS as string,",
+				"          CESSION_KZ as string,",
+				"          QLAND as string,",
+				"          GMVKZD as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 100,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(PERNR = toInteger(PERNR),",
+				"          ZINRT = toInteger(ZINRT),",
+				"          VLIBB = toDecimal(VLIBB, 13, 2),",
+				"          VRSZL = case(VRSZL== true(), toDecimal(1.0), toDecimal(0.0)),",
+				"          VRSPR = case(VRSPR== true(), toDecimal(1.0), toDecimal(0.0)),",
+				"          WEBTR = toDecimal(VLIBB, 13, 2),",
+				"          KULTG = case(KULTG== true(), toDecimal(1.0), toDecimal(0.0))) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

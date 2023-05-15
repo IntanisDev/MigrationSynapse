@@ -1,0 +1,61 @@
+{
+	"name": "SAP_Tiendas_Homologacion_CON",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Transacciones/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Tiendas_Homologacion_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_TRAFICO_HOMOLOGACION",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          StoreId as string,",
+				"          Company as string,",
+				"          Type as string,",
+				"          StoreName as string,",
+				"          M2 as string,",
+				"          Location as string,",
+				"          StoreCode as string,",
+				"          StoreGrouping as string,",
+				"          TypeOrderBy as string,",
+				"          ShortDescription as string,",
+				"          Visible as string,",
+				"          SaleShare as string,",
+				"          SaleOrganisationId as string,",
+				"          IsOpen as string,",
+				"          District as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

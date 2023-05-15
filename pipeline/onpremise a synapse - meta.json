@@ -1,0 +1,202 @@
+{
+	"name": "onpremise a synapse - meta",
+	"properties": {
+		"activities": [
+			{
+				"name": "OP a synapse",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select \nTransactionDate,AuditTrailId,TimePeriodId,SaleOrganisationId,SaleChannelId,StoreId,CurrencyId,SaleAFP,SaleIP,ProductId,BrandId\nfrom DM_LEVISales.dbo.SaleDailyPlan\nwhere TimePeriodId between '2021-01-01' and '2021-12-31'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TransactionDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "TransactionDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "AuditTrailId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "AuditTrailId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimePeriodId",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "TimePeriodId",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleOrganisationId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SaleOrganisationId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleChannelId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SaleChannelId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "StoreId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CurrencyId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CurrencyId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleAFP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleAFP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleIP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleIP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "ProductId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "BrandId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BrandId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "RetailTraffic_OP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SaleDailyPlan",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-28T22:32:46Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

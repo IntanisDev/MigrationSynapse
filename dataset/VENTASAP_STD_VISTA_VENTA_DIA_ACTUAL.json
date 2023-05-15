@@ -1,0 +1,415 @@
+{
+	"name": "VENTASAP_STD_VISTA_VENTA_DIA_ACTUAL",
+	"properties": {
+		"description": "Vista venta para dia actual",
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Retail/Venta Diaria/2 Standar Zone/SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CODPAISVTA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODEMPRVTA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODWERKS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODWERKSRET",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NUMVTA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FECHVTA",
+				"type": "date"
+			},
+			{
+				"name": "FECHENTR",
+				"type": "date"
+			},
+			{
+				"name": "CLI_RUT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_TIPIDENT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_NOMBRE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_APELLIDOS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_TELEFONO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_GIRO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_DIREC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_NUM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_COMUNA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_CIUDAD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_REGION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLI_PAIS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TIPDOCEMIT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "I_CAB_REFERENCIA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FECHREF",
+				"type": "date"
+			},
+			{
+				"name": "DESCTREC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RETTDA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TIPDOCREF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODPOS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "POS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TOTMEDPAG",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CODAUT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODTARJ",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NOMTARJ",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NROCUOTA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BANCO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODMON",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRODPOS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODPROD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CANT",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MONTO",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MTODESC",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PRODFECHREF",
+				"type": "date"
+			},
+			{
+				"name": "SIGNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "REFERENCIA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VENDEDOR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CAJA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MATNR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EAN11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MTART",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MAKTG",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FECHA_CREACION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GRUPO_ARTICULO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GENERICO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AÑO_ESTACION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TALLA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MODELO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BLOQUEO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_TEMPORADA_PERU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_TEMPORADA_PERU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_AÑO_ESTACION_PERU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_AÑO_ESTACION_PERU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_GRADO_MODA_PERU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_GRADO_MODA_PERU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_GRADO_MODA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_TEMPORADA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_ROYALTI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_GRADO_MODA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_TEMPORADA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_ROYALTI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_COLOR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_COLOR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_MARCA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_GENERO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_LINEA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_TIPO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_TIPO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_PRENDA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_LARGO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_LARGO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_GENERICO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DENOMINACION_CALIDAD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PC9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PC13",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ORGVTA",
+				"type": "varchar"
+			},
+			{
+				"name": "CCENTRO",
+				"type": "varchar"
+			},
+			{
+				"name": "NOMBRE",
+				"type": "varchar"
+			},
+			{
+				"name": "CCANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "DCANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "sociedad",
+				"type": "varchar"
+			},
+			{
+				"name": "Identifier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PositionDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FechaExtraccion",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vw_venta_dia_actual"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

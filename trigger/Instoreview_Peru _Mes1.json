@@ -1,0 +1,25 @@
+{
+	"name": "Instoreview_Peru _Mes1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "InstoreView_Proceso_Carga_Peru_Mes1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-04-02T08:00:00",
+				"endTime": "2023-05-11T12:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

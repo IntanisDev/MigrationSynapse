@@ -1,0 +1,46 @@
+{
+	"name": "STD_VTA_SAP_DELTA_V2",
+	"properties": {
+		"activities": [
+			{
+				"name": "STD_VTA_SAP",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "STD_VTA_SAP_DELTA_V2",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"runConcurrently": true,
+					"continuationSettings": {
+						"customizedCheckpointKey": "c4913d36-a7c5-4e1b-879e-ec2d352cb8a5"
+					}
+				}
+			}
+		],
+		"variables": {
+			"fecha_hasta": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Retail/Venta Diaria"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-18T23:39:36Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

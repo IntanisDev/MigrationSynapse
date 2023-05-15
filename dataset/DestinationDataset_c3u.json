@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_c3u",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Warehouse"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

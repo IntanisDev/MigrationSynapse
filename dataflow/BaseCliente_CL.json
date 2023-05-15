@@ -1,0 +1,35 @@
+{
+	"name": "BaseCliente_CL",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_BaseCliente_CL_DL",
+						"type": "DatasetReference"
+					},
+					"name": "clienteCL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BaseClientes",
+						"type": "DatasetReference"
+					},
+					"name": "BaseClienteCLDB"
+				}
+			],
+			"transformations": [
+				{
+					"name": "truncarString"
+				}
+			],
+			"script": "source(output(\n\t\t{COD_CLIENTE } as string,\n\t\t{ORG_VTA } as string,\n\t\tCANAL as string,\n\t\t{SECTOR  } as string,\n\t\t{PAIS } as string,\n\t\t{RAZON_SOCIAL                       } as string,\n\t\t{POBLACION                          } as string,\n\t\t{DISTRITO                           } as string,\n\t\t{REGION  } as string,\n\t\t{CALLE                              } as string,\n\t\t{LOCAL_ID        } as string,\n\t\t{MONEDA  } as string,\n\t\tCOND_PAGO as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> clienteCL\nclienteCL derive({COD_CLIENTE } = substring({COD_CLIENTE },1,50),\n\t\t{ORG_VTA } = substring({ORG_VTA }, 1,50),\n\t\tCANAL = substring(CANAL, 1,50),\n\t\t{SECTOR  } = substring({SECTOR  }, 1,50),\n\t\t{PAIS } = substring({PAIS }, 1,50),\n\t\t{RAZON_SOCIAL                       } = substring({RAZON_SOCIAL                       }, 1,50),\n\t\t{POBLACION                          } = substring({POBLACION                          }, 1,50),\n\t\t{DISTRITO                           } = substring({DISTRITO                           }, 1,50),\n\t\t{REGION  } = substring({REGION  }, 1,50),\n\t\t{CALLE                              } = substring({CALLE                              }, 1,50),\n\t\t{LOCAL_ID        } = substring({LOCAL_ID        }, 1,50),\n\t\t{MONEDA  } = substring({MONEDA  }, 1,50),\n\t\tCOND_PAGO = substring(COND_PAGO, 1,50)) ~> truncarString\ntruncarString sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_CLIENTE as string,\n\t\tORG_VTA as string,\n\t\tCANAL as string,\n\t\tSECTOR as string,\n\t\tPAIS as string,\n\t\tRAZON_SOCIAL as string,\n\t\tPOBLACION as string,\n\t\tDISTRITO as string,\n\t\tREGION as string,\n\t\tCALLE as string,\n\t\tLOCAL_ID as string,\n\t\tMONEDA as string,\n\t\tCOND_PAGO as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_CLIENTE = {COD_CLIENTE },\n\t\tORG_VTA = {ORG_VTA },\n\t\tCANAL,\n\t\tSECTOR = {SECTOR  },\n\t\tPAIS = {PAIS },\n\t\tRAZON_SOCIAL = {RAZON_SOCIAL                       },\n\t\tPOBLACION = {POBLACION                          },\n\t\tDISTRITO = {DISTRITO                           },\n\t\tREGION = {REGION  },\n\t\tCALLE = {CALLE                              },\n\t\tLOCAL_ID = {LOCAL_ID        },\n\t\tMONEDA = {MONEDA  },\n\t\tCOND_PAGO = {COD_CLIENTE }\n\t)) ~> BaseClienteCLDB"
+		}
+	}
+}

@@ -1,0 +1,69 @@
+{
+	"name": "SAP_DM_TVKOT_ST",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/01 Standard"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_TVKOT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_TVKOT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          VKORG as string,",
+				"          VTEXT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(SPRAS=='S') ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          VKORG as string,",
+				"          VTEXT as string",
+				"     ),",
+				"     partitionFileNames:['DM_TVKOT.csv'],",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          SPRAS,",
+				"          VKORG,",
+				"          VTEXT",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

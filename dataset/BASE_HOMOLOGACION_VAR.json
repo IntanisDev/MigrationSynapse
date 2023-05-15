@@ -1,0 +1,44 @@
+{
+	"name": "BASE_HOMOLOGACION_VAR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_ORG_VTA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ARTICULO_TJC",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ARTICULO_CLIENTE",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_HOMOLOGACION_VARIANTE"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

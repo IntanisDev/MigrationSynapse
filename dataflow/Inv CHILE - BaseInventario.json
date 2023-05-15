@@ -1,0 +1,31 @@
+{
+	"name": "Inv CHILE - BaseInventario",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Inventario_Chile_DL",
+						"type": "DatasetReference"
+					},
+					"name": "InvChileDL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Inventario",
+						"type": "DatasetReference"
+					},
+					"name": "BDStaging"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tTIENDA as string,\n\t\tALMACEN as string,\n\t\tPRODUCTO as string,\n\t\tSTOCK as string,\n\t\tVALORIZACION as string,\n\t\t{STK.BLOQUEADO} as string,\n\t\t{STK.CONF} as string,\n\t\t{STK.ENTREGA} as string,\n\t\t{STK.DISPONIBLE} as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> InvChileDL\nInvChileDL sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_CENTRO as string,\n\t\tCOD_ALMACEN as string,\n\t\tCOD_ARTICULO as string,\n\t\tSTOCK as string,\n\t\tSTOCK_VALORIZADO as string,\n\t\tSTOCK_CONSIGNACION as string,\n\t\tSTOCK_BLOQUEADO as string,\n\t\tSTOCK_CONF as string,\n\t\tSTOCK_ENTREGA as string,\n\t\tSTOCK_DISPONIBLE as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_CENTRO = TIENDA,\n\t\tCOD_ALMACEN = ALMACEN,\n\t\tCOD_ARTICULO = PRODUCTO,\n\t\tSTOCK,\n\t\tSTOCK_VALORIZADO = VALORIZACION,\n\t\tSTOCK_BLOQUEADO = {STK.BLOQUEADO},\n\t\tSTOCK_CONF = {STK.CONF},\n\t\tSTOCK_ENTREGA = {STK.ENTREGA},\n\t\tSTOCK_DISPONIBLE = {STK.DISPONIBLE}\n\t),\n\tpartitionBy('roundRobin', 5)) ~> BDStaging"
+		}
+	}
+}

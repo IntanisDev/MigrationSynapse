@@ -1,0 +1,33 @@
+{
+	"name": "09_ClothingPieceType",
+	"properties": {
+		"activities": [
+			{
+				"name": "ClothingPieceType",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[ClothingPieceType01]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-02-09T00:44:04Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

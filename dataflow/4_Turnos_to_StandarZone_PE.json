@@ -1,0 +1,142 @@
+{
+	"name": "4_Turnos_to_StandarZone_PE",
+	"properties": {
+		"folder": {
+			"name": "RRHH/Libro Asistencia"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ShiftsParquet_PE",
+						"type": "DatasetReference"
+					},
+					"name": "Turnos"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Shifts_PE",
+						"type": "DatasetReference"
+					},
+					"name": "LibroAsistenciaStandar",
+					"rejectedDataLinkedService": {
+						"referenceName": "edw-prd-WorkspaceDefaultStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "FormateaDatos"
+				},
+				{
+					"name": "FiltraTurno"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Date as string,",
+				"          IdTurno as string,",
+				"          StartTime as string,",
+				"          MaxStartTime as string,",
+				"          ExitTime as string,",
+				"          Type as string,",
+				"          FixedShiftHours as string,",
+				"          Ends as string,",
+				"          Begins as string,",
+				"          ShiftDisplay as string,",
+				"          BreakType as string,",
+				"          BreakMinutes as string,",
+				"          BreakStart as string,",
+				"          BreakEnd as string,",
+				"          Status as string,",
+				"          Custom as string,",
+				"          Delay as string,",
+				"          BreakDelay as string,",
+				"          EarlyLeave as string,",
+				"          TimeOffs as string[],",
+				"          WorkedHours as string,",
+				"          Absent as string,",
+				"          Holiday as string,",
+				"          Worked as string,",
+				"          NonWorkedHours as string,",
+				"          AccomplishedExtraTimeBefore as ({} as string),",
+				"          AccomplishedExtraTimeAfter as ({} as string),",
+				"          AccomplishedExtraTime as ({} as string),",
+				"          AssignedExtraTimeBefore as ({} as string),",
+				"          AssignedExtraTimeAfter as ({} as string),",
+				"          AssignedExtraTime as ({} as string),",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as string,",
+				"          GroupDescription as string,",
+				"          PositionDescription as string,",
+				"          Email as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet',",
+				"     partitionBy('hash', 1)) ~> Turnos",
+				"FiltraTurno derive(Date = toDate(left(Date,8),'yyyyMMdd','America/Santiago'),",
+				"          Ends = toTimestamp(Ends,'yyyyMMddHHmmss'),",
+				"          Begins = toTimestamp(Begins,'yyyyMMddHHmmss'),",
+				"          BreakMinutes = toInteger(BreakMinutes),",
+				"          BreakDelay = toInteger(split(BreakDelay, ':')[1])*60+toInteger(split(BreakDelay, ':')[2]),",
+				"          EarlyLeave = toInteger(split(EarlyLeave, ':')[1])*60+toInteger(split(EarlyLeave, ':')[2]),",
+				"          WorkedHours = toInteger(split(WorkedHours, ':')[1])+toInteger(split(WorkedHours, ':')[2])/60,",
+				"          NonWorkedHours = toInteger(split(NonWorkedHours, ':')[1])+toInteger(split(NonWorkedHours, ':')[2])/60) ~> FormateaDatos",
+				"Turnos filter(!isNull(IdTurno)) ~> FiltraTurno",
+				"FormateaDatos sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('TURNOS_',toString(addDays(currentDate(),-1)),'.PARQUET'))],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Date,",
+				"          IdTurno,",
+				"          StartTime,",
+				"          MaxStartTime,",
+				"          ExitTime,",
+				"          Type,",
+				"          FixedShiftHours,",
+				"          Ends,",
+				"          Begins,",
+				"          ShiftDisplay,",
+				"          BreakType,",
+				"          BreakMinutes,",
+				"          BreakStart,",
+				"          BreakEnd,",
+				"          Status,",
+				"          Custom,",
+				"          Delay,",
+				"          BreakDelay,",
+				"          EarlyLeave,",
+				"          WorkedHours,",
+				"          Absent,",
+				"          Holiday,",
+				"          Worked,",
+				"          NonWorkedHours,",
+				"          Id,",
+				"          Identifier,",
+				"          Name,",
+				"          LastName,",
+				"          Enabled,",
+				"          GroupDescription,",
+				"          PositionDescription,",
+				"          Email",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> LibroAsistenciaStandar"
+			]
+		}
+	}
+}

@@ -1,0 +1,326 @@
+{
+	"name": "TX_EKBE_ST",
+	"properties": {
+		"description": "Historial documento de compra",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_EKBE_ene2021_jun2022.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_COMPRAS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "EBELN",
+				"type": "String"
+			},
+			{
+				"name": "EBELP",
+				"type": "String"
+			},
+			{
+				"name": "ZEKKN",
+				"type": "String"
+			},
+			{
+				"name": "VGABE",
+				"type": "String"
+			},
+			{
+				"name": "GJAHR",
+				"type": "String"
+			},
+			{
+				"name": "BELNR",
+				"type": "String"
+			},
+			{
+				"name": "BUZEI",
+				"type": "String"
+			},
+			{
+				"name": "BEWTP",
+				"type": "String"
+			},
+			{
+				"name": "BWART",
+				"type": "String"
+			},
+			{
+				"name": "BUDAT",
+				"type": "String"
+			},
+			{
+				"name": "MENGE",
+				"type": "String"
+			},
+			{
+				"name": "BPMNG",
+				"type": "String"
+			},
+			{
+				"name": "DMBTR",
+				"type": "String"
+			},
+			{
+				"name": "WRBTR",
+				"type": "String"
+			},
+			{
+				"name": "WAERS",
+				"type": "String"
+			},
+			{
+				"name": "AREWR",
+				"type": "String"
+			},
+			{
+				"name": "WESBS",
+				"type": "String"
+			},
+			{
+				"name": "BPWES",
+				"type": "String"
+			},
+			{
+				"name": "SHKZG",
+				"type": "String"
+			},
+			{
+				"name": "BWTAR",
+				"type": "String"
+			},
+			{
+				"name": "ELIKZ",
+				"type": "String"
+			},
+			{
+				"name": "XBLNR",
+				"type": "String"
+			},
+			{
+				"name": "LFGJA",
+				"type": "String"
+			},
+			{
+				"name": "LFBNR",
+				"type": "String"
+			},
+			{
+				"name": "LFPOS",
+				"type": "String"
+			},
+			{
+				"name": "GRUND",
+				"type": "String"
+			},
+			{
+				"name": "CPUDT",
+				"type": "String"
+			},
+			{
+				"name": "CPUTM",
+				"type": "String"
+			},
+			{
+				"name": "REEWR",
+				"type": "String"
+			},
+			{
+				"name": "EVERE",
+				"type": "String"
+			},
+			{
+				"name": "REFWR",
+				"type": "String"
+			},
+			{
+				"name": "MATNR",
+				"type": "String"
+			},
+			{
+				"name": "WERKS",
+				"type": "String"
+			},
+			{
+				"name": "XWSBR",
+				"type": "String"
+			},
+			{
+				"name": "ETENS",
+				"type": "String"
+			},
+			{
+				"name": "KNUMV",
+				"type": "String"
+			},
+			{
+				"name": "MWSKZ",
+				"type": "String"
+			},
+			{
+				"name": "LSMNG",
+				"type": "String"
+			},
+			{
+				"name": "LSMEH",
+				"type": "String"
+			},
+			{
+				"name": "EMATN",
+				"type": "String"
+			},
+			{
+				"name": "AREWW",
+				"type": "String"
+			},
+			{
+				"name": "HSWAE",
+				"type": "String"
+			},
+			{
+				"name": "BAMNG",
+				"type": "String"
+			},
+			{
+				"name": "CHARG",
+				"type": "String"
+			},
+			{
+				"name": "BLDAT",
+				"type": "String"
+			},
+			{
+				"name": "XWOFF",
+				"type": "String"
+			},
+			{
+				"name": "XUNPL",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "SRVPOS",
+				"type": "String"
+			},
+			{
+				"name": "PACKNO",
+				"type": "String"
+			},
+			{
+				"name": "INTROW",
+				"type": "String"
+			},
+			{
+				"name": "BEKKN",
+				"type": "String"
+			},
+			{
+				"name": "LEMIN",
+				"type": "String"
+			},
+			{
+				"name": "AREWB",
+				"type": "String"
+			},
+			{
+				"name": "REWRB",
+				"type": "String"
+			},
+			{
+				"name": "SAPRL",
+				"type": "String"
+			},
+			{
+				"name": "MENGE_POP",
+				"type": "String"
+			},
+			{
+				"name": "BPMNG_POP",
+				"type": "String"
+			},
+			{
+				"name": "DMBTR_POP",
+				"type": "String"
+			},
+			{
+				"name": "WRBTR_POP",
+				"type": "String"
+			},
+			{
+				"name": "WESBB",
+				"type": "String"
+			},
+			{
+				"name": "BPWEB",
+				"type": "String"
+			},
+			{
+				"name": "WEORA",
+				"type": "String"
+			},
+			{
+				"name": "AREWR_POP",
+				"type": "String"
+			},
+			{
+				"name": "KUDIF",
+				"type": "String"
+			},
+			{
+				"name": "RETAMT_FC",
+				"type": "String"
+			},
+			{
+				"name": "RETAMT_LC",
+				"type": "String"
+			},
+			{
+				"name": "RETAMTP_FC",
+				"type": "String"
+			},
+			{
+				"name": "RETAMTP_LC",
+				"type": "String"
+			},
+			{
+				"name": "XMACC",
+				"type": "String"
+			},
+			{
+				"name": "WKURS",
+				"type": "String"
+			},
+			{
+				"name": "ET_UPD",
+				"type": "String"
+			},
+			{
+				"name": "J_SC_DIE_COMP_F",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

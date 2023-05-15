@@ -1,0 +1,455 @@
+{
+	"name": "Procesar_Cubo_Ventas_Fact_v2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Calculos Temporales",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=JNcMst4yfcXc7DIDf%2f0PJVejMR4opzafpcawHcEjuEI%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Data",
+						"Table": "Calculos Temporales"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Venta ABP",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Venta",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Venta ABP",
+						"Partition": "vw_SaleABP_2022_2"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Venta AFP IP",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Venta ABP",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Venta AFP IP",
+						"Partition": "vw_Venta_AFP_IP_2022_2"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Inventario Historico",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Inventario",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Inventario Historico",
+						"Partition": "vw_Inventario_Historico_2022_4"
+					},
+					"timeout": "00:03:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Inventario",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Fact_Pedidos_5",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Inventario",
+						"Partition": "vw_Inventory"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Retail Traffic",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Libro de Asistencia",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Retail Traffic",
+						"Partition": "vw_Retail_Traffic_2022"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Retail Venta",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Retail Traffic",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Retail Venta",
+						"Partition": "vw_Retail_Venta_2022"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Venta",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Retail Venta",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Venta",
+						"Partition": "vw_Sale_2022_3"
+					},
+					"timeout": "00:03:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Libro de Asistencia",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Inventario Historico",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Libro de Asistencia",
+						"Partition": "vw_AttendanceBook"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Fact_Pedidos",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Calculos Temporales",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Fact_Pedidos",
+						"Partition": "Fact_Pedidos"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Fact_Pedidos_1",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Fact_Pedidos",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Fact_Pedidos",
+						"Partition": "Fact_Pedidos_1"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Fact_Pedidos_2",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Fact_Pedidos_1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Fact_Pedidos",
+						"Partition": "Fact_Pedidos_2"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Fact_Pedidos_3",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Fact_Pedidos_2",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Fact_Pedidos",
+						"Partition": "Fact_Pedidos_3"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Fact_Pedidos_4",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Fact_Pedidos_3",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Fact_Pedidos",
+						"Partition": "Fact_Pedidos_4"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Fact_Pedidos_5",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Fact_Pedidos_4",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=xt8w2b2ezpCgTInmWxVTR44ScJaOuosM%2fI6B709wcbA%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Fact_Pedidos",
+						"Partition": "Fact_Pedidos_5"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9999_Procesar_Cubo_Ventas/Otros"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-22T20:11:02Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,61 @@
+{
+	"name": "A073_SYN",
+	"properties": {
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 Fuente"
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "KAPPL",
+				"type": "varchar"
+			},
+			{
+				"name": "KSCHL",
+				"type": "varchar"
+			},
+			{
+				"name": "VKORG",
+				"type": "varchar"
+			},
+			{
+				"name": "VTWEG",
+				"type": "varchar"
+			},
+			{
+				"name": "MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "VRKME",
+				"type": "varchar"
+			},
+			{
+				"name": "DATBI",
+				"type": "varchar"
+			},
+			{
+				"name": "DATAB",
+				"type": "varchar"
+			},
+			{
+				"name": "KNUMH",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "SAP",
+			"table": "A073"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

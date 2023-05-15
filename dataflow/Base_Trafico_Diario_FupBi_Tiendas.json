@@ -1,0 +1,31 @@
+{
+	"name": "Base_Trafico_Diario_FupBi_Tiendas",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Trafico_FUPBI_Tiendas_DL",
+						"type": "DatasetReference"
+					},
+					"name": "DL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BASE_TRAFICO_DIARIO_FUPBI_TIENDAS",
+						"type": "DatasetReference"
+					},
+					"name": "Tiendas"
+				}
+			],
+			"transformations": [],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> DL\nDL sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tid as decimal(18,0),\n\t\tname as string,\n\t\tforeign_id as string,\n\t\tcountry_id as decimal(18,0)\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> Tiendas"
+		}
+	}
+}

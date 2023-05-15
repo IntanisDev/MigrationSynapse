@@ -1,0 +1,31 @@
+{
+	"name": "Base_Jerarquia",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_Base_Jerarquia_DL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Jerarquia",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\t{COD_ARTICULO      } as string,\n\t\t{COD_GENERICO      } as string,\n\t\t{COD_COLOR         } as string,\n\t\t{DESC_COLOR                              } as string,\n\t\t{TALLA             } as string,\n\t\t{DESC_TALLA                              } as string,\n\t\t{COD_MARCA      } as string,\n\t\t{DESC_MARCA                              } as string,\n\t\t{COD_CALIDAD    } as string,\n\t\t{DESC_CALIDAD                            } as string,\n\t\t{COD_GENERO     } as string,\n\t\t{DESC_GENERO                             } as string,\n\t\t{COD_LINEA      } as string,\n\t\t{DESC_LINEA                              } as string,\n\t\t{COD_TIPO       } as string,\n\t\t{DESC_TIPO                               } as string,\n\t\t{COD_PRENDA     } as string,\n\t\t{DESC_PRENDA                             } as string,\n\t\tCOD_ARTICULO_FABRICA as string,\n\t\tDESC_ARTICULO_FABRICA as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_GENERICO as string,\n\t\tCOD_COLOR as string,\n\t\tTALLA as string,\n\t\tCOD_ARTICULO as string,\n\t\tDESC_COLOR as string,\n\t\tDESC_TALLA as string,\n\t\tCOD_MARCA as string,\n\t\tDESC_MARCA as string,\n\t\tCOD_CALIDAD as string,\n\t\tDESC_CALIDAD as string,\n\t\tCOD_GENERO as string,\n\t\tDESC_GENERO as string,\n\t\tCOD_LINEA as string,\n\t\tDESC_LINEA as string,\n\t\tCOD_TIPO as string,\n\t\tDESC_TIPO as string,\n\t\tCOD_PRENDA as string,\n\t\tDESC_PRENDA as string,\n\t\tCOD_ARTICULO_FABRICA as string,\n\t\tDESC_ARTICULO_FABRICA as string,\n\t\tBASE_MAESTRO as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_GENERICO = {COD_GENERICO      },\n\t\tCOD_COLOR = {COD_COLOR         },\n\t\tTALLA = {TALLA             },\n\t\tCOD_ARTICULO = {COD_ARTICULO      },\n\t\tDESC_COLOR = {DESC_COLOR                              },\n\t\tDESC_TALLA = {DESC_TALLA                              },\n\t\tCOD_MARCA = {COD_MARCA      },\n\t\tDESC_MARCA = {DESC_MARCA                              },\n\t\tCOD_CALIDAD = {COD_CALIDAD    },\n\t\tDESC_CALIDAD = {DESC_CALIDAD                            },\n\t\tCOD_GENERO = {COD_GENERO     },\n\t\tDESC_GENERO = {DESC_GENERO                             },\n\t\tCOD_LINEA = {COD_LINEA      },\n\t\tDESC_LINEA = {DESC_LINEA                              },\n\t\tCOD_TIPO = {COD_TIPO       },\n\t\tDESC_TIPO = {DESC_TIPO                               },\n\t\tCOD_PRENDA = {COD_PRENDA     },\n\t\tDESC_PRENDA = {DESC_PRENDA                             },\n\t\tCOD_ARTICULO_FABRICA,\n\t\tDESC_ARTICULO_FABRICA\n\t)) ~> sink1"
+		}
+	}
+}

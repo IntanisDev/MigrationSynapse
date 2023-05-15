@@ -1,0 +1,24 @@
+{
+	"name": "InstoreView_Ventas_Chile_Dic_2022",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "InstoreView_Proceso_Carga_Chile_Dic2022",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-12-15T08:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

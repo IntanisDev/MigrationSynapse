@@ -1,0 +1,110 @@
+{
+	"name": "SAP_DM_ZMM000_CON",
+	"properties": {
+		"description": "Relación Artículo > Jerarquía Grupo Artículos",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_ZMM000_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_ZMM000",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          MATNR as string,",
+				"          SATNR as string,",
+				"          COLOR as string,",
+				"          DCOLO as string,",
+				"          SIZE1 as string,",
+				"          DSIZE as string,",
+				"          CMARC as string,",
+				"          DMARC as string,",
+				"          CCALI as string,",
+				"          DCALI as string,",
+				"          CGENE as string,",
+				"          DGENE as string,",
+				"          CLINE as string,",
+				"          DLINE as string,",
+				"          CTIPO as string,",
+				"          DTIPO as string,",
+				"          CPREN as string,",
+				"          DPREN as string,",
+				"          CGRAR as string,",
+				"          DGRAR as string,",
+				"          SIZE2 as string,",
+				"          DSIZE2 as string,",
+				"          PC9 as string,",
+				"          PC13 as string,",
+				"          ZMATKL as string,",
+				"          ZCOLOR as string,",
+				"          ZTALLA as string,",
+				"          ZZFABRIC as string,",
+				"          ZZPRDTY as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          MATNR,",
+				"          SATNR,",
+				"          COLOR,",
+				"          DCOLO,",
+				"          SIZE1,",
+				"          DSIZE,",
+				"          CMARC,",
+				"          DMARC,",
+				"          CCALI,",
+				"          DCALI,",
+				"          CGENE,",
+				"          DGENE,",
+				"          CLINE,",
+				"          DLINE,",
+				"          CTIPO,",
+				"          DTIPO,",
+				"          CPREN,",
+				"          DPREN,",
+				"          CGRAR,",
+				"          DGRAR,",
+				"          SIZE2,",
+				"          DSIZE2,",
+				"          PC9,",
+				"          PC13,",
+				"          ZMATKL,",
+				"          ZCOLOR,",
+				"          ZTALLA,",
+				"          ZZFABRIC,",
+				"          ZZPRDTY",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

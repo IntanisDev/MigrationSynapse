@@ -1,0 +1,53 @@
+{
+	"name": "Base_CSV_Traffic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "STORE_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "DATE",
+				"type": "char"
+			},
+			{
+				"name": "COUNT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RECORD_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "TIME",
+				"type": "varchar"
+			},
+			{
+				"name": "RECORD_FMT",
+				"type": "varchar"
+			},
+			{
+				"name": "COUNTRY",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Traffic"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

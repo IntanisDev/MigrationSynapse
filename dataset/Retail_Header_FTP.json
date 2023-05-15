@@ -1,0 +1,109 @@
+{
+	"name": "Retail_Header_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FtpServer_tiendaRMS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "HEADER.TXT",
+				"folderPath": "DataW Retail"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sigla_Tienda",
+				"type": "String"
+			},
+			{
+				"name": "Tienda",
+				"type": "String"
+			},
+			{
+				"name": "Tipo",
+				"type": "String"
+			},
+			{
+				"name": "Numero",
+				"type": "String"
+			},
+			{
+				"name": "Fecha",
+				"type": "String"
+			},
+			{
+				"name": "Hora",
+				"type": "String"
+			},
+			{
+				"name": "Estado",
+				"type": "String"
+			},
+			{
+				"name": "Usuario",
+				"type": "String"
+			},
+			{
+				"name": "Cajero",
+				"type": "String"
+			},
+			{
+				"name": "Subtotal",
+				"type": "String"
+			},
+			{
+				"name": "Total",
+				"type": "String"
+			},
+			{
+				"name": "Porcentaje Iva",
+				"type": "String"
+			},
+			{
+				"name": "Monto Iva",
+				"type": "String"
+			},
+			{
+				"name": "Items",
+				"type": "String"
+			},
+			{
+				"name": "Rut",
+				"type": "String"
+			},
+			{
+				"name": "Nombre",
+				"type": "String"
+			},
+			{
+				"name": "Apellidos",
+				"type": "String"
+			},
+			{
+				"name": "Direccion",
+				"type": "String"
+			},
+			{
+				"name": "Comuna",
+				"type": "String"
+			},
+			{
+				"name": "Telefono",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

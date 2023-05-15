@@ -1,0 +1,67 @@
+{
+	"name": "TVFKT_ETL",
+	"properties": {
+		"description": "Carga automática de Clases de Factura",
+		"activities": [
+			{
+				"name": "TVFKT RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_TVFKT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "TVFKT STANDAR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "TVFKT RAW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_TVFKT_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "TVFKT CONSUMO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "TVFKT STANDAR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_TVFKT_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Datos Maestros"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-27T19:59:00Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,31 @@
+{
+	"name": "ZCLMM027_FTP_TEST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FtpServer_tiendaRMS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Contenido Técnico"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "ZCLMM027.CSV",
+				"folderPath": "CuboLogistico"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

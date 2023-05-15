@@ -1,0 +1,24 @@
+{
+	"name": "RestService4",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "beflow",
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://q3ghsfg1t3.execute-api.us-east-1.amazonaws.com/prod/customReport?resType=csv&reportType=logs&fromDate=2022-10-05T00:00:00-04:00&toDate=2022-10-05T23:59:00-04:00",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"connection-token": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

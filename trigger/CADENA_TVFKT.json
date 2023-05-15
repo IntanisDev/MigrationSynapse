@@ -1,0 +1,24 @@
+{
+	"name": "CADENA_TVFKT",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "TVFKT_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-29T03:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

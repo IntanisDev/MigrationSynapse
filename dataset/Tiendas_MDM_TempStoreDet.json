@@ -1,0 +1,133 @@
+{
+	"name": "Tiendas_MDM_TempStoreDet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Store_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Comp_Store",
+				"type": "varchar"
+			},
+			{
+				"name": "RE_Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "Country_Group",
+				"type": "varchar"
+			},
+			{
+				"name": "SAP_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Centro_Costos",
+				"type": "varchar"
+			},
+			{
+				"name": "State",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "Mall_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Mall_Group",
+				"type": "varchar"
+			},
+			{
+				"name": "District",
+				"type": "varchar"
+			},
+			{
+				"name": "District_Manager",
+				"type": "varchar"
+			},
+			{
+				"name": "Retail_Channel",
+				"type": "varchar"
+			},
+			{
+				"name": "Format",
+				"type": "varchar"
+			},
+			{
+				"name": "Business_Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Store_Brand",
+				"type": "varchar"
+			},
+			{
+				"name": "Partner_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Open_Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Close_Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Comp_Reset",
+				"type": "varchar"
+			},
+			{
+				"name": "Gross_Selling_Size",
+				"type": "varchar"
+			},
+			{
+				"name": "Gross_Size",
+				"type": "varchar"
+			},
+			{
+				"name": "Stock_Capacity",
+				"type": "varchar"
+			},
+			{
+				"name": "Latitude",
+				"type": "varchar"
+			},
+			{
+				"name": "Longitude",
+				"type": "varchar"
+			},
+			{
+				"name": "Tailor",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "TEMP_Store_Det"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

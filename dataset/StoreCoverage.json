@@ -1,0 +1,23 @@
+{
+	"name": "StoreCoverage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "StoreCoverage"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

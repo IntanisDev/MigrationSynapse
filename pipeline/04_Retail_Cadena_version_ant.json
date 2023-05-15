@@ -1,0 +1,46 @@
+{
+	"name": "04_Retail_Cadena_version_ant",
+	"properties": {
+		"activities": [
+			{
+				"name": "Retail_Base_Cabecera",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "01_Retail_Base_Cabecera",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "RetailTicketsByStore",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Retail_Base_Cabecera",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03_RetailTicketsByStore",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones/bkp"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T20:50:25Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

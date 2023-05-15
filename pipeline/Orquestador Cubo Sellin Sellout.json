@@ -1,0 +1,46 @@
+{
+	"name": "Orquestador Cubo Sellin Sellout",
+	"properties": {
+		"activities": [
+			{
+				"name": "Procesar Cubo Sellin Sellout DIM",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Procesar Cubo Sellin Sellout DIM",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Procesar Cubo Sellin Sellout_FACT",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Procesar Cubo Sellin Sellout DIM",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Procesar Cubo Sellin Sellout_FACT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/09 Ejecucion de Cubos"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-22T21:19:00Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

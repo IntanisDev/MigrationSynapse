@@ -1,0 +1,67 @@
+{
+	"name": "ZPOS_VTAVENDEDOR_ETL",
+	"properties": {
+		"description": "Proceso de carga tabla relacion entre vendedor y boleta",
+		"activities": [
+			{
+				"name": "ZPOS_VTAVENDEDOR RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_ZPOS_VTAVENDEDOR",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ZPOS_VTAVENDEDOR STANDAR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ZPOS_VTAVENDEDOR RAW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_ZPOS_VTAVENDEDOR_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ZPOS_VTAVENDEDOR CONSUMO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ZPOS_VTAVENDEDOR STANDAR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_DM_ZPOS_VTAVENDEDOR_CON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Datos Maestros"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-27T21:51:49Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

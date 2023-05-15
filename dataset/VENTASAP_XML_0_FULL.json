@@ -1,0 +1,22 @@
+{
+	"name": "VENTASAP_XML_0_FULL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Retail/Venta Diaria/0 Landing Zone/XML"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "0_landing_zone/Retail/ESB/XML/2022/12/18",
+				"fileSystem": "edwlakeprd"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,312 @@
+{
+	"name": "InstoreView_Stock_Peru_ST_Automatico_v2_3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/InstoreView/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('InstoreView_Stock_Peru_',formatDateTime(adddays(utcnow(),-3),'yyyyMMdd') ,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "2_standar_zone/DATALAKE/DL_INSTOREVIEW/Stock",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "'"
+		},
+		"schema": [
+			{
+				"name": "Fecha",
+				"type": "String"
+			},
+			{
+				"name": "Cod_Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Rut",
+				"type": "String"
+			},
+			{
+				"name": "Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Sub_Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "Local",
+				"type": "String"
+			},
+			{
+				"name": "Comuna",
+				"type": "String"
+			},
+			{
+				"name": "Nombre_de_Local",
+				"type": "String"
+			},
+			{
+				"name": "Codigo_Local",
+				"type": "String"
+			},
+			{
+				"name": "Direccion",
+				"type": "String"
+			},
+			{
+				"name": "Linea",
+				"type": "String"
+			},
+			{
+				"name": "SKU",
+				"type": "String"
+			},
+			{
+				"name": "Marca",
+				"type": "String"
+			},
+			{
+				"name": "Descripcion_Producto",
+				"type": "String"
+			},
+			{
+				"name": "Genero",
+				"type": "String"
+			},
+			{
+				"name": "Modelo",
+				"type": "String"
+			},
+			{
+				"name": "Temporada",
+				"type": "String"
+			},
+			{
+				"name": "Estilo",
+				"type": "String"
+			},
+			{
+				"name": "Categoria",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Locales_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock_CD_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Total_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_30_dias_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Promedio_Diario_Ventas_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Sugerido_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_7_dias_Ajuste_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Locales_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_CD_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Total_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Locales_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_CD_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Total_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_30_dias_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Promedio_Diario_Ventas_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Sugerido_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_7_dias_Ajuste_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Locales_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_CD_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Total_en_Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Locales_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_CD_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Total_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_30_dias_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Promedio_Diario_Ventas_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Sugerido_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_7_dias_Ajuste_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Locales_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_CD_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Total_en_Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Locales_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Stock_CD_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Total_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_30_dias_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Promedio_Diario_Ventas_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Stock_Sugerido_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Venta_ultimos_7_dias_Ajuste_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Locales_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_CD_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Dias_Stock_Total_en_Ventas_PVP_s_IVA",
+				"type": "String"
+			},
+			{
+				"name": "Mix_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Quiebres",
+				"type": "String"
+			},
+			{
+				"name": "Stock_en_Transito_en_Unidades",
+				"type": "String"
+			},
+			{
+				"name": "EAN",
+				"type": "String"
+			},
+			{
+				"name": "bukrs",
+				"type": "String"
+			},
+			{
+				"name": "kunnr",
+				"type": "String"
+			},
+			{
+				"name": "paledger",
+				"type": "String"
+			},
+			{
+				"name": "waerk",
+				"type": "String"
+			},
+			{
+				"name": "cadena",
+				"type": "String"
+			},
+			{
+				"name": "descadena",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

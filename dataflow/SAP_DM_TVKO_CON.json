@@ -1,0 +1,106 @@
+{
+	"name": "SAP_DM_TVKO_CON",
+	"properties": {
+		"description": "Organizaciones de Venta",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_TVKO_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_TVKO",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          VKORG as string,",
+				"          WAERS as string,",
+				"          BUKRS as string,",
+				"          ADRNR as string,",
+				"          TXNAM_ADR as string,",
+				"          TXNAM_KOP as string,",
+				"          TXNAM_FUS as string,",
+				"          TXNAM_GRU as string,",
+				"          VKOAU as string,",
+				"          KUNNR as string,",
+				"          BOAVO as string,",
+				"          VKOKL as string,",
+				"          EKORG as string,",
+				"          EKGRP as string,",
+				"          LIFNR as string,",
+				"          WERKS as string,",
+				"          BSART as string,",
+				"          BSTYP as string,",
+				"          BWART as string,",
+				"          LGORT as string,",
+				"          TXNAM_SDB as string,",
+				"          MWSKZ as string,",
+				"          XSTCEG as string,",
+				"          J_1ANUTIME as string,",
+				"          MAXBI as string,",
+				"          PLAUFZ as string,",
+				"          PLAUEZ as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          VKORG,",
+				"          WAERS,",
+				"          BUKRS,",
+				"          ADRNR,",
+				"          TXNAM_ADR,",
+				"          TXNAM_KOP,",
+				"          TXNAM_FUS,",
+				"          TXNAM_GRU,",
+				"          VKOAU,",
+				"          KUNNR,",
+				"          BOAVO,",
+				"          VKOKL,",
+				"          EKORG,",
+				"          EKGRP,",
+				"          LIFNR,",
+				"          WERKS,",
+				"          BSART,",
+				"          BSTYP,",
+				"          BWART,",
+				"          LGORT,",
+				"          TXNAM_SDB,",
+				"          MWSKZ,",
+				"          XSTCEG,",
+				"          J_1ANUTIME,",
+				"          MAXBI,",
+				"          PLAUFZ,",
+				"          PLAUEZ",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

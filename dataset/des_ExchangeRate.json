@@ -1,0 +1,46 @@
+{
+	"name": "des_ExchangeRate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ExchangeRateId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyIdFrom",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyIdTo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OperatorType",
+				"type": "varchar"
+			},
+			{
+				"name": "FixedExchangeRate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 9
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "ExchangeRate"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

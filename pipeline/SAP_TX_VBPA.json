@@ -1,0 +1,642 @@
+{
+	"name": "SAP_TX_VBPA",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar TX_VBPA",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VBELN",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VBELN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POSNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "POSNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PARVW",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PARVW",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "KUNNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "KUNNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LIFNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LIFNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PERNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PARNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PARNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ADRNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADRNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ABLAD",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ABLAD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAND1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LAND1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ADRDA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADRDA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "XCPDK",
+									"type": "String"
+								},
+								"sink": {
+									"name": "XCPDK",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HITYP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HITYP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRFRE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRFRE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BOKRE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BOKRE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HISTUNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HISTUNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "KNREF",
+									"type": "String"
+								},
+								"sink": {
+									"name": "KNREF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LZONE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LZONE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HZUOR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HZUOR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STCEG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STCEG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PARVW_FF",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PARVW_FF",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ADRNP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADRNP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "KALE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "KALE",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TX_VBPA",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "TX_VBPA_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Log_OK",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copiar TX_VBPA",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "select\n'@{formatDateTime(utcnow(),'yyyy-MM-ddTHH:mm:ss')}' as fecha_proceso,\n'@{pipeline().Pipeline}' as nombre,\n'@{pipeline().RunId}' as id_proceso,\n'RAW' as zona,\n'TX VBPA' as fuente,\n'TX VBPA DL' as destino,\n'OK' as estado,\n'@{activity('Copiar TX_VBPA').output.rowsRead}' filas_leidas,\n'@{activity('Copiar TX_VBPA').output.rowsCopied}' filas_insertadas,\n'@{activity('Copiar TX_VBPA').output.copyDuration}' duracion\n\n\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "fecha_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "zona",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Capa",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Canalizacion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "id_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Id_ejecucion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fuente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fuente",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "destino",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Destino",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "estado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Estado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_leidas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_leidas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_insertadas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_insertadas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "duracion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Duracion",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_Articulos",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tabla_Log_Errores",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Log_ERROR",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copiar TX_VBPA",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "select\n'@{formatDateTime(utcnow(),'yyyy-MM-ddTHH:mm:ss')}' as fecha_proceso,\n'@{pipeline().Pipeline}' as nombre,\n'@{pipeline().RunId}' as id_proceso,\n'RAW' as zona,\n'TX VBPA' as fuente,\n'TX VBPA DL' as destino,\n'Error' as estado,\n'@{activity('Copiar TX_VBPA').output.rowsRead}' filas_leidas,\n'0' filas_insertadas,\n'@{activity('Copiar TX_VBPA').output.copyDuration}' duracion,\n'001' as codigo_error,\n'Error en Actividad de Copiado' as mensaje_error\n\n\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "fecha_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "zona",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Capa",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Canalizacion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "id_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Id_ejecucion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fuente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fuente",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "destino",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Destino",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "estado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Estado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_leidas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_leidas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_insertadas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_insertadas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "duracion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Duracion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "codigo_error",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Codigo_error",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "mensaje_error",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Descripcion_error",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_Articulos",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tabla_Log_Errores",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-10T19:26:41Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

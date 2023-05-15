@@ -1,0 +1,200 @@
+{
+	"name": "AttendanceBookJson_PE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria_PE/0 Landing Zone/Json"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat('0_landing_zone/RRHH/GeoVictoria_PE/Json/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'MM'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'dd'),'/ASISTENCIA/')",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Users": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"PlannedInterval": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"Date": {
+											"type": "string"
+										},
+										"Punches": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"Type": {
+														"type": "string"
+													},
+													"Date": {
+														"type": "string"
+													},
+													"Origin": {
+														"type": "string"
+													},
+													"UploadDate": {
+														"type": "string"
+													},
+													"ShiftPunchType": {
+														"type": "string"
+													},
+													"AssignedInBook": {
+														"type": "boolean"
+													}
+												}
+											}
+										},
+										"Shifts": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"Id": {
+														"type": "string"
+													},
+													"StartTime": {
+														"type": "string"
+													},
+													"MaxStartTime": {
+														"type": "string"
+													},
+													"ExitTime": {
+														"type": "string"
+													},
+													"Type": {
+														"type": "string"
+													},
+													"FixedShiftHours": {
+														"type": "string"
+													},
+													"Ends": {
+														"type": "string"
+													},
+													"Begins": {
+														"type": "string"
+													},
+													"ShiftDisplay": {
+														"type": "string"
+													},
+													"BreakType": {
+														"type": "string"
+													},
+													"BreakMinutes": {
+														"type": "string"
+													},
+													"BreakStart": {
+														"type": "string"
+													},
+													"BreakEnd": {
+														"type": "string"
+													},
+													"Status": {
+														"type": "string"
+													},
+													"Custom": {
+														"type": "string"
+													}
+												}
+											}
+										},
+										"Delay": {
+											"type": "string"
+										},
+										"BreakDelay": {
+											"type": "string"
+										},
+										"EarlyLeave": {
+											"type": "string"
+										},
+										"TimeOffs": {
+											"type": "array"
+										},
+										"WorkedHours": {
+											"type": "string"
+										},
+										"Absent": {
+											"type": "string"
+										},
+										"Holiday": {
+											"type": "string"
+										},
+										"Worked": {
+											"type": "string"
+										},
+										"NonWorkedHours": {
+											"type": "string"
+										},
+										"AccomplishedExtraTimeBefore": {
+											"type": "object"
+										},
+										"AccomplishedExtraTimeAfter": {
+											"type": "object"
+										},
+										"AccomplishedExtraTime": {
+											"type": "object"
+										},
+										"AssignedExtraTimeBefore": {
+											"type": "object"
+										},
+										"AssignedExtraTimeAfter": {
+											"type": "object"
+										},
+										"AssignedExtraTime": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"Id": {
+								"type": "string"
+							},
+							"Identifier": {
+								"type": "string"
+							},
+							"Name": {
+								"type": "string"
+							},
+							"LastName": {
+								"type": "string"
+							},
+							"Enabled": {
+								"type": "string"
+							},
+							"GroupDescription": {
+								"type": "string"
+							},
+							"PositionDescription": {
+								"type": "string"
+							},
+							"Email": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"ExtraTimeValues": {
+					"type": "array"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

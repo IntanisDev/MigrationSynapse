@@ -1,0 +1,42 @@
+{
+	"name": "STD_VTA_SAP_FULL",
+	"properties": {
+		"activities": [
+			{
+				"name": "STD_VTA_SAP_FULL",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "STD_VTA_SAP_FULL",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"variables": {
+			"fecha_hasta": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Retail/Venta Diaria/Procesos Manuales"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-18T23:39:32Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,296 @@
+{
+	"name": "Procesar_Cubo_Productividad",
+	"properties": {
+		"activities": [
+			{
+				"name": "Devoluciones y Recepcion",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Devoluciones y Recepción"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Embalaje",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Devoluciones y Recepcion",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Embalaje"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Etiquetado",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Embalaje",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Etiquetado"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Facturas",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Etiquetado",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Facturas"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Guias",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Facturas",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Guías"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Periodo",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Guias",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Periodo"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Picking",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Periodo",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Picking"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Resumen",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Picking",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Resumen"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Sorting",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Resumen",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Sorting"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Usuarios",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Sorting",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "SWProductividad",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Usuarios"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo SW Productividad/04 Proceso ETL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-04-14T04:37:59Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

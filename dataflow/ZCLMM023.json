@@ -1,0 +1,35 @@
+{
+	"name": "ZCLMM023",
+	"properties": {
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM023_DL",
+						"type": "DatasetReference"
+					},
+					"name": "ZCLMM023"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM023",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "corrigeFechas"
+				}
+			],
+			"script": "parameters{\n\tcontador as integer (1)\n}\nsource(output(\n\t\tFechaExtrae as string,\n\t\tPEDIDO as string,\n\t\tSOCIEDAD as string,\n\t\tFEC_CREACION as string,\n\t\tCentro_Salida as string,\n\t\tClasedoc as string,\n\t\tposicion as string,\n\t\t{Tienda/Cliente} as string,\n\t\tmaterial as string,\n\t\tCantPedido as string,\n\t\tTemporada as string,\n\t\t{a�o} as string,\n\t\tcantEntrega as string,\n\t\tcantEmbalada as string,\n\t\tCantDespachado as string,\n\t\tCantRecepcionado as string,\n\t\tSinEntrega as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> ZCLMM023\nZCLMM023 derive(FechaExtrae = toDate(FechaExtrae,\"dd.MM.yyyy\"),\n\t\tFEC_CREACION = toDate(FEC_CREACION,\"dd.MM.yyyy\"),\n\t\tcontador = 1,\n\t\tcantEntrega = toInteger(replace(trim(cantEntrega),\",000\",\"\")),\n\t\tCantPedido = toInteger(replace(trim(CantPedido),\",000\",\"\")),\n\t\tcantEmbalada = toInteger(replace(trim(cantEmbalada),\",000\",\"\")),\n\t\tCantDespachado = toInteger(replace(trim(CantDespachado),\",000\",\"\")),\n\t\tCantRecepcionado = toInteger(replace(trim(CantRecepcionado),\",000\",\"\")),\n\t\tSinEntrega = toInteger(replace(trim(SinEntrega),\",000\",\"\"))) ~> corrigeFechas\ncorrigeFechas sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tFechaExtrae as date,\n\t\tPEDIDO as string,\n\t\tSOCIEDAD as string,\n\t\tFEC_CREACION as date,\n\t\tCentro_Salida as string,\n\t\tClasedoc as string,\n\t\tposicion as string,\n\t\tTienda_Cliente as string,\n\t\tmaterial as string,\n\t\tCantPedido as integer,\n\t\tTemporada as string,\n\t\tano as string,\n\t\tcantEntrega as integer,\n\t\tcantEmbalada as integer,\n\t\tCantDespachado as integer,\n\t\tCantRecepcionado as integer,\n\t\tSinEntrega as integer,\n\t\tCONTADOR as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tsaveOrder: 1,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tFechaExtrae,\n\t\tPEDIDO,\n\t\tSOCIEDAD,\n\t\tFEC_CREACION,\n\t\tCentro_Salida,\n\t\tClasedoc,\n\t\tposicion,\n\t\tTienda_Cliente = {Tienda/Cliente},\n\t\tmaterial,\n\t\tCantPedido,\n\t\tTemporada,\n\t\tano = {a�o},\n\t\tcantEntrega,\n\t\tcantEmbalada,\n\t\tCantDespachado,\n\t\tCantRecepcionado,\n\t\tSinEntrega,\n\t\tCONTADOR = contador\n\t),\n\tpartitionBy('hash', 20,\n\t\tFechaExtrae\n\t)) ~> sink1"
+		}
+	}
+}

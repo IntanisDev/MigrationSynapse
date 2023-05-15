@@ -1,0 +1,59 @@
+{
+	"name": "DF_Copiar_Trafico",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_Trafico",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_Trafico_RW",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          RetailTrafficId as integer,",
+				"          StoreId as integer,",
+				"          TimePeriodId as timestamp,",
+				"          Traffic as integer,",
+				"          HourId as integer,",
+				"          SaleOrganisationId as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          RetailTrafficId as string,",
+				"          StoreId as string,",
+				"          TimePeriodId as string,",
+				"          Traffic as string,",
+				"          HourId as string,",
+				"          SaleOrganisationId as string",
+				"     ),",
+				"     partitionFileNames:['TX_Trafico.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

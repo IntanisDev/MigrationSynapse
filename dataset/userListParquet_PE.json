@@ -1,0 +1,80 @@
+{
+	"name": "userListParquet_PE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria_PE/1 Raw Data/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('UserList_',formatDateTime(addDays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1),'yyyy-MM-dd'),'.PARQUET')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('1_raw_data/DATALAKE/DL_RRHH/GEOVICTORIA_PE/PARQUET/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'MM'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "Identifier",
+				"type": "UTF8"
+			},
+			{
+				"name": "Name",
+				"type": "UTF8"
+			},
+			{
+				"name": "LastName",
+				"type": "UTF8"
+			},
+			{
+				"name": "Enabled",
+				"type": "INT32"
+			},
+			{
+				"name": "PositionDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "Email",
+				"type": "UTF8"
+			},
+			{
+				"name": "SchedulerId",
+				"type": "UTF8"
+			},
+			{
+				"name": "SchedulerStart",
+				"type": "UTF8"
+			},
+			{
+				"name": "SchedulerPeriodStart",
+				"type": "UTF8"
+			},
+			{
+				"name": "ContractDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "EndContractDate",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

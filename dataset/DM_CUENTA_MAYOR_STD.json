@@ -1,0 +1,123 @@
+{
+	"name": "DM_CUENTA_MAYOR_STD",
+	"properties": {
+		"description": "Maestro Centros de Costo",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/2 Standar Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_CUENTA_MAYOR_STD.PARQUET",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "UTF8"
+			},
+			{
+				"name": "KTOPL",
+				"type": "UTF8"
+			},
+			{
+				"name": "SAKNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "XBILK",
+				"type": "UTF8"
+			},
+			{
+				"name": "SAKAN",
+				"type": "UTF8"
+			},
+			{
+				"name": "BILKT",
+				"type": "UTF8"
+			},
+			{
+				"name": "ERDAT",
+				"type": "UTF8"
+			},
+			{
+				"name": "ERNAM",
+				"type": "UTF8"
+			},
+			{
+				"name": "GVTYP",
+				"type": "UTF8"
+			},
+			{
+				"name": "KTOKS",
+				"type": "UTF8"
+			},
+			{
+				"name": "MUSTR",
+				"type": "UTF8"
+			},
+			{
+				"name": "VBUND",
+				"type": "UTF8"
+			},
+			{
+				"name": "XLOEV",
+				"type": "UTF8"
+			},
+			{
+				"name": "XSPEA",
+				"type": "UTF8"
+			},
+			{
+				"name": "XSPEB",
+				"type": "UTF8"
+			},
+			{
+				"name": "XSPEP",
+				"type": "UTF8"
+			},
+			{
+				"name": "SKA1_MCOD1",
+				"type": "UTF8"
+			},
+			{
+				"name": "FUNC_AREA",
+				"type": "UTF8"
+			},
+			{
+				"name": "SPRAS",
+				"type": "UTF8"
+			},
+			{
+				"name": "TXT20",
+				"type": "UTF8"
+			},
+			{
+				"name": "TXT50",
+				"type": "UTF8"
+			},
+			{
+				"name": "SKAT_MCOD1",
+				"type": "UTF8"
+			},
+			{
+				"name": "usgaap_cuenta",
+				"type": "UTF8"
+			},
+			{
+				"name": "usgaap_descripcion",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

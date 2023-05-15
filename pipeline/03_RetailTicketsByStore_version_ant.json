@@ -1,0 +1,33 @@
+{
+	"name": "03_RetailTicketsByStore_version_ant",
+	"properties": {
+		"activities": [
+			{
+				"name": "RetailTicketsByStore",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[sales].[RetailTicketsByStore]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0825_Retail/bkp"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T20:53:26Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

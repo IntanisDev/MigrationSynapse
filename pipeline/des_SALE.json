@@ -1,0 +1,1094 @@
+{
+	"name": "des_SALE",
+	"properties": {
+		"description": "SALES.SALE",
+		"activities": [
+			{
+				"name": "sales_sale",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "truncate table [sales].[sale]",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SaleId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SaleId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TransactionDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "TransactionDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "AuditTrailId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "AuditTrailId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimePeriodId",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "TimePeriodId",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleOrganisationId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SaleOrganisationId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleChannelId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SaleChannelId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CustomerId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "StoreId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "BrandId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BrandId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "QualityId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "QualityId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "GenderId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "GenderId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "LineId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "LineId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ClothingPieceTypeId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ClothingPieceTypeId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ClothingPieceId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ClothingPieceId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Revenues",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Revenues",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "NetSale",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "NetSale",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleCost",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleCost",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Margin",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Margin",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantity",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleQuantity",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "CostABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "CostABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "MarginABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "MarginABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantityABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleQuantityABP",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "M2",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "M2",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SalesM2",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SalesM2",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Transactions",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Transactions",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount1",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount1",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount2",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount2",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount3",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount3",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount4",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount4",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount5",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount5",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount6",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount6",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount7",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount7",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount8",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount8",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount9",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount9",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "Discount10",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Discount10",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "ShimId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ShimId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "Stock",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "StockConsigned",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "StockConsigned",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "StockValue",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "StockValue",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "MarginInterCompany",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "MarginInterCompany",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleInterCompany",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleInterCompany",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "ProfitMarginInterCompany",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "ProfitMarginInterCompany",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "MarginPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "MarginPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "NetSalePreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "NetSalePreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "RevenuesPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "RevenuesPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleCostPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleCostPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantityPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleQuantityPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "WeightedAverageCost",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "WeightedAverageCost",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "WeightedAveragePrice",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "WeightedAveragePrice",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "BusinessClasificationId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BusinessClasificationId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductFashionGradeId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductFashionGradeId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductFashionSeasonId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductFashionSeasonId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductGenericId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductGenericId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductModelId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductModelId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "MarginInterCompanyPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "MarginInterCompanyPreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SalesM2PreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SalesM2PreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "MarginInterCompanyPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "MarginInterCompanyPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "MarginPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "MarginPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "NetSalePreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "NetSalePreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "RevenuesPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "RevenuesPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleCostPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleCostPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantityPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SaleQuantityPreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "SalesM2PreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "SalesM2PreviousYearComparable",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "CurrencyId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CurrencyId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "StockDC",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "StockDC",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "StockInTransit",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "StockInTransit",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "PercentageParticipationSale",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "PercentageParticipationSale",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							},
+							{
+								"source": {
+									"name": "PercentageParticipationSalePreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								},
+								"sink": {
+									"name": "PercentageParticipationSalePreviousYear",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 9,
+									"precision": 22
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "des_SALE",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SALE",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Copia Desarrollo/Ventas"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-19T18:14:17Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

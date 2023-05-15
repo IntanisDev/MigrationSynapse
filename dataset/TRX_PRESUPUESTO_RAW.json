@@ -1,0 +1,78 @@
+{
+	"name": "TRX_PRESUPUESTO_RAW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Transaccional/1 Raw Data/Excel"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Hoja1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ArchivoCargaPptoAFPyF423.xlsx",
+				"folderPath": {
+					"value": "1_raw_data/DATALAKE/DL_FINANCIERO/GASTOS/EXCEL/2023",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Tipo Escenario",
+				"type": "String"
+			},
+			{
+				"name": "Sociedad",
+				"type": "String"
+			},
+			{
+				"name": "Período",
+				"type": "String"
+			},
+			{
+				"name": "Código centro Costo SAP",
+				"type": "String"
+			},
+			{
+				"name": "Código Cuenta Contable SAP",
+				"type": "String"
+			},
+			{
+				"name": "Código Cuenta USGAAP",
+				"type": "String"
+			},
+			{
+				"name": "Código Canal ",
+				"type": "String"
+			},
+			{
+				"name": "Código Marca",
+				"type": "String"
+			},
+			{
+				"name": "Código Categoría",
+				"type": "String"
+			},
+			{
+				"name": "Código Género",
+				"type": "String"
+			},
+			{
+				"name": "Concepto P&L",
+				"type": "String"
+			},
+			{
+				"name": "Monto en CLP",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

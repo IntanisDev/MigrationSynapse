@@ -1,0 +1,98 @@
+{
+	"name": "ZCLMM051_RW_to_ST",
+	"properties": {
+		"folder": {
+			"name": "SW_Productividad/01 RW_to_ST"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM051_RW",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM051_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Column1 as string,",
+				"          Column2 as string,",
+				"          Column3 as string,",
+				"          Column4 as string,",
+				"          Column5 as string,",
+				"          Column6 as string,",
+				"          Column7 as string,",
+				"          Column8 as string,",
+				"          Column9 as string,",
+				"          Column10 as string,",
+				"          Column11 as string,",
+				"          Column12 as string,",
+				"          Column13 as string,",
+				"          Column14 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          GRUPO = Column1,",
+				"          OPERARIO1 = Column2,",
+				"          OPERARIO2 = Column3,",
+				"          ID_PTL = Column4,",
+				"          ENTREGA = Column5,",
+				"          ID_ULT_PTL = Column6,",
+				"          ARTICULO = Column7,",
+				"          CANTIDAD = Column8,",
+				"          HORA1 = Column9,",
+				"          FECHA1 = Column10,",
+				"          ESTADO = Column11,",
+				"          ID_SAP = Column12,",
+				"          HORA2 = Column13,",
+				"          FECHA2 = Column14",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          GRUPO as string,",
+				"          OPERARIO1 as string,",
+				"          OPERARIO2 as string,",
+				"          ID_PTL as string,",
+				"          ENTREGA as string,",
+				"          ID_ULT_PTL as string,",
+				"          ARTICULO as string,",
+				"          CANTIDAD as string,",
+				"          HORA1 as string,",
+				"          FECHA1 as string,",
+				"          ESTADO as string,",
+				"          ID_SAP as string,",
+				"          HORA2 as string,",
+				"          FECHA2 as string",
+				"     ),",
+				"     partitionFileNames:[(concat('ZCLMM051_V2_',toString(currentUTC()-hours(4), 'yyyyMMdd'),'.csv') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

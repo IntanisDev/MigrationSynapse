@@ -1,0 +1,85 @@
+{
+	"name": "4_Usuarios_to_StandarZone",
+	"properties": {
+		"folder": {
+			"name": "RRHH/Datos Maestros"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "userListParquet",
+						"type": "DatasetReference"
+					},
+					"name": "Usuarios"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "userList",
+						"type": "DatasetReference"
+					},
+					"name": "UsuariosStandarZone"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as integer,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          SchedulerId as string,",
+				"          SchedulerStart as string,",
+				"          SchedulerPeriodStart as string,",
+				"          ContractDate as string,",
+				"          EndContractDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Usuarios",
+				"Usuarios derive(SchedulerStart = toDate(left(SchedulerStart,8),'yyyyMMdd','America/Santiago'),",
+				"          ContractDate = toDate(left(ContractDate,8),'yyyyMMdd','America/Santiago'),",
+				"          EndContractDate = toDate(left(EndContractDate,8),'yyyyMMdd','America/Santiago'),",
+				"          SchedulerPeriodStart = toDate(left(SchedulerPeriodStart,8),'yyyyMMdd','America/Santiago'),",
+				"          FechaExtraccion = addDays(currentDate('America/Santiago'),-1),",
+				"     partitionBy('hash', 1)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as integer,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          SchedulerId as string,",
+				"          SchedulerStart as date,",
+				"          SchedulerPeriodStart as date,",
+				"          ContractDate as date,",
+				"          EndContractDate as date,",
+				"          FechaExtraccion as date",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('USUARIOS_',toString(addDays(currentDate(),-1)),'.PARQUET'))],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> UsuariosStandarZone"
+			]
+		}
+	}
+}

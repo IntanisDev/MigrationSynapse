@@ -1,0 +1,223 @@
+{
+	"name": "1_Carga_Google_Analytics_resumen_PE",
+	"properties": {
+		"description": "Carga manualmente solo info de Perú",
+		"activities": [
+			{
+				"name": "ObtieneToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "getToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "GoogleAnalyticsApis",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "AlmacenaReporteDiarioLevis_PE",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "AlmacenaReporteDiarioDockers_PE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "POST",
+						"requestBody": "{\n    \"dimensions\": [\n        \n        {\n            \"name\": \"date\"\n        }\n    ],\n    \"metrics\": [\n        {\n            \"name\": \"activeUsers\"\n        },\n        {\n            \"name\": \"engagedSessions\"\n        },\n        {\n            \"name\": \"eventCount\"\n        },\n        {\n            \"name\": \"newUsers\"\n        },\n        {\n            \"name\": \"Sessions\"\n        },\n        {\n            \"name\": \"totalRevenue\"\n        },\n        {\n            \"name\": \"totalUsers\"\n        }\n    ],\n    \"dateRanges\": [\n        {\n            \"startDate\": \"yesterday\",\n            \"endDate\": \"yesterday\"\n        }\n    ],\n    \"limit\": \"100000\"\n}",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('ObtieneToken').output.token}",
+								"type": "Expression"
+							},
+							"Content-Type": "application/json"
+						},
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "batchGetReport_levis_PE",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_levis_resumen_PE",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "2_Parse_to_parquet_PE",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "AlmacenaReporteDiarioLevis_PE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "2_Parse_to_parquet_resumen_PE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "3_GA_Consolida_PE",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "2_Parse_to_parquet_PE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "3_GA_Consolida_resumen_PE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "5_Copia_Capa_Consumo_resumen_PE",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "3_GA_Consolida_PE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "5_Copia_Capa_Consumo_resumen",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"SourceFileFolder": "/edwlakeprd/",
+						"SourceFileDirectory": "/2_standar_zone/DATALAKE/DL_MARKETING/DL_GOOGLEANALYTICS_PE_RESUMEN/PARQUET/",
+						"DestinationFileFolder": "/edwlakeprd/",
+						"DestinationFileDirectory": "/3_consumption_zone/Datalake/DL_MARKETING/GOOGLE_ANALYTICS_PE/GA_VISITAS_RESUMEN/"
+					}
+				}
+			},
+			{
+				"name": "AlmacenaReporteDiarioDockers_PE",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ObtieneToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "POST",
+						"requestBody": "{\n    \"dimensions\": [\n        \n        {\n            \"name\": \"date\"\n        }\n    ],\n    \"metrics\": [\n        {\n            \"name\": \"activeUsers\"\n        },\n        {\n            \"name\": \"engagedSessions\"\n        },\n        {\n            \"name\": \"eventCount\"\n        },\n        {\n            \"name\": \"newUsers\"\n        },\n        {\n            \"name\": \"Sessions\"\n        },\n        {\n            \"name\": \"totalRevenue\"\n        },\n        {\n            \"name\": \"totalUsers\"\n        }\n    ],\n    \"dateRanges\": [\n        {\n            \"startDate\": \"yesterday\",\n            \"endDate\": \"yesterday\"\n        }\n    ],\n    \"limit\": \"100000\"\n}",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('ObtieneToken').output.token}",
+								"type": "Expression"
+							},
+							"Content-Type": "application/json"
+						},
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "batchGetReport_dockers_PE",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_dockers_resumen_PE",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Social Media/Google Analytics/Resumen/Peru"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-02-20T18:36:26Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

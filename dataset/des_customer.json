@@ -1,0 +1,100 @@
+{
+	"name": "des_customer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleChannel",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "Country",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "District",
+				"type": "varchar"
+			},
+			{
+				"name": "Division",
+				"type": "varchar"
+			},
+			{
+				"name": "SaleOrganisation",
+				"type": "varchar"
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "BusinessName",
+				"type": "varchar"
+			},
+			{
+				"name": "HomeNumberStreet",
+				"type": "varchar"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxCode",
+				"type": "varchar"
+			},
+			{
+				"name": "PaymentTerm",
+				"type": "varchar"
+			},
+			{
+				"name": "BirthDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Email",
+				"type": "varchar"
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "Rut",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Customer"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

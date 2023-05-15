@@ -1,0 +1,62 @@
+{
+	"name": "DM_ZVMM058CARACT_ST",
+	"properties": {
+		"description": "Maestro de Clientes",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_ZVMM058CARACT.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "ATINN",
+				"type": "String"
+			},
+			{
+				"name": "ATWRT",
+				"type": "String"
+			},
+			{
+				"name": "ATZHL",
+				"type": "String"
+			},
+			{
+				"name": "ADZHL",
+				"type": "String"
+			},
+			{
+				"name": "SPRAS",
+				"type": "String"
+			},
+			{
+				"name": "ADZHL2",
+				"type": "String"
+			},
+			{
+				"name": "ATWTB",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

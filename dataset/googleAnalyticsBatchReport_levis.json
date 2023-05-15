@@ -1,0 +1,112 @@
+{
+	"name": "googleAnalyticsBatchReport_levis",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Social Media/Google Analytics/0 Landing Zone/Json"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('levis_batchreport_',formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1),'yyyyMMdd'),'.JSON')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('0_landing_zone/Marketing/GoogleAnalytics/Json/',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1)), 'MM'))",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"dimensionHeaders": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"metricHeaders": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"type": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"rows": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"dimensionValues": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"value": {
+											"type": "string"
+										}
+									}
+								}
+							},
+							"metricValues": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"value": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"rowCount": {
+					"type": "integer"
+				},
+				"metadata": {
+					"type": "object",
+					"properties": {
+						"schemaRestrictionResponse": {
+							"type": "object"
+						},
+						"currencyCode": {
+							"type": "string"
+						},
+						"timeZone": {
+							"type": "string"
+						},
+						"subjectToThresholding": {
+							"type": "boolean"
+						}
+					}
+				},
+				"kind": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

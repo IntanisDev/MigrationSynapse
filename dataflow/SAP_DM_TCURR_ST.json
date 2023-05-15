@@ -1,0 +1,81 @@
+{
+	"name": "SAP_DM_TCURR_ST",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/01 Standard"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_TCURR_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_TCURR_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          KURST as string,",
+				"          FCURR as string,",
+				"          TCURR as string,",
+				"          GDATU as string,",
+				"          UKURS as string,",
+				"          FFACT as string,",
+				"          TFACT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(KURST == 'EURX' && KURST=='M' && KURST=='Z') ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          KURST as string,",
+				"          FCURR as string,",
+				"          TCURR as string,",
+				"          GDATU as string,",
+				"          UKURS as string,",
+				"          FFACT as string,",
+				"          TFACT as string",
+				"     ),",
+				"     partitionFileNames:['DM_TCURR.csv'],",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          KURST,",
+				"          FCURR,",
+				"          TCURR,",
+				"          GDATU,",
+				"          UKURS,",
+				"          FFACT,",
+				"          TFACT",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

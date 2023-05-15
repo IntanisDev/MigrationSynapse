@@ -1,0 +1,31 @@
+{
+	"name": "BaseABPPeru",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_BaseABP_PE_DL",
+						"type": "DatasetReference"
+					},
+					"name": "abpPeru"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BaseABP",
+						"type": "DatasetReference"
+					},
+					"name": "ABPperuDB"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\t{PERIODO } as string,\n\t\t{NRO_DOCUMENTO  } as string,\n\t\t{FECHA_DOCUMENTO   } as string,\n\t\t{COD_CLIENTE       } as string,\n\t\tMONEDA as string,\n\t\t{SOCIEDAD_CO    } as string,\n\t\t{COD_SOCIEDAD   } as string,\n\t\tCOD_TIENDA as string,\n\t\t{COD_CANAL } as string,\n\t\t{COD_CEBE  } as string,\n\t\t{COD_MARCA } as string,\n\t\t{COD_CALIDAD    } as string,\n\t\tCOD_GENERO as string,\n\t\t{COD_LINEA } as string,\n\t\t{CODIGO_TIPO    } as string,\n\t\tCOD_PRENDA as string,\n\t\t{COD_TIPOARTICULO  } as string,\n\t\t{INGRESOS_ABP      } as string,\n\t\t{COSTO_ABP         } as string,\n\t\t{UNIDADES_ABP      } as string,\n\t\tCOD_GRADOMODA as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> abpPeru\nabpPeru sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tPERIODO as string,\n\t\tNRO_DOCUMENTO as string,\n\t\tFECHA_DOCUMENTO as string,\n\t\tCOD_CLIENTE as string,\n\t\tMONEDA as string,\n\t\tSOCIEDAD_CO as string,\n\t\tCOD_SOCIEDAD as string,\n\t\tCOD_TIENDA as string,\n\t\tCOD_CANAL as string,\n\t\tCOD_CEBE as string,\n\t\tCOD_MARCA as string,\n\t\tCOD_CALIDAD as string,\n\t\tCOD_GENERO as string,\n\t\tCOD_LINEA as string,\n\t\tCODIGO_TIPO as string,\n\t\tCOD_PRENDA as string,\n\t\tCOD_TIPOARTICULO as string,\n\t\tINGRESOS_ABP as string,\n\t\tCOSTOABP as string,\n\t\tUNIDADES_ABP as string,\n\t\tCOD_GRADOMODA as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tPERIODO = {PERIODO },\n\t\tNRO_DOCUMENTO = {NRO_DOCUMENTO  },\n\t\tFECHA_DOCUMENTO = {FECHA_DOCUMENTO   },\n\t\tCOD_CLIENTE = {COD_CLIENTE       },\n\t\tMONEDA,\n\t\tSOCIEDAD_CO = {SOCIEDAD_CO    },\n\t\tCOD_SOCIEDAD = {COD_SOCIEDAD   },\n\t\tCOD_TIENDA,\n\t\tCOD_CANAL = {COD_CANAL },\n\t\tCOD_CEBE = {COD_CEBE  },\n\t\tCOD_MARCA = {COD_MARCA },\n\t\tCOD_CALIDAD = {COD_CALIDAD    },\n\t\tCOD_GENERO,\n\t\tCOD_LINEA = {COD_LINEA },\n\t\tCODIGO_TIPO = {CODIGO_TIPO    },\n\t\tCOD_PRENDA,\n\t\tCOD_TIPOARTICULO = {COD_TIPOARTICULO  },\n\t\tINGRESOS_ABP = {INGRESOS_ABP      },\n\t\tCOSTOABP = {COSTO_ABP         },\n\t\tUNIDADES_ABP = {UNIDADES_ABP      },\n\t\tCOD_GRADOMODA\n\t)) ~> ABPperuDB"
+		}
+	}
+}

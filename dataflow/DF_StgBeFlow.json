@@ -1,0 +1,73 @@
+{
+	"name": "DF_StgBeFlow",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0000_BeFlow"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Base_BeFlow_DL",
+						"type": "DatasetReference"
+					},
+					"name": "LogisticaBeflowDL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Stg_BeFlow",
+						"type": "DatasetReference"
+					},
+					"name": "DesDBEspejo"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FormateaFecha"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          REMOTE_ORDER_ID as string,",
+				"          DTE as string,",
+				"          ACTION as string,",
+				"          DATE as string,",
+				"          ORDER_NEW_STATUS as string,",
+				"          OMS_ORDER_ID as string,",
+				"          LOG_ID as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> LogisticaBeflowDL",
+				"LogisticaBeflowDL derive(DATE2 = concat(substring(DATE,1,10),' ',substring(DATE,12,8)),",
+				"          DATE3 = toDate(concat(substring(DATE,1,10),' ',substring(DATE,12,8)),'YYYY-MM-DD')) ~> FormateaFecha",
+				"FormateaFecha sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          REMOTE_ORDER_ID,",
+				"          DTE,",
+				"          ACTION,",
+				"          DATE = DATE2,",
+				"          ORDER_NEW_STATUS,",
+				"          OMS_ORDER_ID,",
+				"          LOG_ID,",
+				"          fecha = DATE3",
+				"     )) ~> DesDBEspejo"
+			]
+		}
+	}
+}

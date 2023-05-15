@@ -1,0 +1,98 @@
+{
+	"name": "Base_CSV_Discount",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "STORE_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "TRANSTYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "CAIS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSNUM",
+				"type": "varchar"
+			},
+			{
+				"name": "LINE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSACTION_DATE",
+				"type": "char"
+			},
+			{
+				"name": "COUNTRY",
+				"type": "varchar"
+			},
+			{
+				"name": "WAIST",
+				"type": "varchar"
+			},
+			{
+				"name": "SIZE",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "PRICE",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "DISCOUNT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "DISCOUNT_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "CODE_PROMOTION",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCRIPTION_PROMOTION",
+				"type": "varchar"
+			},
+			{
+				"name": "DISCOUNT_REASON",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Discount"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

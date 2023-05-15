@@ -1,0 +1,54 @@
+{
+	"name": "DM_T009B",
+	"properties": {
+		"description": "Periodos de las variantes de ejercicio",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "PERIV",
+				"type": "varchar"
+			},
+			{
+				"name": "BDATJ",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BUMON",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BUTAG",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "POPER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RELJR",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "T009B"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,522 @@
+{
+	"name": "Fiscal_Calendar",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Table TimePeriod",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select *\nfrom TimePeriod2\nwhere timeperiodid  >= '2023-01-01'\n  order by TimePeriodId;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TimePeriodId",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TimePeriodId"
+								}
+							},
+							{
+								"source": {
+									"name": "Date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Date"
+								}
+							},
+							{
+								"source": {
+									"name": "DateName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DateName"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfMonth",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "DayOfMonth"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfMonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DayOfMonthName"
+								}
+							},
+							{
+								"source": {
+									"name": "HalfYear",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "HalfYear"
+								}
+							},
+							{
+								"source": {
+									"name": "HalfYearDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HalfYearDate"
+								}
+							},
+							{
+								"source": {
+									"name": "HalfYearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HalfYearName"
+								}
+							},
+							{
+								"source": {
+									"name": "Month",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Month"
+								}
+							},
+							{
+								"source": {
+									"name": "MonthDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "MonthDate"
+								}
+							},
+							{
+								"source": {
+									"name": "MonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MonthName"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousDate"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousHalfYearDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousHalfYearDate"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousHalfYearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousHalfYearName"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousMonthDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousMonthDate"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousMonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousMonthName"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousTrimesterDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousTrimesterDate"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousTrimesterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousTrimesterName"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousWeekDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousWeekDate"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousWeekName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousWeekName"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousYear",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "PreviousYear"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousYearDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousYearDate"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousYearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousYearName"
+								}
+							},
+							{
+								"source": {
+									"name": "Quarter",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Quarter"
+								}
+							},
+							{
+								"source": {
+									"name": "QuarterDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "QuarterDate"
+								}
+							},
+							{
+								"source": {
+									"name": "QuarterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "QuarterName"
+								}
+							},
+							{
+								"source": {
+									"name": "Trimester",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Trimester"
+								}
+							},
+							{
+								"source": {
+									"name": "TrimesterDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TrimesterDate"
+								}
+							},
+							{
+								"source": {
+									"name": "TrimesterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TrimesterName"
+								}
+							},
+							{
+								"source": {
+									"name": "Week",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Week"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "WeekDate"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WeekName"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekRange",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WeekRange"
+								}
+							},
+							{
+								"source": {
+									"name": "Year",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Year"
+								}
+							},
+							{
+								"source": {
+									"name": "YearDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "YearDate"
+								}
+							},
+							{
+								"source": {
+									"name": "YearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "YearName"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalHalfYear",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalHalfYear"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalMonthDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalMonthDate"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalMonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalMonthName"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalQuarterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalQuarterName"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalWeekName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalWeekName"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalYear",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalYear"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalWeekDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "FiscalWeekDate"
+								}
+							},
+							{
+								"source": {
+									"name": "InicioMesFiscal",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "InicioMesFical"
+								}
+							},
+							{
+								"source": {
+									"name": "Ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ant1"
+								}
+							},
+							{
+								"source": {
+									"name": "Ant2",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ant2"
+								}
+							},
+							{
+								"source": {
+									"name": "W_Ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "w_ant1"
+								}
+							},
+							{
+								"source": {
+									"name": "InicioQuarterFiscal",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "InicioQuarterFiscal"
+								}
+							},
+							{
+								"source": {
+									"name": "Q_Ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "q_ant1"
+								}
+							},
+							{
+								"source": {
+									"name": "InicioAnoFiscal",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "InicioAnoFiscal"
+								}
+							},
+							{
+								"source": {
+									"name": "Y_Ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "y_ant1"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TimePeriod_bkp_OP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_TimePeriod_BKP",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Contenido Técnico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-21T21:46:19Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,67 @@
+{
+	"name": "SAP_TX_A073_CON",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Transacciones/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_A073_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_A073",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          KAPPL as string,",
+				"          KSCHL as string,",
+				"          VKORG as string,",
+				"          VTWEG as string,",
+				"          MATNR as string,",
+				"          VRKME as string,",
+				"          DATBI as string,",
+				"          DATAB as string,",
+				"          KNUMH as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          KAPPL,",
+				"          KSCHL,",
+				"          VKORG,",
+				"          VTWEG,",
+				"          MATNR,",
+				"          VRKME,",
+				"          DATBI,",
+				"          DATAB,",
+				"          KNUMH",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

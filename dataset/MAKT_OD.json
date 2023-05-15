@@ -1,0 +1,31 @@
+{
+	"name": "MAKT_OD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MAKT_OD_CSV.csv",
+				"folderPath": "0_landing_zone",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT;VKORG;VTWEG;KUNNR;MATNR;ERNAM;ERDAT;SORTL;KDMAT;POSTX;LPRIO;MINLF;MEINS;CHSPL;KZTLF;ANTLF;UNTTO;UEBTO;UEBTK;WERKS;RDPRF;MEGRU;J_1BTXSDC;VWPOS",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

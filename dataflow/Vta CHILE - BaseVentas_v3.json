@@ -1,0 +1,33 @@
+{
+	"name": "Vta CHILE - BaseVentas_v3",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM049_RW",
+						"type": "DatasetReference"
+					},
+					"name": "ZCLMM049DL",
+					"description": "Importar datos de Ventas_Chile_DL_v3"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM049_DB",
+						"type": "DatasetReference"
+					},
+					"name": "BDStaging",
+					"description": "Exportar datos a Base_Ventas_v3"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tALMACEN as string,\n\t\tCODIGO as string,\n\t\tCOD1 as string,\n\t\tCOD2 as string,\n\t\tCOD3 as string,\n\t\tCOD4 as string,\n\t\tDATE1 as string,\n\t\tTIME1 as string,\n\t\tUSER1 as string,\n\t\tLINEA as string,\n\t\tARTICULO as string,\n\t\tDESCRIPCION as string,\n\t\tCOD5 as string,\n\t\tDATE2 as string,\n\t\tTIME2 as string,\n\t\tUSER2 as string,\n\t\tCOD6 as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> ZCLMM049DL\nZCLMM049DL sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tALMACEN as string,\n\t\tCODIGO as string,\n\t\tCOD1 as string,\n\t\tCOD2 as string,\n\t\tCOD3 as string,\n\t\tCOD4 as string,\n\t\tDATE1 as string,\n\t\tTIME1 as string,\n\t\tUSER1 as string,\n\t\tLINEA as string,\n\t\tARTICULO as string,\n\t\tDESCRIPCION as string,\n\t\tCOD5 as string,\n\t\tDATE2 as string,\n\t\tTIME2 as string,\n\t\tUSER2 as string,\n\t\tCOD6 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tpartitionBy('roundRobin', 5)) ~> BDStaging"
+		}
+	}
+}

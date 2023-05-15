@@ -1,0 +1,31 @@
+{
+	"name": "Trf PERU - TraficoHistoricoPeru",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Trafico_Peru_DL",
+						"type": "DatasetReference"
+					},
+					"name": "TrfPeruDL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Trafico_Historico_Peru",
+						"type": "DatasetReference"
+					},
+					"name": "BDStaging"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tCOD_TIENDA as string,\n\t\tNOMBRE_TIENDA as string,\n\t\tDIAHORA_INICIO as string,\n\t\tDIAHORA_FIN as string,\n\t\tENTRADAS as string,\n\t\tSALIDAS as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> TrfPeruDL\nTrfPeruDL sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_TIENDA as string,\n\t\tNOMBRE_TIENDA as string,\n\t\tDIAHORA_INICIO as string,\n\t\tDIAHORA_FIN as string,\n\t\tENTRADAS as string,\n\t\tSALIDAS as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_TIENDA,\n\t\tNOMBRE_TIENDA,\n\t\tDIAHORA_INICIO,\n\t\tDIAHORA_FIN,\n\t\tENTRADAS,\n\t\tSALIDAS\n\t),\n\tpartitionBy('roundRobin', 5)) ~> BDStaging"
+		}
+	}
+}

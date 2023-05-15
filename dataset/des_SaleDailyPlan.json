@@ -1,0 +1,83 @@
+{
+	"name": "des_SaleDailyPlan",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SaleDailyPlanId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransactionDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "AuditTrailId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleAFP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleIP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "SaleDailyPlan"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

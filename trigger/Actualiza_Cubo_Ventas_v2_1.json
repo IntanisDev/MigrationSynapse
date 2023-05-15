@@ -1,0 +1,24 @@
+{
+	"name": "Actualiza_Cubo_Ventas_v2_1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Procesar_Cubo_Ventas_v2",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-09-07T07:50:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

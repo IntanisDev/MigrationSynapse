@@ -1,0 +1,140 @@
+{
+	"name": "InstoreView_Venta_ST_Automatico",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/InstoreView/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('InstoreView_Venta_',formatDateTime(adddays(utcnow(),-1),'yyyyMMdd') ,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "2_standar_zone/DATALAKE/DL_INSTOREVIEW/Venta",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "'"
+		},
+		"schema": [
+			{
+				"name": "Fecha",
+				"type": "String"
+			},
+			{
+				"name": "Rut",
+				"type": "String"
+			},
+			{
+				"name": "Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Sub_Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "Local",
+				"type": "String"
+			},
+			{
+				"name": "Comuna",
+				"type": "String"
+			},
+			{
+				"name": "Nombre_de_Local",
+				"type": "String"
+			},
+			{
+				"name": "Codigo_Local",
+				"type": "String"
+			},
+			{
+				"name": "Direccion",
+				"type": "String"
+			},
+			{
+				"name": "Linea",
+				"type": "String"
+			},
+			{
+				"name": "SKU",
+				"type": "String"
+			},
+			{
+				"name": "Marca",
+				"type": "String"
+			},
+			{
+				"name": "Descripcion_Producto",
+				"type": "String"
+			},
+			{
+				"name": "Genero",
+				"type": "String"
+			},
+			{
+				"name": "Modelo",
+				"type": "String"
+			},
+			{
+				"name": "Temporada",
+				"type": "String"
+			},
+			{
+				"name": "Estilo",
+				"type": "String"
+			},
+			{
+				"name": "Categoria",
+				"type": "String"
+			},
+			{
+				"name": "Cod_Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Costos_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Ventas_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Precios_B2B",
+				"type": "String"
+			},
+			{
+				"name": "Contribucion",
+				"type": "String"
+			},
+			{
+				"name": "MG_Porcentaje",
+				"type": "String"
+			},
+			{
+				"name": "Ventas_PVP_s_IVA",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

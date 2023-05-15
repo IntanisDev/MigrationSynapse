@@ -1,0 +1,81 @@
+{
+	"name": "XLS_Location_Andes",
+	"properties": {
+		"activities": [
+			{
+				"name": "XLS_Location_Andes",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT [Legacy store number]\n      ,[New Store ID]\n      ,[ERP Source Code]\n      ,[New ERP Cust ID]\n      ,[Expected Business Model]\n      ,[Open Date]\n      ,[Close date]\n      ,[Gross Store Size (sqm)]\n      ,[Gross Store Selling Size (sqm)]\n      ,[City(Metro Area)]\n      ,[Store Country]\n      ,[Comp Reset Date]\n      ,[Comp Reset Reason Code]\n      ,[Partner Group Type]\n      ,[Region]\n      ,[MD Geography]\n      ,[Country Group]\n      ,[Territory]\n      ,[District]\n      ,[Store name]\n      ,[Franchise Partner Group Name]\n      ,[Channel]\n      ,[SubChannel]\n      ,[Brand]\n      ,[Store Type]\n      ,[Rowid Object]\n      ,[Hub State Indicator]\n      ,[Nuevo Distrito]\n  FROM [andes].[vw_Location_Andes]\n  order by [Store Country], [Legacy store number]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "edw-prd-WorkspaceDefaultStorage",
+								"type": "LinkedServiceReference"
+							},
+							"path": "edwlakeprd"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "XLS_Location_Andes_Origen",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "XLS_Location_Andes_Destino",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-04-20T20:16:46Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

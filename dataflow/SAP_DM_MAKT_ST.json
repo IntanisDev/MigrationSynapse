@@ -1,0 +1,72 @@
+{
+	"name": "SAP_DM_MAKT_ST",
+	"properties": {
+		"description": "Textos breves de artículos",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/01 Standard"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_MAKT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_MAKT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          MATNR as string,",
+				"          SPRAS as string,",
+				"          MAKTX as string,",
+				"          MAKTG as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(SPRAS=='S') ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          MANDT as string,",
+				"          MATNR as string,",
+				"          SPRAS as string,",
+				"          MAKTX as string,",
+				"          MAKTG as string",
+				"     ),",
+				"     partitionFileNames:['DM_MAKT.csv'],",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          MATNR,",
+				"          SPRAS,",
+				"          MAKTX,",
+				"          MAKTG",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

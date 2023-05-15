@@ -1,0 +1,23 @@
+{
+	"name": "Base_Stg_BeFlow",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "KpiLogistico_Espejo"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

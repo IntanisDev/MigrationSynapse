@@ -1,0 +1,118 @@
+{
+	"name": "DM_CUENTA_MAYOR_CON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/3 Consumption Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_CUENTA_MAYOR.PARQUET",
+				"folderPath": "3_consumption_zone/Datalake/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "MANDANTE",
+				"type": "UTF8"
+			},
+			{
+				"name": "Plan_de_cuentas",
+				"type": "UTF8"
+			},
+			{
+				"name": "Numero_Cuenta",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cuenta_de_balance",
+				"type": "UTF8"
+			},
+			{
+				"name": "Numero_Cuenta_corto",
+				"type": "UTF8"
+			},
+			{
+				"name": "Numero_de_cuenta_grupo",
+				"type": "UTF8"
+			},
+			{
+				"name": "Fecha_creacion",
+				"type": "UTF8"
+			},
+			{
+				"name": "Responsable",
+				"type": "UTF8"
+			},
+			{
+				"name": "Tp_cta_beneficios",
+				"type": "UTF8"
+			},
+			{
+				"name": "Grupo_cuentas",
+				"type": "UTF8"
+			},
+			{
+				"name": "Numero_cuenta_tipo",
+				"type": "UTF8"
+			},
+			{
+				"name": "Sociedad_GL",
+				"type": "UTF8"
+			},
+			{
+				"name": "Marca_Borrado",
+				"type": "UTF8"
+			},
+			{
+				"name": "Bloqueo_Creacion",
+				"type": "UTF8"
+			},
+			{
+				"name": "Bloqueo_Contable",
+				"type": "UTF8"
+			},
+			{
+				"name": "Bloqueo_Planificacion",
+				"type": "UTF8"
+			},
+			{
+				"name": "Criterio_busqueda_1",
+				"type": "UTF8"
+			},
+			{
+				"name": "Area_Funcional",
+				"type": "UTF8"
+			},
+			{
+				"name": "Descripcion_Breve",
+				"type": "UTF8"
+			},
+			{
+				"name": "Descripcion_Larga",
+				"type": "UTF8"
+			},
+			{
+				"name": "Criterio_busqueda_2",
+				"type": "UTF8"
+			},
+			{
+				"name": "usgaap_cuenta",
+				"type": "UTF8"
+			},
+			{
+				"name": "usgaap_descripcion",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

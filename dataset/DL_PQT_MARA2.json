@@ -1,0 +1,181 @@
+{
+	"name": "DL_PQT_MARA2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/04 Consumption"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "FECHA_CREACION",
+				"type": "varchar"
+			},
+			{
+				"name": "NUMERO_GTIN",
+				"type": "varchar"
+			},
+			{
+				"name": "GRUPO_ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "GENERICO",
+				"type": "varchar"
+			},
+			{
+				"name": "AÑO_ESTACION",
+				"type": "varchar"
+			},
+			{
+				"name": "TALLA",
+				"type": "varchar"
+			},
+			{
+				"name": "MODELO",
+				"type": "varchar"
+			},
+			{
+				"name": "BLOQUEO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TEMPORADA_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_TEMPORADA_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_AÑO_ESTACION_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_AÑO_ESTACION_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GRADO_MODA_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_GRADO_MODA_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GRADO_MODA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TEMPORADA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ROYALTI",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_GRADO_MODA",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_TEMPORADA",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_ROYALTI",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_COLOR",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_COLOR",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_LARGO",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_LARGO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERICO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "DENOMINACION_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "PC9",
+				"type": "varchar"
+			},
+			{
+				"name": "PC13",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "MARA2"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

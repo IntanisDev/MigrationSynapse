@@ -1,0 +1,112 @@
+{
+	"name": "TX_Carga_AFP_2022_BO_CON",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Transacciones/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_Carga_AFP_2022_BO_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_Carga_AFP_2022_BO",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Periodo as string,",
+				"          Sociedad as string,",
+				"          {Día} as string,",
+				"          {Canal Distribución} as string,",
+				"          Cliente as string,",
+				"          {Tienda /Centro} as string,",
+				"          {Tipo de Articulo} as string,",
+				"          Marca as string,",
+				"          Calidad as string,",
+				"          {Genero } as string,",
+				"          Linea as string,",
+				"          Tipo as string,",
+				"          Prenda as string,",
+				"          {Venta M$} as string,",
+				"          {Costo M$} as string,",
+				"          {Volumen de Venta} as string,",
+				"          {Grado de Moda} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"select1 derive(VentaM_ = toDecimal(VentaM_,38,2),",
+				"          CostoM_ = toDecimal(CostoM_,38,2),",
+				"          Volumen_de_Venta = toDecimal(Volumen_de_Venta,38,3)) ~> derivedColumn1",
+				"source1 select(mapColumn(",
+				"          Periodo,",
+				"          Sociedad,",
+				"          Dia = {Día},",
+				"          Canal_Distribucion = {Canal Distribución},",
+				"          Cliente,",
+				"          Tienda_Centro = {Tienda /Centro},",
+				"          Tipo_de_Articulo = {Tipo de Articulo},",
+				"          Marca,",
+				"          Calidad,",
+				"          Genero = {Genero },",
+				"          Linea,",
+				"          Tipo,",
+				"          Prenda,",
+				"          VentaM_ = {Venta M$},",
+				"          CostoM_ = {Costo M$},",
+				"          Volumen_de_Venta = {Volumen de Venta},",
+				"          Grado_de_Moda = {Grado de Moda}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Periodo,",
+				"          Sociedad,",
+				"          Dia,",
+				"          Canal_Distribucion,",
+				"          Cliente,",
+				"          Tienda_Centro,",
+				"          Tipo_de_Articulo,",
+				"          Marca,",
+				"          Calidad,",
+				"          Genero,",
+				"          Linea,",
+				"          Tipo,",
+				"          Prenda,",
+				"          VentaM_,",
+				"          CostoM_,",
+				"          Volumen_de_Venta,",
+				"          Grado_de_Moda",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

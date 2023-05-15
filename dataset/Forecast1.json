@@ -1,0 +1,148 @@
+{
+	"name": "Forecast1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ForecastId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuditTrailId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Cost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GenderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Margin",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "QualityId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Sales",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "TransactionDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionGradeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionSeasonId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductGenericId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductModelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Forecast1"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

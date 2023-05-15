@@ -1,0 +1,24 @@
+{
+	"name": "Logistica_carga_fact",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Secuencia de carga Cubo Logistico",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-12-06T03:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

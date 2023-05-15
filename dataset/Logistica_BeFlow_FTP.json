@@ -1,0 +1,57 @@
+{
+	"name": "Logistica_BeFlow_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FtpServer_tiendaRMS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "BEFlow.csv",
+				"folderPath": "BEFlow"
+			},
+			"columnDelimiter": ",",
+			"encodingName": "UTF-8",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "REMOTE_ORDER_ID",
+				"type": "String"
+			},
+			{
+				"name": "DTE",
+				"type": "String"
+			},
+			{
+				"name": "ACTION",
+				"type": "String"
+			},
+			{
+				"name": "DATE",
+				"type": "String"
+			},
+			{
+				"name": "ORDER_NEW_STATUS",
+				"type": "String"
+			},
+			{
+				"name": "OMS_ORDER_ID",
+				"type": "String"
+			},
+			{
+				"name": "LOG_ID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,72 @@
+{
+	"name": "RetailSale_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_BI_PRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "RetailSaleId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RetailDocumentId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Total",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "DocumentTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HourId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PaymentMethodId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RetailSale"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

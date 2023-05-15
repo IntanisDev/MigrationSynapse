@@ -1,0 +1,270 @@
+{
+	"name": "DM_T005_ST",
+	"properties": {
+		"description": "Países",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_T005.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "LAND1",
+				"type": "String"
+			},
+			{
+				"name": "LANDK",
+				"type": "String"
+			},
+			{
+				"name": "LNPLZ",
+				"type": "String"
+			},
+			{
+				"name": "PRPLZ",
+				"type": "String"
+			},
+			{
+				"name": "ADDRS",
+				"type": "String"
+			},
+			{
+				"name": "XPLZS",
+				"type": "String"
+			},
+			{
+				"name": "XPLPF",
+				"type": "String"
+			},
+			{
+				"name": "SPRAS",
+				"type": "String"
+			},
+			{
+				"name": "XLAND",
+				"type": "String"
+			},
+			{
+				"name": "XADDR",
+				"type": "String"
+			},
+			{
+				"name": "NMFMT",
+				"type": "String"
+			},
+			{
+				"name": "XREGS",
+				"type": "String"
+			},
+			{
+				"name": "XPLST",
+				"type": "String"
+			},
+			{
+				"name": "INTCA",
+				"type": "String"
+			},
+			{
+				"name": "INTCA3",
+				"type": "String"
+			},
+			{
+				"name": "INTCN3",
+				"type": "String"
+			},
+			{
+				"name": "XEGLD",
+				"type": "String"
+			},
+			{
+				"name": "XSKFN",
+				"type": "String"
+			},
+			{
+				"name": "XMWSN",
+				"type": "String"
+			},
+			{
+				"name": "LNBKN",
+				"type": "String"
+			},
+			{
+				"name": "PRBKN",
+				"type": "String"
+			},
+			{
+				"name": "LNBLZ",
+				"type": "String"
+			},
+			{
+				"name": "PRBLZ",
+				"type": "String"
+			},
+			{
+				"name": "LNPSK",
+				"type": "String"
+			},
+			{
+				"name": "PRPSK",
+				"type": "String"
+			},
+			{
+				"name": "XPRBK",
+				"type": "String"
+			},
+			{
+				"name": "BNKEY",
+				"type": "String"
+			},
+			{
+				"name": "LNBKS",
+				"type": "String"
+			},
+			{
+				"name": "PRBKS",
+				"type": "String"
+			},
+			{
+				"name": "XPRSO",
+				"type": "String"
+			},
+			{
+				"name": "PRUIN",
+				"type": "String"
+			},
+			{
+				"name": "UINLN",
+				"type": "String"
+			},
+			{
+				"name": "LNST1",
+				"type": "String"
+			},
+			{
+				"name": "PRST1",
+				"type": "String"
+			},
+			{
+				"name": "LNST2",
+				"type": "String"
+			},
+			{
+				"name": "PRST2",
+				"type": "String"
+			},
+			{
+				"name": "LANDD",
+				"type": "String"
+			},
+			{
+				"name": "KALSM",
+				"type": "String"
+			},
+			{
+				"name": "LANDA",
+				"type": "String"
+			},
+			{
+				"name": "WECHF",
+				"type": "String"
+			},
+			{
+				"name": "LKVRZ",
+				"type": "String"
+			},
+			{
+				"name": "INTCN",
+				"type": "String"
+			},
+			{
+				"name": "XDEZP",
+				"type": "String"
+			},
+			{
+				"name": "DATFM",
+				"type": "String"
+			},
+			{
+				"name": "CURIN",
+				"type": "String"
+			},
+			{
+				"name": "CURHA",
+				"type": "String"
+			},
+			{
+				"name": "WAERS",
+				"type": "String"
+			},
+			{
+				"name": "KURST",
+				"type": "String"
+			},
+			{
+				"name": "AFAPL",
+				"type": "String"
+			},
+			{
+				"name": "GWGWRT",
+				"type": "String"
+			},
+			{
+				"name": "UMRWRT",
+				"type": "String"
+			},
+			{
+				"name": "KZRBWB",
+				"type": "String"
+			},
+			{
+				"name": "XANZUM",
+				"type": "String"
+			},
+			{
+				"name": "CTNCONCEPT",
+				"type": "String"
+			},
+			{
+				"name": "KZSRV",
+				"type": "String"
+			},
+			{
+				"name": "XXINVE",
+				"type": "String"
+			},
+			{
+				"name": "SUREG",
+				"type": "String"
+			},
+			{
+				"name": "LANDGRP_VP",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

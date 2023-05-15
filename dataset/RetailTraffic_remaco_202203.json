@@ -1,0 +1,49 @@
+{
+	"name": "RetailTraffic_remaco_202203",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Traffic",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HourId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "RetailTraffic_remaco_202203"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

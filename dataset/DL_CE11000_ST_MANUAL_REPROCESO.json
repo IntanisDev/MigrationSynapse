@@ -1,0 +1,418 @@
+{
+	"name": "DL_CE11000_ST_MANUAL_REPROCESO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ce11000_202204.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_VENTAS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "PALEDGER",
+				"type": "String"
+			},
+			{
+				"name": "VRGAR",
+				"type": "String"
+			},
+			{
+				"name": "VERSI",
+				"type": "String"
+			},
+			{
+				"name": "PERIO",
+				"type": "String"
+			},
+			{
+				"name": "PAOBJNR",
+				"type": "String"
+			},
+			{
+				"name": "PASUBNR",
+				"type": "String"
+			},
+			{
+				"name": "BELNR",
+				"type": "String"
+			},
+			{
+				"name": "POSNR",
+				"type": "String"
+			},
+			{
+				"name": "HZDAT",
+				"type": "String"
+			},
+			{
+				"name": "USNAM",
+				"type": "String"
+			},
+			{
+				"name": "GJAHR",
+				"type": "String"
+			},
+			{
+				"name": "PERDE",
+				"type": "String"
+			},
+			{
+				"name": "WADAT",
+				"type": "String"
+			},
+			{
+				"name": "FADAT",
+				"type": "String"
+			},
+			{
+				"name": "BUDAT",
+				"type": "String"
+			},
+			{
+				"name": "ALTPERIO",
+				"type": "String"
+			},
+			{
+				"name": "PAPAOBJNR",
+				"type": "String"
+			},
+			{
+				"name": "PAPASUBNR",
+				"type": "String"
+			},
+			{
+				"name": "KNDNR",
+				"type": "String"
+			},
+			{
+				"name": "ARTNR",
+				"type": "String"
+			},
+			{
+				"name": "FKART",
+				"type": "String"
+			},
+			{
+				"name": "FRWAE",
+				"type": "String"
+			},
+			{
+				"name": "KURSF",
+				"type": "String"
+			},
+			{
+				"name": "KURSBK",
+				"type": "String"
+			},
+			{
+				"name": "KURSKZ",
+				"type": "String"
+			},
+			{
+				"name": "REC_WAERS",
+				"type": "String"
+			},
+			{
+				"name": "KAUFN",
+				"type": "String"
+			},
+			{
+				"name": "KDPOS",
+				"type": "String"
+			},
+			{
+				"name": "RKAUFNR",
+				"type": "String"
+			},
+			{
+				"name": "SKOST",
+				"type": "String"
+			},
+			{
+				"name": "PRZNR",
+				"type": "String"
+			},
+			{
+				"name": "BUKRS",
+				"type": "String"
+			},
+			{
+				"name": "KOKRS",
+				"type": "String"
+			},
+			{
+				"name": "WERKS",
+				"type": "String"
+			},
+			{
+				"name": "GSBER",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG",
+				"type": "String"
+			},
+			{
+				"name": "SPART",
+				"type": "String"
+			},
+			{
+				"name": "HRKFT",
+				"type": "String"
+			},
+			{
+				"name": "PLIKZ",
+				"type": "String"
+			},
+			{
+				"name": "KSTAR",
+				"type": "String"
+			},
+			{
+				"name": "PSPNR",
+				"type": "String"
+			},
+			{
+				"name": "KSTRG",
+				"type": "String"
+			},
+			{
+				"name": "RBELN",
+				"type": "String"
+			},
+			{
+				"name": "RPOSN",
+				"type": "String"
+			},
+			{
+				"name": "STO_BELNR",
+				"type": "String"
+			},
+			{
+				"name": "STO_POSNR",
+				"type": "String"
+			},
+			{
+				"name": "PRCTR",
+				"type": "String"
+			},
+			{
+				"name": "PPRCTR",
+				"type": "String"
+			},
+			{
+				"name": "RKESTATU",
+				"type": "String"
+			},
+			{
+				"name": "TIMESTMP",
+				"type": "String"
+			},
+			{
+				"name": "COPA_AWTYP",
+				"type": "String"
+			},
+			{
+				"name": "COPA_AWORG",
+				"type": "String"
+			},
+			{
+				"name": "COPA_BWZPT",
+				"type": "String"
+			},
+			{
+				"name": "COPA_AWSYS",
+				"type": "String"
+			},
+			{
+				"name": "KMMAKL",
+				"type": "String"
+			},
+			{
+				"name": "KMVTNR",
+				"type": "String"
+			},
+			{
+				"name": "WW010",
+				"type": "String"
+			},
+			{
+				"name": "WW020",
+				"type": "String"
+			},
+			{
+				"name": "WW021",
+				"type": "String"
+			},
+			{
+				"name": "WW022",
+				"type": "String"
+			},
+			{
+				"name": "WW023",
+				"type": "String"
+			},
+			{
+				"name": "WW024",
+				"type": "String"
+			},
+			{
+				"name": "WGRU1",
+				"type": "String"
+			},
+			{
+				"name": "MTART",
+				"type": "String"
+			},
+			{
+				"name": "PMATA",
+				"type": "String"
+			},
+			{
+				"name": "KUNRG",
+				"type": "String"
+			},
+			{
+				"name": "WW025",
+				"type": "String"
+			},
+			{
+				"name": "WW026",
+				"type": "String"
+			},
+			{
+				"name": "WW027",
+				"type": "String"
+			},
+			{
+				"name": "WW028",
+				"type": "String"
+			},
+			{
+				"name": "WW029",
+				"type": "String"
+			},
+			{
+				"name": "WW030",
+				"type": "String"
+			},
+			{
+				"name": "WW031",
+				"type": "String"
+			},
+			{
+				"name": "WW032",
+				"type": "String"
+			},
+			{
+				"name": "WW033",
+				"type": "String"
+			},
+			{
+				"name": "WW034",
+				"type": "String"
+			},
+			{
+				"name": "WW035",
+				"type": "String"
+			},
+			{
+				"name": "ABSMG_ME",
+				"type": "String"
+			},
+			{
+				"name": "VV006_ME",
+				"type": "String"
+			},
+			{
+				"name": "ERLOS",
+				"type": "String"
+			},
+			{
+				"name": "KWAKRB",
+				"type": "String"
+			},
+			{
+				"name": "KWKDRB",
+				"type": "String"
+			},
+			{
+				"name": "KWMARB",
+				"type": "String"
+			},
+			{
+				"name": "KWMGRB",
+				"type": "String"
+			},
+			{
+				"name": "KWSKTO",
+				"type": "String"
+			},
+			{
+				"name": "KWSOHD",
+				"type": "String"
+			},
+			{
+				"name": "MRABA",
+				"type": "String"
+			},
+			{
+				"name": "RABAT",
+				"type": "String"
+			},
+			{
+				"name": "ABSMG",
+				"type": "String"
+			},
+			{
+				"name": "VV001",
+				"type": "String"
+			},
+			{
+				"name": "VV002",
+				"type": "String"
+			},
+			{
+				"name": "VV003",
+				"type": "String"
+			},
+			{
+				"name": "VV004",
+				"type": "String"
+			},
+			{
+				"name": "VV005",
+				"type": "String"
+			},
+			{
+				"name": "VV006",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

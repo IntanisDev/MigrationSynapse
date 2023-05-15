@@ -1,0 +1,24 @@
+{
+	"name": "1230_OrquesCuboVentas",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Orquestador Cubo Ventas",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-10-18T12:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

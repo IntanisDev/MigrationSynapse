@@ -1,0 +1,19 @@
+{
+	"name": "batchGetReport_dockers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Google Analytics Reports",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Social Media/Google Analytics/0 Landing Zone/Rest"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/v1beta/properties/266899975:runReport"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

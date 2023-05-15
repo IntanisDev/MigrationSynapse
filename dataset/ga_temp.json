@@ -1,0 +1,58 @@
+{
+	"name": "ga_temp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "test_area/ga_temp",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "fecha",
+				"type": "DATE"
+			},
+			{
+				"name": "activeUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "engagedSessions",
+				"type": "INT32"
+			},
+			{
+				"name": "eventCount",
+				"type": "INT32"
+			},
+			{
+				"name": "newUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "Sessions",
+				"type": "INT32"
+			},
+			{
+				"name": "totalRevenue",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "totalUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "marca",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,89 @@
+{
+	"name": "Actualiza_Timestamp",
+	"properties": {
+		"activities": [
+			{
+				"name": "Actualiza_timestamp",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlPoolSource",
+						"sqlReaderQuery": "select 'VW_VENTA_DIARIA' AS TABLA, fecha_actualizacion from [CONZONE].[vw_timestamp]",
+						"queryTimeout": "00:01:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TABLA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TABLA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "fecha_actualizacion",
+									"type": "DateTime",
+									"physicalType": "smalldatetime"
+								},
+								"sink": {
+									"name": "fecha_actualizacion",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CURRENT_DATETIME",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "FECHA_ACTUALIZACION_TABLA",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Retail/Venta Diaria"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-16T15:22:49Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

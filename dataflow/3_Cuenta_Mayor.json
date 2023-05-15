@@ -1,0 +1,189 @@
+{
+	"name": "3_Cuenta_Mayor",
+	"properties": {
+		"description": "Cuentas de Mayor",
+		"folder": {
+			"name": "Finanzas/Datos Maestros"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "Consumption_Ondemand",
+						"type": "LinkedServiceReference"
+					},
+					"name": "SKA1"
+				},
+				{
+					"linkedService": {
+						"referenceName": "Consumption_Ondemand",
+						"type": "LinkedServiceReference"
+					},
+					"name": "SKAT"
+				},
+				{
+					"linkedService": {
+						"referenceName": "Synapse PRD edw_prd",
+						"type": "LinkedServiceReference"
+					},
+					"name": "USGAAP"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_CUENTA_MAYOR_STD",
+						"type": "DatasetReference"
+					},
+					"name": "CuentaMayor",
+					"description": "Export data to DM_CENTRO_BENEFICIO_STD"
+				}
+			],
+			"transformations": [
+				{
+					"name": "idiomaSKAT"
+				},
+				{
+					"name": "TextoCuenta"
+				},
+				{
+					"name": "lookupUSGAAP"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          KTOPL as string,",
+				"          SAKNR as string,",
+				"          XBILK as string,",
+				"          SAKAN as string,",
+				"          BILKT as string,",
+				"          ERDAT as string,",
+				"          ERNAM as string,",
+				"          GVTYP as string,",
+				"          KTOKS as string,",
+				"          MUSTR as string,",
+				"          VBUND as string,",
+				"          XLOEV as string,",
+				"          XSPEA as string,",
+				"          XSPEB as string,",
+				"          XSPEP as string,",
+				"          MCOD1 as string,",
+				"          FUNC_AREA as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'SKA1',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> SKA1",
+				"source(output(",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          KTOPL as string,",
+				"          SAKNR as string,",
+				"          TXT20 as string,",
+				"          TXT50 as string,",
+				"          MCOD1 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'skat',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> SKAT",
+				"source(output(",
+				"          plan_cuenta as string,",
+				"          cuenta_sap as string,",
+				"          descripcion_sap as string,",
+				"          cuenta_usgaap as string,",
+				"          descripcion_usgaap as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'finanzas',",
+				"     tableName: 'cuentas_usgaap',",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     staged: true) ~> USGAAP",
+				"SKAT filter(SPRAS=='S') ~> idiomaSKAT",
+				"SKA1, idiomaSKAT join(SKA1@MANDT == SKAT@MANDT",
+				"     && SKA1@KTOPL == SKAT@KTOPL",
+				"     && SKA1@SAKNR == SKAT@SAKNR,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> TextoCuenta",
+				"TextoCuenta, USGAAP lookup(SKA1@KTOPL == plan_cuenta",
+				"     && SKA1@SAKNR == cuenta_sap,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookupUSGAAP",
+				"lookupUSGAAP sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          MANDT as string,",
+				"          KTOPL as string,",
+				"          SAKNR as string,",
+				"          XBILK as string,",
+				"          SAKAN as string,",
+				"          BILKT as string,",
+				"          ERDAT as string,",
+				"          ERNAM as string,",
+				"          GVTYP as string,",
+				"          KTOKS as string,",
+				"          MUSTR as string,",
+				"          VBUND as string,",
+				"          XLOEV as string,",
+				"          XSPEA as string,",
+				"          XSPEB as string,",
+				"          XSPEP as string,",
+				"          SKA1_MCOD1 as string,",
+				"          FUNC_AREA as string,",
+				"          SPRAS as string,",
+				"          TXT20 as string,",
+				"          TXT50 as string,",
+				"          SKAT_MCOD1 as string,",
+				"          usgaap_cuenta as string,",
+				"          usgaap_descripcion as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:['DM_CUENTA_MAYOR_STD.PARQUET'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     mapColumn(",
+				"          MANDT = SKA1@MANDT,",
+				"          KTOPL = SKA1@KTOPL,",
+				"          SAKNR = SKA1@SAKNR,",
+				"          XBILK,",
+				"          SAKAN,",
+				"          BILKT,",
+				"          ERDAT,",
+				"          ERNAM,",
+				"          GVTYP,",
+				"          KTOKS,",
+				"          MUSTR,",
+				"          VBUND,",
+				"          XLOEV,",
+				"          XSPEA,",
+				"          XSPEB,",
+				"          XSPEP,",
+				"          SKA1_MCOD1 = SKA1@MCOD1,",
+				"          FUNC_AREA,",
+				"          SPRAS,",
+				"          TXT20,",
+				"          TXT50,",
+				"          SKAT_MCOD1 = SKAT@MCOD1,",
+				"          usgaap_cuenta = cuenta_usgaap,",
+				"          usgaap_descripcion = descripcion_usgaap",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> CuentaMayor"
+			]
+		}
+	}
+}

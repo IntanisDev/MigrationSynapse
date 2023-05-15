@@ -1,0 +1,103 @@
+{
+	"name": "ZCLMM023",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo_Logistico/SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FechaExtrae",
+				"type": "date"
+			},
+			{
+				"name": "PEDIDO",
+				"type": "varchar"
+			},
+			{
+				"name": "SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "FEC_CREACION",
+				"type": "date"
+			},
+			{
+				"name": "Centro_Salida",
+				"type": "varchar"
+			},
+			{
+				"name": "Clasedoc",
+				"type": "varchar"
+			},
+			{
+				"name": "posicion",
+				"type": "varchar"
+			},
+			{
+				"name": "Tienda_Cliente",
+				"type": "varchar"
+			},
+			{
+				"name": "material",
+				"type": "varchar"
+			},
+			{
+				"name": "CantPedido",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Temporada",
+				"type": "varchar"
+			},
+			{
+				"name": "ano",
+				"type": "varchar"
+			},
+			{
+				"name": "cantEntrega",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cantEmbalada",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantDespachado",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantRecepcionado",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SinEntrega",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CONTADOR",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "ZCLMM023"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

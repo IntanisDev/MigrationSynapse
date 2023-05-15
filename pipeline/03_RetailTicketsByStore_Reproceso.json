@@ -1,0 +1,33 @@
+{
+	"name": "03_RetailTicketsByStore_Reproceso",
+	"properties": {
+		"activities": [
+			{
+				"name": "RetailTicketsByStore",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[sales].[RetailTicketsByStore_V3_Reproceso]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0825_Retail"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-06T17:58:21Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

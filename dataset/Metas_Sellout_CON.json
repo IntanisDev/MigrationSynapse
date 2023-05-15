@@ -1,0 +1,98 @@
+{
+	"name": "Metas_Sellout_CON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/InstoreView/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Meta_Sellout.parquet",
+				"folderPath": "3_consumption_zone/Datalake/DL_INSTOREVIEW/Meta",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Locales",
+				"type": "UTF8"
+			},
+			{
+				"name": "marca",
+				"type": "UTF8"
+			},
+			{
+				"name": "genero",
+				"type": "UTF8"
+			},
+			{
+				"name": "Numero_Local",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cod_LOCAL_SAP",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cluster",
+				"type": "UTF8"
+			},
+			{
+				"name": "Zona",
+				"type": "UTF8"
+			},
+			{
+				"name": "M2",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cubicaje",
+				"type": "INT32"
+			},
+			{
+				"name": "semana",
+				"type": "INT32"
+			},
+			{
+				"name": "meta",
+				"type": "INT32"
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "DATE"
+			},
+			{
+				"name": "Week",
+				"type": "INT32"
+			},
+			{
+				"name": "Year",
+				"type": "INT32"
+			},
+			{
+				"name": "Month",
+				"type": "INT32"
+			},
+			{
+				"name": "DayOfMonth",
+				"type": "INT32"
+			},
+			{
+				"name": "Meta_Distribuida",
+				"type": "INT32"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

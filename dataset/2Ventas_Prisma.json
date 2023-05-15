@@ -1,0 +1,52 @@
+{
+	"name": "2Ventas_Prisma",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "STORE_NO",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 0
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "NETO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UNIDADES",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FUENTE",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "VENTAS_PRISMA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

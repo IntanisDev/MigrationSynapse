@@ -1,0 +1,42 @@
+{
+	"name": "Currency",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "CurrencyId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ShortDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "LongDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Currency"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,106 @@
+{
+	"name": "03_Ventas_Cadena_bkp",
+	"properties": {
+		"activities": [
+			{
+				"name": "0825_BaseVentas_CL_PE",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_01_BaseVentas_v2_CL_PE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_FactNewSale",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_BaseVentas_BO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_02_FactNewSale_v3",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_Product",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_FactNewSale",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_03_Product_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_ProductAttributes",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_Product",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_04_ProductAttributes",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_BaseVentas_BO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_BaseVentas_CL_PE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_01_BaseVentas_BOL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones/bkp"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-15T22:18:13Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

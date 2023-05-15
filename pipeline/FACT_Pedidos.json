@@ -1,0 +1,83 @@
+{
+	"name": "FACT_Pedidos",
+	"properties": {
+		"activities": [
+			{
+				"name": "Pedidos Cliente",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Fact_pedidos_cliente",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/0_landing_zone"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Pedidos Tienda",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Pedidos Cliente",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Fact_pedidos_tienda",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/0_landing_zone"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"sourceStagingConcurrency": 1
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-05T20:54:43Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

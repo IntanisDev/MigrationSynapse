@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [RetailTrafficId]\n,[StoreId]\n,[TimePeriodId]\n,[Traffic]\n,[HourId]\n,[SaleOrganisationId]\n FROM [dbo].[TRAFICO]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "consumption",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

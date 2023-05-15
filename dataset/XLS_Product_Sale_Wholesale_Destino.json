@@ -1,0 +1,28 @@
+{
+	"name": "XLS_Product_Sale_Wholesale_Destino",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage ventas Mexico",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Product_Sales_ANDES_WHOLESALE_V1_PR_2023_01-06.csv",
+				"folderPath": "archivos",
+				"container": "ventasmexico"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

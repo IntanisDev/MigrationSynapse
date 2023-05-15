@@ -1,0 +1,25 @@
+{
+	"name": "Procesar_Cubo_Sellinout_12PM",
+	"properties": {
+		"description": "Desencadenador diario 12PM",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Orquestador Cubo Sellin Sellout",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-02-21T11:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

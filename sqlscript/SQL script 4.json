@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 4",
+	"properties": {
+		"content": {
+			"query": "-- This is auto-generated code\nSELECT\n    fechaProceso\nFROM\n    OPENROWSET(\n        BULK 'https://edwlakeprd.dfs.core.windows.net/edwlakeprd/4_sensitive_zone/DL_RRHH/GEOVICTORIA_PE/ASISTENCIA/LIBRO_ASISTENCIA/**',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nwhere date = '2022-10-01'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

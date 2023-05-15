@@ -1,0 +1,54 @@
+{
+	"name": "DM_CSKT",
+	"properties": {
+		"description": "Textos de centros de coste",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "SPRAS",
+				"type": "varchar"
+			},
+			{
+				"name": "KOKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "KOSTL",
+				"type": "varchar"
+			},
+			{
+				"name": "DATBI",
+				"type": "varchar"
+			},
+			{
+				"name": "KTEXT",
+				"type": "varchar"
+			},
+			{
+				"name": "LTEXT",
+				"type": "varchar"
+			},
+			{
+				"name": "MCTXT",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CSKT"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

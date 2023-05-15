@@ -1,0 +1,66 @@
+{
+	"name": "SAP_DM_ZWM_CORR_COD_BAR_CON",
+	"properties": {
+		"description": "Relación Locales Cliente vs Levi",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_ZWM_CORR_COD_BAR_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_ZWM_CORR_COD_BAR",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          KUNNR as string,",
+				"          KUNN2 as string,",
+				"          CODLOCAL as string,",
+				"          DESCRIP as string,",
+				"          NROBJ as string,",
+				"          NRNR as string,",
+				"          PREFIJO as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          KUNNR,",
+				"          KUNN2,",
+				"          CODLOCAL,",
+				"          DESCRIP,",
+				"          NROBJ,",
+				"          NRNR,",
+				"          PREFIJO",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

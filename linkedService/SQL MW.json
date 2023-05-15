@@ -1,0 +1,17 @@
+{
+	"name": "SQL MW",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "Servidor Middleware TJC-MW02-NEW_1 3.1416sa",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=10.81.206.22;initial catalog=RetailData;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1ODM3MGI2YS0zNzA1LTRhMDgtYWY1MC1hNzFmZTA0MzY4MzQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

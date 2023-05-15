@@ -1,0 +1,20 @@
+{
+	"name": "2V_BI_Ventas_Prisma",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OraclePrisma",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/04_Oracle"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "REPORTUSER",
+			"table": "VW_VENTAS_PRISMA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,39 @@
+{
+	"name": "DL_ZV_VBRP_CON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"OutputFileName": {
+				"type": "string"
+			},
+			"Folder": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().OutputFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('3_consumption_zone/Datalake/DL_DATOS_MAESTROS/ZV_VBRP/',dataset().Folder)",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

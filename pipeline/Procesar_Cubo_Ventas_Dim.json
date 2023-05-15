@@ -1,0 +1,789 @@
+{
+	"name": "Procesar_Cubo_Ventas_Dim",
+	"properties": {
+		"activities": [
+			{
+				"name": "Almacen",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Almacen"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Calce",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Almacen",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Calce"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Calidad",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Calce",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Calidad"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Canal",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Calidad",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Canal"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Cliente",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Canal",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Cliente"
+					},
+					"timeout": "00:02:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Genero",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Cliente",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Genero"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Hora",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Genero",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Hora"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Linea",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Hora",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Linea"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Marca",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Linea",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Marca"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Moneda",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Marca",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Moneda"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Negocio",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Moneda",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Negocio"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Org Venta",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Negocio",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Org Venta"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Periodo",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Org Venta",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Periodo"
+					},
+					"timeout": "00:10:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Prenda",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Periodo",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Prenda"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Producto",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Prenda",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Producto"
+					},
+					"timeout": "00:05:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Producto Generico",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Sale Channel Store",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Producto Generico"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Producto Grado Moda",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Producto",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Producto Grado Moda"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Producto Modelo",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Producto Grado Moda",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Producto Modelo"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Producto Temporada Moda",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Producto Modelo",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Producto Temporada Moda"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Tienda",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Producto Temporada Moda",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Tienda"
+					},
+					"timeout": "00:05:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Tipo",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Tienda",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Tipo"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Tipo Cambio",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Tipo",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Tipo Cambio"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Tipo Documento",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Tipo Cambio",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Tipo Documento"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Tipo Venta",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Tipo Documento",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Tipo Venta"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Sale Channel Store",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Tipo Venta",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Sale Channel Store"
+					},
+					"timeout": "00:00:20",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Google Analytics",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Producto Generico",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Google_Analytics"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Vendedor",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Google Analytics",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboVentas",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Vendedor"
+					},
+					"timeout": "00:01:00",
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9999_Procesar_Cubo_Ventas"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-12T15:28:49Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,92 @@
+{
+	"name": "ZCLMM049_DB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "SW_Productividad"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ALMACEN",
+				"type": "varchar"
+			},
+			{
+				"name": "CODIGO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD1",
+				"type": "varchar"
+			},
+			{
+				"name": "COD2",
+				"type": "varchar"
+			},
+			{
+				"name": "COD3",
+				"type": "varchar"
+			},
+			{
+				"name": "COD4",
+				"type": "varchar"
+			},
+			{
+				"name": "DATE1",
+				"type": "varchar"
+			},
+			{
+				"name": "TIME1",
+				"type": "varchar"
+			},
+			{
+				"name": "USER1",
+				"type": "varchar"
+			},
+			{
+				"name": "LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCRIPCION",
+				"type": "varchar"
+			},
+			{
+				"name": "COD5",
+				"type": "varchar"
+			},
+			{
+				"name": "DATE2",
+				"type": "varchar"
+			},
+			{
+				"name": "TIME2",
+				"type": "varchar"
+			},
+			{
+				"name": "USER2",
+				"type": "varchar"
+			},
+			{
+				"name": "COD6",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "TEMP_ZCLMM049"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

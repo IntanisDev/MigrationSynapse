@@ -1,0 +1,76 @@
+{
+	"name": "BaseClientes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "ORG_VTA",
+				"type": "varchar"
+			},
+			{
+				"name": "CANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "SECTOR",
+				"type": "varchar"
+			},
+			{
+				"name": "PAIS",
+				"type": "varchar"
+			},
+			{
+				"name": "RAZON_SOCIAL",
+				"type": "varchar"
+			},
+			{
+				"name": "POBLACION",
+				"type": "varchar"
+			},
+			{
+				"name": "DISTRITO",
+				"type": "varchar"
+			},
+			{
+				"name": "REGION",
+				"type": "varchar"
+			},
+			{
+				"name": "CALLE",
+				"type": "varchar"
+			},
+			{
+				"name": "LOCAL_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "MONEDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COND_PAGO",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_CLIENTES"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,314 @@
+{
+	"name": "DM_WRF1_ST",
+	"properties": {
+		"description": "Datos de Centro",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_WRF1.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "LOCNR",
+				"type": "String"
+			},
+			{
+				"name": "EROED",
+				"type": "String"
+			},
+			{
+				"name": "SCHLD",
+				"type": "String"
+			},
+			{
+				"name": "SPDAB",
+				"type": "String"
+			},
+			{
+				"name": "SPDBI",
+				"type": "String"
+			},
+			{
+				"name": "AUTOB",
+				"type": "String"
+			},
+			{
+				"name": "KOPRO",
+				"type": "String"
+			},
+			{
+				"name": "LAYVR",
+				"type": "String"
+			},
+			{
+				"name": "FLVAR",
+				"type": "String"
+			},
+			{
+				"name": "STFAK",
+				"type": "String"
+			},
+			{
+				"name": "WANID",
+				"type": "String"
+			},
+			{
+				"name": "MOAB1",
+				"type": "String"
+			},
+			{
+				"name": "MOBI1",
+				"type": "String"
+			},
+			{
+				"name": "MOAB2",
+				"type": "String"
+			},
+			{
+				"name": "MOBI2",
+				"type": "String"
+			},
+			{
+				"name": "DIAB1",
+				"type": "String"
+			},
+			{
+				"name": "DIBI1",
+				"type": "String"
+			},
+			{
+				"name": "DIAB2",
+				"type": "String"
+			},
+			{
+				"name": "DIBI2",
+				"type": "String"
+			},
+			{
+				"name": "MIAB1",
+				"type": "String"
+			},
+			{
+				"name": "MIBI1",
+				"type": "String"
+			},
+			{
+				"name": "MIAB2",
+				"type": "String"
+			},
+			{
+				"name": "MIBI2",
+				"type": "String"
+			},
+			{
+				"name": "DOAB1",
+				"type": "String"
+			},
+			{
+				"name": "DOBI1",
+				"type": "String"
+			},
+			{
+				"name": "DOAB2",
+				"type": "String"
+			},
+			{
+				"name": "DOBI2",
+				"type": "String"
+			},
+			{
+				"name": "FRAB1",
+				"type": "String"
+			},
+			{
+				"name": "FRBI1",
+				"type": "String"
+			},
+			{
+				"name": "FRAB2",
+				"type": "String"
+			},
+			{
+				"name": "FRBI2",
+				"type": "String"
+			},
+			{
+				"name": "SAAB1",
+				"type": "String"
+			},
+			{
+				"name": "SABI1",
+				"type": "String"
+			},
+			{
+				"name": "SAAB2",
+				"type": "String"
+			},
+			{
+				"name": "SABI2",
+				"type": "String"
+			},
+			{
+				"name": "SOAB1",
+				"type": "String"
+			},
+			{
+				"name": "SOBI1",
+				"type": "String"
+			},
+			{
+				"name": "SOAB2",
+				"type": "String"
+			},
+			{
+				"name": "SOBI2",
+				"type": "String"
+			},
+			{
+				"name": "VERFL",
+				"type": "String"
+			},
+			{
+				"name": "VERFE",
+				"type": "String"
+			},
+			{
+				"name": "SPGR1",
+				"type": "String"
+			},
+			{
+				"name": "INPRO",
+				"type": "String"
+			},
+			{
+				"name": "EKOAR",
+				"type": "String"
+			},
+			{
+				"name": "KZLIK",
+				"type": "String"
+			},
+			{
+				"name": "BETRP",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "NLMATFB",
+				"type": "String"
+			},
+			{
+				"name": "BWWRK",
+				"type": "String"
+			},
+			{
+				"name": "BWVKO",
+				"type": "String"
+			},
+			{
+				"name": "BWVTW",
+				"type": "String"
+			},
+			{
+				"name": "BBPRO",
+				"type": "String"
+			},
+			{
+				"name": "VKBUR_WRK",
+				"type": "String"
+			},
+			{
+				"name": "VLFKZ",
+				"type": "String"
+			},
+			{
+				"name": "LSTFL",
+				"type": "String"
+			},
+			{
+				"name": "LIGRD",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG",
+				"type": "String"
+			},
+			{
+				"name": "DESROI",
+				"type": "String"
+			},
+			{
+				"name": "TIMINC",
+				"type": "String"
+			},
+			{
+				"name": "POSWS",
+				"type": "String"
+			},
+			{
+				"name": "SSOPT_PRO",
+				"type": "String"
+			},
+			{
+				"name": "WBPRO",
+				"type": "String"
+			},
+			{
+				"name": "ORGPRICE",
+				"type": "String"
+			},
+			{
+				"name": "PRCTR",
+				"type": "String"
+			},
+			{
+				"name": "RMA_PROF",
+				"type": "String"
+			},
+			{
+				"name": "RMA_VKORG",
+				"type": "String"
+			},
+			{
+				"name": "RMA_VTWEG",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

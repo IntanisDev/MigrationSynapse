@@ -1,0 +1,71 @@
+{
+	"name": "DF_Staging_Cubicaje",
+	"properties": {
+		"folder": {
+			"name": "Capacitacion"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Datos_Cubicaje_Destino",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DB_Staging_Cubicaje",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          FECHA as string,",
+				"          CCLIENTE as string,",
+				"          CADENA as string,",
+				"          CDESTINATARIOMERCANCIA as string,",
+				"          DESTINATARIOMERCANCIA as string,",
+				"          M2 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          fecha as date,",
+				"          cod_cliente as string,",
+				"          cadena as string,",
+				"          cod_destinatario as string,",
+				"          destinatario as string,",
+				"          m2 as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          cadena = CADENA,",
+				"          fecha = FECHA,",
+				"          cod_cliente = CCLIENTE,",
+				"          cod_destinatario = CDESTINATARIOMERCANCIA,",
+				"          destinatario = DESTINATARIOMERCANCIA,",
+				"          m2 = M2",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

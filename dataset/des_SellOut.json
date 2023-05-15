@@ -1,0 +1,151 @@
+{
+	"name": "des_SellOut",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SellOutId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionGradeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionSeasonId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductGenericId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductModelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QualityId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GenderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SellOutStoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SellOutDeptId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ShimId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sale",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "Stock",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockValue",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleCost",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "MarkUp",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "QuantityTransferred",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QuantityTransferredValued",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "SellOut"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

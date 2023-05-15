@@ -1,0 +1,145 @@
+{
+	"name": "4_LibroAsistencia_to_StandarZone_PE",
+	"properties": {
+		"folder": {
+			"name": "RRHH/Libro Asistencia"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AttendanceBookParquet_PE",
+						"type": "DatasetReference"
+					},
+					"name": "LibroAsistencia"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AttendanceBook_PE",
+						"type": "DatasetReference"
+					},
+					"name": "LibroAsistenciaStandar",
+					"rejectedDataLinkedService": {
+						"referenceName": "edw-prd-WorkspaceDefaultStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "FormateaDatos"
+				},
+				{
+					"name": "FiltroTipoNull"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Date as string,",
+				"          Type as string,",
+				"          FechaHoraMovimiento as string,",
+				"          Origin as string,",
+				"          UploadDate as string,",
+				"          ShiftPunchType as string,",
+				"          AssignedInBook as boolean,",
+				"          Delay as string,",
+				"          BreakDelay as string,",
+				"          EarlyLeave as string,",
+				"          WorkedHours as string,",
+				"          Absent as string,",
+				"          Holiday as string,",
+				"          Worked as string,",
+				"          NonWorkedHours as string,",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as string,",
+				"          GroupDescription as string,",
+				"          PositionDescription as string,",
+				"          Email as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet',",
+				"     partitionBy('hash', 1)) ~> LibroAsistencia",
+				"FiltroTipoNull derive(Date = toDate(left(Date,8),'yyyyMMdd','America/Santiago'),",
+				"          FechaHoraMovimiento = toTimestamp(FechaHoraMovimiento,'yyyyMMddHHmmss'),",
+				"          UploadDate = toTimestamp(UploadDate,'yyyyMMddHHmmss'),",
+				"          Delay = toInteger(split(Delay, ':')[1])*60+toInteger(split(Delay, ':')[2]),",
+				"          BreakDelay = toInteger(split(BreakDelay, ':')[1])*60+toInteger(split(BreakDelay, ':')[2]),",
+				"          EarlyLeave = toInteger(split(EarlyLeave, ':')[1])*60+toInteger(split(EarlyLeave, ':')[2]),",
+				"          WorkedHours = toInteger(split(WorkedHours, ':')[1])+toInteger(split(WorkedHours, ':')[2])/60,",
+				"          NonWorkedHours = toInteger(split(NonWorkedHours, ':')[1])+toInteger(split(NonWorkedHours, ':')[2])/60,",
+				"          fechaProceso = currentDate('America/Santiago')-1) ~> FormateaDatos",
+				"LibroAsistencia filter(!isNull(Type)) ~> FiltroTipoNull",
+				"FormateaDatos sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Date as date,",
+				"          Type as string,",
+				"          FechaHoraMovimiento as timestamp,",
+				"          Origin as string,",
+				"          UploadDate as timestamp,",
+				"          ShiftPunchType as string,",
+				"          AssignedInBook as boolean,",
+				"          Delay as integer,",
+				"          BreakDelay as integer,",
+				"          EarlyLeave as integer,",
+				"          WorkedHours as double,",
+				"          Absent as string,",
+				"          Holiday as string,",
+				"          Worked as string,",
+				"          NonWorkedHours as double,",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as string,",
+				"          GroupDescription as string,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          fechaProceso as date",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('LIBRO_ASISTENCIA_',toString(addDays(currentDate(),-1)),'.PARQUET'))],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Date,",
+				"          Type,",
+				"          FechaHoraMovimiento,",
+				"          Origin,",
+				"          UploadDate,",
+				"          ShiftPunchType,",
+				"          AssignedInBook,",
+				"          Delay,",
+				"          BreakDelay,",
+				"          EarlyLeave,",
+				"          WorkedHours,",
+				"          Absent,",
+				"          Holiday,",
+				"          Worked,",
+				"          NonWorkedHours,",
+				"          Id,",
+				"          Identifier,",
+				"          Name,",
+				"          LastName,",
+				"          Enabled,",
+				"          GroupDescription,",
+				"          PositionDescription,",
+				"          Email,",
+				"          fechaProceso",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> LibroAsistenciaStandar"
+			]
+		}
+	}
+}

@@ -1,0 +1,699 @@
+{
+	"name": "Prisma_Ventas",
+	"properties": {
+		"activities": [
+			{
+				"name": "Prisma_Ventas",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "INVC_SID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INVC_SID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FISCAL_DOC_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "FISCAL_DOC_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TRACKING_NO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TRACKING_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INVC_NO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "INVC_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SBS_NO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SBS_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SBS_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SBS_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STORE_NO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "STORE_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STORE_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STORE_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POS_FLAG1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "POS_FLAG1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POS_FLAG2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "POS_FLAG2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POS_FLAG3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "POS_FLAG3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CREATED_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROC_STATUS",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PROC_STATUS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WORKSTATION",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "WORKSTATION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INVC_TYPE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "INVC_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TENDER_TYPE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TENDER_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TENDER_NO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TENDER_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TAKEN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TAKEN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "GIVEN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "GIVEN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AMT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "AMT",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CRD_TYPE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "CRD_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DOC_NO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DOC_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TENDER_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TENDER_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CRD_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CRD_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INFO1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INFO1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FIRST_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FIRST_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LAST_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SO_NO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SO_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EMPL_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "EMPL_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RPRO_FULL_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RPRO_FULL_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QTY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "QTY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ALU",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ALU",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCRIPTION1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DESCRIPTION1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCRIPTION2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DESCRIPTION2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCRIPTION3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DESCRIPTION3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCRIPTION4",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DESCRIPTION4",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTR",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SIZ",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SIZ",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "1V_BI_Prisma_Ventas",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Prisma_Ventas_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Prisma_Ventas_DB",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Prisma_Ventas",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_Prisma_Ventas",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "VENTAS_PRISMA",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Prisma_Ventas_DB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "STORE_NO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "STORE_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TIENDA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DESC_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FECHA_DOCUMENTO",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "FECHA_DOCUMENTO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NETO",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "NETO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UNIDADES",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "UNIDADES",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FUENTE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FUENTE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "2V_BI_Ventas_Prisma",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Ventas_Prisma_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Ventas_Prisma_DB",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "VENTAS_PRISMA",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "2DF_VENTAS_PRISMA",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0815_Oracle_Prisma"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T12:51:40Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,37 @@
+{
+	"name": "InstoreView_2021_Stock_CON",
+	"properties": {
+		"activities": [
+			{
+				"name": "InstoreView_2021_Stock_CON",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_2021_Stock_CON",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/03 Consumption/BKP"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T18:03:09Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

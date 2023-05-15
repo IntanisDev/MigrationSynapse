@@ -1,0 +1,17 @@
+{
+	"name": "pruebasqlonptoazure",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CE11000"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

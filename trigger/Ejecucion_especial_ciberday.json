@@ -1,0 +1,24 @@
+{
+	"name": "Ejecucion_especial_ciberday",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Prisma_Ventas_OP",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 40,
+				"startTime": "2022-05-30T15:15:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

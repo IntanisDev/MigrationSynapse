@@ -1,0 +1,21 @@
+{
+	"name": "FTP_SW_PROD",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FtpServer",
+		"typeProperties": {
+			"host": "10.20.100.71",
+			"port": 21,
+			"enableSsl": false,
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Basic",
+			"userName": "Software_prod",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NDhlNTAzMy0xNjlhLTRhNzktODA2MC1iODFkMDhhOTZkN2QiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

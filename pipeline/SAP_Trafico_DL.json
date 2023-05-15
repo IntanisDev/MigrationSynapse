@@ -1,0 +1,72 @@
+{
+	"name": "SAP_Trafico_DL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar Trafico_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT * FROM [sales].[RetailTraffic]\nWHERE TIMEPERIODID>='20220701'\nAND TIMEPERIODID<='20220831'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": false,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "edw-prd-WorkspaceDefaultStorage",
+								"type": "LinkedServiceReference"
+							}
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TX_Trafico",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Trafico_DL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-29T13:39:34Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

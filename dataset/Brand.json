@@ -1,0 +1,45 @@
+{
+	"name": "Brand",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "LongDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "BrandCode",
+				"type": "varchar"
+			},
+			{
+				"name": "OrderByBrand",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Brand"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

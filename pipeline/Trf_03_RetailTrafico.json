@@ -1,0 +1,61 @@
+{
+	"name": "Trf_03_RetailTrafico",
+	"properties": {
+		"activities": [
+			{
+				"name": "Limpia Trafico Mes Actual Chile y Peru DM",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[RetailTrafico01]"
+				}
+			},
+			{
+				"name": "Carga DataMart Chile y Peru",
+				"description": "",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Limpia Trafico Mes Actual Chile y Peru DM",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[RetailTrafico03]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-03-17T14:04:45Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

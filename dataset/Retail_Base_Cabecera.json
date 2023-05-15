@@ -1,0 +1,117 @@
+{
+	"name": "Retail_Base_Cabecera",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Sigla_Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "Tienda",
+				"type": "varchar"
+			},
+			{
+				"name": "Tipo",
+				"type": "varchar"
+			},
+			{
+				"name": "Numero",
+				"type": "varchar"
+			},
+			{
+				"name": "Fecha",
+				"type": "varchar"
+			},
+			{
+				"name": "Hora",
+				"type": "varchar"
+			},
+			{
+				"name": "Porcentaje_Iva",
+				"type": "varchar"
+			},
+			{
+				"name": "Monto_Iva",
+				"type": "varchar"
+			},
+			{
+				"name": "Usuario",
+				"type": "varchar"
+			},
+			{
+				"name": "Total",
+				"type": "varchar"
+			},
+			{
+				"name": "Estado",
+				"type": "varchar"
+			},
+			{
+				"name": "Cajero",
+				"type": "varchar"
+			},
+			{
+				"name": "Subtotal",
+				"type": "varchar"
+			},
+			{
+				"name": "Items",
+				"type": "varchar"
+			},
+			{
+				"name": "Rut",
+				"type": "varchar"
+			},
+			{
+				"name": "Nombre",
+				"type": "varchar"
+			},
+			{
+				"name": "Apellidos",
+				"type": "varchar"
+			},
+			{
+				"name": "Direccion",
+				"type": "varchar"
+			},
+			{
+				"name": "Comuna",
+				"type": "varchar"
+			},
+			{
+				"name": "Telefono",
+				"type": "varchar"
+			},
+			{
+				"name": "OrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MedioPago",
+				"type": "varchar"
+			},
+			{
+				"name": "Origen",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "RETAIL_BASE_CABECERA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 6",
+	"properties": {
+		"content": {
+			"query": "SELECT * FROM  STDZONE.DM_CENTRO_COSTO where kostl = 'CPTLT001'\n\nSELECT * FROM  DBO.CSKt where kostl = 'CPTLT001'\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "consumption",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"name": "Mover_Base_DailySalesPlan",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/89_Mover_Archivo"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DailySalesPlan.csv",
+				"folderPath": "0_landing_zone/Cubo_Venta/InputFiles",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "STORE_CTRY_CD",
+				"type": "String"
+			},
+			{
+				"name": "RTL_STORE_NAME",
+				"type": "String"
+			},
+			{
+				"name": "RTL_STORE_ID",
+				"type": "String"
+			},
+			{
+				"name": "ERP_SRC_CD",
+				"type": "String"
+			},
+			{
+				"name": "FQTR",
+				"type": "String"
+			},
+			{
+				"name": "Store Target Date",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store AFP ",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store Plan ",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store Frcst 4",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store Frcst 7",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store Frcst 10",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store PER",
+				"type": "String"
+			},
+			{
+				"name": "Conversion Plan",
+				"type": "String"
+			},
+			{
+				"name": "UPT Plan",
+				"type": "String"
+			},
+			{
+				"name": "Currency ",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

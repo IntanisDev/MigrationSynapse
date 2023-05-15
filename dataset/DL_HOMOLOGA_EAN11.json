@@ -1,0 +1,45 @@
+{
+	"name": "DL_HOMOLOGA_EAN11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/04 Consumption"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "EAN11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MTART",
+				"type": "varchar"
+			},
+			{
+				"name": "MAKTG",
+				"type": "varchar"
+			},
+			{
+				"name": "BRAND_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "brand_id_desc",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vw_homologa_ean11"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

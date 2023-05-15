@@ -1,0 +1,69 @@
+{
+	"name": "ZCLMM049_ST_to_CO_AUTO",
+	"properties": {
+		"folder": {
+			"name": "SW_Productividad/02 ST_to_CO"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM049_ST_AUTO",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM049_CO_AUTO",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ALMACEN as string,",
+				"          OT as string,",
+				"          CLASE_MOV_STOCK as string,",
+				"          CLASE_MOV_ALM as string,",
+				"          CLASE_TRANSP as string,",
+				"          CLASE_OT_PICKING_2_ETAPAS as string,",
+				"          FEC_CREACION_OT as string,",
+				"          HORA_CREACION_OT as string,",
+				"          USUARIO as string,",
+				"          POSICION as string,",
+				"          ARTICULO as string,",
+				"          D_ARTICULO as string,",
+				"          CENTRO as string,",
+				"          FEC_CONFIRMACION as string,",
+				"          HORA_CONFIRMACION as string,",
+				"          USUARIO_CONF as string,",
+				"          CANTIDAD as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(CANTIDAD = toInteger(CANTIDAD)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:['ZCLMM049_V2_20230302.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

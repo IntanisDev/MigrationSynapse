@@ -1,0 +1,81 @@
+{
+	"name": "SAP_DM_CEPCT_ST",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/01 Standard"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_CEPCT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_CEPCT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          PRCTR as string,",
+				"          DATBI as string,",
+				"          KOKRS as string,",
+				"          KTEXT as string,",
+				"          LTEXT as string,",
+				"          MCTXT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(SPRAS=='S') ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          PRCTR as string,",
+				"          DATBI as string,",
+				"          KOKRS as string,",
+				"          KTEXT as string,",
+				"          LTEXT as string,",
+				"          MCTXT as string",
+				"     ),",
+				"     partitionFileNames:['DM_CEPCT.csv'],",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          SPRAS,",
+				"          PRCTR,",
+				"          DATBI,",
+				"          KOKRS,",
+				"          KTEXT,",
+				"          LTEXT,",
+				"          MCTXT",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

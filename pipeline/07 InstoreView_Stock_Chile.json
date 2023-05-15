@@ -1,0 +1,147 @@
+{
+	"name": "07 InstoreView_Stock_Chile",
+	"properties": {
+		"activities": [
+			{
+				"name": "Token",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.instoreview.cl/api/v2/download-zone/stock/",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Authorization": "ISVToken 2bf996b57e694a4e852bc6f672674e8a",
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"view_type": "diario",
+						"dates": [
+							"2022-09-12"
+						],
+						"views": [
+							"Unidades",
+							"Costos B2B",
+							"Ventas B2B",
+							"Ventas PVP s/IVA"
+						],
+						"compress": false,
+						"chain_codes": [],
+						"hierarchy": {
+							"Rut": [],
+							"Cadena": [],
+							"Sub Cadena": [],
+							"Región": [],
+							"Local": [],
+							"Comuna": [],
+							"Nombre de Local": [],
+							"Linea": [],
+							"SKU": [],
+							"EAN": [],
+							"Marca": [],
+							"Descripción Producto": [],
+							"Genero": [],
+							"Modelo": [],
+							"Talla": [],
+							"Temporada": [],
+							"Estilo": [],
+							"Código Local": [],
+							"Dirección": [],
+							"Categoría": []
+						}
+					},
+					"httpRequestTimeout": "00:10:00"
+				}
+			},
+			{
+				"name": "Copiar InstoreView Stock",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "salida:@{activity('Token').output.download_url}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InstoreView_Fuente_Stock",
+						"type": "DatasetReference",
+						"parameters": {
+							"nombre_archivo": "@{activity('Token').output.download_url}"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InstoreView_Stock_DL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-16T00:59:38Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

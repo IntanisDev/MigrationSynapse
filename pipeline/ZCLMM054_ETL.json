@@ -1,0 +1,66 @@
+{
+	"name": "ZCLMM054_ETL",
+	"properties": {
+		"activities": [
+			{
+				"name": "ZCLMM054_RW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ZCLMM054_RW",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ZCLMM054_ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ZCLMM054_RW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ZCLMM054_ST",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ZCLMM054_CO",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ZCLMM054_ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ZCLMM054_CO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo SW Productividad/04 Proceso ETL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-03-09T21:55:32Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

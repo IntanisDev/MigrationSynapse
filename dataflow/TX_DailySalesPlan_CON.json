@@ -1,0 +1,91 @@
+{
+	"name": "TX_DailySalesPlan_CON",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Transacciones/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_DailySalesPlan_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_DailySalesPlan",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Region as string,",
+				"          STORE_CTRY_CD as string,",
+				"          RTL_STORE_NAME as string,",
+				"          RTL_STORE_ID as string,",
+				"          ERP_SRC_CD as string,",
+				"          FQTR as string,",
+				"          {Store Target Date} as string,",
+				"          { Daily Store AFP } as string,",
+				"          { Daily Store Plan } as string,",
+				"          {Currency } as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          Region,",
+				"          Store_Ctry_Cd = STORE_CTRY_CD,",
+				"          Rtl_Store_Name = RTL_STORE_NAME,",
+				"          Rtl_Store_Id = RTL_STORE_ID,",
+				"          Erp_Src_Cd = ERP_SRC_CD,",
+				"          Fqtr = FQTR,",
+				"          Store_Target_Date = {Store Target Date},",
+				"          Daily_Store_AFP = { Daily Store AFP },",
+				"          Daily_Store_Plan = { Daily Store Plan },",
+				"          Currency = {Currency }",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 derive(Daily_Store_AFP = toInteger(Daily_Store_AFP),",
+				"          Daily_Store_Plan = toInteger(Daily_Store_Plan)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Region,",
+				"          Store_Ctry_Cd,",
+				"          Rtl_Store_Name,",
+				"          Rtl_Store_Id,",
+				"          Erp_Src_Cd,",
+				"          Fqtr,",
+				"          Store_Target_Date,",
+				"          Daily_Store_AFP,",
+				"          Daily_Store_Plan,",
+				"          Currency",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

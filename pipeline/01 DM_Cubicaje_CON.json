@@ -1,0 +1,223 @@
+{
+	"name": "01 DM_Cubicaje_CON",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Locales",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Locales",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Numero_Local",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Numero_Local",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Cluster",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cluster",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Zona",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Zona",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "M2",
+									"type": "Int64",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "M2",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Cubicaje",
+									"type": "Int64",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cubicaje",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Marca ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "marca ",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Genero",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "genero",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Cod_local_sap",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cod_LOCAL_SAP",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Cliente",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CLIENTE",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Semana",
+									"type": "Int64",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Semana",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TimePeriodId",
+									"type": "DateTime",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TimePeriodId",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Week",
+									"type": "Int64",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Week",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_Cubicaje_ST",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_Cubicaje_CON",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/03 Consumption"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T18:03:34Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

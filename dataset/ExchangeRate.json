@@ -1,0 +1,49 @@
+{
+	"name": "ExchangeRate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ExchangeRateId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyIdFrom",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyIdTo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OperatorType",
+				"type": "varchar"
+			},
+			{
+				"name": "FixedExchangeRate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 9
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "ExchangeRate"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

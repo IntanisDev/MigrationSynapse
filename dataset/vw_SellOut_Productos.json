@@ -1,0 +1,58 @@
+{
+	"name": "vw_SellOut_Productos",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Brand",
+				"type": "varchar"
+			},
+			{
+				"name": "Estilo",
+				"type": "varchar"
+			},
+			{
+				"name": "DescripcionEstilo",
+				"type": "varchar"
+			},
+			{
+				"name": "Consumidor",
+				"type": "varchar"
+			},
+			{
+				"name": "Linea",
+				"type": "varchar"
+			},
+			{
+				"name": "BasicoModa",
+				"type": "varchar"
+			},
+			{
+				"name": "class",
+				"type": "varchar"
+			},
+			{
+				"name": "Temporada",
+				"type": "varchar"
+			},
+			{
+				"name": "EAN",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vw_SELLOUT_PRODUCTOS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

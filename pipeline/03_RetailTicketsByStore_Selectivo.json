@@ -1,0 +1,33 @@
+{
+	"name": "03_RetailTicketsByStore_Selectivo",
+	"properties": {
+		"activities": [
+			{
+				"name": "RetailTicketsByStore_Selectivo",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[sales].[RetailTicketsByStore_Selectivo]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0825_Retail"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-08T20:23:01Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

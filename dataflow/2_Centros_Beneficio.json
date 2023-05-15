@@ -1,0 +1,139 @@
+{
+	"name": "2_Centros_Beneficio",
+	"properties": {
+		"folder": {
+			"name": "Finanzas/Datos Maestros"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "Consumption_Ondemand",
+						"type": "LinkedServiceReference"
+					},
+					"name": "CEPC"
+				},
+				{
+					"linkedService": {
+						"referenceName": "Consumption_Ondemand",
+						"type": "LinkedServiceReference"
+					},
+					"name": "CEPCT"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DM_CENTRO_BENEFICIO_STD",
+						"type": "DatasetReference"
+					},
+					"name": "CentroBeneficio",
+					"description": "Export data to DM_CENTRO_BENEFICIO_STD"
+				}
+			],
+			"transformations": [
+				{
+					"name": "idiomaCEPCT"
+				},
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          PRCTR as string,",
+				"          DATBI as string,",
+				"          KOKRS as string,",
+				"          DATAB as string,",
+				"          ERSDA as string,",
+				"          USNAM as string,",
+				"          MERKMAL as string,",
+				"          ABTEI as string,",
+				"          VERAK as string,",
+				"          VERAK_USER as string,",
+				"          WAERS as string,",
+				"          NPRCTR as string,",
+				"          LAND1 as string,",
+				"          ANRED as string,",
+				"          NAME1 as string,",
+				"          NAME2 as string,",
+				"          NAME3 as string,",
+				"          NAME4 as string,",
+				"          ORT01 as string,",
+				"          ORT02 as string,",
+				"          STRAS as string,",
+				"          PFACH as string,",
+				"          PSTLZ as string,",
+				"          PSTL2 as string,",
+				"          SPRAS as string,",
+				"          TELBX as string,",
+				"          TELF1 as string,",
+				"          TELF2 as string,",
+				"          TELFX as string,",
+				"          TELTX as string,",
+				"          TELX1 as string,",
+				"          DATLT as string,",
+				"          DRNAM as string,",
+				"          KHINR as string,",
+				"          BUKRS as string,",
+				"          VNAME as string,",
+				"          RECID as string,",
+				"          ETYPE as string,",
+				"          TXJCD as string,",
+				"          REGIO as string,",
+				"          KVEWE as string,",
+				"          KAPPL as string,",
+				"          KALSM as string,",
+				"          LOGSYSTEM as string,",
+				"          LOCK_IND as string,",
+				"          PCA_TEMPLATE as string,",
+				"          SEGMENT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'CEPC',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> CEPC",
+				"source(output(",
+				"          MANDT as string,",
+				"          SPRAS as string,",
+				"          PRCTR as string,",
+				"          DATBI as string,",
+				"          KOKRS as string,",
+				"          KTEXT as string,",
+				"          LTEXT as string,",
+				"          MCTXT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'CEPCT',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> CEPCT",
+				"CEPCT filter(SPRAS=='S') ~> idiomaCEPCT",
+				"CEPC, idiomaCEPCT join(CEPC@MANDT == CEPCT@MANDT",
+				"     && CEPC@PRCTR == CEPCT@PRCTR",
+				"     && CEPC@KOKRS == CEPCT@KOKRS,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:['DM_CENTRO_BENEFICIO_STD.PARQUET'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> CentroBeneficio"
+			]
+		}
+	}
+}

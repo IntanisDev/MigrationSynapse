@@ -1,0 +1,101 @@
+{
+	"name": "ZCLMM049_ST_AUTO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SW_Productividad/03 ST"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('ZCLMM049_V2_',formatDateTime(utcnow(),'yyyyMMdd'),'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "2_standar_zone/SWProductividad/SWP_ZCLMM049",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "UTF-8",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "OT",
+				"type": "String"
+			},
+			{
+				"name": "CLASE_MOV_STOCK",
+				"type": "String"
+			},
+			{
+				"name": "CLASE_MOV_ALM",
+				"type": "String"
+			},
+			{
+				"name": "CLASE_TRANSP",
+				"type": "String"
+			},
+			{
+				"name": "CLASE_OT_PICKING_2_ETAPAS",
+				"type": "String"
+			},
+			{
+				"name": "FEC_CREACION_OT",
+				"type": "String"
+			},
+			{
+				"name": "HORA_CREACION_OT",
+				"type": "String"
+			},
+			{
+				"name": "USUARIO",
+				"type": "String"
+			},
+			{
+				"name": "POSICION",
+				"type": "String"
+			},
+			{
+				"name": "ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "D_ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "CENTRO",
+				"type": "String"
+			},
+			{
+				"name": "FEC_CONFIRMACION",
+				"type": "String"
+			},
+			{
+				"name": "HORA_CONFIRMACION",
+				"type": "String"
+			},
+			{
+				"name": "USUARIO_CONF",
+				"type": "String"
+			},
+			{
+				"name": "CANTIDAD",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

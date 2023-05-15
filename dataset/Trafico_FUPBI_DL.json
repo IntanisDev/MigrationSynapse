@@ -1,0 +1,211 @@
+{
+	"name": "Trafico_FUPBI_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Trafico_FUPBI_DL.txt",
+				"folderPath": "0_landing_zone/Cubo_Venta/InputFiles",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "time_var",
+				"type": "String"
+			},
+			{
+				"name": "store_id",
+				"type": "String"
+			},
+			{
+				"name": "enters",
+				"type": "String"
+			},
+			{
+				"name": "exits",
+				"type": "String"
+			},
+			{
+				"name": "child_enters",
+				"type": "String"
+			},
+			{
+				"name": "child_exits",
+				"type": "String"
+			},
+			{
+				"name": "footfall_in",
+				"type": "String"
+			},
+			{
+				"name": "footfall_out",
+				"type": "String"
+			},
+			{
+				"name": "sales_count",
+				"type": "String"
+			},
+			{
+				"name": "total_quantity",
+				"type": "String"
+			},
+			{
+				"name": "total_amount",
+				"type": "String"
+			},
+			{
+				"name": "stay_time",
+				"type": "String"
+			},
+			{
+				"name": "customers_count",
+				"type": "String"
+			},
+			{
+				"name": "avg_customers_count",
+				"type": "String"
+			},
+			{
+				"name": "male_enters",
+				"type": "String"
+			},
+			{
+				"name": "female_enters",
+				"type": "String"
+			},
+			{
+				"name": "male_percentage",
+				"type": "String"
+			},
+			{
+				"name": "female_percentage",
+				"type": "String"
+			},
+			{
+				"name": "child_enters_demo",
+				"type": "String"
+			},
+			{
+				"name": "young_enters",
+				"type": "String"
+			},
+			{
+				"name": "adult_enters",
+				"type": "String"
+			},
+			{
+				"name": "senior_enters",
+				"type": "String"
+			},
+			{
+				"name": "child_percentage",
+				"type": "String"
+			},
+			{
+				"name": "young_adult_percentage",
+				"type": "String"
+			},
+			{
+				"name": "adult_percentage",
+				"type": "String"
+			},
+			{
+				"name": "senior_percentage",
+				"type": "String"
+			},
+			{
+				"name": "male_child_enters",
+				"type": "String"
+			},
+			{
+				"name": "male_young_adult_enters",
+				"type": "String"
+			},
+			{
+				"name": "male_adult_enters",
+				"type": "String"
+			},
+			{
+				"name": "male_senior_enters",
+				"type": "String"
+			},
+			{
+				"name": "male_child_percentage",
+				"type": "String"
+			},
+			{
+				"name": "male_young_percentage",
+				"type": "String"
+			},
+			{
+				"name": "male_adult_percentage",
+				"type": "String"
+			},
+			{
+				"name": "male_senior_percentage",
+				"type": "String"
+			},
+			{
+				"name": "female_child_enters",
+				"type": "String"
+			},
+			{
+				"name": "female_young_adult_enters",
+				"type": "String"
+			},
+			{
+				"name": "female_adult_enters",
+				"type": "String"
+			},
+			{
+				"name": "female_senior_enters",
+				"type": "String"
+			},
+			{
+				"name": "female_child_percentage",
+				"type": "String"
+			},
+			{
+				"name": "female_young_percentage",
+				"type": "String"
+			},
+			{
+				"name": "female_adult_percentage",
+				"type": "String"
+			},
+			{
+				"name": "female_senior_percentage",
+				"type": "String"
+			},
+			{
+				"name": "avg_ticket_amount",
+				"type": "String"
+			},
+			{
+				"name": "items_by_ticket",
+				"type": "String"
+			},
+			{
+				"name": "conversion_rate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

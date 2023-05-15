@@ -1,0 +1,193 @@
+{
+	"name": "RMS_VENTAS",
+	"properties": {
+		"activities": [
+			{
+				"name": "RMS_VENTAS",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "COD_TIENDA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "COD_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Store_No",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Store_No",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESC_TIENDA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DESC_TIENDA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FECHA_DOCUMENTO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FECHA_DOCUMENTO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NETO",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 10,
+									"precision": 38
+								},
+								"sink": {
+									"name": "NETO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UNIDADES",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 5,
+									"precision": 38
+								},
+								"sink": {
+									"name": "UNIDADES",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FUENTE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FUENTE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "VW_BI_VENTAS_RMS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Ventas_RMS_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Ventas_RMS_DB",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "RMS_VENTAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "VENTAS_RMS",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0000_RMS_Peru"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-24T19:04:56Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

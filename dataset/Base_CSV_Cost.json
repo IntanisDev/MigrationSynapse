@@ -1,0 +1,47 @@
+{
+	"name": "Base_CSV_Cost",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COUNTRY",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "QUALITY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "COST",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "CURRENCY",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Cost"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

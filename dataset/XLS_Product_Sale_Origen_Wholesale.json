@@ -1,0 +1,120 @@
+{
+	"name": "XLS_Product_Sale_Origen_Wholesale",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw_prd_OnDemand_WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Country Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Country Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Legacy Store Number",
+				"type": "varchar"
+			},
+			{
+				"name": "SAP Store Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Store Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Product MDM - Brand Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Product MDM - Consumer Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Product MDM - Category Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Product MDM - Subcategory Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Product MDM - Sub Class Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Product MDM - Global Fit Platform Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Product MDM - Product Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Time - Transaction Date (YYYYMMDD)",
+				"type": "char"
+			},
+			{
+				"name": "CAR : Retail Sales Net - Units - TY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Gross Sales - Value",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "CAR : Retail Sales Net - Value",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Retail Discounts - Value",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Retail Discounts %",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Retail Sales Net - Margin",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Standard Cost",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Margin %",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Report_Product_Sales2"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

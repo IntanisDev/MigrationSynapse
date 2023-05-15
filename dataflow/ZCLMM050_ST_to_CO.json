@@ -1,0 +1,64 @@
+{
+	"name": "ZCLMM050_ST_to_CO",
+	"properties": {
+		"folder": {
+			"name": "SW_Productividad/02 ST_to_CO"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM050_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM050_CO",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ID_UNIDAD as string,",
+				"          RESPONSABLE as string,",
+				"          FEC_CREACION as string,",
+				"          HORA_CREACION as string,",
+				"          OBJETO as string,",
+				"          POSICION as string,",
+				"          ENTREGA as string,",
+				"          POS_ENTREGA as string,",
+				"          CANTIDAD as string,",
+				"          ARTICULO as string,",
+				"          CENTRO as string,",
+				"          ALMACEN as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(CANTIDAD = toInteger(substringIndex(CANTIDAD, ',', 1))) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('ZCLMM050_V2_',toString(currentUTC()-hours(4), 'yyyyMMdd'),'.parquet') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

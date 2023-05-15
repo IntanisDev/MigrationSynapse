@@ -1,0 +1,66 @@
+{
+	"name": "SAP_DM_TCURR_CON",
+	"properties": {
+		"description": "Tipo de cambio",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_TCURR_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_TCURR",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          KURST as string,",
+				"          FCURR as string,",
+				"          TCURR as string,",
+				"          GDATU as string,",
+				"          UKURS as string,",
+				"          FFACT as string,",
+				"          TFACT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          KURST,",
+				"          FCURR,",
+				"          TCURR,",
+				"          GDATU,",
+				"          UKURS,",
+				"          FFACT,",
+				"          TFACT",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

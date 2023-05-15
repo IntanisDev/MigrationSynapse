@@ -1,0 +1,31 @@
+{
+	"name": "Pedidos_parquet",
+	"properties": {
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "fact_pedidos",
+						"type": "DatasetReference"
+					},
+					"name": "factPedidos"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Pedidos_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "pedidosParquet"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tFechaExtrae as date,\n\t\torigen as string,\n\t\tPEDIDO as string,\n\t\tSOCIEDAD as string,\n\t\tFEC_CREACION as date,\n\t\tcentro_su as string,\n\t\tClasedoc as string,\n\t\tposicion as string,\n\t\tStoreCode as string,\n\t\tCustomerTaxCode as string,\n\t\tTienda_Cliente as string,\n\t\tMarca as string,\n\t\tTipo_Local as string,\n\t\tmaterial as string,\n\t\tCantPedido as integer,\n\t\tCantPedidoDia as integer,\n\t\tTemporada as string,\n\t\tano as string,\n\t\tcantEntrega as integer,\n\t\tcantEntregaDia as integer,\n\t\tcantEmbalada as integer,\n\t\tcantEmbaladaDia as integer,\n\t\tCantDespachado as integer,\n\t\tCantDespachadoDia as integer,\n\t\tCantRecepcionado as integer,\n\t\tSinEntrega as integer,\n\t\tCantRecepcionadoDia as integer,\n\t\tenproceso as integer,\n\t\tentransito as integer,\n\t\tIndBorrado as string,\n\t\tIndEntreFin as string,\n\t\ttuboCD as integer,\n\t\tWIPEmbaladas as integer,\n\t\tCONTADOR as integer,\n\t\tlead_time as integer,\n\t\tlead_time_despacho as integer,\n\t\tfecha_entrega as date,\n\t\tfecha_embalaje as date,\n\t\tfecha_despacho as date,\n\t\tfecha_movimiento as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table',\n\tstaged: true) ~> factPedidos\nfactPedidos sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tumask: 0666,\n\tpreCommands: [],\n\tpostCommands: [],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tmapColumn(\n\t\tFechaExtrae,\n\t\torigen,\n\t\tPEDIDO,\n\t\tSOCIEDAD,\n\t\tFEC_CREACION,\n\t\tcentro_su,\n\t\tClasedoc,\n\t\tposicion,\n\t\tStoreCode,\n\t\tCustomerTaxCode,\n\t\tTienda_Cliente,\n\t\tMarca,\n\t\tTipo_Local,\n\t\tmaterial,\n\t\tCantPedido,\n\t\tCantPedidoDia,\n\t\tTemporada,\n\t\tano,\n\t\tcantEntrega,\n\t\tcantEntregaDia,\n\t\tcantEmbalada,\n\t\tcantEmbaladaDia,\n\t\tCantDespachado,\n\t\tCantDespachadoDia,\n\t\tCantRecepcionado,\n\t\tSinEntrega,\n\t\tCantRecepcionadoDia,\n\t\tenproceso,\n\t\tentransito,\n\t\tIndBorrado,\n\t\tIndEntreFin,\n\t\ttuboCD,\n\t\tWIPEmbaladas,\n\t\tCONTADOR,\n\t\tlead_time,\n\t\tlead_time_despacho,\n\t\tfecha_entrega,\n\t\tfecha_embalaje,\n\t\tfecha_despacho,\n\t\tfecha_movimiento\n\t),\n\tpartitionBy('roundRobin', 5)) ~> pedidosParquet"
+		}
+	}
+}

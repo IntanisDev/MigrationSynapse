@@ -1,0 +1,505 @@
+{
+	"name": "02_Retail_Base_Detalle_Respaldo",
+	"properties": {
+		"activities": [
+			{
+				"name": "REtailDetalleFPT_TO_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Sigla_Tienda",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sigla_Tienda",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Tienda",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tienda",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tipo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Numero",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Numero",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Item",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Item",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Fecha",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Fecha",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Hora",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Hora",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Color",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Color",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Talla",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Talla",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Upc",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Upc",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo Barra",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Codigo Barra",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Porcentaje Iva",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Porcentaje Iva",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Monto Iva",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Monto Iva",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cantidad",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cantidad",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Precio Venta",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Precio Venta",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Costo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Costo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Precio Full",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Precio Full",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Usuario",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Usuario",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Total",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Costo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total_Costo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Descuento",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Descuento",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Porcentaje Descuento",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Porcentaje Descuento",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Generico",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Generico",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Descripcion",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Descripcion",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Retail_Detalle_FTP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Retail_Detalle_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "RetailDEtalle_DL_to_DB",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "REtailDetalleFPT_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Reporte_Ventas_DET_DL",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Mover Archivo Detalle",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "RetailDEtalle_DL_to_DB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Retail_Detalle_DL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mover_DETALLE",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "borrar Archivo detalle",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Mover Archivo Detalle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Retail_Detalle_DL",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0825_Retail"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-20T19:33:11Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

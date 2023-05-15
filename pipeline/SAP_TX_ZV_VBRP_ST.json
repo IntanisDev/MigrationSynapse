@@ -1,0 +1,113 @@
+{
+	"name": "SAP_TX_ZV_VBRP_ST",
+	"properties": {
+		"activities": [
+			{
+				"name": "Obtener Periodos Cargados",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select distinct SUBSTRING(FKDAT,1,6)  as periodo from [dbo].[ZV_VBRP]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "TX_ZV_VBRP",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Recorrer Periodos",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Obtener Periodos Cargados",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Obtener Periodos Cargados').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "DF CARGA ZV_VBRP",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "1.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "DF_CARGA_ZV_VBRP_ST",
+									"type": "DataFlowReference",
+									"parameters": {
+										"nombreArchivo": {
+											"value": "'@{concat('ZV_VBRP_', item().periodo,'.csv')}'",
+											"type": "Expression"
+										}
+									},
+									"datasetParameters": {
+										"ZVVBPRPW": {
+											"OutputFileName": {
+												"value": "@concat('ZV_VBRP_',item().periodo,'.csv')",
+												"type": "Expression"
+											},
+											"Folder": {
+												"value": "@substring(string(item().periodo),0 ,4 )",
+												"type": "Expression"
+											}
+										},
+										"ZVVBRPST": {
+											"OutputFileName": {
+												"value": "@concat('ZV_VBRP_',item().periodo,'.csv')",
+												"type": "Expression"
+											},
+											"Folder": {
+												"value": "@substring(string(item().periodo),0 ,4 )",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/02 Standard"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-04T17:31:52Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

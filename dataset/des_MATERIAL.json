@@ -1,0 +1,105 @@
+{
+	"name": "des_MATERIAL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "NRO_MATERIAL",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_MATERIAL",
+				"type": "varchar"
+			},
+			{
+				"name": "TIPO_TEMPORADA",
+				"type": "varchar"
+			},
+			{
+				"name": "ANO_ESTACION",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_TEMPORADA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_COLOR",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_COLOR",
+				"type": "varchar"
+			},
+			{
+				"name": "TALLA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TALLA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCR_PRENDA",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "masterdata",
+			"table": "material"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

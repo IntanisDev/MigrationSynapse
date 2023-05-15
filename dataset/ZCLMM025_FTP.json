@@ -1,0 +1,40 @@
+{
+	"name": "ZCLMM025_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo_Logistico/FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "ZCLMM025.CSV",
+				"folderPath": "cubo_logistico"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "NRO.ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "TIPO ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "DESCR.ALMACEN",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

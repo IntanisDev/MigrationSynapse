@@ -1,0 +1,773 @@
+{
+	"name": "Venta_Historia_Bolivia",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select * from sale\nwhere saleorganisationid=1587",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SaleId",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "SaleId",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "TransactionDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TransactionDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "AuditTrailId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "AuditTrailId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TimePeriodId",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TimePeriodId",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleOrganisationId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SaleOrganisationId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleChannelId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SaleChannelId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CustomerId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "StoreId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "StoreId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "BrandId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "BrandId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "QualityId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "QualityId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "GenderId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "GenderId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "LineId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "LineId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ClothingPieceTypeId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ClothingPieceTypeId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ClothingPieceId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ClothingPieceId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ProductId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "Revenues",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Revenues",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "NetSale",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NetSale",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleCost",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleCost",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Margin",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Margin",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantity",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleQuantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleABP",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleABP",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "CostABP",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "CostABP",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "MarginABP",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "MarginABP",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantityABP",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleQuantityABP",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "M2",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "M2",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesM2",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SalesM2",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Transactions",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Transactions",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount1",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount1",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount2",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount2",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount3",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount3",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount4",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount4",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount5",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount5",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount6",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount6",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount7",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount7",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount8",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount8",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount9",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount9",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount10",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Discount10",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "ShimId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ShimId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "Stock",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "StockConsigned",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "StockConsigned",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "StockValue",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "StockValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "MarginInterCompany",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "MarginInterCompany",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleInterCompany",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleInterCompany",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "ProfitMarginInterCompany",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "ProfitMarginInterCompany",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "MarginPreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "MarginPreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "NetSalePreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NetSalePreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "RevenuesPreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "RevenuesPreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleCostPreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleCostPreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantityPreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleQuantityPreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "WeightedAverageCost",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "WeightedAverageCost",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "WeightedAveragePrice",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "WeightedAveragePrice",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "BusinessClasificationId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "BusinessClasificationId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductFashionGradeId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ProductFashionGradeId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductFashionSeasonId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ProductFashionSeasonId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductGenericId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ProductGenericId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductModelId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ProductModelId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "MarginInterCompanyPreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "MarginInterCompanyPreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesM2PreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SalesM2PreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "MarginInterCompanyPreviousYearComparable",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "MarginInterCompanyPreviousYearComparable",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "MarginPreviousYearComparable",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "MarginPreviousYearComparable",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "NetSalePreviousYearComparable",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NetSalePreviousYearComparable",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "RevenuesPreviousYearComparable",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "RevenuesPreviousYearComparable",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleCostPreviousYearComparable",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleCostPreviousYearComparable",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SaleQuantityPreviousYearComparable",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SaleQuantityPreviousYearComparable",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesM2PreviousYearComparable",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SalesM2PreviousYearComparable",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "CurrencyId",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CurrencyId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "StockDC",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "StockDC",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "StockInTransit",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "StockInTransit",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "PercentageParticipationSale",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PercentageParticipationSale",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "PercentageParticipationSalePreviousYear",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PercentageParticipationSalePreviousYear",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "TipoCambioid",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TipoCambioId",
+									"type": "Int32"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Venta_Historia_Bolivia",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_Venta_Historia_Bolivia",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-17T21:20:16Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

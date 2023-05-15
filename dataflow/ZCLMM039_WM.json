@@ -1,0 +1,42 @@
+{
+	"name": "ZCLMM039_WM",
+	"properties": {
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM039_WM_DL",
+						"type": "DatasetReference"
+					},
+					"name": "ZCLSD039WM"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM039_WM",
+						"type": "DatasetReference"
+					},
+					"name": "stockHistorico"
+				},
+				{
+					"dataset": {
+						"referenceName": "ZCLMM039_WM_STOCK_ACTUAL",
+						"type": "DatasetReference"
+					},
+					"name": "StockActual"
+				}
+			],
+			"transformations": [
+				{
+					"name": "corrigeFechas"
+				}
+			],
+			"script": "parameters{\n\tcontador as integer (1)\n}\nsource(output(\n\t\t{FECHA EJECUCION} as string,\n\t\tCENTRO as string,\n\t\tALMACEN as string,\n\t\t{NRO ALMACEN} as string,\n\t\t{TIPO ALMACEN} as string,\n\t\t{NRO ARTICULO} as string,\n\t\t{STOCK DISPONIBLE} as string,\n\t\t{STOCK TOTAL} as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> ZCLSD039WM\nZCLSD039WM derive({FECHA EJECUCION} = toDate({FECHA EJECUCION},\"dd.MM.yyyy\"),\n\t\tcontador = 1) ~> corrigeFechas\ncorrigeFechas sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tFECHA_EJECUCION as date,\n\t\tCENTRO as string,\n\t\tALMACEN as string,\n\t\tNRO_ALMACEN as string,\n\t\tTIPO_ALMACEN as string,\n\t\tNRO_ARTICULO as string,\n\t\tSTOCK_DISPONIBLE as integer,\n\t\tSTOCK_TOTAL as integer,\n\t\tCONTADOR as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tsaveOrder: 1,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tFECHA_EJECUCION = {FECHA EJECUCION},\n\t\tCENTRO,\n\t\tALMACEN,\n\t\tNRO_ALMACEN = {NRO ALMACEN},\n\t\tTIPO_ALMACEN = {TIPO ALMACEN},\n\t\tNRO_ARTICULO = {NRO ARTICULO},\n\t\tSTOCK_DISPONIBLE = {STOCK DISPONIBLE},\n\t\tSTOCK_TOTAL = {STOCK TOTAL},\n\t\tCONTADOR = contador\n\t),\n\tpartitionBy('hash', 20,\n\t\tFECHA_EJECUCION\n\t)) ~> stockHistorico\ncorrigeFechas sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tFECHA_EJECUCION as date,\n\t\tCENTRO as string,\n\t\tALMACEN as string,\n\t\tNRO_ALMACEN as string,\n\t\tTIPO_ALMACEN as string,\n\t\tNRO_ARTICULO as string,\n\t\tSTOCK_DISPONIBLE as integer,\n\t\tSTOCK_TOTAL as integer,\n\t\tCONTADOR as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tFECHA_EJECUCION = {FECHA EJECUCION},\n\t\tCENTRO,\n\t\tALMACEN,\n\t\tNRO_ALMACEN = {NRO ALMACEN},\n\t\tTIPO_ALMACEN = {TIPO ALMACEN},\n\t\tNRO_ARTICULO = {NRO ARTICULO},\n\t\tSTOCK_DISPONIBLE = {STOCK DISPONIBLE},\n\t\tSTOCK_TOTAL = {STOCK TOTAL},\n\t\tCONTADOR = contador\n\t)) ~> StockActual"
+		}
+	}
+}

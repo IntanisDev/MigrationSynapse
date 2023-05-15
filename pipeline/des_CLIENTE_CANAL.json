@@ -1,0 +1,111 @@
+{
+	"name": "des_CLIENTE_CANAL",
+	"properties": {
+		"activities": [
+			{
+				"name": "CLIENTE_CANAL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"preCopyScript": "truncate table masterdata.cliente_canal",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "kunnr",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "kunnr"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "nombre"
+								}
+							},
+							{
+								"source": {
+									"name": "cod_canal",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cod_canal"
+								}
+							},
+							{
+								"source": {
+									"name": "nom_canal",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "nom_canal"
+								}
+							},
+							{
+								"source": {
+									"name": "TipoCliente",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TipoCliente"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "des_Cliente_Canal",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "CANALCLIENTE",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Copia Desarrollo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-07T00:14:50Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

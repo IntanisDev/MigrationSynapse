@@ -1,0 +1,80 @@
+{
+	"name": "SAP_DM_T023_CON",
+	"properties": {
+		"description": "Grupo de Artículos",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_T023_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_T023",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          MATKL as string,",
+				"          SPART as string,",
+				"          LREF3 as string,",
+				"          WWGDA as string,",
+				"          WWGPA as string,",
+				"          ABTNR as string,",
+				"          BEGRU as string,",
+				"          GEWEI as string,",
+				"          J_1BNBM as string,",
+				"          BKLAS as string,",
+				"          EKWSL as string,",
+				"          ANLKL as string,",
+				"          DEF_SCHDSC as string,",
+				"          PRICE_GROUP as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          MATKL,",
+				"          SPART,",
+				"          LREF3,",
+				"          WWGDA,",
+				"          WWGPA,",
+				"          ABTNR,",
+				"          BEGRU,",
+				"          GEWEI,",
+				"          J_1BNBM,",
+				"          BKLAS,",
+				"          EKWSL,",
+				"          ANLKL,",
+				"          DEF_SCHDSC,",
+				"          PRICE_GROUP",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

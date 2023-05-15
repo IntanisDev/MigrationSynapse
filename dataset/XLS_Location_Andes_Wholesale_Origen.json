@@ -1,0 +1,137 @@
+{
+	"name": "XLS_Location_Andes_Wholesale_Origen",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw_prd_OnDemand_WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Legacy store number",
+				"type": "varchar"
+			},
+			{
+				"name": "New Store ID",
+				"type": "varchar"
+			},
+			{
+				"name": "ERP Source Code",
+				"type": "varchar"
+			},
+			{
+				"name": "New ERP Cust ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Expected Business Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Open Date",
+				"type": "date"
+			},
+			{
+				"name": "Close date",
+				"type": "varchar"
+			},
+			{
+				"name": "Gross Store Size (sqm)",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Gross Store Selling Size (sqm)",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "City(Metro Area)",
+				"type": "varchar"
+			},
+			{
+				"name": "Store Country",
+				"type": "varchar"
+			},
+			{
+				"name": "Comp Reset Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Comp Reset Reason Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Partner Group Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "MD Geography",
+				"type": "varchar"
+			},
+			{
+				"name": "Country Group",
+				"type": "varchar"
+			},
+			{
+				"name": "Territory",
+				"type": "varchar"
+			},
+			{
+				"name": "District",
+				"type": "varchar"
+			},
+			{
+				"name": "Store name",
+				"type": "varchar"
+			},
+			{
+				"name": "Franchise Partner Group Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Channel",
+				"type": "varchar"
+			},
+			{
+				"name": "SubChannel",
+				"type": "varchar"
+			},
+			{
+				"name": "Brand",
+				"type": "varchar"
+			},
+			{
+				"name": "Store Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Rowid Object",
+				"type": "varchar"
+			},
+			{
+				"name": "Hub State Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Nuevo Distrito",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Location_Andes"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

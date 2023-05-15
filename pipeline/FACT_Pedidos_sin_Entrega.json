@@ -1,0 +1,45 @@
+{
+	"name": "FACT_Pedidos_sin_Entrega",
+	"properties": {
+		"activities": [
+			{
+				"name": "FACT_Pedidos_sin_Entrega",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Pedidos_sin_entrega",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"sourceStagingConcurrency": 1
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-14T18:43:33Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

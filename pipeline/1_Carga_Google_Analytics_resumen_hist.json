@@ -1,0 +1,216 @@
+{
+	"name": "1_Carga_Google_Analytics_resumen_hist",
+	"properties": {
+		"activities": [
+			{
+				"name": "ObtieneToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "getToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "GoogleAnalyticsApis",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "AlmacenaReporteDiarioDockers_Hist",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ObtieneToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "POST",
+						"requestBody": "{\n    \"dimensions\": [\n        \n        {\n            \"name\": \"date\"\n        }\n    ],\n    \"metrics\": [\n        {\n            \"name\": \"activeUsers\"\n        },\n        {\n            \"name\": \"engagedSessions\"\n        },\n        {\n            \"name\": \"eventCount\"\n        },\n        {\n            \"name\": \"newUsers\"\n        },\n        {\n            \"name\": \"Sessions\"\n        },\n        {\n            \"name\": \"totalRevenue\"\n        },\n        {\n            \"name\": \"totalUsers\"\n        }\n    ],\n    \"dateRanges\": [\n        {\n            \"startDate\": \"2022-11-11\",\n            \"endDate\": \"2022-11-11\"\n        }\n    ],\n    \"limit\": \"100000\"\n}",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('ObtieneToken').output.token}",
+								"type": "Expression"
+							},
+							"Content-Type": "application/json"
+						},
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "batchGetReport_dockers",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_dockers_resumen_hist",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "AlmacenaReporteDiarioLevis_Hist",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "AlmacenaReporteDiarioDockers_Hist",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "POST",
+						"requestBody": "{\n    \"dimensions\": [\n        \n        {\n            \"name\": \"date\"\n        }\n    ],\n    \"metrics\": [\n        {\n            \"name\": \"activeUsers\"\n        },\n        {\n            \"name\": \"engagedSessions\"\n        },\n        {\n            \"name\": \"eventCount\"\n        },\n        {\n            \"name\": \"newUsers\"\n        },\n        {\n            \"name\": \"Sessions\"\n        },\n        {\n            \"name\": \"totalRevenue\"\n        },\n        {\n            \"name\": \"totalUsers\"\n        }\n    ],\n    \"dateRanges\": [\n        {\n            \"startDate\": \"2022-11-11\",\n            \"endDate\": \"2022-11-11\"\n        }\n    ],\n    \"limit\": \"100000\"\n}",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('ObtieneToken').output.token}",
+								"type": "Expression"
+							},
+							"Content-Type": "application/json"
+						},
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "batchGetReport_levis",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "googleAnalyticsBatchReport_levis_resumen_hist",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "2_Parse_to_parquet_hist",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "AlmacenaReporteDiarioLevis_Hist",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "2_Parse_to_parquet_resumen_hist",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "3_GA_Consolida_resumen_hist",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "2_Parse_to_parquet_hist",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "3_GA_Consolida_resumen_hist",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "5_Copia_Capa_Consumo_resumen_hist",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "3_GA_Consolida_resumen_hist",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "5_Copia_Capa_Consumo_resumen_hist",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Social Media/Google Analytics/Resumen Historico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-14T18:41:39Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

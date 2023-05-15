@@ -1,0 +1,182 @@
+{
+	"name": "EINA_ST",
+	"properties": {
+		"description": "Registo info: Datos Generales",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_EINA_ene2021_jun2022.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_COMPRAS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "INFNR",
+				"type": "String"
+			},
+			{
+				"name": "MATNR",
+				"type": "String"
+			},
+			{
+				"name": "MATKL",
+				"type": "String"
+			},
+			{
+				"name": "LIFNR",
+				"type": "String"
+			},
+			{
+				"name": "LOEKZ",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "TXZ01",
+				"type": "String"
+			},
+			{
+				"name": "SORTL",
+				"type": "String"
+			},
+			{
+				"name": "MEINS",
+				"type": "String"
+			},
+			{
+				"name": "UMREZ",
+				"type": "String"
+			},
+			{
+				"name": "UMREN",
+				"type": "String"
+			},
+			{
+				"name": "IDNLF",
+				"type": "String"
+			},
+			{
+				"name": "VERKF",
+				"type": "String"
+			},
+			{
+				"name": "TELF1",
+				"type": "String"
+			},
+			{
+				"name": "MAHN1",
+				"type": "String"
+			},
+			{
+				"name": "MAHN2",
+				"type": "String"
+			},
+			{
+				"name": "MAHN3",
+				"type": "String"
+			},
+			{
+				"name": "URZNR",
+				"type": "String"
+			},
+			{
+				"name": "URZDT",
+				"type": "String"
+			},
+			{
+				"name": "URZLA",
+				"type": "String"
+			},
+			{
+				"name": "URZTP",
+				"type": "String"
+			},
+			{
+				"name": "URZZT",
+				"type": "String"
+			},
+			{
+				"name": "LMEIN",
+				"type": "String"
+			},
+			{
+				"name": "REGIO",
+				"type": "String"
+			},
+			{
+				"name": "VABME",
+				"type": "String"
+			},
+			{
+				"name": "LTSNR",
+				"type": "String"
+			},
+			{
+				"name": "LTSSF",
+				"type": "String"
+			},
+			{
+				"name": "WGLIF",
+				"type": "String"
+			},
+			{
+				"name": "RUECK",
+				"type": "String"
+			},
+			{
+				"name": "LIFAB",
+				"type": "String"
+			},
+			{
+				"name": "LIFBI",
+				"type": "String"
+			},
+			{
+				"name": "KOLIF",
+				"type": "String"
+			},
+			{
+				"name": "ANZPU",
+				"type": "String"
+			},
+			{
+				"name": "PUNEI",
+				"type": "String"
+			},
+			{
+				"name": "RELIF",
+				"type": "String"
+			},
+			{
+				"name": "MFRNR",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

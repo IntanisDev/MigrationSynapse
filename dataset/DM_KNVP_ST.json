@@ -1,0 +1,86 @@
+{
+	"name": "DM_KNVP_ST",
+	"properties": {
+		"description": "Maestro de Clientes-Funciones Interlocutor",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_KNVP.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "KUNNR",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG",
+				"type": "String"
+			},
+			{
+				"name": "SPART",
+				"type": "String"
+			},
+			{
+				"name": "PARVW",
+				"type": "String"
+			},
+			{
+				"name": "PARZA",
+				"type": "String"
+			},
+			{
+				"name": "KUNN2",
+				"type": "String"
+			},
+			{
+				"name": "LIFNR",
+				"type": "String"
+			},
+			{
+				"name": "PERNR",
+				"type": "String"
+			},
+			{
+				"name": "PARNR",
+				"type": "String"
+			},
+			{
+				"name": "KNREF",
+				"type": "String"
+			},
+			{
+				"name": "DEFPA",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

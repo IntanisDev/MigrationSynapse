@@ -1,0 +1,191 @@
+{
+	"name": "StoreCoverage_migra",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "StoreCoverageId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Coverage",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "GenderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QualityId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ShimId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Stock",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ProductFashionGradeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionSeasonId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductGenericId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductModelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockValued",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "NetSale",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NetSaleUSD",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "WarehouseId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Margin",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "SaleCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StockAvailable",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StockConf",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StockDelivery",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StockLocked",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "StoreCoverage"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

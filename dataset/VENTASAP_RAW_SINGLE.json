@@ -1,0 +1,208 @@
+{
+	"name": "VENTASAP_RAW_SINGLE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Retail/Venta Diaria/1 Raw Data/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat('1_raw_data/DATALAKE/DL_RETAIL/VENTA_DIARIA/',formatDateTime(formatDateTime(adddays(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd'),0)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd'),0)), 'MM'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd'),0)), 'dd'),'/SINGLE')",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "CODPAISVTA",
+				"type": "UTF8"
+			},
+			{
+				"name": "CODEMPRVTA",
+				"type": "UTF8"
+			},
+			{
+				"name": "CODWERKS",
+				"type": "UTF8"
+			},
+			{
+				"name": "CODWERKSRET",
+				"type": "UTF8"
+			},
+			{
+				"name": "NUMVTA",
+				"type": "UTF8"
+			},
+			{
+				"name": "FECHVTA",
+				"type": "UTF8"
+			},
+			{
+				"name": "FECHENTR",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_RUT",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_TIPIDENT",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_NOMBRE",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_APELLIDOS",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_TELEFONO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_GIRO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_DIREC",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_NUM",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_COMUNA",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_CIUDAD",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_REGION",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLI_PAIS",
+				"type": "UTF8"
+			},
+			{
+				"name": "TIPDOCEMIT",
+				"type": "UTF8"
+			},
+			{
+				"name": "I_CAB_REFERENCIA",
+				"type": "UTF8"
+			},
+			{
+				"name": "FECHREF",
+				"type": "UTF8"
+			},
+			{
+				"name": "DESCTREC",
+				"type": "UTF8"
+			},
+			{
+				"name": "RETTDA",
+				"type": "UTF8"
+			},
+			{
+				"name": "TIPDOCREF",
+				"type": "UTF8"
+			},
+			{
+				"name": "CODPOS",
+				"type": "UTF8"
+			},
+			{
+				"name": "POS",
+				"type": "UTF8"
+			},
+			{
+				"name": "TOTMEDPAG",
+				"type": "FLOAT"
+			},
+			{
+				"name": "CODAUT",
+				"type": "UTF8"
+			},
+			{
+				"name": "CODTARJ",
+				"type": "UTF8"
+			},
+			{
+				"name": "NOMTARJ",
+				"type": "UTF8"
+			},
+			{
+				"name": "NROCUOTA",
+				"type": "UTF8"
+			},
+			{
+				"name": "BANCO",
+				"type": "UTF8"
+			},
+			{
+				"name": "TIPCAMB",
+				"type": "FLOAT"
+			},
+			{
+				"name": "CODMON",
+				"type": "UTF8"
+			},
+			{
+				"name": "PRODPOS",
+				"type": "UTF8"
+			},
+			{
+				"name": "CODPROD",
+				"type": "UTF8"
+			},
+			{
+				"name": "CANT",
+				"type": "FLOAT"
+			},
+			{
+				"name": "MONTO",
+				"type": "FLOAT"
+			},
+			{
+				"name": "MTODESC",
+				"type": "FLOAT"
+			},
+			{
+				"name": "PRODFECHREF",
+				"type": "UTF8"
+			},
+			{
+				"name": "SIGNO",
+				"type": "UTF8"
+			},
+			{
+				"name": "REFERENCIA",
+				"type": "UTF8"
+			},
+			{
+				"name": "VENDEDOR",
+				"type": "UTF8"
+			},
+			{
+				"name": "CAJA",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

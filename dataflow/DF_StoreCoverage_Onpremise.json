@@ -1,0 +1,125 @@
+{
+	"name": "DF_StoreCoverage_Onpremise",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "StoreCoverage_OnPremise_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "StoreCoverage_OnPremise_CON2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          StoreCoverageId as string,",
+				"          BrandId as string,",
+				"          ClothingPieceId as string,",
+				"          ClothingPieceTypeId as string,",
+				"          Coverage as string,",
+				"          GenderId as string,",
+				"          LineId as string,",
+				"          ProductId as string,",
+				"          QualityId as string,",
+				"          SaleQuantity as string,",
+				"          ShimId as string,",
+				"          Stock as string,",
+				"          StoreId as string,",
+				"          TimePeriodId as string,",
+				"          ProductFashionGradeId as string,",
+				"          ProductFashionSeasonId as string,",
+				"          ProductGenericId as string,",
+				"          ProductModelId as string,",
+				"          StockValued as string,",
+				"          NetSale as string,",
+				"          SaleOrganisationId as string,",
+				"          NetSaleUSD as string,",
+				"          WarehouseId as string,",
+				"          SaleChannelId as string,",
+				"          CustomerId as string,",
+				"          Margin as string,",
+				"          SaleCost as string,",
+				"          StockAvailable as string,",
+				"          StockConf as string,",
+				"          StockDelivery as string,",
+				"          StockLocked as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(StoreCoverageId = toInteger(StoreCoverageId),",
+				"          BrandId = toInteger(BrandId),",
+				"          ClothingPieceId = toInteger(ClothingPieceId),",
+				"          ClothingPieceTypeId = toInteger(ClothingPieceTypeId),",
+				"          Coverage = toDecimal(Coverage,18,2),",
+				"          GenderId = toInteger(GenderId),",
+				"          LineId = toInteger(LineId),",
+				"          ProductId = toInteger(ProductId),",
+				"          QualityId = toInteger(QualityId),",
+				"          SaleQuantity = toDecimal(SaleQuantity,18,2),",
+				"          ShimId = toInteger(ShimId),",
+				"          Stock = toDecimal(Stock,18,2),",
+				"          StoreId = toInteger(StoreId),",
+				"          TimePeriodId = toDate(TimePeriodId),",
+				"          ProductFashionGradeId = toInteger(ProductFashionGradeId),",
+				"          ProductFashionSeasonId = toInteger(ProductFashionSeasonId),",
+				"          ProductGenericId = toInteger(ProductGenericId),",
+				"          ProductModelId = toInteger(ProductModelId),",
+				"          StockValued = toDecimal(StockValued,18,2),",
+				"          NetSale = toDecimal(NetSale,18,2),",
+				"          SaleOrganisationId = toInteger(SaleOrganisationId),",
+				"          NetSaleUSD = toDecimal(NetSaleUSD,18,2),",
+				"          WarehouseId = toInteger(WarehouseId),",
+				"          SaleChannelId = toInteger(SaleChannelId),",
+				"          CustomerId = toInteger(CustomerId),",
+				"          Margin = toDecimal(Margin,18,2),",
+				"          SaleCost = toDecimal(SaleCost,18,2),",
+				"          StockAvailable = toDecimal(StockAvailable,18,2),",
+				"          StockConf = toDecimal(StockConf,18,2),",
+				"          StockDelivery = toDecimal(StockDelivery,18,2),",
+				"          StockLocked = toDecimal(StockLocked,18,2)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          MANDT as string,",
+				"          WERKS as string,",
+				"          LGORT as string,",
+				"          MATNR as string,",
+				"          LABST as decimal(13,3),",
+				"          VALCOST as decimal(13,3),",
+				"          SPEME as decimal(13,3),",
+				"          S_PED as decimal(13,3),",
+				"          S_ENT as decimal(13,3),",
+				"          S_DISP as decimal(13,3),",
+				"          FECHA as string,",
+				"          HORA as string,",
+				"          FECHA_STOCK as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('StoreCoverage_OnPremise_',toString(addDays(currentDate(), -1),'yyyyMMdd'),'.parquet') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

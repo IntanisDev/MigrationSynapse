@@ -1,0 +1,48 @@
+{
+	"name": "Trafico_Historico_Peru",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "NOMBRE_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "DIAHORA_INICIO",
+				"type": "varchar"
+			},
+			{
+				"name": "DIAHORA_FIN",
+				"type": "varchar"
+			},
+			{
+				"name": "ENTRADAS",
+				"type": "varchar"
+			},
+			{
+				"name": "SALIDAS",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "TRAFICO_HISTORICO_PERU"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

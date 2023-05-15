@@ -1,0 +1,54 @@
+{
+	"name": "Ventas_Prisma_DL_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "VENTAS_PRISMA.txt",
+				"folderPath": "0_landing_zone/OnPremise",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "STORE_NO",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "String"
+			},
+			{
+				"name": "NETO",
+				"type": "String"
+			},
+			{
+				"name": "UNIDADES",
+				"type": "String"
+			},
+			{
+				"name": "FUENTE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,26 @@
+{
+	"name": "DM_CECO_TEXT_RAW",
+	"properties": {
+		"description": "Centro de costo Atributo desde tabla CSKS",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/1 Raw Data/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_CSKT.PARQUET",
+				"folderPath": "1_raw_data/DATALAKE/DL_DATOS_MAESTROS/",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

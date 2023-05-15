@@ -1,0 +1,26 @@
+{
+	"name": "LinePlan_Excel_Leer_Archivos",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/LinePlan"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "1_raw_data/DATALAKE/DL_LINEPLAN",
+				"fileSystem": "edwlakeprd"
+			},
+			"sheetIndex": 4,
+			"range": "A11:BH5000",
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

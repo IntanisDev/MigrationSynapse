@@ -1,0 +1,332 @@
+{
+	"name": "ZCLMM022_FTP_to_SQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "ZCLMM022_FTP_to_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "CuboLogistico/ZCLMM019.CSV"
+					},
+					{
+						"name": "Destination",
+						"value": "edwlakeprd/0_landing_zone/Cubo_Logistico/ZCLMM019.CSV"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"maxConcurrentConnections": 2,
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FechaExtrae",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FechaExtrae",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PEDIDO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PEDIDO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SOCIEDAD",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SOCIEDAD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FEC_CREACION",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FEC_CREACION",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "centro_su",
+									"type": "String"
+								},
+								"sink": {
+									"name": "centro_su",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "clasedoc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "clasedoc",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "posicion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "posicion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Tienda/Cliente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Tienda/Cliente",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "material",
+									"type": "String"
+								},
+								"sink": {
+									"name": "material",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CantPedido",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CantPedido",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Temporada",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Temporada",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "a�o",
+									"type": "String"
+								},
+								"sink": {
+									"name": "a�o",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEntrega",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cantEntrega",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cantEmbalado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cantEmbalado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CantDespachado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CantDespachado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CantRecepcionado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CantRecepcionado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SinEntrega",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SinEntrega",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "enproceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "enproceso",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "entransito",
+									"type": "String"
+								},
+								"sink": {
+									"name": "entransito",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "IndBorrado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "IndBorrado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "IndEntreFin",
+									"type": "String"
+								},
+								"sink": {
+									"name": "IndEntreFin",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ZCLMM022_FTP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ZCLMM022_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Load_into_SQL",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "ZCLMM022_FTP_to_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "ZCLMM022",
+						"type": "DataFlowReference",
+						"parameters": {
+							"contador": "1"
+						}
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/1_raw_data"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo_Logistico/Data_Ingest"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-22T01:51:00Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

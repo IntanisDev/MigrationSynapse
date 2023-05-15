@@ -1,0 +1,44 @@
+{
+	"name": "Base_GTIN",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "CORRELATIVO",
+				"type": "varchar"
+			},
+			{
+				"name": "GTIN",
+				"type": "varchar"
+			},
+			{
+				"name": "TIPO_GTIN",
+				"type": "varchar"
+			},
+			{
+				"name": "IND_GTIN",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_GTIN"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

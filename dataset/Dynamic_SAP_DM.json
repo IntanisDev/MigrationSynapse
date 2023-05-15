@@ -1,0 +1,21 @@
+{
+	"name": "Dynamic_SAP_DM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SAP_PRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/01 Fuente"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/sap/bc/srt/rfc/sap/zws_dinamic_table/500/zws_dinamic_table/zws_dinamic_table"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

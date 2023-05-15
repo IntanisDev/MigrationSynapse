@@ -1,0 +1,24 @@
+{
+	"name": "Carga_Prisma_0500",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Prisma_Ventas",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-11-14T05:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

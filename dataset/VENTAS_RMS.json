@@ -1,0 +1,54 @@
+{
+	"name": "VENTAS_RMS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "COD_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_NO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "Neto",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "Unidades",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "FUENTE",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "RMS_VENTAS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

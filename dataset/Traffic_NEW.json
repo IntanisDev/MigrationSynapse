@@ -1,0 +1,16 @@
+{
+	"name": "Traffic_NEW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestService2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

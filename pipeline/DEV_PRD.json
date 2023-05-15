@@ -1,0 +1,215 @@
+{
+	"name": "DEV_PRD",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_dev_prd",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/staging_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Periodo",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Periodo"
+								}
+							},
+							{
+								"source": {
+									"name": "Sociedad",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Sociedad"
+								}
+							},
+							{
+								"source": {
+									"name": "Dia",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Dia"
+								}
+							},
+							{
+								"source": {
+									"name": "Canal_Distribucion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Canal_Distribucion"
+								}
+							},
+							{
+								"source": {
+									"name": "Cliente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Cliente"
+								}
+							},
+							{
+								"source": {
+									"name": "Tienda_Centro",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Tienda_Centro"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Articulo",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Tipo_Articulo"
+								}
+							},
+							{
+								"source": {
+									"name": "Marca",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Marca"
+								}
+							},
+							{
+								"source": {
+									"name": "Calidad",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Calidad"
+								}
+							},
+							{
+								"source": {
+									"name": "Genero",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Genero"
+								}
+							},
+							{
+								"source": {
+									"name": "Linea",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Linea"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Tipo"
+								}
+							},
+							{
+								"source": {
+									"name": "Prenda",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Prenda"
+								}
+							},
+							{
+								"source": {
+									"name": "VentaM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VentaM"
+								}
+							},
+							{
+								"source": {
+									"name": "CostoM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CostoM"
+								}
+							},
+							{
+								"source": {
+									"name": "Volumen_Venta",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Volumen_Venta"
+								}
+							},
+							{
+								"source": {
+									"name": "Grado_Moda",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Grado_Moda"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DEV_TO_PRD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ABP_CARGA_MANUAL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Contenido Técnico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-05T06:36:14Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

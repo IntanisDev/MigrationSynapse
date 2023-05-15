@@ -1,0 +1,38 @@
+{
+	"name": "DF_Prisma_Ventas",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0815_Oracle_Prisma"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Prisma_Ventas_DL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Prisma_Venta",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "truncarString"
+				},
+				{
+					"name": "filter1"
+				}
+			],
+			"script": "source(output(\n\t\tINVC_SID as string,\n\t\tFISCAL_DOC_ID as string,\n\t\tTRACKING_NO as string,\n\t\tINVC_NO as string,\n\t\tSBS_NO as string,\n\t\tSBS_NAME as string,\n\t\tSTORE_NO as string,\n\t\tSTORE_NAME as string,\n\t\tPOS_FLAG1 as string,\n\t\tPOS_FLAG2 as string,\n\t\tPOS_FLAG3 as string,\n\t\tCREATED_DATE as string,\n\t\tPROC_STATUS as string,\n\t\tSTATUS as string,\n\t\tWORKSTATION as string,\n\t\tINVC_TYPE as string,\n\t\tTENDER_TYPE as string,\n\t\tTENDER_NO as string,\n\t\tTAKEN as string,\n\t\tGIVEN as string,\n\t\tAMT as string,\n\t\tCRD_TYPE as string,\n\t\tDOC_NO as string,\n\t\tTENDER_NAME as string,\n\t\tCRD_NAME as string,\n\t\tINFO1 as string,\n\t\tFIRST_NAME as string,\n\t\tLAST_NAME as string,\n\t\tSO_NO as string,\n\t\tEMPL_NAME as string,\n\t\tRPRO_FULL_NAME as string,\n\t\tQTY as string,\n\t\tALU as string,\n\t\tDESCRIPTION1 as string,\n\t\tDESCRIPTION2 as string,\n\t\tDESCRIPTION3 as string,\n\t\tDESCRIPTION4 as string,\n\t\tATTR as string,\n\t\tSIZ as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(INVC_SID = substring(INVC_SID, 1,40),\n\t\tTRACKING_NO = substring(TRACKING_NO, 1, 30),\n\t\tSBS_NAME = substring(SBS_NAME, 1, 30),\n\t\tSTORE_NAME = substring(STORE_NAME, 1, 40),\n\t\tPOS_FLAG1 = substring(POS_FLAG1,1, 50),\n\t\tPOS_FLAG2 = substring(POS_FLAG2,1, 50),\n\t\tPOS_FLAG3 = substring(POS_FLAG3,1, 50),\n\t\tDOC_NO = substring(DOC_NO, 1,30),\n\t\tTENDER_NAME = substring(TENDER_NAME, 1,30),\n\t\tCRD_NAME = substring(CRD_NAME,1,6),\n\t\tINFO1 = substring(INFO1, 1,20),\n\t\tFIRST_NAME = substring(FIRST_NAME, 1,30),\n\t\tLAST_NAME = substring(LAST_NAME, 1,30),\n\t\tSO_NO = substring(SO_NO, 1,14),\n\t\tEMPL_NAME = substring(EMPL_NAME, 1,8),\n\t\tRPRO_FULL_NAME = substring(RPRO_FULL_NAME, 1,60),\n\t\tDESCRIPTION1 = substring(DESCRIPTION1, 1,30),\n\t\tDESCRIPTION2 = substring(DESCRIPTION2, 1,30),\n\t\tDESCRIPTION3 = substring(DESCRIPTION3, 1,30),\n\t\tDESCRIPTION4 = substring(DESCRIPTION4, 1,30),\n\t\tATTR = substring(ATTR, 1,8),\n\t\tSIZ = substring(SIZ, 1,8)) ~> truncarString\ntruncarString filter(INVC_SID != ''\r\n&& FISCAL_DOC_ID != '' \r\n&& CREATED_DATE != '') ~> filter1\nfilter1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tINVC_SID as string,\n\t\tFISCAL_DOC_ID as decimal(10,0),\n\t\tTRACKING_NO as string,\n\t\tINVC_NO as decimal(10,0),\n\t\tSBS_NO as integer,\n\t\tSBS_NAME as string,\n\t\tSTORE_NO as integer,\n\t\tSTORE_NAME as string,\n\t\tPOS_FLAG1 as string,\n\t\tPOS_FLAG2 as string,\n\t\tPOS_FLAG3 as string,\n\t\tCREATED_DATE as timestamp,\n\t\tPROC_STATUS as decimal(10,0),\n\t\tSTATUS as integer,\n\t\tWORKSTATION as integer,\n\t\tINVC_TYPE as integer,\n\t\tTENDER_TYPE as integer,\n\t\tTENDER_NO as integer,\n\t\tTAKEN as decimal(16,4),\n\t\tGIVEN as decimal(16,4),\n\t\tAMT as decimal(16,4),\n\t\tCRD_TYPE as integer,\n\t\tDOC_NO as string,\n\t\tTENDER_NAME as string,\n\t\tCRD_NAME as string,\n\t\tINFO1 as string,\n\t\tFIRST_NAME as string,\n\t\tLAST_NAME as string,\n\t\tSO_NO as string,\n\t\tEMPL_NAME as string,\n\t\tRPRO_FULL_NAME as string,\n\t\tQTY as decimal(10,3),\n\t\tALU as string,\n\t\tDESCRIPTION1 as string,\n\t\tDESCRIPTION2 as string,\n\t\tDESCRIPTION3 as string,\n\t\tDESCRIPTION4 as string,\n\t\tATTR as string,\n\t\tSIZ as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tINVC_SID,\n\t\tFISCAL_DOC_ID,\n\t\tTRACKING_NO,\n\t\tINVC_NO,\n\t\tSBS_NO,\n\t\tSBS_NAME,\n\t\tSTORE_NO,\n\t\tSTORE_NAME,\n\t\tPOS_FLAG1,\n\t\tPOS_FLAG2,\n\t\tPOS_FLAG3,\n\t\tCREATED_DATE,\n\t\tPROC_STATUS,\n\t\tSTATUS,\n\t\tWORKSTATION,\n\t\tINVC_TYPE,\n\t\tTENDER_TYPE,\n\t\tTENDER_NO,\n\t\tTAKEN,\n\t\tGIVEN,\n\t\tAMT,\n\t\tCRD_TYPE,\n\t\tDOC_NO,\n\t\tTENDER_NAME,\n\t\tCRD_NAME,\n\t\tINFO1,\n\t\tFIRST_NAME,\n\t\tLAST_NAME,\n\t\tSO_NO,\n\t\tEMPL_NAME,\n\t\tRPRO_FULL_NAME,\n\t\tQTY,\n\t\tALU,\n\t\tDESCRIPTION1,\n\t\tDESCRIPTION2,\n\t\tDESCRIPTION3,\n\t\tDESCRIPTION4,\n\t\tATTR,\n\t\tSIZ\n\t)) ~> sink1"
+		}
+	}
+}

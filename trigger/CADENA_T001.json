@@ -1,0 +1,25 @@
+{
+	"name": "CADENA_T001",
+	"properties": {
+		"description": "Ejecuta la carga del dato maestro Sociedades",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "T001_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-29T03:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

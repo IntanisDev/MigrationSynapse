@@ -1,0 +1,58 @@
+{
+	"name": "vw_SaleDailyPlan",
+	"properties": {
+		"folder": {
+			"name": "Retail/Venta Diaria/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "Fecha",
+				"type": "varchar"
+			},
+			{
+				"name": "SaleOrganisationCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Country",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "CurrencyId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleAFP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "SaleIP",
+				"type": "decimal",
+				"precision": 22,
+				"scale": 9
+			},
+			{
+				"name": "UPT_Plan",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "vw_SaleDailyPlan"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

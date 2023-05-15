@@ -1,0 +1,53 @@
+{
+	"name": "Inventario_Bolivia_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "inventario.txt",
+				"folderPath": "Bolivia"
+			},
+			"columnDelimiter": "|",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COD_CENTRO",
+				"type": "String"
+			},
+			{
+				"name": "COD_ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "COD_ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_VALORIZADO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK_CONSIGNACION",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

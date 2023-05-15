@@ -1,0 +1,366 @@
+{
+	"name": "DM_TVFK_ST",
+	"properties": {
+		"description": "Clases de Factura",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_TVFK.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "FKART",
+				"type": "String"
+			},
+			{
+				"name": "KOPGR",
+				"type": "String"
+			},
+			{
+				"name": "NUMKI",
+				"type": "String"
+			},
+			{
+				"name": "NUMKE",
+				"type": "String"
+			},
+			{
+				"name": "INCPO",
+				"type": "String"
+			},
+			{
+				"name": "KUNN0",
+				"type": "String"
+			},
+			{
+				"name": "UEVOR",
+				"type": "String"
+			},
+			{
+				"name": "UMFNG",
+				"type": "String"
+			},
+			{
+				"name": "RFBFK",
+				"type": "String"
+			},
+			{
+				"name": "TRVOG",
+				"type": "String"
+			},
+			{
+				"name": "TXN08",
+				"type": "String"
+			},
+			{
+				"name": "VBTYP",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "PARGK",
+				"type": "String"
+			},
+			{
+				"name": "PARGP",
+				"type": "String"
+			},
+			{
+				"name": "KALSMC",
+				"type": "String"
+			},
+			{
+				"name": "FKARTS",
+				"type": "String"
+			},
+			{
+				"name": "TXTGR",
+				"type": "String"
+			},
+			{
+				"name": "KAPPL",
+				"type": "String"
+			},
+			{
+				"name": "KALSM",
+				"type": "String"
+			},
+			{
+				"name": "KSCHL",
+				"type": "String"
+			},
+			{
+				"name": "STAFO",
+				"type": "String"
+			},
+			{
+				"name": "KVSLV",
+				"type": "String"
+			},
+			{
+				"name": "KALVG",
+				"type": "String"
+			},
+			{
+				"name": "TXTGR_P",
+				"type": "String"
+			},
+			{
+				"name": "STATI",
+				"type": "String"
+			},
+			{
+				"name": "KALSMBP",
+				"type": "String"
+			},
+			{
+				"name": "BORVF",
+				"type": "String"
+			},
+			{
+				"name": "FKART_RL",
+				"type": "String"
+			},
+			{
+				"name": "RELEP",
+				"type": "String"
+			},
+			{
+				"name": "TXTLF",
+				"type": "String"
+			},
+			{
+				"name": "HITYP_PR",
+				"type": "String"
+			},
+			{
+				"name": "FKART_AB",
+				"type": "String"
+			},
+			{
+				"name": "GRBED_S",
+				"type": "String"
+			},
+			{
+				"name": "ORDNR_FI_S",
+				"type": "String"
+			},
+			{
+				"name": "XBLNR_FI_S",
+				"type": "String"
+			},
+			{
+				"name": "J_1BNFREL",
+				"type": "String"
+			},
+			{
+				"name": "J_1BMAINPA",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTDIDH",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTDCOH",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTDIDL",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTDCOL",
+				"type": "String"
+			},
+			{
+				"name": "FKTYP",
+				"type": "String"
+			},
+			{
+				"name": "XNEGP",
+				"type": "String"
+			},
+			{
+				"name": "BLART",
+				"type": "String"
+			},
+			{
+				"name": "XFILKD",
+				"type": "String"
+			},
+			{
+				"name": "XVALGS",
+				"type": "String"
+			},
+			{
+				"name": "KALSMCA",
+				"type": "String"
+			},
+			{
+				"name": "KALSMCB",
+				"type": "String"
+			},
+			{
+				"name": "KALSMCC",
+				"type": "String"
+			},
+			{
+				"name": "KALSMCD",
+				"type": "String"
+			},
+			{
+				"name": "XKOIV",
+				"type": "String"
+			},
+			{
+				"name": "J_1AINVREF",
+				"type": "String"
+			},
+			{
+				"name": "J_1ACPDEL",
+				"type": "String"
+			},
+			{
+				"name": "UVEIB",
+				"type": "String"
+			},
+			{
+				"name": "ISM_XKRVO",
+				"type": "String"
+			},
+			{
+				"name": "OICINPD",
+				"type": "String"
+			},
+			{
+				"name": "OIFEEPD",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC1",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC2",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC3",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC4",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC5",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC6",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC7",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC8",
+				"type": "String"
+			},
+			{
+				"name": "OIINVCYC9",
+				"type": "String"
+			},
+			{
+				"name": "OINETEXIT",
+				"type": "String"
+			},
+			{
+				"name": "OIPTRMEX",
+				"type": "String"
+			},
+			{
+				"name": "OIC_DIFFIN",
+				"type": "String"
+			},
+			{
+				"name": "OIC_DICNTR",
+				"type": "String"
+			},
+			{
+				"name": "OIC_ACCVAL",
+				"type": "String"
+			},
+			{
+				"name": "OIC_ERRHA",
+				"type": "String"
+			},
+			{
+				"name": "OIC_FKART",
+				"type": "String"
+			},
+			{
+				"name": "OISELEXIT",
+				"type": "String"
+			},
+			{
+				"name": "OIFINEXIT",
+				"type": "String"
+			},
+			{
+				"name": "OINETRPT",
+				"type": "String"
+			},
+			{
+				"name": "OIBTCEXIT",
+				"type": "String"
+			},
+			{
+				"name": "OIAMWOFI",
+				"type": "String"
+			},
+			{
+				"name": "OIABALAN",
+				"type": "String"
+			},
+			{
+				"name": "OIINVAPP",
+				"type": "String"
+			},
+			{
+				"name": "OIINDCM",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

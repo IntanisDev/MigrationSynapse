@@ -1,0 +1,57 @@
+{
+	"name": "Base_BeFlow_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/02_DataLake"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "BeFlow.csv",
+				"folderPath": "0_landing_zone/Cubo_Venta/InputFiles",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "REMOTE_ORDER_ID",
+				"type": "String"
+			},
+			{
+				"name": "DTE",
+				"type": "String"
+			},
+			{
+				"name": "ACTION",
+				"type": "String"
+			},
+			{
+				"name": "DATE",
+				"type": "String"
+			},
+			{
+				"name": "ORDER_NEW_STATUS",
+				"type": "String"
+			},
+			{
+				"name": "OMS_ORDER_ID",
+				"type": "String"
+			},
+			{
+				"name": "LOG_ID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

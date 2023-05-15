@@ -1,0 +1,88 @@
+{
+	"name": "Base_Stg_DailySalesPlan",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "REGION",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_CTRY_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "RTL_STORE_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "RTL_STORE_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "ERP_SRC_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "FQTR",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_TARGET_DATE",
+				"type": "varchar"
+			},
+			{
+				"name": "DAILY_STORE_AFP",
+				"type": "varchar"
+			},
+			{
+				"name": "DAILY_STORE_PLAN",
+				"type": "varchar"
+			},
+			{
+				"name": "DAILY_STORE_FRCST_4",
+				"type": "varchar"
+			},
+			{
+				"name": "DAILY_STORE_FRCST_7",
+				"type": "varchar"
+			},
+			{
+				"name": "DAILY_STORE_FRCST_10",
+				"type": "varchar"
+			},
+			{
+				"name": "DAILY_STORE_PER",
+				"type": "varchar"
+			},
+			{
+				"name": "CONVERSION_PLAN",
+				"type": "varchar"
+			},
+			{
+				"name": "UPT_PLAN",
+				"type": "varchar"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_VENTAS_AFPIP"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

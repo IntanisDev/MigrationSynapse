@@ -1,0 +1,129 @@
+{
+	"name": "Store_Det_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_BI_PRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Store_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Comp_Store",
+				"type": "varchar"
+			},
+			{
+				"name": "RE_Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "Country_Group",
+				"type": "varchar"
+			},
+			{
+				"name": "SAP_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Centro_Costos",
+				"type": "varchar"
+			},
+			{
+				"name": "State",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "Mall_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Mall_Group",
+				"type": "varchar"
+			},
+			{
+				"name": "District",
+				"type": "varchar"
+			},
+			{
+				"name": "District_Manager",
+				"type": "varchar"
+			},
+			{
+				"name": "Retail_Channel",
+				"type": "varchar"
+			},
+			{
+				"name": "Format",
+				"type": "varchar"
+			},
+			{
+				"name": "Business_Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Store_Brand",
+				"type": "varchar"
+			},
+			{
+				"name": "Partner_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Open_Date",
+				"type": "date"
+			},
+			{
+				"name": "Close_Date",
+				"type": "date"
+			},
+			{
+				"name": "Comp_Reset",
+				"type": "date"
+			},
+			{
+				"name": "Gross_Selling_Size",
+				"type": "varchar"
+			},
+			{
+				"name": "Gross_Size",
+				"type": "varchar"
+			},
+			{
+				"name": "Stock_Capacity",
+				"type": "varchar"
+			},
+			{
+				"name": "Latitude",
+				"type": "varchar"
+			},
+			{
+				"name": "Longitude",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Store_Det"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

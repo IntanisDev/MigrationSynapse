@@ -1,0 +1,37 @@
+{
+	"name": "OrderNumber",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "OrderNumberId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OrderNo",
+				"type": "varchar"
+			},
+			{
+				"name": "IsClosed",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "OrderNumber"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

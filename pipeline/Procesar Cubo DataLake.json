@@ -1,0 +1,470 @@
+{
+	"name": "Procesar Cubo DataLake",
+	"properties": {
+		"activities": [
+			{
+				"name": "Ventas DataLake",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Ventas"
+					},
+					"timeout": "00:05:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Transacciones DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Ventas DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Transacciones"
+					},
+					"timeout": "00:03:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Trafico DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Transacciones DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Trafico"
+					},
+					"timeout": "00:03:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Sociedad DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Inventario DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Sociedad"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Periodo DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Sociedad DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Periodo"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Material Descripcion DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Periodo DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Material_Descripcion"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Material DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Material Descripcion DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Material"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Inventario DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Trafico DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Inventario"
+					},
+					"timeout": "00:03:00",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Cliente DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Material DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Cliente"
+					},
+					"timeout": "00:00:30",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Clase Factura DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Cliente DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Clase Factura"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Centro DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Clase Factura DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Centro"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Canal DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Centro DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Canal"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Calculos Variacion DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Canal DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Calculos Variacion"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Calculos Temporales DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Calculos Variacion DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Calculos Temporales"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Comparison Report DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Calculos Temporales DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Comparison Report"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "CompTree Report DataLake",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Comparison Report DataLake",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "Datalake",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "CompTree Report"
+					},
+					"timeout": "00:00:08",
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/09 Ejecucion de Cubos"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-16T13:18:26Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

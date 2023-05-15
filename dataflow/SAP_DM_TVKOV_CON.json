@@ -1,0 +1,68 @@
+{
+	"name": "SAP_DM_TVKOV_CON",
+	"properties": {
+		"description": "Canales de Dsitribución por Organización de Ventas",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_TVKOV_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_TVKOV",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          VKORG as string,",
+				"          VTWEG as string,",
+				"          VTWKO as string,",
+				"          VTWAU as string,",
+				"          VTWKU as string,",
+				"          VLGFI as string,",
+				"          VLTYP as string,",
+				"          VLKEB as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          VKORG,",
+				"          VTWEG,",
+				"          VTWKO,",
+				"          VTWAU,",
+				"          VTWKU,",
+				"          VLGFI,",
+				"          VLTYP,",
+				"          VLKEB",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

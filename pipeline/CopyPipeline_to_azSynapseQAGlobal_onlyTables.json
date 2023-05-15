@@ -1,0 +1,2342 @@
+{
+	"name": "CopyPipeline_to_azSynapseQAGlobal_onlyTables",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_q29",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_q29",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.schema}.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "@{item().destination.schema}.@{item().destination.table}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "SqlPoolSource"
+								},
+								"sink": {
+									"type": "SqlDWSink",
+									"writeBehavior": "Insert",
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": true,
+								"stagingSettings": {
+									"linkedServiceName": {
+										"referenceName": "edw-prd-WorkspaceDefaultStorage",
+										"type": "LinkedServiceReference"
+									},
+									"path": "az4copytemp",
+									"enableCompression": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_q29",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_q29",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().destination.schema",
+										"cw_table": "@item().destination.table"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"schema": "datalake",
+							"table": "Cargas_Automatizadas"
+						},
+						"destination": {
+							"schema": "datalake",
+							"table": "Cargas_Automatizadas"
+						}
+					},
+					{
+						"source": {
+							"schema": "datalake",
+							"table": "log_errores"
+						},
+						"destination": {
+							"schema": "datalake",
+							"table": "log_errores"
+						}
+					},
+					{
+						"source": {
+							"schema": "finanzas",
+							"table": "canales"
+						},
+						"destination": {
+							"schema": "finanzas",
+							"table": "canales"
+						}
+					},
+					{
+						"source": {
+							"schema": "finanzas",
+							"table": "cuentas_usgaap"
+						},
+						"destination": {
+							"schema": "finanzas",
+							"table": "cuentas_usgaap"
+						}
+					},
+					{
+						"source": {
+							"schema": "finanzas",
+							"table": "genero"
+						},
+						"destination": {
+							"schema": "finanzas",
+							"table": "genero"
+						}
+					},
+					{
+						"source": {
+							"schema": "finanzas",
+							"table": "mapping_Ceco_PL"
+						},
+						"destination": {
+							"schema": "finanzas",
+							"table": "mapping_Ceco_PL"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "libro_asistencia"
+						},
+						"destination": {
+							"schema": "geovictoria",
+							"table": "libro_asistencia"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "libro_asistencia_resp"
+						},
+						"destination": {
+							"schema": "geovictoria",
+							"table": "libro_asistencia_resp"
+						}
+					},
+					{
+						"source": {
+							"schema": "geovictoria",
+							"table": "usuarios"
+						},
+						"destination": {
+							"schema": "geovictoria",
+							"table": "usuarios"
+						}
+					},
+					{
+						"source": {
+							"schema": "logistica",
+							"table": "fact_pedidos"
+						},
+						"destination": {
+							"schema": "logistica",
+							"table": "fact_pedidos"
+						}
+					},
+					{
+						"source": {
+							"schema": "logistica",
+							"table": "fact_pedidos_sin_entrega"
+						},
+						"destination": {
+							"schema": "logistica",
+							"table": "fact_pedidos_sin_entrega"
+						}
+					},
+					{
+						"source": {
+							"schema": "logistica",
+							"table": "STOCK_ACTUAL"
+						},
+						"destination": {
+							"schema": "logistica",
+							"table": "STOCK_ACTUAL"
+						}
+					},
+					{
+						"source": {
+							"schema": "masterdata",
+							"table": "cliente_canal"
+						},
+						"destination": {
+							"schema": "masterdata",
+							"table": "cliente_canal"
+						}
+					},
+					{
+						"source": {
+							"schema": "masterdata",
+							"table": "material"
+						},
+						"destination": {
+							"schema": "masterdata",
+							"table": "material"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "__Reportes_PowerBI"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "__Reportes_PowerBI"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "borrar"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "borrar"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Brand"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Brand"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "BucketsSAP"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "BucketsSAP"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "BusinessClasification"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "BusinessClasification"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ClothingPiece"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ClothingPiece"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ClothingPieceType"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ClothingPieceType"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Currency"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Currency"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Customer"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Customer"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "DIM_TIENDAS"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "DIM_TIENDAS"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "dim_tiendas_respaldo"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "dim_tiendas_respaldo"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "DocumentType"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "DocumentType"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ExchangeRate"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ExchangeRate"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ForeABP"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ForeABP"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Forecast04"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Forecast04"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Forecast1"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Forecast1"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Gender"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Gender"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Historial_Promocion"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Historial_Promocion"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Hour"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Hour"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "InterimTable_7a9ca286-43e8-4937-a279-762dac83cd11"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "InterimTable_7a9ca286-43e8-4937-a279-762dac83cd11"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Line"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Line"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "MarginDistribution"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "MarginDistribution"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "NewSaleDailyPlan"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "NewSaleDailyPlan"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "OrderNumber"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "OrderNumber"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "OrderNumberPosition"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "OrderNumberPosition"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "PaymentMethod"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "PaymentMethod"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Process"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Process"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Product"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Product"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Product_OP"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Product_OP"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductFashionGrade"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductFashionGrade"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductFashionSeason"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductFashionSeason"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductGeneric"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductGeneric"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductGeneric_apoyo_description"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductGeneric_apoyo_description"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductGeneric_Respaldo"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductGeneric_Respaldo"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductModel"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductModel"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductParameters"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductParameters"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductShim"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductShim"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ProductTest"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ProductTest"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Promocion"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Promocion"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Quality"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Quality"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "ReportDateParameter"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "ReportDateParameter"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailDocument"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailDocument"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailSale"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailSale"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailSale2"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailSale2"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailSale_20220523"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailSale_20220523"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailSale_20220930_pe"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailSale_20220930_pe"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailSale_mayo2022_apoyo_duprank"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailSale_mayo2022_apoyo_duprank"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailSale_test"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailSale_test"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailTraffic"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailTraffic"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailTraffic_20220520"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailTraffic_20220520"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailTraffic_20220520_2"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailTraffic_20220520_2"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailTraffic_20220520_3"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailTraffic_20220520_3"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailTraffic_bkp"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailTraffic_bkp"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "RetailTraffic_remaco_202203"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "RetailTraffic_remaco_202203"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Sale"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Sale"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Sale2"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Sale2"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Sale_Bolivia_Corregido"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Sale_Bolivia_Corregido"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Sale_Historia_Bolivia"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Sale_Historia_Bolivia"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Sale_Respaldo_Bolivia"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Sale_Respaldo_Bolivia"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleABP"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleABP"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleChannel"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleChannel"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleChannel_SaleType"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleChannel_SaleType"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleChannel_Store"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleChannel_Store"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleChannel_Store2"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleChannel_Store2"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleDailyPlan"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleDailyPlan"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleDailyPlan2"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleDailyPlan2"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleLastDateGeneric"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleLastDateGeneric"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleLastDateProduct"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleLastDateProduct"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleOrganisation"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleOrganisation"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleTailor"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleTailor"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleTailor2"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleTailor2"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleTasa2023"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleTasa2023"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleTest"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleTest"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SaleType"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SaleType"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Seller"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Seller"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SellOut"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SellOut"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "SellOutStore"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "SellOutStore"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Shim"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Shim"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Store"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Store"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Store_bkp"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Store_bkp"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Store_Det"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Store_Det"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Store_Det2"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Store_Det2"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "StoreCoverage"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "StoreCoverage"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "StoreCoverage02"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "StoreCoverage02"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "StoreCoverage_backup"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "StoreCoverage_backup"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "StoreCoverage_test"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "StoreCoverage_test"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "StoreCoverage_USDTEST"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "StoreCoverage_USDTEST"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "TimePeriod"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "TimePeriod"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "TimePeriod_bkp"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "TimePeriod_bkp"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "TipoCambio"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "TipoCambio"
+						}
+					},
+					{
+						"source": {
+							"schema": "sales",
+							"table": "Warehouse"
+						},
+						"destination": {
+							"schema": "sales",
+							"table": "Warehouse"
+						}
+					},
+					{
+						"source": {
+							"schema": "salesdev",
+							"table": "Sale"
+						},
+						"destination": {
+							"schema": "salesdev",
+							"table": "Sale"
+						}
+					},
+					{
+						"source": {
+							"schema": "salesdev",
+							"table": "SaleTailor"
+						},
+						"destination": {
+							"schema": "salesdev",
+							"table": "SaleTailor"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "A073"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "A073"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "CE1100"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "CE1100"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "CE11000"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "CE11000"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "CE1100_borrar"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "CE1100_borrar"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "CE12000"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "CE12000"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "EINA"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "EINA"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "EINE"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "EINE"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "EKBE"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "EKBE"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "EKKO"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "EKKO"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "EKPO"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "EKPO"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "KNA1"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "KNA1"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "KNB1"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "KNB1"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "KONP"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "KONP"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "KONV"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "KONV"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "konv_2"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "konv_2"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "MARA"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "MARA"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "Parametros_Sell"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "Parametros_Sell"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "STOCK"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "STOCK"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "STOCK_DISPONIBLE"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "STOCK_DISPONIBLE"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "T001"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "T001"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "T6WFG"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "T6WFG"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "tabla1"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "tabla1"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "VBAK"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "VBAK"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "VBAP"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "VBAP"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "VBFA"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "VBFA"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "VBPA"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "VBPA"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "VBRK"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "VBRK"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "VBRP"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "VBRP"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "ZDLAKE_063"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "ZDLAKE_063"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "ZPOS_VTAVENDEDOR"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "ZPOS_VTAVENDEDOR"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "ZV_VBPA"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "ZV_VBPA"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "ZV_VBRP"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "ZV_VBRP"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "ZVMM058CARACT"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "ZVMM058CARACT"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "ZVMM058CARACT2"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "ZVMM058CARACT2"
+						}
+					},
+					{
+						"source": {
+							"schema": "SAP",
+							"table": "ZVMM_STOCK"
+						},
+						"destination": {
+							"schema": "SAP",
+							"table": "ZVMM_STOCK"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "AFP_CARGA_MANUAL"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "AFP_CARGA_MANUAL"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_ABP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_ABP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_ABP_BKP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_ABP_BKP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_ARTICULOS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_ARTICULOS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_ARTICULOS_BOL"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_ARTICULOS_BOL"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_ARTICULOS_v2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_ARTICULOS_v2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_CALCES"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_CALCES"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_CLIENTES"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_CLIENTES"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_FORECAST_4"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_FORECAST_4"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_GTIN"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_GTIN"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_HOMOLOGACION_VARIANTE"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_HOMOLOGACION_VARIANTE"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_INVENTARIO"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_INVENTARIO"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_INVENTARIO_BOLIVIA"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_INVENTARIO_BOLIVIA"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_INVENTARIOv2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_INVENTARIOv2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_JERARQUIA"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_JERARQUIA"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_JERARQUIA_BOL_HISTORIA"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_JERARQUIA_BOL_HISTORIA"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_ProductGeneric"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_ProductGeneric"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_bkp"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_bkp"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_bkp_Febrero"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_bkp_Febrero"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_bkp_Marzo"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_bkp_Marzo"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_FUPBI"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_FUPBI"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_FUPBI_bkp"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_FUPBI_bkp"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_FUPBI_TIENDAS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_TRAFICO_DIARIO_FUPBI_TIENDAS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_VENTAS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_VENTAS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_AFPIP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_AFPIP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_AFPIP_V3"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_AFPIP_V3"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_BOL"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_BOL"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_NEWAFPIP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_NEWAFPIP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_v2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BASE_VENTAS_v2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "BeFlow"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "BeFlow"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "beflow_atrasos"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "beflow_atrasos"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "beflow_atrasos_res"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "beflow_atrasos_res"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "beflow_atrasos_res2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "beflow_atrasos_res2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "beflow_final"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "beflow_final"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "beflow_pbi"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "beflow_pbi"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "beflow_pbi_grafico1"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "beflow_pbi_grafico1"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "beflow_pbi_grilla"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "beflow_pbi_grilla"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "cap_cubicaje"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "cap_cubicaje"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ERRORES_CLIENTES"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ERRORES_CLIENTES"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ERRORES_COVERAGE"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ERRORES_COVERAGE"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ERRORES_INSERT"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ERRORES_INSERT"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "HOMOLOGAR_TIENDAS_FOLLOWUP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "HOMOLOGAR_TIENDAS_FOLLOWUP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "InterimTable_110829eb-ffd0-4179-80bf-0477279e8fa2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "InterimTable_110829eb-ffd0-4179-80bf-0477279e8fa2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "JERARQUIA"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "JERARQUIA"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "KpiLogistico"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "KpiLogistico"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "KpiLogistico_bkp"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "KpiLogistico_bkp"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "KpiLogistico_Espejo"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "KpiLogistico_Espejo"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "KpiLogistico_pbi"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "KpiLogistico_pbi"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "KpiLogistico_prueba"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "KpiLogistico_prueba"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "KpiLogistico_Temp"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "KpiLogistico_Temp"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "KpiLogisticoGraf_pbi"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "KpiLogisticoGraf_pbi"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "LISTADO_USUARIOS_TIENDA_DET"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "LISTADO_USUARIOS_TIENDA_DET"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "Prisma_Ventas"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "Prisma_Ventas"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "Proceso"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "Proceso"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "RETAIL_BASE_CABECERA"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "RETAIL_BASE_CABECERA"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "RETAIL_BASE_DETALLE"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "RETAIL_BASE_DETALLE"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "RETAIL_BASE_TIENDAS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "RETAIL_BASE_TIENDAS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "RMS_VENTAS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "RMS_VENTAS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TEMP_NEWSaleABP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TEMP_NEWSaleABP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS_TAILOR"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS_TAILOR"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS_TAILOR2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TEMP_NEWVENTAS_TAILOR2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TEMP_Store_Det"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TEMP_Store_Det"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TEMP_ZCLMM049"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TEMP_ZCLMM049"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TIENDAS_PRISMA"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TIENDAS_PRISMA"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TIENDAS_RMS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TIENDAS_RMS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TMP_Distribucion"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TMP_Distribucion"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TMP_DistribucionABPPivot"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TMP_DistribucionABPPivot"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TMP_Forecast04"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TMP_Forecast04"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TMP_SaleABP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TMP_SaleABP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "TRAFICO_HISTORICO_PERU"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "TRAFICO_HISTORICO_PERU"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "VENTAS_CUBO"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "VENTAS_CUBO"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "VENTAS_PRISMA"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "VENTAS_PRISMA"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "VENTAS_RMS"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "VENTAS_RMS"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "VENTAS_SAP"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "VENTAS_SAP"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "VENTAS_SAP2"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "VENTAS_SAP2"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ZCLMM022"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ZCLMM022"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ZCLMM023"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ZCLMM023"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ZCLMM025"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ZCLMM025"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ZCLMM039_WM"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ZCLMM039_WM"
+						}
+					},
+					{
+						"source": {
+							"schema": "staging",
+							"table": "ZCLMM039_WM_STOCK_ACTUAL"
+						},
+						"destination": {
+							"schema": "staging",
+							"table": "ZCLMM039_WM_STOCK_ACTUAL"
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-13T02:18:20Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,131 @@
+{
+	"name": "trafico_remaco_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar_API_TO_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['devicekey']"
+								},
+								"sink": {
+									"name": "devicekey"
+								}
+							},
+							{
+								"source": {
+									"path": "$['MALL']"
+								},
+								"sink": {
+									"name": "MALL"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ZONA']"
+								},
+								"sink": {
+									"name": "ZONA"
+								}
+							},
+							{
+								"source": {
+									"path": "$['NOMBRE']"
+								},
+								"sink": {
+									"name": "NOMBRE"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIMESTAMP_INICIO']"
+								},
+								"sink": {
+									"name": "TIMESTAMP_INICIO"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIMESTAMP_FIN']"
+								},
+								"sink": {
+									"name": "TIMESTAMP_FIN"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ENTRADAS']"
+								},
+								"sink": {
+									"name": "ENTRADAS"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SALIDAS']"
+								},
+								"sink": {
+									"name": "SALIDAS"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Trafico_API_test",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BaseTraficoDiario_DL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-22T19:02:31Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,282 @@
+{
+	"name": "DM_T001W_ST",
+	"properties": {
+		"description": "Centro Sucursales",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_T001W.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "WERKS",
+				"type": "String"
+			},
+			{
+				"name": "NAME1",
+				"type": "String"
+			},
+			{
+				"name": "BWKEY",
+				"type": "String"
+			},
+			{
+				"name": "KUNNR",
+				"type": "String"
+			},
+			{
+				"name": "LIFNR",
+				"type": "String"
+			},
+			{
+				"name": "FABKL",
+				"type": "String"
+			},
+			{
+				"name": "NAME2",
+				"type": "String"
+			},
+			{
+				"name": "STRAS",
+				"type": "String"
+			},
+			{
+				"name": "PFACH",
+				"type": "String"
+			},
+			{
+				"name": "PSTLZ",
+				"type": "String"
+			},
+			{
+				"name": "ORT01",
+				"type": "String"
+			},
+			{
+				"name": "EKORG",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "CHAZV",
+				"type": "String"
+			},
+			{
+				"name": "KKOWK",
+				"type": "String"
+			},
+			{
+				"name": "KORDB",
+				"type": "String"
+			},
+			{
+				"name": "BEDPL",
+				"type": "String"
+			},
+			{
+				"name": "LAND1",
+				"type": "String"
+			},
+			{
+				"name": "REGIO",
+				"type": "String"
+			},
+			{
+				"name": "COUNC",
+				"type": "String"
+			},
+			{
+				"name": "CITYC",
+				"type": "String"
+			},
+			{
+				"name": "ADRNR",
+				"type": "String"
+			},
+			{
+				"name": "IWERK",
+				"type": "String"
+			},
+			{
+				"name": "TXJCD",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG",
+				"type": "String"
+			},
+			{
+				"name": "SPART",
+				"type": "String"
+			},
+			{
+				"name": "SPRAS",
+				"type": "String"
+			},
+			{
+				"name": "WKSOP",
+				"type": "String"
+			},
+			{
+				"name": "AWSLS",
+				"type": "String"
+			},
+			{
+				"name": "CHAZV_OLD",
+				"type": "String"
+			},
+			{
+				"name": "VLFKZ",
+				"type": "String"
+			},
+			{
+				"name": "BZIRK",
+				"type": "String"
+			},
+			{
+				"name": "ZONE1",
+				"type": "String"
+			},
+			{
+				"name": "TAXIW",
+				"type": "String"
+			},
+			{
+				"name": "BZQHL",
+				"type": "String"
+			},
+			{
+				"name": "LET01",
+				"type": "String"
+			},
+			{
+				"name": "LET02",
+				"type": "String"
+			},
+			{
+				"name": "LET03",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_MA1",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_MA2",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_MA3",
+				"type": "String"
+			},
+			{
+				"name": "BETOL",
+				"type": "String"
+			},
+			{
+				"name": "J_1BBRANCH",
+				"type": "String"
+			},
+			{
+				"name": "VTBFI",
+				"type": "String"
+			},
+			{
+				"name": "FPRFW",
+				"type": "String"
+			},
+			{
+				"name": "ACHVM",
+				"type": "String"
+			},
+			{
+				"name": "DVSART",
+				"type": "String"
+			},
+			{
+				"name": "NODETYPE",
+				"type": "String"
+			},
+			{
+				"name": "NSCHEMA",
+				"type": "String"
+			},
+			{
+				"name": "PKOSA",
+				"type": "String"
+			},
+			{
+				"name": "MISCH",
+				"type": "String"
+			},
+			{
+				"name": "MGVUPD",
+				"type": "String"
+			},
+			{
+				"name": "VSTEL",
+				"type": "String"
+			},
+			{
+				"name": "MGVLAUPD",
+				"type": "String"
+			},
+			{
+				"name": "MGVLAREVAL",
+				"type": "String"
+			},
+			{
+				"name": "SOURCING",
+				"type": "String"
+			},
+			{
+				"name": "OILIVAL",
+				"type": "String"
+			},
+			{
+				"name": "OIHVTYPE",
+				"type": "String"
+			},
+			{
+				"name": "OIHCREDIPI",
+				"type": "String"
+			},
+			{
+				"name": "STORETYPE",
+				"type": "String"
+			},
+			{
+				"name": "DEP_STORE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

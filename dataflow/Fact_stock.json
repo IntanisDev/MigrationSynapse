@@ -1,0 +1,32 @@
+{
+	"name": "Fact_stock",
+	"properties": {
+		"description": "Carga stock Actual",
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM039_WM_STOCK_ACTUAL",
+						"type": "DatasetReference"
+					},
+					"name": "StockActual"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "stock_actual",
+						"type": "DatasetReference"
+					},
+					"name": "factStock"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tFECHA_EJECUCION as date,\n\t\tCENTRO as string,\n\t\tALMACEN as string,\n\t\tNRO_ALMACEN as string,\n\t\tTIPO_ALMACEN as string,\n\t\tNRO_ARTICULO as string,\n\t\tSTOCK_DISPONIBLE as integer,\n\t\tSTOCK_TOTAL as integer,\n\t\tCONTADOR as integer\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table',\n\tstaged: true) ~> StockActual\nStockActual sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tFECHA_EJECUCION as date,\n\t\tCENTRO as string,\n\t\tALMACEN as string,\n\t\tNRO_ALMACEN as string,\n\t\tTIPO_ALMACEN as string,\n\t\tNRO_ARTICULO as string,\n\t\tSTOCK_DISPONIBLE as integer,\n\t\tSTOCK_TOTAL as integer,\n\t\tCONTADOR as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> factStock"
+		}
+	}
+}

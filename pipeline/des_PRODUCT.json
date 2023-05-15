@@ -1,0 +1,339 @@
+{
+	"name": "des_PRODUCT",
+	"properties": {
+		"activities": [
+			{
+				"name": "Product",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ProductId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductId"
+								}
+							},
+							{
+								"source": {
+									"name": "VariantCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VariantCode"
+								}
+							},
+							{
+								"source": {
+									"name": "Variant",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Variant"
+								}
+							},
+							{
+								"source": {
+									"name": "VariantGroup",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VariantGroup"
+								}
+							},
+							{
+								"source": {
+									"name": "Model",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Model"
+								}
+							},
+							{
+								"source": {
+									"name": "Color",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Color"
+								}
+							},
+							{
+								"source": {
+									"name": "Size",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Size"
+								}
+							},
+							{
+								"source": {
+									"name": "Large",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Large"
+								}
+							},
+							{
+								"source": {
+									"name": "FashionGrade",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FashionGrade"
+								}
+							},
+							{
+								"source": {
+									"name": "FashionSeason",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FashionSeason"
+								}
+							},
+							{
+								"source": {
+									"name": "StationYear",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "StationYear"
+								}
+							},
+							{
+								"source": {
+									"name": "IsActive",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "IsActive"
+								}
+							},
+							{
+								"source": {
+									"name": "StartDateActive",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "StartDateActive"
+								}
+							},
+							{
+								"source": {
+									"name": "EndDateActive",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "EndDateActive"
+								}
+							},
+							{
+								"source": {
+									"name": "PC9",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PC9"
+								}
+							},
+							{
+								"source": {
+									"name": "PC13",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PC13"
+								}
+							},
+							{
+								"source": {
+									"name": "GenericCod",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GenericCod"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ProductType"
+								}
+							},
+							{
+								"source": {
+									"name": "Royalty",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Royalty"
+								}
+							},
+							{
+								"source": {
+									"name": "UPCCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "UPCCode"
+								}
+							},
+							{
+								"source": {
+									"name": "Shim",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Shim"
+								}
+							},
+							{
+								"source": {
+									"name": "FashionGradeCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FashionGradeCode"
+								}
+							},
+							{
+								"source": {
+									"name": "FashionSeasonCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FashionSeasonCode"
+								}
+							},
+							{
+								"source": {
+									"name": "RoyaltyCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RoyaltyCode"
+								}
+							},
+							{
+								"source": {
+									"name": "GenericDescription",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GenericDescription"
+								}
+							},
+							{
+								"source": {
+									"name": "CloseOutLabelLSCo",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CloseOutLabelLSCo"
+								}
+							},
+							{
+								"source": {
+									"name": "ValuationLabelLSCo",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ValuationLabelLSCo"
+								}
+							},
+							{
+								"source": {
+									"name": "BaseProductMaster",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BaseProductMaster"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "des_Product",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "PRODUCT",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Copia Desarrollo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-11-30T00:46:25Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

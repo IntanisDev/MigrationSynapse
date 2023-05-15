@@ -1,0 +1,65 @@
+{
+	"name": "Base_Trafico_Diario_bkp_Febrero",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "CORRELATIVO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Devicekey",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "MALL",
+				"type": "varchar"
+			},
+			{
+				"name": "ZONA",
+				"type": "varchar"
+			},
+			{
+				"name": "NOMBRE",
+				"type": "varchar"
+			},
+			{
+				"name": "TIMESTAMP_INICIO",
+				"type": "varchar"
+			},
+			{
+				"name": "TIMESTAMP_FIN",
+				"type": "varchar"
+			},
+			{
+				"name": "ENTRADAS",
+				"type": "varchar"
+			},
+			{
+				"name": "SALIDAS",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_TRAFICO_DIARIO_BKP_FEBRERO"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

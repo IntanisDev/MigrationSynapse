@@ -1,0 +1,41 @@
+{
+	"name": "BASE_TRAFICO_DIARIO_FUPBI_TIENDAS_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_BI_PRD_STAGING",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "foreign_id",
+				"type": "varchar"
+			},
+			{
+				"name": "country_id",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BASE_TRAFICO_DIARIO_FUPBI_TIENDAS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

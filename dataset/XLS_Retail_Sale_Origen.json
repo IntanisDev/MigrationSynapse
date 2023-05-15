@@ -1,0 +1,69 @@
+{
+	"name": "XLS_Retail_Sale_Origen",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Country Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Country Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Legacy Store Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Site",
+				"type": "varchar"
+			},
+			{
+				"name": "Store Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Trans date",
+				"type": "char"
+			},
+			{
+				"name": "Sales net",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 2
+			},
+			{
+				"name": "Units",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Trans",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Traffic",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Report_Sales_Retail2"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

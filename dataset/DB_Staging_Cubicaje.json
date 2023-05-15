@@ -1,0 +1,49 @@
+{
+	"name": "DB_Staging_Cubicaje",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Capacitacion"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "fecha",
+				"type": "date"
+			},
+			{
+				"name": "cod_cliente",
+				"type": "varchar"
+			},
+			{
+				"name": "cadena",
+				"type": "varchar"
+			},
+			{
+				"name": "cod_destinatario",
+				"type": "varchar"
+			},
+			{
+				"name": "destinatario",
+				"type": "varchar"
+			},
+			{
+				"name": "m2",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "cap_cubicaje"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

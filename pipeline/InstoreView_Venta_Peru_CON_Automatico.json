@@ -1,0 +1,99 @@
+{
+	"name": "InstoreView_Venta_Peru_CON_Automatico",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar InstoreView Consumo -1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_Peru_CON_Automatico",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Copiar InstoreView Consumo -2",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copiar InstoreView Consumo -1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_Peru_CON_Automatico_2",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Copiar InstoreView Consumo -3",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copiar InstoreView Consumo -2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_Peru_CON_Automatico_3",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/03 Consumption/BKP"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T18:08:46Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

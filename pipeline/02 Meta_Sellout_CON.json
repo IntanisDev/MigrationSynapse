@@ -1,0 +1,37 @@
+{
+	"name": "02 Meta_Sellout_CON",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_Meta_Sellout_CON",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/03 Consumption"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T18:04:00Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

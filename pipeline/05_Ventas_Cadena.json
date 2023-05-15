@@ -1,0 +1,86 @@
+{
+	"name": "05_Ventas_Cadena",
+	"properties": {
+		"activities": [
+			{
+				"name": "0825_BaseVentas",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_01_BaseVentas",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_FactNewSale",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_BaseVentas",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_02_FactNewSale_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_Product",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_FactNewSale",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_03_Product",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "0825_ProductAttributes",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "0825_Product",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Vta_04_ProductAttributes",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones/bkp"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T20:48:46Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

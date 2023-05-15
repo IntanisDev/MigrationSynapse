@@ -1,0 +1,32 @@
+{
+	"name": "VENTASAP_DIARIA_CON_HISTORICO",
+	"properties": {
+		"description": "Fuente datos para carga historica",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Retail/Venta Diaria/3 Consumption Zone"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "VENTADIARIA-2022-12-21.parquet",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "3_consumption_zone/Datalake/DL_RETAIL/DETALLE_VENTA_DIARIA/PARQUET/2022/12/",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

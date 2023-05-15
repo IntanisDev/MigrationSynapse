@@ -1,0 +1,37 @@
+{
+	"name": "ZCLMM049_CO",
+	"properties": {
+		"activities": [
+			{
+				"name": "ZCLMM049_ST_to_CO",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "ZCLMM049_ST_to_CO",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo SW Productividad/03 SW_Product_CO"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-03-09T17:16:27Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

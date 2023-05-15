@@ -1,0 +1,49 @@
+{
+	"name": "Table_Base_GTIN_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "ZCLMM060_HISTORIAL_GTIN_ARTICULOLV_.txt",
+				"folderPath": "cubo_ventas"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COD_ARTICULO      ",
+				"type": "String"
+			},
+			{
+				"name": "CORRELATIVO ",
+				"type": "String"
+			},
+			{
+				"name": "GTIN              ",
+				"type": "String"
+			},
+			{
+				"name": "TIPO_GTIN ",
+				"type": "String"
+			},
+			{
+				"name": "IND_GTIN",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

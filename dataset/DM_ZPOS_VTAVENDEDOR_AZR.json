@@ -1,0 +1,50 @@
+{
+	"name": "DM_ZPOS_VTAVENDEDOR_AZR",
+	"properties": {
+		"description": "relación vendedor con boleta",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD_SD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/01 Fuente"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "WERKS",
+				"type": "varchar"
+			},
+			{
+				"name": "FKDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "VBELN",
+				"type": "varchar"
+			},
+			{
+				"name": "IDOC",
+				"type": "varchar"
+			},
+			{
+				"name": "CAJA",
+				"type": "varchar"
+			},
+			{
+				"name": "VENDEDOR",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ZPOS_VTAVENDEDOR"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

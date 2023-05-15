@@ -1,0 +1,913 @@
+{
+	"name": "SAP_DM_TIMEPERIOD",
+	"properties": {
+		"description": "Maestro de Clientes",
+		"activities": [
+			{
+				"name": "Copiar DM_TIMEPERIOD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TimePeriodId",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "TimePeriodId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DateName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DateName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfMonth",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "DayOfMonth",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfMonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DayOfMonthName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HalfYear",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "HalfYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HalfYearDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HalfYearDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HalfYearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HalfYearName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Month",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Month",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MonthDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "MonthDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MonthName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousHalfYearDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousHalfYearDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousHalfYearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousHalfYearName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousMonthDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousMonthDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousMonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousMonthName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousTrimesterDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousTrimesterDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousTrimesterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousTrimesterName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousWeekDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousWeekDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousWeekName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousWeekName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousYear",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "PreviousYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousYearDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PreviousYearDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PreviousYearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PreviousYearName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Quarter",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Quarter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QuarterDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "QuarterDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QuarterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "QuarterName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Trimester",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Trimester",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TrimesterDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TrimesterDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TrimesterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TrimesterName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Week",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Week",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "WeekDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WeekName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekRange",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WeekRange",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Year",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "YearDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "YearDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "YearName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "YearName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalHalfYear",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalHalfYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalMonthDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "FiscalMonthDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalMonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalMonthName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalQuarterName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalQuarterName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalWeekName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalWeekName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalYear",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FiscalYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalWeekDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "FiscalWeekDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "InicioMesFical",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "InicioMesFical",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ant1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ant2",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ant2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "w_ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "w_ant1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "InicioQuarterFiscal",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "InicioQuarterFiscal",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "q_ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "q_ant1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "InicioAnoFiscal",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "InicioAnoFiscal",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "y_ant1",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "y_ant1",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Tabla_TimePeriod",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_TIMEPERIOD_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Log_OK",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copiar DM_TIMEPERIOD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "select\n'@{formatDateTime(utcnow(),'yyyy-MM-ddTHH:mm:ss')}' as fecha_proceso,\n'@{pipeline().Pipeline}' as nombre,\n'@{pipeline().RunId}' as id_proceso,\n'RAW' as zona,\n'DM TIMEPERIOD' as fuente,\n'DM TIMEPERIOD DL' as destino,\n'OK' as estado,\n'@{activity('Copiar DM_TIMEPERIOD').output.rowsRead}' filas_leidas,\n'@{activity('Copiar DM_TIMEPERIOD').output.rowsCopied}' filas_insertadas,\n'@{activity('Copiar DM_TIMEPERIOD').output.copyDuration}' duracion\n\n\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "fecha_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "zona",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Capa",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Canalizacion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "id_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Id_ejecucion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fuente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fuente",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "destino",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Destino",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "estado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Estado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_leidas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_leidas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_insertadas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_insertadas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "duracion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Duracion",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_Articulos",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tabla_Log_Errores",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Log_ERROR",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copiar DM_TIMEPERIOD",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "select\n'@{formatDateTime(utcnow(),'yyyy-MM-ddTHH:mm:ss')}' as fecha_proceso,\n'@{pipeline().Pipeline}' as nombre,\n'@{pipeline().RunId}' as id_proceso,\n'RAW' as zona,\n'DM TIMEPERIOD' as fuente,\n'DM TIMEPERIOD DL' as destino,\n'Error' as estado,\n'@{activity('Copiar DM_TIMEPERIOD').output.rowsRead}' filas_leidas,\n'0' filas_insertadas,\n'@{activity('Copiar DM_TIMEPERIOD').output.copyDuration}' duracion,\n'001' as codigo_error,\n'Error en Actividad de Copiado' as mensaje_error\n\n\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "fecha_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fecha",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "zona",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Capa",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Canalizacion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "id_proceso",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Id_ejecucion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fuente",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Fuente",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "destino",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Destino",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "estado",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Estado",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_leidas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_leidas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "filas_insertadas",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Filas_insertadas",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "duracion",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Duracion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "codigo_error",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Codigo_error",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "mensaje_error",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Descripcion_error",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_Articulos",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tabla_Log_Errores",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/01 Datos Maestros/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-03T16:02:27Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

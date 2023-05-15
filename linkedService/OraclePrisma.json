@@ -1,0 +1,17 @@
+{
+	"name": "OraclePrisma",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "Prisma productivo",
+		"annotations": [],
+		"type": "Oracle",
+		"typeProperties": {
+			"connectionString": "host=192.168.171.26;port=1521;sid=rproods;user id=reportuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyYTJkZDNlMy02MjEyLTQ5Y2QtOTVmOS00NmEzOGQ2NTg5MDIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

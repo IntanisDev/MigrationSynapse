@@ -1,0 +1,97 @@
+{
+	"name": "Filtra_UsuariosActivos",
+	"properties": {
+		"folder": {
+			"name": "RRHH/Datos Maestros"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "userListParquet",
+						"type": "DatasetReference"
+					},
+					"name": "Empleados"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "userListActivosParquet",
+						"type": "DatasetReference"
+					},
+					"name": "ActivosParquet",
+					"rejectedDataLinkedService": {
+						"referenceName": "edw-prd-WorkspaceDefaultStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "activos"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as integer,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          SchedulerId as string,",
+				"          SchedulerStart as string,",
+				"          SchedulerPeriodStart as string,",
+				"          ContractDate as string,",
+				"          EndContractDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Empleados",
+				"Empleados filter(equals(Enabled,1)) ~> activos",
+				"activos sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Id as string,",
+				"          Identifier as string,",
+				"          Name as string,",
+				"          LastName as string,",
+				"          Enabled as integer,",
+				"          PositionDescription as string,",
+				"          Email as string,",
+				"          SchedulerId as string,",
+				"          SchedulerStart as string,",
+				"          SchedulerPeriodStart as string,",
+				"          ContractDate as string,",
+				"          EndContractDate as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:['UserList_Activos.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Id,",
+				"          Identifier,",
+				"          Name,",
+				"          LastName,",
+				"          Enabled,",
+				"          PositionDescription,",
+				"          Email,",
+				"          SchedulerId,",
+				"          SchedulerStart,",
+				"          SchedulerPeriodStart,",
+				"          ContractDate,",
+				"          EndContractDate",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> ActivosParquet"
+			]
+		}
+	}
+}

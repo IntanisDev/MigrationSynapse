@@ -1,0 +1,24 @@
+{
+	"name": "HttpServerApi_Beflow",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "beflow",
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://q3ghsfg1t3.execute-api.us-east-1.amazonaws.com/prod/customReport?resType=csv&reportType=logs&",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"connection-token": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

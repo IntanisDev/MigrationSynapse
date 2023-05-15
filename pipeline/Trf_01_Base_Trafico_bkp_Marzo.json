@@ -1,0 +1,169 @@
+{
+	"name": "Trf_01_Base_Trafico_bkp_Marzo",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar_API_TO_DL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['devicekey']"
+								},
+								"sink": {
+									"name": "devicekey"
+								}
+							},
+							{
+								"source": {
+									"path": "$['MALL']"
+								},
+								"sink": {
+									"name": "MALL"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ZONA']"
+								},
+								"sink": {
+									"name": "ZONA"
+								}
+							},
+							{
+								"source": {
+									"path": "$['NOMBRE']"
+								},
+								"sink": {
+									"name": "NOMBRE"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIMESTAMP_INICIO']"
+								},
+								"sink": {
+									"name": "TIMESTAMP_INICIO"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIMESTAMP_FIN']"
+								},
+								"sink": {
+									"name": "TIMESTAMP_FIN"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ENTRADAS']"
+								},
+								"sink": {
+									"name": "ENTRADAS"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SALIDAS']"
+								},
+								"sink": {
+									"name": "SALIDAS"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Trafico_API_test",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BaseTraficoDiario_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copiar_DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copiar_API_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Base_Trafico_Diario_bkp_Marzo",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0600_Trafico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-22T18:58:05Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,85 @@
+{
+	"name": "BaseForecast",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "PERIODO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "FECHA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPOARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "CODIGO_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "VENTA",
+				"type": "varchar"
+			},
+			{
+				"name": "COSTO",
+				"type": "varchar"
+			},
+			{
+				"name": "VOLUMEN_VENTA",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_FORECAST_4"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

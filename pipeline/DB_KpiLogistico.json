@@ -1,0 +1,384 @@
+{
+	"name": "DB_KpiLogistico",
+	"properties": {
+		"activities": [
+			{
+				"name": "Mover CSV a BackupFiles",
+				"description": "mueve archivo fuente a carpeta BackupFiles",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "DL_to_BD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Base_BeFlow_DL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mover_Base_BeFlow",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Borrar CSV de InputFiles",
+				"description": "borra archivo fuente de la carpeta InputFiles, ya que ya se cargó la data en la tabla de azure y se movió el csv a la carpeta BackupFiles",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Mover CSV a BackupFiles",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Base_BeFlow_DL",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "DL_to_BD",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "API_to_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_StgBeFlow",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/temp_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continueOnError": true
+				}
+			},
+			{
+				"name": "Token",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@concat('https://q3ghsfg1t3.execute-api.us-east-1.amazonaws.com/prod/customReport?resType=csv&reportType=logs&fromDate=',formatDateTime(addDays(utcNow(),-1),'yyyy-MM-dd'),'T00:00:00-04:00&toDate=',formatDateTime(addDays(utcNow(),-1),'yyyy-MM-dd'),'T23:59:59-04:00')",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"connection-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmRlc29tcyIsImF1ZCI6Im9tcyIsImp0aSI6ImI1YmJkOTM0LWNiZmMtNGFmNi05ZDdkLTUyNTg3NTgyZWNkYSIsIm1lcmNoYW50X2lkIjoiNjIyZjY5MmQ4MzBiMTI1NzVmOGE2YmVjIiwiaWF0IjoxNjQ3NDg4MzY0fQ.tySwmBkPeo_DARHaUsqP46kpPmYYcvP8ZEFTqLMB_KA",
+						"type": "text"
+					},
+					"body": {
+						"view_type": "diario",
+						"dates": [
+							"2021-12-01",
+							"2021-12-02",
+							"2021-12-03",
+							"2021-12-04",
+							"2021-12-05",
+							"2021-12-06",
+							"2021-12-07",
+							"2021-12-08",
+							"2021-12-09",
+							"2021-12-10",
+							"2021-12-11",
+							"2021-12-12",
+							"2021-12-13",
+							"2021-12-14",
+							"2021-12-15",
+							"2021-12-16",
+							"2021-12-17",
+							"2021-12-18",
+							"2021-12-19",
+							"2021-12-20",
+							"2021-12-21",
+							"2021-12-22",
+							"2021-12-23",
+							"2021-12-24",
+							"2021-12-25",
+							"2021-12-26",
+							"2021-12-27",
+							"2021-12-28",
+							"2021-12-29",
+							"2021-12-30",
+							"2021-12-31"
+						],
+						"views": [
+							"Unidades",
+							"Costos B2B",
+							"Ventas B2B",
+							"Precios B2B",
+							"Contribución",
+							"MG (%)",
+							"Ventas PVP s/IVA"
+						],
+						"compress": false,
+						"chain_codes": [],
+						"hierarchy": {
+							"Rut": [],
+							"Cadena": [],
+							"Sub Cadena": [],
+							"Región": [],
+							"Local": [],
+							"Comuna": [],
+							"Nombre de Local": [],
+							"Linea": [],
+							"SKU": [],
+							"EAN": [],
+							"Marca": [],
+							"Descripción Producto": [],
+							"Genero": [],
+							"Modelo": [],
+							"Talla": [],
+							"Temporada": [],
+							"Estilo": [],
+							"Código Local": [],
+							"Dirección": [],
+							"Categoría": []
+						}
+					},
+					"httpRequestTimeout": "00:10:00"
+				}
+			},
+			{
+				"name": "API_to_DL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "salida:@{activity('Token').output.reportUrl}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "KpiLogisticoUrl",
+						"type": "DatasetReference",
+						"parameters": {
+							"nombre_archivo": "@{activity('Token').output.reportUrl}"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Base_BeFlow_DL",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "KpiLogistico02",
+				"description": "procesa los datos que vienen de beflow para utilizarlos en reporte pbi",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "KpiLogistico01",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[KpiLogistico02]"
+				}
+			},
+			{
+				"name": "KpiLogistico01",
+				"description": "Borrar los datos a procesar de la tabla staging.KpiLogistico y los vuelve a cargar",
+				"type": "SqlPoolStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Borrar CSV de InputFiles",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"sqlPool": {
+					"referenceName": "edw_prd",
+					"type": "SqlPoolReference"
+				},
+				"typeProperties": {
+					"storedProcedureName": "[staging].[KpiLogistico01]"
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/0000_BeFlow"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-19T15:51:32Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

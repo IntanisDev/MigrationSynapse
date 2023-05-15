@@ -1,0 +1,42 @@
+{
+	"name": "ZCLMM025_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo_Logistico/DataLake"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ZCLMM025.CSV",
+				"folderPath": "0_landing_zone/Cubo_Logistico",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "NRO.ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "TIPO ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "DESCR.ALMACEN",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

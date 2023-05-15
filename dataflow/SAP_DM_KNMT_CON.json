@@ -1,0 +1,106 @@
+{
+	"name": "SAP_DM_KNMT_CON",
+	"properties": {
+		"description": "Relación Producto Cliente vs Levi",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_KNMT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_KNMT",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Prop_0 as string,",
+				"          MANDT as string,",
+				"          VKORG as string,",
+				"          VTWEG as string,",
+				"          KUNNR as string,",
+				"          MATNR as string,",
+				"          ERNAM as string,",
+				"          ERDAT as string,",
+				"          SORTL as string,",
+				"          KDMAT as string,",
+				"          POSTX as string,",
+				"          LPRIO as string,",
+				"          MINLF as string,",
+				"          MEINS as string,",
+				"          CHSPL as string,",
+				"          KZTLF as string,",
+				"          ANTLF as string,",
+				"          UNTTO as string,",
+				"          UEBTO as string,",
+				"          UEBTK as string,",
+				"          WERKS as string,",
+				"          RDPRF as string,",
+				"          MEGRU as string,",
+				"          J_1BTXSDC as string,",
+				"          VWPOS as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(MINLF = toDecimal(MINLF,13,3),",
+				"          ANTLF = toDecimal(ANTLF,1,0),",
+				"          UNTTO = toDecimal(UNTTO,3,1),",
+				"          UEBTO = toDecimal(UEBTO,3,1)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          VKORG,",
+				"          VTWEG,",
+				"          KUNNR,",
+				"          MATNR,",
+				"          ERNAM,",
+				"          ERDAT,",
+				"          SORTL,",
+				"          KDMAT,",
+				"          POSTX,",
+				"          LPRIO,",
+				"          MINLF,",
+				"          MEINS,",
+				"          CHSPL,",
+				"          KZTLF,",
+				"          ANTLF,",
+				"          UNTTO,",
+				"          UEBTO,",
+				"          UEBTK,",
+				"          WERKS,",
+				"          RDPRF,",
+				"          MEGRU,",
+				"          J_1BTXSDC,",
+				"          VWPOS",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

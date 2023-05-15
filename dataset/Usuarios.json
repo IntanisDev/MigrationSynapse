@@ -1,0 +1,73 @@
+{
+	"name": "Usuarios",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria/3 Consumption Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "4_sensitive_zone/DL_RRHH/GEOVICTORIA/USUARIOS/",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "Identifier",
+				"type": "UTF8"
+			},
+			{
+				"name": "Name",
+				"type": "UTF8"
+			},
+			{
+				"name": "LastName",
+				"type": "UTF8"
+			},
+			{
+				"name": "Enabled",
+				"type": "INT32"
+			},
+			{
+				"name": "PositionDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "Email",
+				"type": "UTF8"
+			},
+			{
+				"name": "SchedulerId",
+				"type": "UTF8"
+			},
+			{
+				"name": "SchedulerStart",
+				"type": "UTF8"
+			},
+			{
+				"name": "SchedulerPeriodStart",
+				"type": "UTF8"
+			},
+			{
+				"name": "ContractDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "EndContractDate",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

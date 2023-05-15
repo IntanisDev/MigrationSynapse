@@ -1,0 +1,68 @@
+{
+	"name": "TX_DailySalesPlan",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 Fuente"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "DailySalesPlan_P6.csv",
+				"folderPath": "datalake"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "STORE_CTRY_CD",
+				"type": "String"
+			},
+			{
+				"name": "RTL_STORE_NAME",
+				"type": "String"
+			},
+			{
+				"name": "RTL_STORE_ID",
+				"type": "String"
+			},
+			{
+				"name": "ERP_SRC_CD",
+				"type": "String"
+			},
+			{
+				"name": "FQTR",
+				"type": "String"
+			},
+			{
+				"name": "Store Target Date",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store AFP ",
+				"type": "String"
+			},
+			{
+				"name": " Daily Store Plan ",
+				"type": "String"
+			},
+			{
+				"name": "Currency ",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

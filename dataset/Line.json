@@ -1,0 +1,45 @@
+{
+	"name": "Line",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Sales"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "LongDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "LineCode",
+				"type": "varchar"
+			},
+			{
+				"name": "LineType",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Line"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

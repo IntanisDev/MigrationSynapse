@@ -1,0 +1,37 @@
+{
+	"name": "InstoreView_Venta_Peru_ST",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar InstoreView St",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_Peru_ST",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/02 Standar/BKP"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T18:07:16Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

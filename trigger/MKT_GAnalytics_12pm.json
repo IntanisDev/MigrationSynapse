@@ -1,0 +1,31 @@
+{
+	"name": "MKT_GAnalytics_12pm",
+	"properties": {
+		"description": "Diario 8.30 AM",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "1_Carga_Google_Analytics",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "1_Carga_Google_Analytics_resumen",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-09-14T08:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

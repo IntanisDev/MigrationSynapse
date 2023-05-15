@@ -1,0 +1,49 @@
+{
+	"name": "TX_CE11000_ST",
+	"properties": {
+		"description": "tabla transaccional CE11000",
+		"activities": [
+			{
+				"name": "Copiar CE11000",
+				"description": "Copia y amplifica por 100 los valores de la tabla CE11000",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_Amplificar_Valores_CE11000",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"source1": {
+								"OutputFileName": "probando.csv",
+								"Folder": "probando1"
+							},
+							"sink1": {
+								"OutputFileName": "probando.csv",
+								"Folder": "probando2"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/02 Standard"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-15T06:27:43Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

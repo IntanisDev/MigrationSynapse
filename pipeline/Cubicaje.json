@@ -1,0 +1,145 @@
+{
+	"name": "Cubicaje",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar_Cubicaje",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FECHA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FECHA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CCLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CCLIENTE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CADENA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CADENA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CDESTINATARIOMERCANCIA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CDESTINATARIOMERCANCIA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESTINATARIOMERCANCIA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESTINATARIOMERCANCIA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "M2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "M2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Datos_Cubicaje",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Datos_Cubicaje_Destino",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Capacitacion"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-02T21:54:08Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

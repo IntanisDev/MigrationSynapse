@@ -1,0 +1,24 @@
+{
+	"name": "0845 - Venta Dockers TO Mexico",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "01_Csv_Mexico_TO_SFTP",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 2,
+				"startTime": "2023-01-13T08:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

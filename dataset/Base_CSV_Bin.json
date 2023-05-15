@@ -1,0 +1,93 @@
+{
+	"name": "Base_CSV_Bin",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "BIN_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "BIN_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "DESCRIPTION",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT",
+				"type": "varchar"
+			},
+			{
+				"name": "UPC",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_CODE_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "STORE_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "WAIST",
+				"type": "varchar"
+			},
+			{
+				"name": "LENGTH",
+				"type": "varchar"
+			},
+			{
+				"name": "BIN_QTY_STOCKS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LAST_MODIFIED_DATE",
+				"type": "char"
+			},
+			{
+				"name": "TS_ID",
+				"type": "char"
+			},
+			{
+				"name": "BIN_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "COUNTRY",
+				"type": "varchar"
+			},
+			{
+				"name": "GENERATION_FILE_DATE",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Bin"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

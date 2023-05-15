@@ -1,0 +1,64 @@
+{
+	"name": "GA_levis_resumen",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Social Media/Google Analytics/1 Raw Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('levis_visitas_resumen_',formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1),'yyyyMMdd'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('1_raw_data/DATALAKE/DL_MARKETING/DL_GOOGLEANALYTICS/PARQUET/',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1)), 'MM'))",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "fecha",
+				"type": "UTF8"
+			},
+			{
+				"name": "activeUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "engagedSessions",
+				"type": "INT32"
+			},
+			{
+				"name": "eventCount",
+				"type": "INT32"
+			},
+			{
+				"name": "newUsers",
+				"type": "INT32"
+			},
+			{
+				"name": "Sessions",
+				"type": "INT32"
+			},
+			{
+				"name": "totalRevenue",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "totalUsers",
+				"type": "INT32"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

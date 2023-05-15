@@ -1,0 +1,38 @@
+{
+	"name": "3_GA_Consolida_resumen_hist",
+	"properties": {
+		"description": "Unifica datos de levis y dockers en un solo archivo de salida",
+		"activities": [
+			{
+				"name": "Consolida_parquet",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "GA_Consolida_parquet_resumen_hist",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Social Media/Google Analytics/Resumen Historico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-04T22:58:44Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

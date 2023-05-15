@@ -1,0 +1,31 @@
+{
+	"name": "Inv BOLIVIA - BaseInventario",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Inventario_Bolivia_DL",
+						"type": "DatasetReference"
+					},
+					"name": "InvBoliviaDL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Base_Inventario_Bolivia",
+						"type": "DatasetReference"
+					},
+					"name": "BDStaging"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tCOD_CENTRO as string,\n\t\tCOD_ALMACEN as string,\n\t\tCOD_ARTICULO as string,\n\t\tSTOCK as string,\n\t\tSTOCK_VALORIZADO as string,\n\t\tSTOCK_CONSIGNACION as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> InvBoliviaDL\nInvBoliviaDL sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_CENTRO as string,\n\t\tCOD_ALMACEN as string,\n\t\tCOD_ARTICULO as string,\n\t\tSTOCK as string,\n\t\tSTOCK_VALORIZADO as string,\n\t\tSTOCK_CONSIGNACION as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_CENTRO,\n\t\tCOD_ALMACEN,\n\t\tCOD_ARTICULO,\n\t\tSTOCK,\n\t\tSTOCK_VALORIZADO,\n\t\tSTOCK_CONSIGNACION\n\t),\n\tpartitionBy('roundRobin', 5)) ~> BDStaging"
+		}
+	}
+}

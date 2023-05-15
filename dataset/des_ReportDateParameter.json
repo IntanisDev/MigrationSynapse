@@ -1,0 +1,39 @@
+{
+	"name": "des_ReportDateParameter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ReportDateParameterId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrentMember",
+				"type": "bit"
+			},
+			{
+				"name": "DateValue",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "TupleName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "ReportDateParameter"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,31 @@
+{
+	"name": "VENTASAP_DIARIA_STD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Retail/Venta Diaria/2 Standar Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('VENTASSAP-',formatDateTime(formatDateTime(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd')), 'MM'),formatDateTime(formatDateTime(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd')), 'dd'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('2_standar_zone/DATALAKE/DL_RETAIL/DETALLE_VENTA_DIARIA/PARQUET/',formatDateTime(formatDateTime(adddays(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd'),0)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd'),0)), 'MM'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(addToTime(utcNow(),-3,'Hour'), 'yyyy-MM-dd'),0)), 'dd'),'/')",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

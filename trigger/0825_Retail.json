@@ -1,0 +1,24 @@
+{
+	"name": "0825_Retail",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "04_Retail_Cadena",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-05-04T06:50:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

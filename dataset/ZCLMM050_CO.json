@@ -1,0 +1,28 @@
+{
+	"name": "ZCLMM050_CO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SW_Productividad/04 CO"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('ZCLMM050_V2_',formatDateTime(addhours(utcnow(),-4),'yyyyMMdd'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "3_consumption_zone/Datalake/DL_SW_PROD/SWP_ZCLMM050/2023",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

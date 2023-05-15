@@ -1,0 +1,542 @@
+{
+	"name": "Pipeline 1",
+	"properties": {
+		"activities": [
+			{
+				"name": "CargaDistribucionABP",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "edwlakeprd/temp_area"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PERIODO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Periodo",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MARCA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Marca",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CANAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Canal",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PAIS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pais",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "1",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "2",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "3",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "3",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "4",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "4",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "5",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "5",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "6",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "6",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "7",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "8",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "8",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "9",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "9",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "10",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "10",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "11",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "11",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "12",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "12",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "13",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "13",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "14",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "14",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "15",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "15",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "16",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "16",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "17",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "17",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "18",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "18",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "19",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "19",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "20",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "20",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "21",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "21",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "22",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "22",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "23",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "23",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "24",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "24",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "25",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "25",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "26",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "26",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "27",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "27",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "28",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "28",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "29",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "29",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "30",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "30",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "31",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "31",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "32",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "32",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "33",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "33",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "34",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "34",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "35",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "35",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DistribucionDiariaABP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DistribucionABP",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Contenido Técnico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-10T19:19:17Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

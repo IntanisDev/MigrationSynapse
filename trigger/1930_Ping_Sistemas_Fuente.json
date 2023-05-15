@@ -1,0 +1,30 @@
+{
+	"name": "1930_Ping_Sistemas_Fuente",
+	"properties": {
+		"description": "Ejecuta canalizaciones de validacion tecnica",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "0_Ping_sistemasFuente",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"User": "b5ca83",
+					"Password": "83fb8637",
+					"receiver": "aparedes@intanis.com;rcordero@levi.com;bbarahona@intanis.com;fnazer@levi.com;btorres@levi.com"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 3,
+				"startTime": "2023-03-29T15:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

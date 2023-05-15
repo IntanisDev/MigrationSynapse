@@ -1,0 +1,152 @@
+{
+	"name": "Procesa_Cubo_Logistico",
+	"properties": {
+		"activities": [
+			{
+				"name": "ProcesaStore",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Accept": "*/*"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboLogistico",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "Store"
+					},
+					"timeout": "00:00:10",
+					"reportStatusOnCallBack": false,
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "ProcesaMaterial",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "ProcesaStore",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboLogistico",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "material"
+					},
+					"timeout": "00:00:10",
+					"reportStatusOnCallBack": false,
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "ProcesaClienteCanal",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "ProcesaMaterial",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboLogistico",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "cliente_canal"
+					},
+					"timeout": "00:00:10",
+					"reportStatusOnCallBack": false,
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "ProcesaFact_pedidosSinEntrega",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "ProcesaClienteCanal",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboLogistico",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "fact_pedidos_sin_entrega"
+					},
+					"timeout": "00:02:00",
+					"reportStatusOnCallBack": false,
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "ProcesaFact_pedidos",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "ProcesaFact_pedidosSinEntrega",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://9757f4ed-421f-49a1-9ed4-6fdd6455ea87.webhook.eus2.azure-automation.net/webhooks?token=1dG%2bsSdu9siLaizctQpKgAmruqlO7DO%2bUx%2foKNOeXwg%3d",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"AnalysisServicesDatabaseName": "CuboLogistico",
+						"AnalysisServicesServer": "asazure://aspaaseastus2.asazure.windows.net/asprd",
+						"DatabaseRefreshType": "Full",
+						"Table": "fact_pedidos"
+					},
+					"timeout": "00:02:00",
+					"reportStatusOnCallBack": false,
+					"disableCertValidation": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-16T13:19:59Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

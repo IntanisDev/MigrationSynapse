@@ -1,0 +1,145 @@
+{
+	"name": "des_SaleABP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SaleABPId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuditTrailId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BrandId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClothingPieceTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CostABP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GenderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MarginABP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "QualityId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleQuantityABP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "SalesABP",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "TransactionDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionGradeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductFashionSeasonId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductGenericId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductModelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "SaleABP"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,65 @@
+{
+	"name": "Inventario_Chile_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "ZCLMM063_SAP_inventariolv.txt",
+				"folderPath": "cubo_ventas"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "ALMACEN",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCTO",
+				"type": "String"
+			},
+			{
+				"name": "STOCK",
+				"type": "String"
+			},
+			{
+				"name": "VALORIZACION",
+				"type": "String"
+			},
+			{
+				"name": "STK.BLOQUEADO",
+				"type": "String"
+			},
+			{
+				"name": "STK.CONF",
+				"type": "String"
+			},
+			{
+				"name": "STK.ENTREGA",
+				"type": "String"
+			},
+			{
+				"name": "STK.DISPONIBLE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

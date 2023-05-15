@@ -1,0 +1,26 @@
+{
+	"name": "DL_PQT_WRF_FIBER_CODEST",
+	"properties": {
+		"description": "Denominaciones de códigos de fibras",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "WRF_FIBER_CODEST.parquet",
+				"folderPath": "3_consumption_zone/Datalake/DL_DATOS_MAESTROS/WRF_FIBER_CODEST",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

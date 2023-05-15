@@ -1,0 +1,333 @@
+{
+	"name": "02 InstoreView_Venta_Peru_Automatico_v2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Token -1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.instoreview.cl/api/v2/download-zone/sales/",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Authorization": "ISVToken 7e7d4a4149754f90831a8d5b8b0af7e8",
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{\"view_type\":\"diario\",\"dates\":[\"',formatDateTime(adddays(utcnow(),-1),'yyyy-MM-dd'),'\"],\"views\":[\"Unidades\",\"Costos B2B\",\"Ventas B2B\",\"Precios B2B\",\"Contribución\",\"MG (%)\",\"Ventas PVP s/IVA\"],\"compress\":false,\"chain_codes\":[],\"hierarchy\":{\"Rut\":[],\"Cadena\":[],\"Sub Cadena\":[],\"Región\":[],\"Local\":[],\"Comuna\":[],\"Nombre de Local\":[],\"Linea\":[],\"SKU\":[],\"EAN\":[],\"Marca\":[],\"Descripción Producto\":[],\"Genero\":[],\"Modelo\":[],\"Talla\":[],\"Temporada\":[],\"Estilo\":[],\"Código Local\":[],\"Dirección\":[],\"Categoría\":[]}}')",
+						"type": "Expression"
+					},
+					"httpRequestTimeout": "00:10:00"
+				}
+			},
+			{
+				"name": "Copiar InstoreView -1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token -1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "salida:@{activity('Token -1').output.download_url}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InstoreView_Fuente_Ventas_Peru",
+						"type": "DatasetReference",
+						"parameters": {
+							"nombre_archivo": "@{activity('Token -1').output.download_url}"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InstoreView_Venta_DL_Peru_Automatico_v2",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Token -2",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Copiar InstoreView -1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.instoreview.cl/api/v2/download-zone/sales/",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Authorization": "ISVToken 7e7d4a4149754f90831a8d5b8b0af7e8",
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{\"view_type\":\"diario\",\"dates\":[\"',formatDateTime(adddays(utcnow(),-2),'yyyy-MM-dd'),'\"],\"views\":[\"Unidades\",\"Costos B2B\",\"Ventas B2B\",\"Precios B2B\",\"Contribución\",\"MG (%)\",\"Ventas PVP s/IVA\"],\"compress\":false,\"chain_codes\":[],\"hierarchy\":{\"Rut\":[],\"Cadena\":[],\"Sub Cadena\":[],\"Región\":[],\"Local\":[],\"Comuna\":[],\"Nombre de Local\":[],\"Linea\":[],\"SKU\":[],\"EAN\":[],\"Marca\":[],\"Descripción Producto\":[],\"Genero\":[],\"Modelo\":[],\"Talla\":[],\"Temporada\":[],\"Estilo\":[],\"Código Local\":[],\"Dirección\":[],\"Categoría\":[]}}')",
+						"type": "Expression"
+					},
+					"httpRequestTimeout": "00:10:00"
+				}
+			},
+			{
+				"name": "Token -3",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Copiar InstoreView -2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.instoreview.cl/api/v2/download-zone/sales/",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Authorization": "ISVToken 7e7d4a4149754f90831a8d5b8b0af7e8",
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{\"view_type\":\"diario\",\"dates\":[\"',formatDateTime(adddays(utcnow(),-3),'yyyy-MM-dd'),'\"],\"views\":[\"Unidades\",\"Costos B2B\",\"Ventas B2B\",\"Precios B2B\",\"Contribución\",\"MG (%)\",\"Ventas PVP s/IVA\"],\"compress\":false,\"chain_codes\":[],\"hierarchy\":{\"Rut\":[],\"Cadena\":[],\"Sub Cadena\":[],\"Región\":[],\"Local\":[],\"Comuna\":[],\"Nombre de Local\":[],\"Linea\":[],\"SKU\":[],\"EAN\":[],\"Marca\":[],\"Descripción Producto\":[],\"Genero\":[],\"Modelo\":[],\"Talla\":[],\"Temporada\":[],\"Estilo\":[],\"Código Local\":[],\"Dirección\":[],\"Categoría\":[]}}')",
+						"type": "Expression"
+					},
+					"httpRequestTimeout": "00:10:00"
+				}
+			},
+			{
+				"name": "Copiar InstoreView -3",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token -3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "salida:@{activity('Token -3').output.download_url}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InstoreView_Fuente_Ventas_Peru",
+						"type": "DatasetReference",
+						"parameters": {
+							"nombre_archivo": "@{activity('Token -3').output.download_url}"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InstoreView_Venta_DL_Peru_Automatico_v2_3",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copiar InstoreView -2",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token -2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "salida:@{activity('Token -2').output.download_url}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InstoreView_Fuente_Ventas_Peru",
+						"type": "DatasetReference",
+						"parameters": {
+							"nombre_archivo": "@{activity('Token -2').output.download_url}"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InstoreView_Venta_DL_Peru_Automatico_v2_2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-16T00:20:02Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

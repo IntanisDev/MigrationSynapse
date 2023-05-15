@@ -1,0 +1,89 @@
+{
+	"name": "des_Store",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "StoreId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Company",
+				"type": "varchar"
+			},
+			{
+				"name": "Type",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreName",
+				"type": "varchar"
+			},
+			{
+				"name": "M2",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Location",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreCode",
+				"type": "varchar"
+			},
+			{
+				"name": "StoreGrouping",
+				"type": "varchar"
+			},
+			{
+				"name": "TypeOrderBy",
+				"type": "varchar"
+			},
+			{
+				"name": "ShortDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "Visible",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleShare",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "SaleOrganisationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsOpen",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "District",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Store"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

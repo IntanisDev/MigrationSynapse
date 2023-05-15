@@ -1,0 +1,31 @@
+{
+	"name": "AttendanceBook",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria/2 Standar Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('LIBRO_ASISTENCIA_',formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1),'yyyy-MM-dd'),'.PARQUET')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('2_standar_zone/DATALAKE/DL_RRHH/DL_GEOVICTORIA/PARQUET/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'MM'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

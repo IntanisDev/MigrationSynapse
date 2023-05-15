@@ -1,0 +1,140 @@
+{
+	"name": "DL_ZV_VBPA_CON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"OutputFileName": {
+				"type": "string"
+			},
+			"Folder": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().OutputFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('3_consumption_zone/Datalake/DL_DATOS_MAESTROS/ZV_VBPA/',dataset().Folder)",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "UTF8"
+			},
+			{
+				"name": "VBELN",
+				"type": "UTF8"
+			},
+			{
+				"name": "POSNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "FKDAT",
+				"type": "UTF8"
+			},
+			{
+				"name": "PARVW",
+				"type": "UTF8"
+			},
+			{
+				"name": "KUNNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "LIFNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "PERNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "PARNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "ADRNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "ABLAD",
+				"type": "UTF8"
+			},
+			{
+				"name": "LAND1",
+				"type": "UTF8"
+			},
+			{
+				"name": "ADRDA",
+				"type": "UTF8"
+			},
+			{
+				"name": "XCPDK",
+				"type": "UTF8"
+			},
+			{
+				"name": "HITYP",
+				"type": "UTF8"
+			},
+			{
+				"name": "PRFRE",
+				"type": "UTF8"
+			},
+			{
+				"name": "BOKRE",
+				"type": "UTF8"
+			},
+			{
+				"name": "HISTUNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "KNREF",
+				"type": "UTF8"
+			},
+			{
+				"name": "LZONE",
+				"type": "UTF8"
+			},
+			{
+				"name": "HZUOR",
+				"type": "UTF8"
+			},
+			{
+				"name": "STCEG",
+				"type": "UTF8"
+			},
+			{
+				"name": "PARVW_FF",
+				"type": "UTF8"
+			},
+			{
+				"name": "ADRNP",
+				"type": "UTF8"
+			},
+			{
+				"name": "KALE",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

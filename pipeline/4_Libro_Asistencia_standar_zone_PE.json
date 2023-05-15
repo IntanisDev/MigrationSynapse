@@ -1,0 +1,37 @@
+{
+	"name": "4_Libro_Asistencia_standar_zone_PE",
+	"properties": {
+		"activities": [
+			{
+				"name": "LibroAsistencia",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "4_LibroAsistencia_to_StandarZone_PE",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/RRHH/GeoVictoria_PE"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-02T22:16:40Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

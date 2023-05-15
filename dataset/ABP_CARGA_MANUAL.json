@@ -1,0 +1,89 @@
+{
+	"name": "ABP_CARGA_MANUAL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Periodo",
+				"type": "varchar"
+			},
+			{
+				"name": "Sociedad",
+				"type": "varchar"
+			},
+			{
+				"name": "Dia",
+				"type": "varchar"
+			},
+			{
+				"name": "Canal_Distribucion",
+				"type": "varchar"
+			},
+			{
+				"name": "Cliente",
+				"type": "varchar"
+			},
+			{
+				"name": "Tienda_Centro",
+				"type": "varchar"
+			},
+			{
+				"name": "Tipo_Articulo",
+				"type": "varchar"
+			},
+			{
+				"name": "Marca",
+				"type": "varchar"
+			},
+			{
+				"name": "Calidad",
+				"type": "varchar"
+			},
+			{
+				"name": "Genero",
+				"type": "varchar"
+			},
+			{
+				"name": "Linea",
+				"type": "varchar"
+			},
+			{
+				"name": "Tipo",
+				"type": "varchar"
+			},
+			{
+				"name": "Prenda",
+				"type": "varchar"
+			},
+			{
+				"name": "VentaM",
+				"type": "varchar"
+			},
+			{
+				"name": "CostoM",
+				"type": "varchar"
+			},
+			{
+				"name": "Volumen_Venta",
+				"type": "varchar"
+			},
+			{
+				"name": "Grado_Moda",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "AFP_CARGA_MANUAL"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

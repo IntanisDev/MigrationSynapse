@@ -1,0 +1,48 @@
+{
+	"name": "des_Hour",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "HourId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InitialHour",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "EndHour",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "HourRange",
+				"type": "varchar"
+			},
+			{
+				"name": "HourRange30Minutes",
+				"type": "varchar"
+			},
+			{
+				"name": "HourRange60Minutes",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Hour"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

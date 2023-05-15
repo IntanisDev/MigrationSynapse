@@ -1,0 +1,68 @@
+{
+	"name": "CopyPipeline_Az4QA_BASEVENTAS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_bam",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "staging.BASE_VENTAS"
+					},
+					{
+						"name": "Destination",
+						"value": "staging.BASE_VENTAS"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SqlPoolSource"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						},
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "az4copytemp",
+						"enableCompression": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_bam",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_bam",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-05-12T16:24:11Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

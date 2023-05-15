@@ -1,0 +1,71 @@
+{
+	"name": "SAP_TX_VBPA_CON",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Transacciones/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_VBPA_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_VBPA",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          VBELN as string,",
+				"          POSNR as string,",
+				"          FKDAT as string,",
+				"          PARVW as string,",
+				"          KUNNR as string,",
+				"          LIFNR as string,",
+				"          PERNR as string,",
+				"          PARNR as string,",
+				"          ADRNR as string,",
+				"          ABLAD as string,",
+				"          LAND1 as string,",
+				"          ADRDA as string,",
+				"          XCPDK as string,",
+				"          HITYP as string,",
+				"          PRFRE as string,",
+				"          BOKRE as string,",
+				"          HISTUNR as string,",
+				"          KNREF as string,",
+				"          LZONE as string,",
+				"          HZUOR as string,",
+				"          STCEG as string,",
+				"          PARVW_FF as string,",
+				"          ADRNP as string,",
+				"          KALE as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

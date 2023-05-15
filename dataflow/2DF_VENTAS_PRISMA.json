@@ -1,0 +1,31 @@
+{
+	"name": "2DF_VENTAS_PRISMA",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0815_Oracle_Prisma"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Ventas_Prisma_DL",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "2Ventas_Prisma",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tSTORE_NO as string,\n\t\tDESC_TIENDA as string,\n\t\tFECHA_DOCUMENTO as string,\n\t\tNETO as string,\n\t\tUNIDADES as string,\n\t\tFUENTE as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tSTORE_NO as decimal(5,0),\n\t\tDESC_TIENDA as string,\n\t\tFECHA_DOCUMENTO as string,\n\t\tNETO as integer,\n\t\tUNIDADES as integer,\n\t\tFUENTE as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSTORE_NO,\n\t\tDESC_TIENDA,\n\t\tFECHA_DOCUMENTO,\n\t\tNETO,\n\t\tUNIDADES,\n\t\tFUENTE\n\t)) ~> sink1"
+		}
+	}
+}

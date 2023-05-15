@@ -1,0 +1,49 @@
+{
+	"name": "Table_Homologacion_Var_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_BI_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "ZCLSD073_HOMOLOGACION_VARIANTELV_.txt",
+				"folderPath": "cubo_ventas"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COD_ORG_VTA    ",
+				"type": "String"
+			},
+			{
+				"name": "COD_CANAL ",
+				"type": "String"
+			},
+			{
+				"name": "COD_CLIENTE    ",
+				"type": "String"
+			},
+			{
+				"name": "COD_ARTICULO_TJC  ",
+				"type": "String"
+			},
+			{
+				"name": "COD_ARTICULO_CLIENTE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

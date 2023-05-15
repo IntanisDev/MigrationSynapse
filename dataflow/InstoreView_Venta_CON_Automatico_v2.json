@@ -1,0 +1,133 @@
+{
+	"name": "InstoreView_Venta_CON_Automatico_v2",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/InstoreView/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "InstoreView_Venta_ST_Automatico_v2",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_InstoreView_Venta",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Fecha as string,",
+				"          Rut as string,",
+				"          Cadena as string,",
+				"          Sub_Cadena as string,",
+				"          Region as string,",
+				"          Local as string,",
+				"          Comuna as string,",
+				"          Nombre_de_Local as string,",
+				"          Codigo_Local as string,",
+				"          Direccion as string,",
+				"          Linea as string,",
+				"          SKU as string,",
+				"          Marca as string,",
+				"          Descripcion_Producto as string,",
+				"          Genero as string,",
+				"          Modelo as string,",
+				"          Temporada as string,",
+				"          Estilo as string,",
+				"          Categoria as string,",
+				"          Cod_Cadena as string,",
+				"          Unidades as string,",
+				"          Costos_B2B as string,",
+				"          Ventas_B2B as string,",
+				"          Precios_B2B as string,",
+				"          Contribucion as string,",
+				"          MG_Porcentaje as string,",
+				"          Ventas_PVP_s_IVA as string,",
+				"          EAN as string,",
+				"          bukrs as string,",
+				"          kunnr as string,",
+				"          paledger as string,",
+				"          waerk as string,",
+				"          cadena as string,",
+				"          descadena as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(Unidades = toDecimal(Unidades,21,6),",
+				"          Costos_B2B = toDecimal(Costos_B2B,21,6),",
+				"          Ventas_B2B = toDecimal(Ventas_B2B,21,6),",
+				"          Precios_B2B = toDecimal(Precios_B2B,21,6),",
+				"          Contribucion = toDecimal(Contribucion,21,6),",
+				"          MG_Porcentaje = toDecimal(MG_Porcentaje,21,6),",
+				"          Ventas_PVP_s_IVA = toDecimal(Ventas_PVP_s_IVA,21,6)) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          Fecha,",
+				"          Rut,",
+				"          Cadena = source1@Cadena,",
+				"          Sub_Cadena,",
+				"          Region,",
+				"          Local,",
+				"          Comuna,",
+				"          Nombre_de_Local,",
+				"          Codigo_Local,",
+				"          Direccion,",
+				"          Linea,",
+				"          SKU,",
+				"          Marca,",
+				"          Descripcion_Producto,",
+				"          Genero,",
+				"          Modelo,",
+				"          Temporada,",
+				"          Estilo,",
+				"          Categoria,",
+				"          Cod_Cadena,",
+				"          Unidades,",
+				"          Costos_B2B,",
+				"          Ventas_B2B,",
+				"          Precios_B2B,",
+				"          Contribucion,",
+				"          MG_Porcentaje,",
+				"          Ventas_PVP_s_IVA,",
+				"          bukrs,",
+				"          kunnr,",
+				"          paledger,",
+				"          waerk,",
+				"          codcadena = source1@cadena,",
+				"          descadena,",
+				"          EAN",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('InstoreView_Venta_', toString(addDays(currentUTC(),-1),'yyyyMMdd'), '.parquet'))],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

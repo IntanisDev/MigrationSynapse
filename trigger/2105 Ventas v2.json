@@ -1,0 +1,24 @@
+{
+	"name": "2105 Ventas v2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "03_Ventas_Cadena",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-10-06T21:05:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

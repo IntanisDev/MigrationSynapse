@@ -1,0 +1,22 @@
+{
+	"name": "Trafico_API_test",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestService1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/05_API_Rest"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@concat('values?ID=AV2020-0065&MALL=%&TSINI=','2022-02-01','T00:00:00&TSFIN=','2022-02-28','T23:59:59&TYPE=json')",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,126 @@
+{
+	"name": "DM_T006_ST",
+	"properties": {
+		"description": "Unidades de Medida",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_T006.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "MSEHI",
+				"type": "String"
+			},
+			{
+				"name": "KZEX3",
+				"type": "String"
+			},
+			{
+				"name": "KZEX6",
+				"type": "String"
+			},
+			{
+				"name": "ANDEC",
+				"type": "String"
+			},
+			{
+				"name": "KZKEH",
+				"type": "String"
+			},
+			{
+				"name": "KZWOB",
+				"type": "String"
+			},
+			{
+				"name": "KZ1EH",
+				"type": "String"
+			},
+			{
+				"name": "KZ2EH",
+				"type": "String"
+			},
+			{
+				"name": "DIMID",
+				"type": "String"
+			},
+			{
+				"name": "ZAEHL",
+				"type": "String"
+			},
+			{
+				"name": "NENNR",
+				"type": "String"
+			},
+			{
+				"name": "EXP10",
+				"type": "String"
+			},
+			{
+				"name": "ADDKO",
+				"type": "String"
+			},
+			{
+				"name": "EXPON",
+				"type": "String"
+			},
+			{
+				"name": "DECAN",
+				"type": "String"
+			},
+			{
+				"name": "ISOCODE",
+				"type": "String"
+			},
+			{
+				"name": "PRIMARY",
+				"type": "String"
+			},
+			{
+				"name": "TEMP_VALUE",
+				"type": "String"
+			},
+			{
+				"name": "TEMP_UNIT",
+				"type": "String"
+			},
+			{
+				"name": "FAMUNIT",
+				"type": "String"
+			},
+			{
+				"name": "PRESS_VAL",
+				"type": "String"
+			},
+			{
+				"name": "PRESS_UNIT",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "TRX_PRESUPUESTO_GASTOS_STD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Transaccional/2 Standar Zone/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "PRESUPUESTO_GASTOS_2023-03-26.PARQUET",
+				"folderPath": "2_standar_zone/DATALAKE/DL_FINANCIERO/GASTOS_PRESUPUESTO",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

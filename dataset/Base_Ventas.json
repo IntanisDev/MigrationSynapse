@@ -1,0 +1,264 @@
+{
+	"name": "Base_Ventas",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SOCIEDAD_CO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "NRO_DOCUMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "POSICION",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CEBE",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_CEBE",
+				"type": "varchar"
+			},
+			{
+				"name": "PERIODO",
+				"type": "varchar"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "NOMBRE_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPOTIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TIPOTIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_MARCA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ORG_VTA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_ORG_VTA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_CANAL",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_CALIDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_GENERO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_LINEA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TIPO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_PRENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TIPOARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TIPOARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_ARTICULO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GENERICO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_GENERICO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_MODELO",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_COLOR",
+				"type": "varchar"
+			},
+			{
+				"name": "TALLA",
+				"type": "varchar"
+			},
+			{
+				"name": "LARGO",
+				"type": "varchar"
+			},
+			{
+				"name": "UNIDADES",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_TEMPORADA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_TEMPORADA",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GRADOMODA",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_GRADOMODA",
+				"type": "varchar"
+			},
+			{
+				"name": "INGRESOS",
+				"type": "varchar"
+			},
+			{
+				"name": "COSTOS",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_CONSIGNACION",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_PROMOCION",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_CLOSEOUT",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_PRONTOPAGO",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_PERSONAL",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "MONEDA",
+				"type": "varchar"
+			},
+			{
+				"name": "GTIN",
+				"type": "varchar"
+			},
+			{
+				"name": "COD_GRADOMODA_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "DESC_GRADOMODA_PERU",
+				"type": "varchar"
+			},
+			{
+				"name": "ANO_ESTACION",
+				"type": "varchar"
+			},
+			{
+				"name": "ID_VENDEDOR",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_VENTAS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

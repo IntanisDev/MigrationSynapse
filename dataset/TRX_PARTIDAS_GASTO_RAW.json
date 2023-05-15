@@ -1,0 +1,440 @@
+{
+	"name": "TRX_PARTIDAS_GASTO_RAW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Transaccional/1 Raw Data/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('PI_GASTOS_',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy-MM-dd'),'.PARQUET')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('1_raw_data/DATALAKE/DL_FINANCIERO/GASTOS/PARQUET/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'yyyy'),'/',formatDateTime(formatDateTime(adddays(formatDateTime(convertFromUtc(utcnow(),'Venezuela Standard Time'), 'yyyy-MM-dd'),-1)), 'MM'),'/')",
+					"type": "Expression"
+				},
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "RCLNT",
+				"type": "UTF8"
+			},
+			{
+				"name": "GL_SIRID",
+				"type": "UTF8"
+			},
+			{
+				"name": "RLDNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "RRCTY",
+				"type": "UTF8"
+			},
+			{
+				"name": "RVERS",
+				"type": "UTF8"
+			},
+			{
+				"name": "RYEAR",
+				"type": "INT32"
+			},
+			{
+				"name": "RTCUR",
+				"type": "UTF8"
+			},
+			{
+				"name": "RUNIT",
+				"type": "UTF8"
+			},
+			{
+				"name": "DRCRK",
+				"type": "UTF8"
+			},
+			{
+				"name": "POPER",
+				"type": "INT32"
+			},
+			{
+				"name": "DOCCT",
+				"type": "UTF8"
+			},
+			{
+				"name": "DOCNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "DOCLN",
+				"type": "UTF8"
+			},
+			{
+				"name": "RBUKRS",
+				"type": "UTF8"
+			},
+			{
+				"name": "RPRCTR",
+				"type": "UTF8"
+			},
+			{
+				"name": "RHOART",
+				"type": "INT32"
+			},
+			{
+				"name": "RFAREA",
+				"type": "UTF8"
+			},
+			{
+				"name": "KOKRS",
+				"type": "UTF8"
+			},
+			{
+				"name": "RACCT",
+				"type": "UTF8"
+			},
+			{
+				"name": "HRKFT",
+				"type": "UTF8"
+			},
+			{
+				"name": "RASSC",
+				"type": "UTF8"
+			},
+			{
+				"name": "EPRCTR",
+				"type": "UTF8"
+			},
+			{
+				"name": "ACTIV",
+				"type": "UTF8"
+			},
+			{
+				"name": "AFABE",
+				"type": "INT32"
+			},
+			{
+				"name": "OCLNT",
+				"type": "INT32"
+			},
+			{
+				"name": "SBUKRS",
+				"type": "UTF8"
+			},
+			{
+				"name": "SPRCTR",
+				"type": "UTF8"
+			},
+			{
+				"name": "SHOART",
+				"type": "INT32"
+			},
+			{
+				"name": "SFAREA",
+				"type": "UTF8"
+			},
+			{
+				"name": "TSL",
+				"type": "UTF8"
+			},
+			{
+				"name": "HSL",
+				"type": "UTF8"
+			},
+			{
+				"name": "KSL",
+				"type": "UTF8"
+			},
+			{
+				"name": "MSL",
+				"type": "UTF8"
+			},
+			{
+				"name": "CPUDT",
+				"type": "UTF8"
+			},
+			{
+				"name": "CPUTM",
+				"type": "UTF8"
+			},
+			{
+				"name": "USNAM",
+				"type": "UTF8"
+			},
+			{
+				"name": "SGTXT",
+				"type": "UTF8"
+			},
+			{
+				"name": "AUTOM",
+				"type": "UTF8"
+			},
+			{
+				"name": "DOCTY",
+				"type": "UTF8"
+			},
+			{
+				"name": "BLDAT",
+				"type": "UTF8"
+			},
+			{
+				"name": "BUDAT",
+				"type": "UTF8"
+			},
+			{
+				"name": "WSDAT",
+				"type": "UTF8"
+			},
+			{
+				"name": "REFDOCNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "REFRYEAR",
+				"type": "INT32"
+			},
+			{
+				"name": "REFDOCLN",
+				"type": "INT32"
+			},
+			{
+				"name": "REFDOCCT",
+				"type": "UTF8"
+			},
+			{
+				"name": "REFACTIV",
+				"type": "UTF8"
+			},
+			{
+				"name": "AWTYP",
+				"type": "UTF8"
+			},
+			{
+				"name": "AWORG",
+				"type": "UTF8"
+			},
+			{
+				"name": "WERKS",
+				"type": "UTF8"
+			},
+			{
+				"name": "GSBER",
+				"type": "UTF8"
+			},
+			{
+				"name": "KOSTL",
+				"type": "UTF8"
+			},
+			{
+				"name": "LSTAR",
+				"type": "UTF8"
+			},
+			{
+				"name": "AUFNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "AUFPL",
+				"type": "INT32"
+			},
+			{
+				"name": "ANLN1",
+				"type": "UTF8"
+			},
+			{
+				"name": "ANLN2",
+				"type": "UTF8"
+			},
+			{
+				"name": "MATNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "BWKEY",
+				"type": "UTF8"
+			},
+			{
+				"name": "BWTAR",
+				"type": "UTF8"
+			},
+			{
+				"name": "ANBWA",
+				"type": "UTF8"
+			},
+			{
+				"name": "KUNNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "LIFNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "RMVCT",
+				"type": "UTF8"
+			},
+			{
+				"name": "EBELN",
+				"type": "UTF8"
+			},
+			{
+				"name": "EBELP",
+				"type": "INT32"
+			},
+			{
+				"name": "KSTRG",
+				"type": "UTF8"
+			},
+			{
+				"name": "ERKRS",
+				"type": "UTF8"
+			},
+			{
+				"name": "PAOBJNR",
+				"type": "INT32"
+			},
+			{
+				"name": "PASUBNR",
+				"type": "INT32"
+			},
+			{
+				"name": "PS_PSP_PNR",
+				"type": "INT32"
+			},
+			{
+				"name": "KDAUF",
+				"type": "UTF8"
+			},
+			{
+				"name": "KDPOS",
+				"type": "INT32"
+			},
+			{
+				"name": "FKART",
+				"type": "UTF8"
+			},
+			{
+				"name": "VKORG",
+				"type": "UTF8"
+			},
+			{
+				"name": "VTWEG",
+				"type": "UTF8"
+			},
+			{
+				"name": "AUBEL",
+				"type": "UTF8"
+			},
+			{
+				"name": "AUPOS",
+				"type": "INT32"
+			},
+			{
+				"name": "SPART",
+				"type": "UTF8"
+			},
+			{
+				"name": "VBELN",
+				"type": "UTF8"
+			},
+			{
+				"name": "POSNR",
+				"type": "INT32"
+			},
+			{
+				"name": "VKGRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "VKBUR",
+				"type": "UTF8"
+			},
+			{
+				"name": "VBUND",
+				"type": "UTF8"
+			},
+			{
+				"name": "LOGSYS",
+				"type": "UTF8"
+			},
+			{
+				"name": "ALEBN",
+				"type": "UTF8"
+			},
+			{
+				"name": "AWSYS",
+				"type": "UTF8"
+			},
+			{
+				"name": "VERSA",
+				"type": "UTF8"
+			},
+			{
+				"name": "STFLG",
+				"type": "UTF8"
+			},
+			{
+				"name": "STOKZ",
+				"type": "UTF8"
+			},
+			{
+				"name": "STAGR",
+				"type": "UTF8"
+			},
+			{
+				"name": "GRTYP",
+				"type": "UTF8"
+			},
+			{
+				"name": "REP_MATNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "CO_PRZNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "IMKEY",
+				"type": "UTF8"
+			},
+			{
+				"name": "DABRZ",
+				"type": "UTF8"
+			},
+			{
+				"name": "VALUT",
+				"type": "UTF8"
+			},
+			{
+				"name": "RSCOPE",
+				"type": "UTF8"
+			},
+			{
+				"name": "AWREF_REV",
+				"type": "UTF8"
+			},
+			{
+				"name": "AWORG_REV",
+				"type": "UTF8"
+			},
+			{
+				"name": "BWART",
+				"type": "UTF8"
+			},
+			{
+				"name": "BLART",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

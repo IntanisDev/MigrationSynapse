@@ -1,0 +1,55 @@
+{
+	"name": "DM_MEAN_DL",
+	"properties": {
+		"description": "Homogacion material con codigos EAN",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/02 RAW"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_MEAN.parquet",
+				"folderPath": "1_raw_data/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "UTF8"
+			},
+			{
+				"name": "MATNR",
+				"type": "UTF8"
+			},
+			{
+				"name": "MEINH",
+				"type": "UTF8"
+			},
+			{
+				"name": "LFNUM",
+				"type": "UTF8"
+			},
+			{
+				"name": "EAN11",
+				"type": "UTF8"
+			},
+			{
+				"name": "EANTP",
+				"type": "UTF8"
+			},
+			{
+				"name": "HPEAN",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

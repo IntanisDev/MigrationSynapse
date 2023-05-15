@@ -1,0 +1,17 @@
+{
+	"name": "LATAM_Dashboard",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "\\\\dalsqlsmodw01\\DATA\\Other\\LATAM\\Source Data\\Testing",
+			"userId": "pbarrera",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJmMWUzYjVmOS1iY2Y2LTRmNjEtYTdkZi1hMmZkOTljMzU5NDgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

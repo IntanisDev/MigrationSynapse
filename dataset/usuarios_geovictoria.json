@@ -1,0 +1,85 @@
+{
+	"name": "usuarios_geovictoria",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "RRHH/GeoVictoria"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Pais",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Identifier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Enabled",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PositionDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SchedulerId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SchedulerStart",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SchedulerPeriodStart",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ContractDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "EndContractDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "FechaExtraccion",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "geovictoria",
+			"table": "usuarios"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

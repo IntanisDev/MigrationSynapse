@@ -1,0 +1,376 @@
+{
+	"name": "Carga_temp_storedet",
+	"properties": {
+		"activities": [
+			{
+				"name": "FTP_TO_BDD",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "FtpReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false,
+							"useBinaryTransfer": true,
+							"disableChunking": false
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Store_Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Store_Name"
+								}
+							},
+							{
+								"source": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Status"
+								}
+							},
+							{
+								"source": {
+									"name": "Comp_Store",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Comp_Store"
+								}
+							},
+							{
+								"source": {
+									"name": "RE_Status",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RE_Status"
+								}
+							},
+							{
+								"source": {
+									"name": "Region",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Region"
+								}
+							},
+							{
+								"source": {
+									"name": "Country_Group",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Country_Group"
+								}
+							},
+							{
+								"source": {
+									"name": "SAP_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SAP_ID"
+								}
+							},
+							{
+								"source": {
+									"name": "Centro_Costos",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Centro_Costos"
+								}
+							},
+							{
+								"source": {
+									"name": "State",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "State"
+								}
+							},
+							{
+								"source": {
+									"name": "City",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "City"
+								}
+							},
+							{
+								"source": {
+									"name": "Mall_Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Mall_Name"
+								}
+							},
+							{
+								"source": {
+									"name": "Mall_Group",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Mall_Group"
+								}
+							},
+							{
+								"source": {
+									"name": "District",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "District"
+								}
+							},
+							{
+								"source": {
+									"name": "District_Manager",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "District_Manager"
+								}
+							},
+							{
+								"source": {
+									"name": "Retail_Channel",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Retail_Channel"
+								}
+							},
+							{
+								"source": {
+									"name": "Format",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Format"
+								}
+							},
+							{
+								"source": {
+									"name": "Business_Model",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Business_Model"
+								}
+							},
+							{
+								"source": {
+									"name": "Store_Brand",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Store_Brand"
+								}
+							},
+							{
+								"source": {
+									"name": "Partner_Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Partner_Name"
+								}
+							},
+							{
+								"source": {
+									"name": "Open_Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Open_Date"
+								}
+							},
+							{
+								"source": {
+									"name": "Close_Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Close_Date"
+								}
+							},
+							{
+								"source": {
+									"name": "Comp_Reset",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Comp_Reset"
+								}
+							},
+							{
+								"source": {
+									"name": "Gross_Selling_Size",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Gross_Selling_Size"
+								}
+							},
+							{
+								"source": {
+									"name": "Gross_Size",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Gross_Size"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock_Capacity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock_Capacity"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Latitude"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Longitude"
+								}
+							},
+							{
+								"source": {
+									"name": "Tailor",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tailor"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "FTP_Tiendas_MDM",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "TempStore_Det",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "UPD_Store_det",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "FTP_TO_BDD",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[staging].[Update_Store_Det]"
+				},
+				"linkedServiceName": {
+					"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"DBName": "edw_prd"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Procesos automaticos"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-05-12T15:12:41Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

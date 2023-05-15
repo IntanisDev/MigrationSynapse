@@ -1,0 +1,28 @@
+{
+	"name": "HttpServerApiTienda",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "api followup para tiendas",
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://levis.fupbi.com/api/ext/v1/stores",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"X-User-Email": {
+					"type": "SecureString",
+					"value": "**********"
+				},
+				"X-User-Token": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

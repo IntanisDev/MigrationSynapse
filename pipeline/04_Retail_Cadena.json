@@ -1,0 +1,26 @@
+{
+	"name": "04_Retail_Cadena",
+	"properties": {
+		"activities": [
+			{
+				"name": "RetailTicketsByStore",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03_RetailTicketsByStore",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Cubo Ventas/9998_Secuencia_Ejecuciones"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-05T20:53:21Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

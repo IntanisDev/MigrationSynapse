@@ -1,0 +1,38 @@
+{
+	"name": "DM_T009T",
+	"properties": {
+		"description": "Variantes de ejercicio (TEXTO)",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finanzas/Master Data/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "SPRAS",
+				"type": "varchar"
+			},
+			{
+				"name": "PERIV",
+				"type": "varchar"
+			},
+			{
+				"name": "LTEXT",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "T009T"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

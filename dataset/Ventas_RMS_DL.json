@@ -1,0 +1,55 @@
+{
+	"name": "Ventas_RMS_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "VENTAS_RMS.txt",
+				"folderPath": "0_landing_zone/Cubo_Venta/InputFiles",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COD_TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "Store_No",
+				"type": "String"
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "String"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "String"
+			},
+			{
+				"name": "NETO",
+				"type": "String"
+			},
+			{
+				"name": "UNIDADES",
+				"type": "String"
+			},
+			{
+				"name": "FUENTE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

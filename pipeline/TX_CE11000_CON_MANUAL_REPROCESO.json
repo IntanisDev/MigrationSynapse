@@ -1,0 +1,38 @@
+{
+	"name": "TX_CE11000_CON_MANUAL_REPROCESO",
+	"properties": {
+		"activities": [
+			{
+				"name": "DF_Ventas",
+				"description": "Flujo que realiza la union de las tablas CE11000 y CE12000",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "TX_CE11000_REPROCESO",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Consumption"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-14T21:22:48Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

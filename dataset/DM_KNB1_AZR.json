@@ -1,0 +1,330 @@
+{
+	"name": "DM_KNB1_AZR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD_SD",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "KUNNR",
+				"type": "varchar"
+			},
+			{
+				"name": "BUKRS",
+				"type": "varchar"
+			},
+			{
+				"name": "PERNR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ERDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "ERNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "SPERR",
+				"type": "varchar"
+			},
+			{
+				"name": "LOEVM",
+				"type": "varchar"
+			},
+			{
+				"name": "ZUAWA",
+				"type": "varchar"
+			},
+			{
+				"name": "BUSAB",
+				"type": "varchar"
+			},
+			{
+				"name": "AKONT",
+				"type": "varchar"
+			},
+			{
+				"name": "BEGRU",
+				"type": "varchar"
+			},
+			{
+				"name": "KNRZE",
+				"type": "varchar"
+			},
+			{
+				"name": "KNRZB",
+				"type": "varchar"
+			},
+			{
+				"name": "ZAMIM",
+				"type": "varchar"
+			},
+			{
+				"name": "ZAMIV",
+				"type": "varchar"
+			},
+			{
+				"name": "ZAMIR",
+				"type": "varchar"
+			},
+			{
+				"name": "ZAMIB",
+				"type": "varchar"
+			},
+			{
+				"name": "ZAMIO",
+				"type": "varchar"
+			},
+			{
+				"name": "ZWELS",
+				"type": "varchar"
+			},
+			{
+				"name": "XVERR",
+				"type": "varchar"
+			},
+			{
+				"name": "ZAHLS",
+				"type": "varchar"
+			},
+			{
+				"name": "ZTERM",
+				"type": "varchar"
+			},
+			{
+				"name": "WAKON",
+				"type": "varchar"
+			},
+			{
+				"name": "VZSKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "ZINDT",
+				"type": "varchar"
+			},
+			{
+				"name": "ZINRT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EIKTO",
+				"type": "varchar"
+			},
+			{
+				"name": "ZSABE",
+				"type": "varchar"
+			},
+			{
+				"name": "KVERM",
+				"type": "varchar"
+			},
+			{
+				"name": "FDGRV",
+				"type": "varchar"
+			},
+			{
+				"name": "VRBKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "VLIBB",
+				"type": "decimal",
+				"precision": 13,
+				"scale": 2
+			},
+			{
+				"name": "VRSZL",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "VRSPR",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "VRSNR",
+				"type": "varchar"
+			},
+			{
+				"name": "VERDT",
+				"type": "varchar"
+			},
+			{
+				"name": "PERKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "XDEZV",
+				"type": "varchar"
+			},
+			{
+				"name": "XAUSZ",
+				"type": "varchar"
+			},
+			{
+				"name": "WEBTR",
+				"type": "decimal",
+				"precision": 13,
+				"scale": 2
+			},
+			{
+				"name": "REMIT",
+				"type": "varchar"
+			},
+			{
+				"name": "DATLZ",
+				"type": "varchar"
+			},
+			{
+				"name": "XZVER",
+				"type": "varchar"
+			},
+			{
+				"name": "TOGRU",
+				"type": "varchar"
+			},
+			{
+				"name": "KULTG",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "HBKID",
+				"type": "varchar"
+			},
+			{
+				"name": "XPORE",
+				"type": "varchar"
+			},
+			{
+				"name": "BLNKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "ALTKN",
+				"type": "varchar"
+			},
+			{
+				"name": "ZGRUP",
+				"type": "varchar"
+			},
+			{
+				"name": "URLID",
+				"type": "varchar"
+			},
+			{
+				"name": "MGRUP",
+				"type": "varchar"
+			},
+			{
+				"name": "LOCKB",
+				"type": "varchar"
+			},
+			{
+				"name": "UZAWE",
+				"type": "varchar"
+			},
+			{
+				"name": "EKVBD",
+				"type": "varchar"
+			},
+			{
+				"name": "SREGL",
+				"type": "varchar"
+			},
+			{
+				"name": "XEDIP",
+				"type": "varchar"
+			},
+			{
+				"name": "FRGRP",
+				"type": "varchar"
+			},
+			{
+				"name": "VRSDG",
+				"type": "varchar"
+			},
+			{
+				"name": "TLFXS",
+				"type": "varchar"
+			},
+			{
+				"name": "INTAD",
+				"type": "varchar"
+			},
+			{
+				"name": "XKNZB",
+				"type": "varchar"
+			},
+			{
+				"name": "GUZTE",
+				"type": "varchar"
+			},
+			{
+				"name": "GRICD",
+				"type": "varchar"
+			},
+			{
+				"name": "GRIDT",
+				"type": "varchar"
+			},
+			{
+				"name": "WBRSL",
+				"type": "varchar"
+			},
+			{
+				"name": "CONFS",
+				"type": "varchar"
+			},
+			{
+				"name": "UPDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "UPTIM",
+				"type": "varchar"
+			},
+			{
+				"name": "NODEL",
+				"type": "varchar"
+			},
+			{
+				"name": "TLFNS",
+				"type": "varchar"
+			},
+			{
+				"name": "CESSION_KZ",
+				"type": "varchar"
+			},
+			{
+				"name": "QLAND",
+				"type": "varchar"
+			},
+			{
+				"name": "GMVKZD",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "KNB1"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

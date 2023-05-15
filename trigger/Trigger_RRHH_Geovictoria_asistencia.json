@@ -1,0 +1,39 @@
+{
+	"name": "Trigger_RRHH_Geovictoria_asistencia",
+	"properties": {
+		"description": "04 AM Diario",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "1_GetUserList",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"User": "b5ca83",
+					"Password": "83fb8637"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "1_GetUserList_PE",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"User": "791203",
+					"Password": "bc47fbde"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-07-09T04:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

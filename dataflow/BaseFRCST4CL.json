@@ -1,0 +1,98 @@
+{
+	"name": "BaseFRCST4CL",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "FCST4_CL_DL",
+						"type": "DatasetReference"
+					},
+					"name": "FCSTCHILE"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BaseForecast",
+						"type": "DatasetReference"
+					},
+					"name": "ForecastChileDB"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Periodo as string,",
+				"          Sociedad as string,",
+				"          {Día} as string,",
+				"          {Canal Distribución} as string,",
+				"          Cliente as string,",
+				"          {Tienda /Centro} as string,",
+				"          {Tipo de Articulo} as string,",
+				"          Marca as string,",
+				"          Calidad as string,",
+				"          {Genero } as string,",
+				"          Linea as string,",
+				"          Tipo as string,",
+				"          Prenda as string,",
+				"          { Venta M$ } as string,",
+				"          { Costo M$ } as string,",
+				"          { Volumen de Venta } as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> FCSTCHILE",
+				"FCSTCHILE sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          PERIODO as string,",
+				"          COD_SOCIEDAD as string,",
+				"          FECHA as string,",
+				"          COD_CANAL as string,",
+				"          COD_CLIENTE as string,",
+				"          COD_TIENDA as string,",
+				"          COD_TIPOARTICULO as string,",
+				"          COD_MARCA as string,",
+				"          COD_CALIDAD as string,",
+				"          COD_GENERO as string,",
+				"          COD_LINEA as string,",
+				"          CODIGO_TIPO as string,",
+				"          COD_PRENDA as string,",
+				"          VENTA as string,",
+				"          COSTO as string,",
+				"          VOLUMEN_VENTA as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          PERIODO = Periodo,",
+				"          COD_SOCIEDAD = Sociedad,",
+				"          FECHA = {Día},",
+				"          COD_CANAL = {Canal Distribución},",
+				"          COD_CLIENTE = Cliente,",
+				"          COD_TIENDA = {Tienda /Centro},",
+				"          COD_TIPOARTICULO = {Tipo de Articulo},",
+				"          COD_MARCA = Marca,",
+				"          COD_CALIDAD = Calidad,",
+				"          COD_GENERO = {Genero },",
+				"          COD_LINEA = Linea,",
+				"          CODIGO_TIPO = Tipo,",
+				"          COD_PRENDA = Prenda,",
+				"          VENTA = { Venta M$ },",
+				"          COSTO = { Costo M$ },",
+				"          VOLUMEN_VENTA = { Volumen de Venta }",
+				"     )) ~> ForecastChileDB"
+			]
+		}
+	}
+}

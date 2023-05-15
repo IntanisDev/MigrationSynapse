@@ -1,0 +1,37 @@
+{
+	"name": "4_Turnos_Standar_Zone_PE",
+	"properties": {
+		"activities": [
+			{
+				"name": "Turnos",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "4_Turnos_to_StandarZone_PE",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/RRHH/GeoVictoria_PE"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-08T02:23:04Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

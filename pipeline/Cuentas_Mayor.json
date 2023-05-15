@@ -1,0 +1,777 @@
+{
+	"name": "Cuentas_Mayor",
+	"properties": {
+		"activities": [
+			{
+				"name": "ATTR",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KTOPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KTOPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SAKNR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SAKNR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XBILK",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "XBILK",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SAKAN",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SAKAN",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BILKT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BILKT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ERDAT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ERDAT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ERNAM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ERNAM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "GVTYP",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GVTYP",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KTOKS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KTOKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MUSTR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MUSTR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VBUND",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VBUND",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XLOEV",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "XLOEV",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XSPEA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "XSPEA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XSPEB",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "XSPEB",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XSPEP",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "XSPEP",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MCOD1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MCOD1",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FUNC_AREA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FUNC_AREA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_SKA1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_ACCOUNT_ATTR_RAW",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "TEXT",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ATTR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SPRAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KTOPL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "KTOPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SAKNR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SAKNR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TXT20",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TXT20",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TXT50",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TXT50",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MCOD1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MCOD1",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_SKAT",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_ACCOUNT_TEXT_RAW",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "STD_CUENTA_MAYOR",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "TEXT",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "3_Cuenta_Mayor",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "edw-prd-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "edwlakeprd/staging_area"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "CON_CUENTA_MAYOR",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "STD_CUENTA_MAYOR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "MANDANTE",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KTOPL",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Plan_de_cuentas",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SAKNR",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Numero_Cuenta",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XBILK",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Cuenta_de_balance",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SAKAN",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Numero_Cuenta_corto",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BILKT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Numero_de_cuenta_grupo",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ERDAT",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Fecha_creacion",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ERNAM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Responsable",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "GVTYP",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Tp_cta_beneficios",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "KTOKS",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Grupo_cuentas",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MUSTR",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Numero_cuenta_tipo",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VBUND",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Sociedad_GL",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XLOEV",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Marca_Borrado",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XSPEA",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Bloqueo_Creacion",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XSPEB",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Bloqueo_Contable",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "XSPEP",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Bloqueo_Planificacion",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SKA1_MCOD1",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Criterio_busqueda_1",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FUNC_AREA",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Area_Funcional",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TXT20",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Descripcion_Breve",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TXT50",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Descripcion_Larga",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SKAT_MCOD1",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Criterio_busqueda_2",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "usgaap_cuenta",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "usgaap_cuenta",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "usgaap_descripcion",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "usgaap_descripcion",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DM_CUENTA_MAYOR_STD",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DM_CUENTA_MAYOR_CON",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Finanzas/Master Data"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-02-19T23:40:58Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

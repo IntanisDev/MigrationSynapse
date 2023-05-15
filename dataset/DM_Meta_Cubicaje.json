@@ -1,0 +1,77 @@
+{
+	"name": "DM_Meta_Cubicaje",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/InstoreView/02 Raw"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MetaCubicaje.csv",
+				"folderPath": "1_raw_data/DATALAKE/DL_INSTOREVIEW/Meta_Cubicaje",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Locales",
+				"type": "String"
+			},
+			{
+				"name": "Numero_Local",
+				"type": "String"
+			},
+			{
+				"name": "Cluster",
+				"type": "String"
+			},
+			{
+				"name": "Zona",
+				"type": "String"
+			},
+			{
+				"name": "M2",
+				"type": "String"
+			},
+			{
+				"name": "Cubicaje",
+				"type": "String"
+			},
+			{
+				"name": "Marca ",
+				"type": "String"
+			},
+			{
+				"name": "Genero",
+				"type": "String"
+			},
+			{
+				"name": "Cod_local_sap",
+				"type": "String"
+			},
+			{
+				"name": "Cliente",
+				"type": "String"
+			},
+			{
+				"name": "Semana",
+				"type": "String"
+			},
+			{
+				"name": "Meta",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

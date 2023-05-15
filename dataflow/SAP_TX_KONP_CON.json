@@ -1,0 +1,128 @@
+{
+	"name": "SAP_TX_KONP_CON",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/Transacciones/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_KONP_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_KONP",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          KNUMH as string,",
+				"          KOPOS as string,",
+				"          KAPPL as string,",
+				"          KSCHL as string,",
+				"          KNUMT as string,",
+				"          STFKZ as string,",
+				"          KZBZG as string,",
+				"          KSTBM as string,",
+				"          KONMS as string,",
+				"          KSTBW as string,",
+				"          KONWS as string,",
+				"          KRECH as string,",
+				"          KBETR as string,",
+				"          KONWA as string,",
+				"          KPEIN as string,",
+				"          KMEIN as string,",
+				"          PRSCH as string,",
+				"          KUMZA as string,",
+				"          KUMNE as string,",
+				"          MEINS as string,",
+				"          MXWRT as string,",
+				"          GKWRT as string,",
+				"          PKWRT as string,",
+				"          FKWRT as string,",
+				"          RSWRT as string,",
+				"          KWAEH as string,",
+				"          UKBAS as string,",
+				"          KZNEP as string,",
+				"          KUNNR as string,",
+				"          LIFNR as string,",
+				"          MWSK1 as string,",
+				"          LOEVM_KO as string,",
+				"          ZAEHK_IND as string,",
+				"          BOMAT as string,",
+				"          KBRUE as string,",
+				"          KSPAE as string,",
+				"          BOSTA as string,",
+				"          KNUMA_PI as string,",
+				"          KNUMA_AG as string,",
+				"          KNUMA_SQ as string,",
+				"          VALTG as string,",
+				"          VALDT as string,",
+				"          ZTERM as string,",
+				"          ANZAUF as string,",
+				"          MIKBAS as string,",
+				"          MXKBAS as string,",
+				"          KOMXWRT as string,",
+				"          KLF_STG as string,",
+				"          KLF_KAL as string,",
+				"          VKKAL as string,",
+				"          AKTNR as string,",
+				"          KNUMA_BO as string,",
+				"          MWSK2 as string,",
+				"          VERTT as string,",
+				"          VERTN as string,",
+				"          VBEWA as string,",
+				"          MDFLG as string,",
+				"          KFRST as string,",
+				"          UASTA as string,",
+				"          {_BEV1_ECRTT} as string,",
+				"          {_BEV1_ECRTN} as string,",
+				"          {_BEV1_ECEWA} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(KSTBM = toDecimal(KSTBM,15,3),",
+				"          KSTBW = toDecimal(KSTBW,15,2),",
+				"          KBETR = toDecimal(KBETR,11,2),",
+				"          KPEIN = toDecimal(KPEIN,5,0),",
+				"          KUMZA = toDecimal(KUMZA,5,0),",
+				"          KUMNE = toDecimal(KUMNE,5,0),",
+				"          MXWRT = toDecimal(MXWRT,11,2),",
+				"          GKWRT = toDecimal(GKWRT,11,2),",
+				"          PKWRT = toDecimal(PKWRT,15,2),",
+				"          FKWRT = toDecimal(FKWRT,15,2),",
+				"          RSWRT = toDecimal(RSWRT,15,2),",
+				"          UKBAS = toDecimal(UKBAS,15,2),",
+				"          KBRUE = toDecimal(KBRUE,11,2),",
+				"          MIKBAS = toDecimal(MIKBAS,15,3),",
+				"          MXKBAS = toDecimal(MXKBAS,15,3),",
+				"          KOMXWRT = toDecimal(KOMXWRT,13,2)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

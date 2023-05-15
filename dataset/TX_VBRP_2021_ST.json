@@ -1,0 +1,830 @@
+{
+	"name": "TX_VBRP_2021_ST",
+	"properties": {
+		"description": "Factura: Datos Posición",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_VBRP_ene2021_abr2022.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "VBELN",
+				"type": "String"
+			},
+			{
+				"name": "POSNR",
+				"type": "String"
+			},
+			{
+				"name": "UEPOS",
+				"type": "String"
+			},
+			{
+				"name": "FKIMG",
+				"type": "String"
+			},
+			{
+				"name": "VRKME",
+				"type": "String"
+			},
+			{
+				"name": "UMVKZ",
+				"type": "String"
+			},
+			{
+				"name": "UMVKN",
+				"type": "String"
+			},
+			{
+				"name": "MEINS",
+				"type": "String"
+			},
+			{
+				"name": "SMENG",
+				"type": "String"
+			},
+			{
+				"name": "FKLMG",
+				"type": "String"
+			},
+			{
+				"name": "LMENG",
+				"type": "String"
+			},
+			{
+				"name": "NTGEW",
+				"type": "String"
+			},
+			{
+				"name": "BRGEW",
+				"type": "String"
+			},
+			{
+				"name": "GEWEI",
+				"type": "String"
+			},
+			{
+				"name": "VOLUM",
+				"type": "String"
+			},
+			{
+				"name": "VOLEH",
+				"type": "String"
+			},
+			{
+				"name": "GSBER",
+				"type": "String"
+			},
+			{
+				"name": "PRSDT",
+				"type": "String"
+			},
+			{
+				"name": "FBUDA",
+				"type": "String"
+			},
+			{
+				"name": "KURSK",
+				"type": "String"
+			},
+			{
+				"name": "NETWR",
+				"type": "String"
+			},
+			{
+				"name": "VBELV",
+				"type": "String"
+			},
+			{
+				"name": "POSNV",
+				"type": "String"
+			},
+			{
+				"name": "VGBEL",
+				"type": "String"
+			},
+			{
+				"name": "VGPOS",
+				"type": "String"
+			},
+			{
+				"name": "VGTYP",
+				"type": "String"
+			},
+			{
+				"name": "AUBEL",
+				"type": "String"
+			},
+			{
+				"name": "AUPOS",
+				"type": "String"
+			},
+			{
+				"name": "AUREF",
+				"type": "String"
+			},
+			{
+				"name": "MATNR",
+				"type": "String"
+			},
+			{
+				"name": "ARKTX",
+				"type": "String"
+			},
+			{
+				"name": "PMATN",
+				"type": "String"
+			},
+			{
+				"name": "CHARG",
+				"type": "String"
+			},
+			{
+				"name": "MATKL",
+				"type": "String"
+			},
+			{
+				"name": "PSTYV",
+				"type": "String"
+			},
+			{
+				"name": "POSAR",
+				"type": "String"
+			},
+			{
+				"name": "PRODH",
+				"type": "String"
+			},
+			{
+				"name": "VSTEL",
+				"type": "String"
+			},
+			{
+				"name": "ATPKZ",
+				"type": "String"
+			},
+			{
+				"name": "SPART",
+				"type": "String"
+			},
+			{
+				"name": "POSPA",
+				"type": "String"
+			},
+			{
+				"name": "WERKS",
+				"type": "String"
+			},
+			{
+				"name": "ALAND",
+				"type": "String"
+			},
+			{
+				"name": "WKREG",
+				"type": "String"
+			},
+			{
+				"name": "WKCOU",
+				"type": "String"
+			},
+			{
+				"name": "WKCTY",
+				"type": "String"
+			},
+			{
+				"name": "TAXM1",
+				"type": "String"
+			},
+			{
+				"name": "TAXM2",
+				"type": "String"
+			},
+			{
+				"name": "TAXM3",
+				"type": "String"
+			},
+			{
+				"name": "TAXM4",
+				"type": "String"
+			},
+			{
+				"name": "TAXM5",
+				"type": "String"
+			},
+			{
+				"name": "TAXM6",
+				"type": "String"
+			},
+			{
+				"name": "TAXM7",
+				"type": "String"
+			},
+			{
+				"name": "TAXM8",
+				"type": "String"
+			},
+			{
+				"name": "TAXM9",
+				"type": "String"
+			},
+			{
+				"name": "KOWRR",
+				"type": "String"
+			},
+			{
+				"name": "PRSFD",
+				"type": "String"
+			},
+			{
+				"name": "SKTOF",
+				"type": "String"
+			},
+			{
+				"name": "SKFBP",
+				"type": "String"
+			},
+			{
+				"name": "KONDM",
+				"type": "String"
+			},
+			{
+				"name": "KTGRM",
+				"type": "String"
+			},
+			{
+				"name": "KOSTL",
+				"type": "String"
+			},
+			{
+				"name": "BONUS",
+				"type": "String"
+			},
+			{
+				"name": "PROVG",
+				"type": "String"
+			},
+			{
+				"name": "EANNR",
+				"type": "String"
+			},
+			{
+				"name": "VKGRP",
+				"type": "String"
+			},
+			{
+				"name": "VKBUR",
+				"type": "String"
+			},
+			{
+				"name": "SPARA",
+				"type": "String"
+			},
+			{
+				"name": "SHKZG",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT",
+				"type": "String"
+			},
+			{
+				"name": "ERZET",
+				"type": "String"
+			},
+			{
+				"name": "BWTAR",
+				"type": "String"
+			},
+			{
+				"name": "LGORT",
+				"type": "String"
+			},
+			{
+				"name": "STAFO",
+				"type": "String"
+			},
+			{
+				"name": "WAVWR",
+				"type": "String"
+			},
+			{
+				"name": "KZWI1",
+				"type": "String"
+			},
+			{
+				"name": "KZWI2",
+				"type": "String"
+			},
+			{
+				"name": "KZWI3",
+				"type": "String"
+			},
+			{
+				"name": "KZWI4",
+				"type": "String"
+			},
+			{
+				"name": "KZWI5",
+				"type": "String"
+			},
+			{
+				"name": "KZWI6",
+				"type": "String"
+			},
+			{
+				"name": "STCUR",
+				"type": "String"
+			},
+			{
+				"name": "UVPRS",
+				"type": "String"
+			},
+			{
+				"name": "UVALL",
+				"type": "String"
+			},
+			{
+				"name": "EAN11",
+				"type": "String"
+			},
+			{
+				"name": "PRCTR",
+				"type": "String"
+			},
+			{
+				"name": "KVGR1",
+				"type": "String"
+			},
+			{
+				"name": "KVGR2",
+				"type": "String"
+			},
+			{
+				"name": "KVGR3",
+				"type": "String"
+			},
+			{
+				"name": "KVGR4",
+				"type": "String"
+			},
+			{
+				"name": "KVGR5",
+				"type": "String"
+			},
+			{
+				"name": "MVGR1",
+				"type": "String"
+			},
+			{
+				"name": "MVGR2",
+				"type": "String"
+			},
+			{
+				"name": "MVGR3",
+				"type": "String"
+			},
+			{
+				"name": "MVGR4",
+				"type": "String"
+			},
+			{
+				"name": "MVGR5",
+				"type": "String"
+			},
+			{
+				"name": "MATWA",
+				"type": "String"
+			},
+			{
+				"name": "BONBA",
+				"type": "String"
+			},
+			{
+				"name": "KOKRS",
+				"type": "String"
+			},
+			{
+				"name": "PAOBJNR",
+				"type": "String"
+			},
+			{
+				"name": "PS_PSP_PNR",
+				"type": "String"
+			},
+			{
+				"name": "AUFNR",
+				"type": "String"
+			},
+			{
+				"name": "TXJCD",
+				"type": "String"
+			},
+			{
+				"name": "CMPRE",
+				"type": "String"
+			},
+			{
+				"name": "CMPNT",
+				"type": "String"
+			},
+			{
+				"name": "CUOBJ",
+				"type": "String"
+			},
+			{
+				"name": "CUOBJ_CH",
+				"type": "String"
+			},
+			{
+				"name": "KOUPD",
+				"type": "String"
+			},
+			{
+				"name": "UECHA",
+				"type": "String"
+			},
+			{
+				"name": "XCHAR",
+				"type": "String"
+			},
+			{
+				"name": "ABRVW",
+				"type": "String"
+			},
+			{
+				"name": "SERNR",
+				"type": "String"
+			},
+			{
+				"name": "BZIRK_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "KDGRP_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "KONDA_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "LLAND_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "MPROK",
+				"type": "String"
+			},
+			{
+				"name": "PLTYP_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "REGIO_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "VKORG_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "ABRBG",
+				"type": "String"
+			},
+			{
+				"name": "PROSA",
+				"type": "String"
+			},
+			{
+				"name": "UEPVW",
+				"type": "String"
+			},
+			{
+				"name": "AUTYP",
+				"type": "String"
+			},
+			{
+				"name": "STADAT",
+				"type": "String"
+			},
+			{
+				"name": "FPLNR",
+				"type": "String"
+			},
+			{
+				"name": "FPLTR",
+				"type": "String"
+			},
+			{
+				"name": "AKTNR",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA_PI",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA_AG",
+				"type": "String"
+			},
+			{
+				"name": "PREFE",
+				"type": "String"
+			},
+			{
+				"name": "MWSBP",
+				"type": "String"
+			},
+			{
+				"name": "AUGRU_AUFT",
+				"type": "String"
+			},
+			{
+				"name": "FAREG",
+				"type": "String"
+			},
+			{
+				"name": "UPMAT",
+				"type": "String"
+			},
+			{
+				"name": "UKONM",
+				"type": "String"
+			},
+			{
+				"name": "CMPRE_FLT",
+				"type": "String"
+			},
+			{
+				"name": "ABFOR",
+				"type": "String"
+			},
+			{
+				"name": "ABGES",
+				"type": "String"
+			},
+			{
+				"name": "J_1ARFZ",
+				"type": "String"
+			},
+			{
+				"name": "J_1AREGIO",
+				"type": "String"
+			},
+			{
+				"name": "J_1AGICD",
+				"type": "String"
+			},
+			{
+				"name": "J_1ADTYP",
+				"type": "String"
+			},
+			{
+				"name": "J_1ATXREL",
+				"type": "String"
+			},
+			{
+				"name": "J_1BCFOP",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTAXLW1",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTAXLW2",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTXSDC",
+				"type": "String"
+			},
+			{
+				"name": "BRTWR",
+				"type": "String"
+			},
+			{
+				"name": "WKTNR",
+				"type": "String"
+			},
+			{
+				"name": "WKTPS",
+				"type": "String"
+			},
+			{
+				"name": "RPLNR",
+				"type": "String"
+			},
+			{
+				"name": "KURSK_DAT",
+				"type": "String"
+			},
+			{
+				"name": "WGRU1",
+				"type": "String"
+			},
+			{
+				"name": "WGRU2",
+				"type": "String"
+			},
+			{
+				"name": "KDKG1",
+				"type": "String"
+			},
+			{
+				"name": "KDKG2",
+				"type": "String"
+			},
+			{
+				"name": "KDKG3",
+				"type": "String"
+			},
+			{
+				"name": "KDKG4",
+				"type": "String"
+			},
+			{
+				"name": "KDKG5",
+				"type": "String"
+			},
+			{
+				"name": "VKAUS",
+				"type": "String"
+			},
+			{
+				"name": "J_1AINDXP",
+				"type": "String"
+			},
+			{
+				"name": "J_1AIDATEP",
+				"type": "String"
+			},
+			{
+				"name": "KZFME",
+				"type": "String"
+			},
+			{
+				"name": "MWSKZ",
+				"type": "String"
+			},
+			{
+				"name": "VERTT",
+				"type": "String"
+			},
+			{
+				"name": "VERTN",
+				"type": "String"
+			},
+			{
+				"name": "SGTXT",
+				"type": "String"
+			},
+			{
+				"name": "DELCO",
+				"type": "String"
+			},
+			{
+				"name": "BEMOT",
+				"type": "String"
+			},
+			{
+				"name": "RRREL",
+				"type": "String"
+			},
+			{
+				"name": "AKKUR",
+				"type": "String"
+			},
+			{
+				"name": "WMINR",
+				"type": "String"
+			},
+			{
+				"name": "VGBEL_EX",
+				"type": "String"
+			},
+			{
+				"name": "VGPOS_EX",
+				"type": "String"
+			},
+			{
+				"name": "LOGSYS",
+				"type": "String"
+			},
+			{
+				"name": "VGTYP_EX",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTAXLW3",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTAXLW4",
+				"type": "String"
+			},
+			{
+				"name": "J_1BTAXLW5",
+				"type": "String"
+			},
+			{
+				"name": "MSR_ID",
+				"type": "String"
+			},
+			{
+				"name": "MSR_REFUND_CODE",
+				"type": "String"
+			},
+			{
+				"name": "MSR_RET_REASON",
+				"type": "String"
+			},
+			{
+				"name": "AUFPL",
+				"type": "String"
+			},
+			{
+				"name": "APLZL",
+				"type": "String"
+			},
+			{
+				"name": "PEROP_BEG",
+				"type": "String"
+			},
+			{
+				"name": "PEROP_END",
+				"type": "String"
+			},
+			{
+				"name": "FONDS",
+				"type": "String"
+			},
+			{
+				"name": "FISTL",
+				"type": "String"
+			},
+			{
+				"name": "FKBER",
+				"type": "String"
+			},
+			{
+				"name": "GRANT_NBR",
+				"type": "String"
+			},
+			{
+				"name": "BUDGET_PD",
+				"type": "String"
+			},
+			{
+				"name": "CAMPAIGN",
+				"type": "String"
+			},
+			{
+				"name": "COMPREAS",
+				"type": "String"
+			},
+			{
+				"name": "ZZMARCA",
+				"type": "String"
+			},
+			{
+				"name": "ZZTIPO",
+				"type": "String"
+			},
+			{
+				"name": "ZZGENERO",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

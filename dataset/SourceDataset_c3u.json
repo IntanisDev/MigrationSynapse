@@ -1,0 +1,17 @@
+{
+	"name": "SourceDataset_c3u",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse PRD edw_prd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "Warehouse"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

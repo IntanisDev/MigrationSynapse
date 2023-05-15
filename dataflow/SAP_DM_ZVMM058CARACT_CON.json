@@ -1,0 +1,64 @@
+{
+	"name": "SAP_DM_ZVMM058CARACT_CON",
+	"properties": {
+		"description": "Maestro de Clientes",
+		"folder": {
+			"name": "Datalake_Levis/Datos Maestros/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DM_ZVMM058CARACT_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_ZVMM058CARACT",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          ATINN as string,",
+				"          ATWRT as string,",
+				"          ATZHL as string,",
+				"          ADZHL as string,",
+				"          SPRAS as string,",
+				"          ADZHL2 as string,",
+				"          ATWTB as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(MANDT = toInteger(MANDT),",
+				"          ATINN = toInteger(ATINN),",
+				"          ATZHL = toInteger(ATZHL),",
+				"          ADZHL = toInteger(ADZHL),",
+				"          ADZHL2 = toInteger(ADZHL2)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

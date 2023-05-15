@@ -1,0 +1,390 @@
+{
+	"name": "Base_CSV_Sales_Header",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Hana LATAM"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "STORE_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "STORENAME",
+				"type": "varchar"
+			},
+			{
+				"name": "TRANSTYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "TRANS_DESCRIPTION",
+				"type": "varchar"
+			},
+			{
+				"name": "CAIS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSNUM",
+				"type": "varchar"
+			},
+			{
+				"name": "LINE_ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EMPL_SALE_FLAG",
+				"type": "varchar"
+			},
+			{
+				"name": "SONDAGE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DRWNBR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "STATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VOID_FLAG",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VOID_REF_CAIS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VOID_REF_TRANSNUM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRODTOTAL",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 4
+			},
+			{
+				"name": "SERVICETOTAL",
+				"type": "varchar"
+			},
+			{
+				"name": "TOTALAMOUNT",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 4
+			},
+			{
+				"name": "TRANSDATE",
+				"type": "char"
+			},
+			{
+				"name": "TRANSTIME",
+				"type": "varchar"
+			},
+			{
+				"name": "TRANSREFERENCE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VIPCODE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CUSTOMER_TYPE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_STORE_CODE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_CAIS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_TRANSNUM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_TYPE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_STATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_LAYNBR",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_CRDATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_PAID2DATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NON_COMPLETED_BALDUE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CLIENT_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CLIENT_NAME",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RCPT_NOTE1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RCPT_NOTE2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "COMMUNICATION_STATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NOTAX_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAX_REGION_ID1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAX_REGION_ID2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAX_REGION_ID3",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SESSION_NUMBER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SEQ_NO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TS_ID",
+				"type": "char"
+			},
+			{
+				"name": "TRANSMIT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VIPCARD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VIPCARD_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TYPECARD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NOTAX1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NOTAX2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NOTAX3",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NB_TICKET_PRINTED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NB_OFFICIAL_PRINTED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NB_DETAX_PRINTED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LAYAWAY_STATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "INCASH",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RTRAN_NONCOMPLETEDEXPIRYDATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RTRAN_NONCOMPLETEDPICKUPDATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VIPOA_VIP_ADDRESS_SEQUENCE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NUMBEROFPOINT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSREFERENCE_2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CUMULATIVEPOINT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TAX_AMOUNT",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 4
+			},
+			{
+				"name": "TAX_PERCENTAGE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_CODE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_AMOUNT",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 4
+			},
+			{
+				"name": "CURRENCY_AMOUNT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_CODE2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_AMT2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_CODE3",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_AMT3",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_CODE4",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TENDER_AMT4",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 4
+			},
+			{
+				"name": "COUNTRY",
+				"type": "varchar"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "andes",
+			"table": "vw_Sales_Header"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

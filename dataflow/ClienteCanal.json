@@ -1,0 +1,31 @@
+{
+	"name": "ClienteCanal",
+	"properties": {
+		"folder": {
+			"name": "MasterData"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CANALCLIENTE_DL",
+						"type": "DatasetReference"
+					},
+					"name": "CANAL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "CANALCLIENTE",
+						"type": "DatasetReference"
+					},
+					"name": "CANALSQL"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tCodSAPcCeros as string,\n\t\tCodSAP as string,\n\t\tNombCliente as string,\n\t\tCodCanal as string,\n\t\tCanal as string,\n\t\tTipoCliente as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> CANAL\nCANAL sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tkunnr as string,\n\t\tnombre as string,\n\t\tcod_canal as string,\n\t\tnom_canal as string,\n\t\tTipoCliente as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tkunnr = CodSAPcCeros,\n\t\tnombre = NombCliente,\n\t\tcod_canal = CodCanal,\n\t\tnom_canal = Canal,\n\t\tTipoCliente\n\t)) ~> CANALSQL"
+		}
+	}
+}

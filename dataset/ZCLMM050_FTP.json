@@ -1,0 +1,67 @@
+{
+	"name": "ZCLMM050_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_SW_PROD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SW_Productividad/01 FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": {
+					"value": "@concat('ZCLMM050_V2_',formatDateTime(addhours(utcnow(),-4),'yyyyMMdd'),'.csv')",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ";",
+			"encodingName": "UTF-8",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

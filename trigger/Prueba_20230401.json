@@ -1,0 +1,24 @@
+{
+	"name": "Prueba_20230401",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "01_Csv_Mexico_TO_SFTP",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-04-01T23:50:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

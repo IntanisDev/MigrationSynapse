@@ -1,0 +1,211 @@
+{
+	"name": "Base_Trafico_Diario_Fupbi_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_BI_PRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "varchar"
+			},
+			{
+				"name": "time",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "store_id",
+				"type": "varchar"
+			},
+			{
+				"name": "enters",
+				"type": "varchar"
+			},
+			{
+				"name": "exits",
+				"type": "varchar"
+			},
+			{
+				"name": "child_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "child_exits",
+				"type": "varchar"
+			},
+			{
+				"name": "footfall_in",
+				"type": "varchar"
+			},
+			{
+				"name": "footfall_out",
+				"type": "varchar"
+			},
+			{
+				"name": "sales_count",
+				"type": "varchar"
+			},
+			{
+				"name": "total_quantity",
+				"type": "varchar"
+			},
+			{
+				"name": "total_amount",
+				"type": "varchar"
+			},
+			{
+				"name": "stay_time",
+				"type": "varchar"
+			},
+			{
+				"name": "customers_count",
+				"type": "varchar"
+			},
+			{
+				"name": "avg_customers_count",
+				"type": "varchar"
+			},
+			{
+				"name": "male_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "female_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "male_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "female_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "child_enters_demo",
+				"type": "varchar"
+			},
+			{
+				"name": "young_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "adult_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "senior_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "child_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "young_adult_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "adult_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "senior_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "male_child_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "male_young_adult_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "male_adult_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "male_senior_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "male_child_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "male_young_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "male_adult_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "male_senior_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "female_child_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "female_young_adult_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "female_adult_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "female_senior_enters",
+				"type": "varchar"
+			},
+			{
+				"name": "female_child_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "female_young_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "female_adult_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "female_senior_percentage",
+				"type": "varchar"
+			},
+			{
+				"name": "avg_ticket_amount",
+				"type": "varchar"
+			},
+			{
+				"name": "items_by_ticket",
+				"type": "varchar"
+			},
+			{
+				"name": "conversion_rate",
+				"type": "varchar"
+			},
+			{
+				"name": "time_var",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BASE_TRAFICO_DIARIO_FUPBI"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

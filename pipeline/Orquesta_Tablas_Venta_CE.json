@@ -1,0 +1,105 @@
+{
+	"name": "Orquesta_Tablas_Venta_CE",
+	"properties": {
+		"activities": [
+			{
+				"name": "TX_CE11000_ETL_MANUAL",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TX_CE11000_ETL_MANUAL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "TX_CE12000_ETL_MANUAL",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TX_CE12000_ETL_MANUAL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "TX_CE11000_ST_MANUAL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "TX_CE11000_ETL_MANUAL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TX_CE11000_ST_MANUAL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "TX_CE12000_ST_MANUAL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "TX_CE12000_ETL_MANUAL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TX_CE12000_ST_MANUAL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "TX_CE11000_CON_MANUAL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "TX_CE11000_ST_MANUAL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "TX_CE12000_ST_MANUAL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TX_CE11000_CON_MANUAL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Procesos ETL/Transacciones"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-08T02:18:37Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

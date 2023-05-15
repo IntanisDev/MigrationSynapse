@@ -1,0 +1,841 @@
+{
+	"name": "InstoreView_2021_Stock",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar datos a 2021",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Fechas",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Fechas",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cód. Cadena",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cód. Cadena",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Canal",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Canal",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cadena",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cadena",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Sub Cadena",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sub Cadena",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Región",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Región",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Local",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Local",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Comuna",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Comuna",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Nombre de Local",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Nombre de Local",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Código Local",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Código Local",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Dirección",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Dirección",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Linea",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Linea",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SKU",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SKU",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Marca",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Marca",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Descripción Producto",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Descripción Producto",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Genero",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Genero",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Modelo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Modelo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Talla",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Talla",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Temporada",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Estilo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Estilo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Categoría",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Categoría",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Locales en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Locales en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock CD en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock CD en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Total en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Total en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 30 días en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 30 días en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Promedio Diario Ventas en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Promedio Diario Ventas en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Sugerido en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Sugerido en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 7 días (Ajuste) en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 7 días (Ajuste) en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Locales en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Locales en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock CD en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock CD en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Total en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Total en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Locales en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Locales en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock CD en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock CD en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Total en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Total en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 30 días en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 30 días en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Promedio Diario Ventas en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Promedio Diario Ventas en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Sugerido en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Sugerido en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 7 días (Ajuste) en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 7 días (Ajuste) en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Locales en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Locales en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock CD en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock CD en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Total en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Total en Costos B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Locales en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Locales en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock CD en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock CD en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Total en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Total en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 30 días en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 30 días en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Promedio Diario Ventas en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Promedio Diario Ventas en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Sugerido en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Sugerido en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 7 días (Ajuste) en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 7 días (Ajuste) en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Locales en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Locales en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock CD en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock CD en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Total en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Total en Ventas B2B",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Locales en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Locales en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock CD en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock CD en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Total en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Total en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 30 días en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 30 días en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Promedio Diario Ventas en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Promedio Diario Ventas en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock Sugerido en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock Sugerido en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Venta últimos 7 días (Ajuste) en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Venta últimos 7 días (Ajuste) en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Locales en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Locales en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock CD en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock CD en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Días Stock Total en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Días Stock Total en Ventas PVP s/IVA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Mix en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Mix en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Quiebres",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Quiebres",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Stock en Tránsito en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Stock en Tránsito en Unidades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InstoreView_2021_Fuente_Stock",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InstoreView_2021_Stock_DL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/01 RAW/BKP"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-21T17:48:45Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-custstgacct--edw-prd-edwlakeprd",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/ab9b1e55-f9f6-4019-a98a-a331e6120081/resourceGroups/edw-prd/providers/Microsoft.Storage/storageAccounts/edwlakeprd",
+		"groupId": "dfs",
+		"fqdns": [
+			"edwlakeprd.dfs.core.windows.net"
+		]
+	}
+}

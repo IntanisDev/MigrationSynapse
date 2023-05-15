@@ -1,0 +1,106 @@
+{
+	"name": "GA_Consolida_parquet_resumen_PE",
+	"properties": {
+		"folder": {
+			"name": "Marketing"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "GA_levis_resumen_PE",
+						"type": "DatasetReference"
+					},
+					"name": "Levis"
+				},
+				{
+					"dataset": {
+						"referenceName": "GA_dockers_resumen_PE",
+						"type": "DatasetReference"
+					},
+					"name": "Dockers"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "GA_consolidado_yesterday_resumen_PE",
+						"type": "DatasetReference"
+					},
+					"name": "Consolidado"
+				}
+			],
+			"transformations": [
+				{
+					"name": "marcaLevis"
+				},
+				{
+					"name": "marcaDockers"
+				},
+				{
+					"name": "union1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          fecha as string,",
+				"          activeUsers as integer,",
+				"          engagedSessions as integer,",
+				"          eventCount as integer,",
+				"          newUsers as integer,",
+				"          Sessions as integer,",
+				"          totalRevenue as double,",
+				"          totalUsers as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Levis",
+				"source(output(",
+				"          fecha as string,",
+				"          activeUsers as integer,",
+				"          engagedSessions as integer,",
+				"          eventCount as integer,",
+				"          newUsers as integer,",
+				"          Sessions as integer,",
+				"          totalRevenue as double,",
+				"          totalUsers as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Dockers",
+				"Levis derive(marca = \"Levis\",",
+				"          fecha = toDate(fecha,'yyyyMMdd','America/Santiago'),",
+				"          Pais = \"Peru\") ~> marcaLevis",
+				"Dockers derive(marca = \"Dockers\",",
+				"          fecha = toDate(fecha,'yyyyMMdd','America/Santiago'),",
+				"          Pais = \"Peru\") ~> marcaDockers",
+				"marcaLevis, marcaDockers union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('GA_CONSOLIDADO_RESUMEN_',toString(addDays(currentDate(),-1)),'.PARQUET'))],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          fecha,",
+				"          activeUsers,",
+				"          engagedSessions,",
+				"          eventCount,",
+				"          newUsers,",
+				"          Sessions,",
+				"          totalRevenue,",
+				"          totalUsers,",
+				"          marca,",
+				"          Pais",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> Consolidado"
+			]
+		}
+	}
+}

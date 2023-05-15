@@ -1,0 +1,29 @@
+{
+	"name": "ApiHttp_Beflow",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServerApi_Beflow",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OnPremise"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@concat('fromDate=',formatDateTime(adddays(utcnow(),mul(add(int(substring(formatDateTime(utcNow(),'yyyy-MM-dd'),8,2)),1),-1)),'yyyyMM01'),'T00:00:00&toDate=',utcNow('yyyyMMdd'),'T23:59:59')",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,110 @@
+{
+	"name": "ZCLMM052_RW_to_ST",
+	"properties": {
+		"folder": {
+			"name": "SW_Productividad/01 RW_to_ST"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM052_RW",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM052_ST",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Column1 as string,",
+				"          Column2 as string,",
+				"          Column3 as string,",
+				"          Column4 as string,",
+				"          Column5 as string,",
+				"          Column6 as string,",
+				"          Column7 as string,",
+				"          Column8 as string,",
+				"          Column9 as string,",
+				"          Column10 as string,",
+				"          Column11 as string,",
+				"          Column12 as string,",
+				"          Column13 as string,",
+				"          Column14 as string,",
+				"          Column15 as string,",
+				"          Column16 as string,",
+				"          Column17 as string,",
+				"          Column18 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          ALMACEN = Column1,",
+				"          OT = Column2,",
+				"          CLASE_MOV_STOCK = Column3,",
+				"          CLASE_MOV_ALM = Column4,",
+				"          CLASE_TRANS = Column5,",
+				"          CLASE_OT_2_ETAPAS = Column6,",
+				"          FEC_CREACION_OT = Column7,",
+				"          HORA_CREACION_OT = Column8,",
+				"          USUARIO_CREACION = Column9,",
+				"          POSICION = Column10,",
+				"          ARTICULO = Column11,",
+				"          D_ARTICULO = Column12,",
+				"          CENTRO = Column13,",
+				"          FECHA = Column14,",
+				"          HORA = Column15,",
+				"          USUARIO = Column16,",
+				"          CANTIDAD = Column17,",
+				"          SALIDA = Column18",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ALMACEN as string,",
+				"          OT as string,",
+				"          CLASE_MOV_STOCK as string,",
+				"          CLASE_MOV_ALM as string,",
+				"          CLASE_TRANS as string,",
+				"          CLASE_OT_2_ETAPAS as string,",
+				"          FEC_CREACION_OT as string,",
+				"          HORA_CREACION_OT as string,",
+				"          USUARIO_CREACION as string,",
+				"          POSICION as string,",
+				"          ARTICULO as string,",
+				"          D_ARTICULO as string,",
+				"          CENTRO as string,",
+				"          FECHA as string,",
+				"          HORA as string,",
+				"          USUARIO as string,",
+				"          CANTIDAD as string,",
+				"          SALIDA as string",
+				"     ),",
+				"     partitionFileNames:[(concat('ZCLMM052_V2_',toString(currentUTC()-hours(4), 'yyyyMMdd'),'.csv') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

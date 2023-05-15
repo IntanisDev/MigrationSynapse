@@ -1,0 +1,41 @@
+{
+	"name": "Fact_pedidos_cliente",
+	"properties": {
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ZCLMM023",
+						"type": "DatasetReference"
+					},
+					"name": "Pedidoscliente"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "fact_pedidos",
+						"type": "DatasetReference"
+					},
+					"name": "factPedidos"
+				}
+			],
+			"transformations": [
+				{
+					"name": "calculaDiferencia"
+				},
+				{
+					"name": "rankea"
+				},
+				{
+					"name": "CalculaColumnas"
+				}
+			],
+			"script": "source(output(\n\t\tFechaExtrae as date,\n\t\tPEDIDO as string,\n\t\tSOCIEDAD as string,\n\t\tFEC_CREACION as date,\n\t\tCentro_Salida as string,\n\t\tClasedoc as string,\n\t\tposicion as string,\n\t\tTienda_Cliente as string,\n\t\tmaterial as string,\n\t\tCantPedido as integer,\n\t\tTemporada as string,\n\t\tano as string,\n\t\tcantEntrega as integer,\n\t\tcantEmbalada as integer,\n\t\tCantDespachado as integer,\n\t\tCantRecepcionado as integer,\n\t\tSinEntrega as integer,\n\t\tCONTADOR as integer\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'SELECT [FechaExtrae]\\n      ,[PEDIDO]\\n      ,[SOCIEDAD]\\n      ,[FEC_CREACION]\\n      ,[Centro_Salida]\\n      ,[Clasedoc]\\n      ,[posicion]\\n      ,[Tienda_Cliente]\\n      ,[material]\\n      ,[CantPedido]\\n      ,[Temporada]\\n      ,[ano]\\n      ,[cantEntrega]\\n      ,[cantEmbalada]\\n      ,[CantDespachado]\\n      ,[CantRecepcionado]\\n      ,[SinEntrega]\\n      ,[CONTADOR]\\n  FROM [staging].[ZCLMM023]\\n  where FEC_CREACION >= CAST( dateadd(month,-6, (GETDATE() AT TIME ZONE \\'UTC\\' AT TIME ZONE \\'Pacific SA Standard Time\\')) AS Date )',\n\tformat: 'query',\n\tstaged: true) ~> Pedidoscliente\nrankea window(over(PEDIDO,\n\t\tposicion),\n\tasc(FechaExtrae, true),\n\tstartRowOffset: -1L,\n\tendRowOffset: 1L,\n\tcantEntregaDia = iif(fila==1,cantEntrega,cantEntrega-first(cantEntrega)),\n\t\tcantEmbaladaDia = iif(fila==1,cantEmbalada,cantEmbalada-first(cantEmbalada)),\n\t\tCantDespachadoDia = iif(fila==1,CantDespachado,CantDespachado-first(CantDespachado)),\n\t\tCantRecepcionadoDia = iif(fila==1,CantRecepcionado,CantRecepcionado-first(CantRecepcionado)),\n\t\tCantPedidoDia = iif(fila==1,CantPedido,CantPedido-first(CantPedido))) ~> calculaDiferencia\nPedidoscliente window(over(PEDIDO,\n\t\tposicion),\n\tasc(FechaExtrae, true),\n\tfila = denseRank()) ~> rankea\ncalculaDiferencia derive(enProceso = cantEntrega-cantEmbalada,\n\t\tWIPEmbaladas = iif((cantEmbalada-CantDespachado)<0,0,(cantEmbalada-CantDespachado)),\n\t\ttuboCD = CantPedido-cantEmbalada,\n\t\torigen = \"Pedidos Cliente\",\n\t\tcustomer = right(left(Tienda_Cliente,10),10),\n\t\tcustomer_desc = substring(Tienda_Cliente,12),\n\t\tfecha_entrega = case(cantEntregaDia!=0, FechaExtrae),\n\t\tfecha_embalaje = case(cantEmbaladaDia!=0, FechaExtrae),\n\t\tfecha_despacho = case(CantDespachadoDia!=0, FechaExtrae),\n\t\tlead_time = iif(cantEmbaladaDia!=0,minus(FechaExtrae,FEC_CREACION),0),\n\t\tlead_time_despacho = iif(CantDespachadoDia!=0,minus(FechaExtrae,FEC_CREACION),0),\n\t\tfecha_movimiento = case(cantEmbaladaDia!=0||CantDespachadoDia!=0, FechaExtrae)) ~> CalculaColumnas\nCalculaColumnas sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tFechaExtrae as date,\n\t\torigen as string,\n\t\tPEDIDO as string,\n\t\tSOCIEDAD as string,\n\t\tFEC_CREACION as date,\n\t\tcentro_su as string,\n\t\tClasedoc as string,\n\t\tposicion as string,\n\t\tStoreCode as string,\n\t\tCustomerTaxCode as string,\n\t\tTienda_Cliente as string,\n\t\tMarca as string,\n\t\tTipo_Local as string,\n\t\tmaterial as string,\n\t\tCantPedido as integer,\n\t\tCantPedidoDia as integer,\n\t\tTemporada as string,\n\t\tano as string,\n\t\tcantEntrega as integer,\n\t\tcantEntregaDia as integer,\n\t\tcantEmbalada as integer,\n\t\tcantEmbaladaDia as integer,\n\t\tCantDespachado as integer,\n\t\tCantDespachadoDia as integer,\n\t\tCantRecepcionado as integer,\n\t\tSinEntrega as integer,\n\t\tCantRecepcionadoDia as integer,\n\t\tenproceso as integer,\n\t\tentransito as integer,\n\t\tIndBorrado as string,\n\t\tIndEntreFin as string,\n\t\ttuboCD as integer,\n\t\tWIPEmbaladas as integer,\n\t\tCONTADOR as integer,\n\t\tlead_time as integer,\n\t\tlead_time_despacho as integer,\n\t\tfecha_entrega as date,\n\t\tfecha_embalaje as date,\n\t\tfecha_despacho as date,\n\t\tfecha_movimiento as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tFechaExtrae,\n\t\torigen,\n\t\tPEDIDO,\n\t\tSOCIEDAD,\n\t\tFEC_CREACION,\n\t\tcentro_su = Centro_Salida,\n\t\tClasedoc,\n\t\tposicion,\n\t\tCustomerTaxCode = customer,\n\t\tTienda_Cliente = customer_desc,\n\t\tmaterial,\n\t\tCantPedido,\n\t\tTemporada,\n\t\tano,\n\t\tcantEntrega,\n\t\tcantEntregaDia,\n\t\tcantEmbalada,\n\t\tcantEmbaladaDia,\n\t\tCantDespachado,\n\t\tCantDespachadoDia,\n\t\tCantRecepcionado,\n\t\tSinEntrega,\n\t\tCantRecepcionadoDia,\n\t\tenproceso = enProceso,\n\t\ttuboCD,\n\t\tWIPEmbaladas,\n\t\tCONTADOR,\n\t\tCantPedidoDia,\n\t\tfecha_entrega,\n\t\tfecha_embalaje,\n\t\tfecha_despacho,\n\t\tlead_time,\n\t\tlead_time_despacho,\n\t\tfecha_movimiento\n\t),\n\tpartitionBy('roundRobin', 5)) ~> factPedidos"
+		}
+	}
+}

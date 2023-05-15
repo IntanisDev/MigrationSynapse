@@ -1,0 +1,51 @@
+{
+	"name": "CANALCLIENTE_DL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo_Logistico/DataLake"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Hoja1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "CANALCLIENTE.xlsx",
+				"folderPath": "0_landing_zone/Cubo_Logistico",
+				"fileSystem": "edwlakeprd"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "CodSAPcCeros",
+				"type": "String"
+			},
+			{
+				"name": "CodSAP",
+				"type": "String"
+			},
+			{
+				"name": "NombCliente",
+				"type": "String"
+			},
+			{
+				"name": "CodCanal",
+				"type": "String"
+			},
+			{
+				"name": "Canal",
+				"type": "String"
+			},
+			{
+				"name": "TipoCliente",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

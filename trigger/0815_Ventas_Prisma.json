@@ -1,0 +1,24 @@
+{
+	"name": "0815_Ventas_Prisma",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "03_Prisma_Cadena",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-03-20T05:25:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

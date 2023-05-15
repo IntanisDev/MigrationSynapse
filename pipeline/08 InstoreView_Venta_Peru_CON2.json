@@ -1,0 +1,37 @@
+{
+	"name": "08 InstoreView_Venta_Peru_CON2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copiar InstoreView Consumo",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InstoreView_Venta_Peru_CON2",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/03 Consumption"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-02-02T15:16:42Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,248 @@
+{
+	"name": "SQL_TimePeriod_BKP",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "TimePeriodId",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Date",
+				"type": "varchar"
+			},
+			{
+				"name": "DateName",
+				"type": "varchar"
+			},
+			{
+				"name": "DayOfMonth",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DayOfMonthName",
+				"type": "varchar"
+			},
+			{
+				"name": "HalfYear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HalfYearDate",
+				"type": "varchar"
+			},
+			{
+				"name": "HalfYearName",
+				"type": "varchar"
+			},
+			{
+				"name": "Month",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MonthDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "MonthName",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "PreviousHalfYearDate",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousHalfYearName",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousMonthDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "PreviousMonthName",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousTrimesterDate",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousTrimesterName",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousWeekDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "PreviousWeekName",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousYear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PreviousYearDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "PreviousYearName",
+				"type": "varchar"
+			},
+			{
+				"name": "Quarter",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QuarterDate",
+				"type": "varchar"
+			},
+			{
+				"name": "QuarterName",
+				"type": "varchar"
+			},
+			{
+				"name": "Trimester",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TrimesterDate",
+				"type": "varchar"
+			},
+			{
+				"name": "TrimesterName",
+				"type": "varchar"
+			},
+			{
+				"name": "Week",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WeekDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "WeekName",
+				"type": "varchar"
+			},
+			{
+				"name": "WeekRange",
+				"type": "varchar"
+			},
+			{
+				"name": "Year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "YearDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "YearName",
+				"type": "varchar"
+			},
+			{
+				"name": "FiscalHalfYear",
+				"type": "varchar"
+			},
+			{
+				"name": "FiscalMonthDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "FiscalMonthName",
+				"type": "varchar"
+			},
+			{
+				"name": "FiscalQuarterName",
+				"type": "varchar"
+			},
+			{
+				"name": "FiscalWeekName",
+				"type": "varchar"
+			},
+			{
+				"name": "FiscalYear",
+				"type": "varchar"
+			},
+			{
+				"name": "FiscalWeekDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "InicioMesFical",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ant1",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ant2",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "w_ant1",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "InicioQuarterFiscal",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "q_ant1",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "InicioAnoFiscal",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "y_ant1",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "TimePeriod_bkp"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

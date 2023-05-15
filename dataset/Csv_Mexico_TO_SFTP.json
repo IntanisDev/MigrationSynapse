@@ -1,0 +1,28 @@
+{
+	"name": "Csv_Mexico_TO_SFTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage ventas Mexico",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/01_FTP"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Csv_Mexico.csv",
+				"folderPath": "archivos",
+				"container": "ventasmexico"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

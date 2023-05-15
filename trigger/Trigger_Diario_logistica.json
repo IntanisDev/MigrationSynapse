@@ -1,0 +1,43 @@
+{
+	"name": "Trigger_Diario_logistica",
+	"properties": {
+		"description": "Carga Archivos planos a SQL",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ZCLMM022_FTP_to_SQL",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "ZCLMM023_FTP_to_SQL",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "ZCLMM025_FTP_to_SQL",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "ZCLMM039_WM_FTP_to_SQL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-12-05T22:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

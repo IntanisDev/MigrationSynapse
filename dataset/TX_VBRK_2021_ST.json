@@ -1,0 +1,425 @@
+{
+	"name": "TX_VBRK_2021_ST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_VBRK_ene2021_abr2022.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "VBELN",
+				"type": "String"
+			},
+			{
+				"name": "FKART",
+				"type": "String"
+			},
+			{
+				"name": "FKTYP",
+				"type": "String"
+			},
+			{
+				"name": "VBTYP",
+				"type": "String"
+			},
+			{
+				"name": "WAERK",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "VTWEG",
+				"type": "String"
+			},
+			{
+				"name": "KALSM",
+				"type": "String"
+			},
+			{
+				"name": "KNUMV",
+				"type": "String"
+			},
+			{
+				"name": "VSBED",
+				"type": "String"
+			},
+			{
+				"name": "FKDAT",
+				"type": "String"
+			},
+			{
+				"name": "BELNR",
+				"type": "String"
+			},
+			{
+				"name": "GJAHR",
+				"type": "String"
+			},
+			{
+				"name": "POPER",
+				"type": "String"
+			},
+			{
+				"name": "KONDA",
+				"type": "String"
+			},
+			{
+				"name": "KDGRP",
+				"type": "String"
+			},
+			{
+				"name": "BZIRK",
+				"type": "String"
+			},
+			{
+				"name": "PLTYP",
+				"type": "String"
+			},
+			{
+				"name": "INCO1",
+				"type": "String"
+			},
+			{
+				"name": "INCO2",
+				"type": "String"
+			},
+			{
+				"name": "EXPKZ",
+				"type": "String"
+			},
+			{
+				"name": "RFBSK",
+				"type": "String"
+			},
+			{
+				"name": "MRNKZ",
+				"type": "String"
+			},
+			{
+				"name": "KURRF",
+				"type": "String"
+			},
+			{
+				"name": "CPKUR",
+				"type": "String"
+			},
+			{
+				"name": "VALTG",
+				"type": "String"
+			},
+			{
+				"name": "VALDT",
+				"type": "String"
+			},
+			{
+				"name": "ZTERM",
+				"type": "String"
+			},
+			{
+				"name": "ZLSCH",
+				"type": "String"
+			},
+			{
+				"name": "KTGRD",
+				"type": "String"
+			},
+			{
+				"name": "LAND1",
+				"type": "String"
+			},
+			{
+				"name": "REGIO",
+				"type": "String"
+			},
+			{
+				"name": "COUNC",
+				"type": "String"
+			},
+			{
+				"name": "CITYC",
+				"type": "String"
+			},
+			{
+				"name": "BUKRS",
+				"type": "String"
+			},
+			{
+				"name": "TAXK1",
+				"type": "String"
+			},
+			{
+				"name": "TAXK2",
+				"type": "String"
+			},
+			{
+				"name": "TAXK3",
+				"type": "String"
+			},
+			{
+				"name": "TAXK4",
+				"type": "String"
+			},
+			{
+				"name": "TAXK5",
+				"type": "String"
+			},
+			{
+				"name": "TAXK6",
+				"type": "String"
+			},
+			{
+				"name": "TAXK7",
+				"type": "String"
+			},
+			{
+				"name": "TAXK8",
+				"type": "String"
+			},
+			{
+				"name": "TAXK9",
+				"type": "String"
+			},
+			{
+				"name": "NETWR",
+				"type": "String"
+			},
+			{
+				"name": "ZUKRI",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "ERZET",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT",
+				"type": "String"
+			},
+			{
+				"name": "STAFO",
+				"type": "String"
+			},
+			{
+				"name": "KUNRG",
+				"type": "String"
+			},
+			{
+				"name": "KUNAG",
+				"type": "String"
+			},
+			{
+				"name": "MABER",
+				"type": "String"
+			},
+			{
+				"name": "STWAE",
+				"type": "String"
+			},
+			{
+				"name": "EXNUM",
+				"type": "String"
+			},
+			{
+				"name": "STCEG",
+				"type": "String"
+			},
+			{
+				"name": "AEDAT",
+				"type": "String"
+			},
+			{
+				"name": "SFAKN",
+				"type": "String"
+			},
+			{
+				"name": "KNUMA",
+				"type": "String"
+			},
+			{
+				"name": "FKART_RL",
+				"type": "String"
+			},
+			{
+				"name": "FKDAT_RL",
+				"type": "String"
+			},
+			{
+				"name": "KURST",
+				"type": "String"
+			},
+			{
+				"name": "MSCHL",
+				"type": "String"
+			},
+			{
+				"name": "MANSP",
+				"type": "String"
+			},
+			{
+				"name": "SPART",
+				"type": "String"
+			},
+			{
+				"name": "KKBER",
+				"type": "String"
+			},
+			{
+				"name": "KNKLI",
+				"type": "String"
+			},
+			{
+				"name": "CMWAE",
+				"type": "String"
+			},
+			{
+				"name": "CMKUF",
+				"type": "String"
+			},
+			{
+				"name": "HITYP_PR",
+				"type": "String"
+			},
+			{
+				"name": "BSTNK_VF",
+				"type": "String"
+			},
+			{
+				"name": "VBUND",
+				"type": "String"
+			},
+			{
+				"name": "FKART_AB",
+				"type": "String"
+			},
+			{
+				"name": "KAPPL",
+				"type": "String"
+			},
+			{
+				"name": "LANDTX",
+				"type": "String"
+			},
+			{
+				"name": "STCEG_H",
+				"type": "String"
+			},
+			{
+				"name": "STCEG_L",
+				"type": "String"
+			},
+			{
+				"name": "XBLNR",
+				"type": "String"
+			},
+			{
+				"name": "ZUONR",
+				"type": "String"
+			},
+			{
+				"name": "MWSBK",
+				"type": "String"
+			},
+			{
+				"name": "LOGSYS",
+				"type": "String"
+			},
+			{
+				"name": "FKSTO",
+				"type": "String"
+			},
+			{
+				"name": "XEGDR",
+				"type": "String"
+			},
+			{
+				"name": "RPLNR",
+				"type": "String"
+			},
+			{
+				"name": "LCNUM",
+				"type": "String"
+			},
+			{
+				"name": "J_1AFITP",
+				"type": "String"
+			},
+			{
+				"name": "KURRF_DAT",
+				"type": "String"
+			},
+			{
+				"name": "AKWAE",
+				"type": "String"
+			},
+			{
+				"name": "AKKUR",
+				"type": "String"
+			},
+			{
+				"name": "KIDNO",
+				"type": "String"
+			},
+			{
+				"name": "BVTYP",
+				"type": "String"
+			},
+			{
+				"name": "NUMPG",
+				"type": "String"
+			},
+			{
+				"name": "BUPLA",
+				"type": "String"
+			},
+			{
+				"name": "VKONT",
+				"type": "String"
+			},
+			{
+				"name": "FKK_DOCSTAT",
+				"type": "String"
+			},
+			{
+				"name": "NRZAS",
+				"type": "String"
+			},
+			{
+				"name": "SPE_BILLING_IND",
+				"type": "String"
+			},
+			{
+				"name": "VTREF",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

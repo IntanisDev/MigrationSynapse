@@ -1,0 +1,118 @@
+{
+	"name": "des_ZCLMM022",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Logistica"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FechaExtrae",
+				"type": "date"
+			},
+			{
+				"name": "PEDIDO",
+				"type": "varchar"
+			},
+			{
+				"name": "SOCIEDAD",
+				"type": "varchar"
+			},
+			{
+				"name": "FEC_CREACION",
+				"type": "date"
+			},
+			{
+				"name": "centro_su",
+				"type": "varchar"
+			},
+			{
+				"name": "Clasedoc",
+				"type": "varchar"
+			},
+			{
+				"name": "posicion",
+				"type": "varchar"
+			},
+			{
+				"name": "Tienda_Cliente",
+				"type": "varchar"
+			},
+			{
+				"name": "material",
+				"type": "varchar"
+			},
+			{
+				"name": "CantPedido",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Temporada",
+				"type": "varchar"
+			},
+			{
+				"name": "ano",
+				"type": "varchar"
+			},
+			{
+				"name": "cantEntrega",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cantEmbalada",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantDespachado",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CantRecepcionado",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SinEntrega",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "enproceso",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "entransito",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IndBorrado",
+				"type": "char"
+			},
+			{
+				"name": "IndEntreFin",
+				"type": "char"
+			},
+			{
+				"name": "CONTADOR",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "ZCLMM022"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

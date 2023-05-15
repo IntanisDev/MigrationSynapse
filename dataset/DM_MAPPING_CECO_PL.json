@@ -1,0 +1,45 @@
+{
+	"name": "DM_MAPPING_CECO_PL",
+	"properties": {
+		"folder": {
+			"name": "Finanzas/Master Data/0 Landing Zone/SQL"
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "sociedad",
+				"type": "varchar"
+			},
+			{
+				"name": "centro_costo",
+				"type": "varchar"
+			},
+			{
+				"name": "descripcion",
+				"type": "varchar"
+			},
+			{
+				"name": "canal",
+				"type": "varchar"
+			},
+			{
+				"name": "marca",
+				"type": "varchar"
+			},
+			{
+				"name": "grupo_p_l",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "finanzas",
+			"table": "mapping_Ceco_PL"
+		},
+		"sqlPool": {
+			"referenceName": "edw_prd",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

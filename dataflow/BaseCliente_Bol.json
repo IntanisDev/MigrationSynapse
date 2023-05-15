@@ -1,0 +1,38 @@
+{
+	"name": "BaseCliente_Bol",
+	"properties": {
+		"folder": {
+			"name": "Cubo Ventas/0400_Lookup_Table"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Table_BaseCliente_BOL_DL",
+						"type": "DatasetReference"
+					},
+					"name": "clienteBOL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BaseClientes",
+						"type": "DatasetReference"
+					},
+					"name": "basecliente2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Columnaderivada1"
+				},
+				{
+					"name": "truncarDatos"
+				}
+			],
+			"script": "source(output(\n\t\tCODIGO as string,\n\t\t{ORG_VTA } as string,\n\t\tCANAL as string,\n\t\tSECTOR as string,\n\t\tPAIS as string,\n\t\tNOMBRE as string,\n\t\tPOBLACION as string,\n\t\tDISTRITO as string,\n\t\tREGION as string,\n\t\tCALLE as string,\n\t\tLOCAL_ID as string,\n\t\tMONEDA as string,\n\t\tCOND_PAGO as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> clienteBOL\ntruncarDatos derive(COD_ORG = 3000) ~> Columnaderivada1\nclienteBOL derive(CODIGO = substring(CODIGO, 1,50),\n\t\t{ORG_VTA } = substring({ORG_VTA }, 1,50),\n\t\tCANAL = substring(CANAL, 1,50),\n\t\tSECTOR = substring(SECTOR, 1,50),\n\t\tPAIS = substring(PAIS, 1,50),\n\t\tNOMBRE = substring(NOMBRE, 1,50),\n\t\tPOBLACION = substring(POBLACION, 1,50),\n\t\tDISTRITO = substring(DISTRITO, 1,50),\n\t\tREGION = substring(REGION, 1,50),\n\t\tCALLE = substring(CALLE, 1,50),\n\t\tLOCAL_ID = substring(LOCAL_ID, 1,50),\n\t\tMONEDA = substring(MONEDA, 1,50),\n\t\tCOND_PAGO = substring(COND_PAGO, 1,50)) ~> truncarDatos\nColumnaderivada1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tCOD_CLIENTE as string,\n\t\tORG_VTA as string,\n\t\tCANAL as string,\n\t\tSECTOR as string,\n\t\tPAIS as string,\n\t\tRAZON_SOCIAL as string,\n\t\tPOBLACION as string,\n\t\tDISTRITO as string,\n\t\tREGION as string,\n\t\tCALLE as string,\n\t\tLOCAL_ID as string,\n\t\tMONEDA as string,\n\t\tCOND_PAGO as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCOD_CLIENTE = CODIGO,\n\t\tORG_VTA = COD_ORG,\n\t\tCANAL,\n\t\tSECTOR,\n\t\tPAIS,\n\t\tRAZON_SOCIAL = NOMBRE,\n\t\tPOBLACION,\n\t\tDISTRITO,\n\t\tREGION,\n\t\tCALLE,\n\t\tLOCAL_ID,\n\t\tMONEDA,\n\t\tCOND_PAGO\n\t)) ~> basecliente2"
+		}
+	}
+}

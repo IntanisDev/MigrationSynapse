@@ -1,0 +1,31 @@
+{
+	"name": "CADENA_MARA",
+	"properties": {
+		"description": "Ejecuta la carga del dato Maestro Materiales - Generales ",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "MARA_ETL",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "MEAN_ETL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-12-15T07:00:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

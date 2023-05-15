@@ -1,0 +1,69 @@
+{
+	"name": "DF_TRAFICO_HOMOLOGACION",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_Trafico_Homologacion",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_TRAFICO_HOMOLOGACION",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          StoreId as integer,",
+				"          Company as string,",
+				"          Type as string,",
+				"          StoreName as string,",
+				"          M2 as decimal(18,2),",
+				"          Location as string,",
+				"          StoreCode as string,",
+				"          StoreGrouping as string,",
+				"          TypeOrderBy as string,",
+				"          ShortDescription as string,",
+				"          Visible as integer,",
+				"          SaleShare as decimal(18,2),",
+				"          SaleOrganisationId as integer,",
+				"          IsOpen as integer,",
+				"          District as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> source1",
+				"source1 derive(StoreId = toInteger(StoreId),",
+				"          M2 = toDecimal(M2,18,2),",
+				"          Visible = toInteger(Visible),",
+				"          SaleShare = toDecimal(SaleShare,18,2),",
+				"          SaleOrganisationId = toInteger(SaleOrganisationId),",
+				"          IsOpen = toInteger(IsOpen)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

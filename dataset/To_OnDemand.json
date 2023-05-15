@@ -1,0 +1,17 @@
+{
+	"name": "To_OnDemand",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "CONZONE",
+			"table": "DM_WAREHOUSE"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

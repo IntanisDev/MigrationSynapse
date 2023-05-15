@@ -1,0 +1,81 @@
+{
+	"name": "ZCLMM053_ST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SW_Productividad/03 ST"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('ZCLMM053_V2_',formatDateTime(addhours(utcnow(),-4),'yyyyMMdd'),'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "2_standar_zone/DATALAKE/DL_SW_PROD/SWP_ZCLMM053/2023",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "UTF-8",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FACTURA",
+				"type": "String"
+			},
+			{
+				"name": "ORG_VENTAS",
+				"type": "String"
+			},
+			{
+				"name": "FEC_CREACION",
+				"type": "String"
+			},
+			{
+				"name": "CLASE_FACT",
+				"type": "String"
+			},
+			{
+				"name": "STATUS",
+				"type": "String"
+			},
+			{
+				"name": "FEC_FACTURA",
+				"type": "String"
+			},
+			{
+				"name": "RESPONSABLE",
+				"type": "String"
+			},
+			{
+				"name": "CANAL",
+				"type": "String"
+			},
+			{
+				"name": "POSICION",
+				"type": "String"
+			},
+			{
+				"name": "CANTIDAD",
+				"type": "String"
+			},
+			{
+				"name": "ARTICULO",
+				"type": "String"
+			},
+			{
+				"name": "D_ARTICULO",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

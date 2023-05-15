@@ -1,0 +1,26 @@
+{
+	"name": "DL_PQT_ZWM_CORR_COD_BAR",
+	"properties": {
+		"description": "Relación Locales Cliente vs Levi",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/04 Consumption"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ZWM_CORR_COD_BAR.parquet",
+				"folderPath": "3_consumption_zone/Datalake/DL_DATOS_MAESTROS/ZWM_CORR_COD_BAR",
+				"fileSystem": "edwlakeprd"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

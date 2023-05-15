@@ -1,0 +1,96 @@
+{
+	"name": "SAP_TX_EINA_CON",
+	"properties": {
+		"description": "Registo info: Datos Generales",
+		"folder": {
+			"name": "Datalake_Levis/Transacciones/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "EINA_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_EINA",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          INFNR as string,",
+				"          MATNR as string,",
+				"          MATKL as string,",
+				"          LIFNR as string,",
+				"          LOEKZ as string,",
+				"          ERDAT as string,",
+				"          ERNAM as string,",
+				"          TXZ01 as string,",
+				"          SORTL as string,",
+				"          MEINS as string,",
+				"          UMREZ as string,",
+				"          UMREN as string,",
+				"          IDNLF as string,",
+				"          VERKF as string,",
+				"          TELF1 as string,",
+				"          MAHN1 as string,",
+				"          MAHN2 as string,",
+				"          MAHN3 as string,",
+				"          URZNR as string,",
+				"          URZDT as string,",
+				"          URZLA as string,",
+				"          URZTP as string,",
+				"          URZZT as string,",
+				"          LMEIN as string,",
+				"          REGIO as string,",
+				"          VABME as string,",
+				"          LTSNR as string,",
+				"          LTSSF as string,",
+				"          WGLIF as string,",
+				"          RUECK as string,",
+				"          LIFAB as string,",
+				"          LIFBI as string,",
+				"          KOLIF as string,",
+				"          ANZPU as string,",
+				"          PUNEI as string,",
+				"          RELIF as string,",
+				"          MFRNR as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(UMREZ = toDecimal(UMREZ,5,0),",
+				"          UMREN = toDecimal(UMREN,5,0),",
+				"          MAHN1 = toDecimal(MAHN1,3,0),",
+				"          MAHN2 = toDecimal(MAHN2,3,0),",
+				"          MAHN3 = toDecimal(MAHN3,3,0),",
+				"          ANZPU = toDecimal(ANZPU,13,3)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:['TX_EINA_ene2021_jun2022.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

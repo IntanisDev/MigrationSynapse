@@ -1,0 +1,41 @@
+{
+	"name": "des_Cliente_Canal",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Logistica"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "kunnr",
+				"type": "varchar"
+			},
+			{
+				"name": "nombre",
+				"type": "varchar"
+			},
+			{
+				"name": "cod_canal",
+				"type": "varchar"
+			},
+			{
+				"name": "nom_canal",
+				"type": "varchar"
+			},
+			{
+				"name": "TipoCliente",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "masterdata",
+			"table": "cliente_canal"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

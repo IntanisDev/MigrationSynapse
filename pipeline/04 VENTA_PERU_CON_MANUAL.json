@@ -1,0 +1,113 @@
+{
+	"name": "04 VENTA_PERU_CON_MANUAL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Obtener Periodos Cargados",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select 202101 AS periodo\nunion\nselect 202102 AS periodo\nunion\nselect 202103 AS periodo\nunion\nselect 202104 AS periodo\nunion\nselect 202105 AS periodo\nunion\nselect 202106 AS periodo\nunion\nselect 202107 AS periodo\nunion\nselect 202108 AS periodo\nunion\nselect 202109 AS periodo\nunion\nselect 202110 AS periodo\nunion\nselect 202111 AS periodo\nunion\nselect 202112 AS periodo\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "TX_CE12000",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Recorrer Periodos",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Obtener Periodos Cargados",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Obtener Periodos Cargados').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Data flow1",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "1.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "DF_CE1200_CON",
+									"type": "DataFlowReference",
+									"parameters": {
+										"NombreArchivo": {
+											"value": "'@{concat('CE12000_', item().periodo,'.parquet')}'",
+											"type": "Expression"
+										}
+									},
+									"datasetParameters": {
+										"source1": {
+											"OutputFileName": {
+												"value": "@concat('CE12000_',item().periodo,'.csv')",
+												"type": "Expression"
+											},
+											"Folder": {
+												"value": "@substring(string(item().periodo),0 ,4 )",
+												"type": "Expression"
+											}
+										},
+										"sink1": {
+											"OutputFileName": {
+												"value": "@concat('CE12000_',item().periodo,'.parquet')",
+												"type": "Expression"
+											},
+											"Folder": {
+												"value": "@substring(string(item().periodo),0 ,4 )",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/02 Retail/03 Consumo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-02T12:33:39Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

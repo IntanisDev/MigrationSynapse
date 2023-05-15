@@ -1,0 +1,48 @@
+{
+	"name": "TX_CE12000_ST_MANUAL",
+	"properties": {
+		"description": "tabla transaccional CE12000",
+		"activities": [
+			{
+				"name": "copiar CE12000 ST",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_Amplificar_Valores_CE12000",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"source1": {
+								"OutputFileName": "probando.csv",
+								"Folder": "probando1"
+							},
+							"sink1": {
+								"OutputFileName": "tttt",
+								"Folder": "tttt"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/02 Standard"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-15T07:09:44Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

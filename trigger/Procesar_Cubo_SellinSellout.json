@@ -1,0 +1,24 @@
+{
+	"name": "Procesar_Cubo_SellinSellout",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Orquestador Cubo Sellin Sellout",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-08-31T08:30:00",
+				"timeZone": "Pacific SA Standard Time"
+			}
+		}
+	}
+}

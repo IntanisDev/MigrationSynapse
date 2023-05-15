@@ -1,0 +1,37 @@
+{
+	"name": "TX_BASE_INVENTARIO",
+	"properties": {
+		"activities": [
+			{
+				"name": "DF TX BASE INVENTARIO",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF TX BASE INVENTARIO",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Consumption"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-03T05:14:31Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,37 @@
+{
+	"name": "4_Usuarios_to_StandarZone_PE",
+	"properties": {
+		"activities": [
+			{
+				"name": "AppendUsuarios",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "4_Usuarios_to_StandarZone_PE",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/RRHH/GeoVictoria_PE"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-08T02:16:38Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

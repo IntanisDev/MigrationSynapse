@@ -1,0 +1,126 @@
+{
+	"name": "InstoreView_Proceso_Carga_Chile",
+	"properties": {
+		"activities": [
+			{
+				"name": "Venta Chile Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "01 InstoreView_Venta_Chile_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Chile Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Chile Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03 InstoreView_Stock_Chile_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Chile ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Chile Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03 InstoreView_Venta_Chile_ST_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Chile ST",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Chile ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "05 InstoreView_Stock_Chile_ST_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Venta Chile Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Stock Chile ST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "03 InstoreView_Venta_Chile_CON_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stock Chile Consumo",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Venta Chile Consumo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "05 InstoreView_Stock_Chile_CON_Automatico_v2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/04 Proceso ETL/Desactivados"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-25T15:10:28Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

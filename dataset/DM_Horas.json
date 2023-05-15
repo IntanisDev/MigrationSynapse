@@ -1,0 +1,54 @@
+{
+	"name": "DM_Horas",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_Horas.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "HourId",
+				"type": "String"
+			},
+			{
+				"name": "InitialHour",
+				"type": "String"
+			},
+			{
+				"name": "EndHour",
+				"type": "String"
+			},
+			{
+				"name": "HourRange",
+				"type": "String"
+			},
+			{
+				"name": "HourRange30Minutes",
+				"type": "String"
+			},
+			{
+				"name": "HourRange60Minutes",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

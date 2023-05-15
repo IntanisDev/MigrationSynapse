@@ -1,0 +1,146 @@
+{
+	"name": "DM_TVKO_ST",
+	"properties": {
+		"description": "Organizaciones de Venta",
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Datos Maestros/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DM_TVKO.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_DATOS_MAESTROS",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "VKORG",
+				"type": "String"
+			},
+			{
+				"name": "WAERS",
+				"type": "String"
+			},
+			{
+				"name": "BUKRS",
+				"type": "String"
+			},
+			{
+				"name": "ADRNR",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_ADR",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_KOP",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_FUS",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_GRU",
+				"type": "String"
+			},
+			{
+				"name": "VKOAU",
+				"type": "String"
+			},
+			{
+				"name": "KUNNR",
+				"type": "String"
+			},
+			{
+				"name": "BOAVO",
+				"type": "String"
+			},
+			{
+				"name": "VKOKL",
+				"type": "String"
+			},
+			{
+				"name": "EKORG",
+				"type": "String"
+			},
+			{
+				"name": "EKGRP",
+				"type": "String"
+			},
+			{
+				"name": "LIFNR",
+				"type": "String"
+			},
+			{
+				"name": "WERKS",
+				"type": "String"
+			},
+			{
+				"name": "BSART",
+				"type": "String"
+			},
+			{
+				"name": "BSTYP",
+				"type": "String"
+			},
+			{
+				"name": "BWART",
+				"type": "String"
+			},
+			{
+				"name": "LGORT",
+				"type": "String"
+			},
+			{
+				"name": "TXNAM_SDB",
+				"type": "String"
+			},
+			{
+				"name": "MWSKZ",
+				"type": "String"
+			},
+			{
+				"name": "XSTCEG",
+				"type": "String"
+			},
+			{
+				"name": "J_1ANUTIME",
+				"type": "String"
+			},
+			{
+				"name": "MAXBI",
+				"type": "String"
+			},
+			{
+				"name": "PLAUFZ",
+				"type": "String"
+			},
+			{
+				"name": "PLAUEZ",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

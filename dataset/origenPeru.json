@@ -1,0 +1,113 @@
+{
+	"name": "origenPeru",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FtpServer_tiendaRMS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cubo Venta/Prueba"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation",
+				"fileName": "Reporte_Ventas_CAB.txt",
+				"folderPath": "Peru_RMSData"
+			},
+			"columnDelimiter": "\t",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sigla",
+				"type": "String"
+			},
+			{
+				"name": "Numero_Tienda",
+				"type": "String"
+			},
+			{
+				"name": "Tipo_Documento",
+				"type": "String"
+			},
+			{
+				"name": "Numero_Documento",
+				"type": "String"
+			},
+			{
+				"name": "Fecha_Documento",
+				"type": "String"
+			},
+			{
+				"name": "Hora_Documento",
+				"type": "String"
+			},
+			{
+				"name": "Estado_Recepcion",
+				"type": "String"
+			},
+			{
+				"name": "Usuario",
+				"type": "String"
+			},
+			{
+				"name": "Cajero",
+				"type": "String"
+			},
+			{
+				"name": "Subtotal",
+				"type": "String"
+			},
+			{
+				"name": "Total",
+				"type": "String"
+			},
+			{
+				"name": "Porcentaje_Iva",
+				"type": "String"
+			},
+			{
+				"name": "Monto_Iva",
+				"type": "String"
+			},
+			{
+				"name": "Cantidad_Items",
+				"type": "String"
+			},
+			{
+				"name": "Rut_Compania",
+				"type": "String"
+			},
+			{
+				"name": "Nombre",
+				"type": "String"
+			},
+			{
+				"name": "Apellidos",
+				"type": "String"
+			},
+			{
+				"name": "Direccion",
+				"type": "String"
+			},
+			{
+				"name": "E_Mail",
+				"type": "String"
+			},
+			{
+				"name": "Fono",
+				"type": "String"
+			},
+			{
+				"name": "MedioPago",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

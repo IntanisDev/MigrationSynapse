@@ -1,0 +1,51 @@
+{
+	"name": "VW_BI_VENTAS_RMS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL MW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "COD_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "Store_No",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DESC_TIENDA",
+				"type": "varchar"
+			},
+			{
+				"name": "FECHA_DOCUMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "NETO",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "UNIDADES",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 5
+			},
+			{
+				"name": "FUENTE",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VW_RMS_DATA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

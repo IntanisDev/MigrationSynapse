@@ -1,0 +1,43 @@
+{
+	"name": "VW_TIPO_CAMBIO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Consumption_Ondemand",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Retail/Master Data"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "moneda_de",
+				"type": "varchar"
+			},
+			{
+				"name": "moneda_a",
+				"type": "varchar"
+			},
+			{
+				"name": "Tasa_cambio",
+				"type": "decimal",
+				"precision": 8,
+				"scale": 5
+			},
+			{
+				"name": "anio",
+				"type": "varchar"
+			},
+			{
+				"name": "descripcion",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vw_tipo_Cambio"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

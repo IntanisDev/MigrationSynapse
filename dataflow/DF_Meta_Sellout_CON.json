@@ -1,0 +1,143 @@
+{
+	"name": "DF_Meta_Sellout_CON",
+	"properties": {
+		"folder": {
+			"name": "Datalake_Levis/InstoreView/02 Consumption"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Metas_Sellout_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Metas_Sellout_CON",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Locales as string,",
+				"          Numero_Local as string,",
+				"          Cluster as string,",
+				"          Zona as string,",
+				"          M2 as string,",
+				"          Cubicaje as string,",
+				"          {Marca } as string,",
+				"          Genero as string,",
+				"          Cod_local_sap as string,",
+				"          Cliente as string,",
+				"          Semana as string,",
+				"          Meta as string,",
+				"          TimePeriodId as string,",
+				"          Week as string,",
+				"          Year as string,",
+				"          Month as string,",
+				"          DayOfMonth as string,",
+				"          Meta_Distribuida as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(TimePeriodId = toDate(TimePeriodId,'yyyy-MM-dd'),",
+				"          Week = toInteger(Week),",
+				"          Year = toInteger(Year),",
+				"          Month = toInteger(Month),",
+				"          DayOfMonth = toInteger(DayOfMonth),",
+				"          Meta_Distribuida = toInteger(Meta_Distribuida),",
+				"          meta = toInteger(Meta),",
+				"          Cubicaje = toInteger(Cubicaje),",
+				"          semana = toInteger(Semana)) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          Locales,",
+				"          Numero_Local,",
+				"          Cluster,",
+				"          Zona,",
+				"          M2,",
+				"          Cubicaje,",
+				"          {marca } = {Marca },",
+				"          genero = Genero,",
+				"          Cod_LOCAL_SAP = Cod_local_sap,",
+				"          CLIENTE = Cliente,",
+				"          Semana = source1@Semana,",
+				"          Meta = source1@Meta,",
+				"          TimePeriodId,",
+				"          Week,",
+				"          Year,",
+				"          Month,",
+				"          DayOfMonth,",
+				"          Meta_Distribuida,",
+				"          meta = derivedColumn1@meta,",
+				"          semana = derivedColumn1@semana",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Locales as string,",
+				"          marca as string,",
+				"          genero as string,",
+				"          Numero_Local as string,",
+				"          Cod_LOCAL_SAP as string,",
+				"          CLIENTE as string,",
+				"          Cluster as string,",
+				"          Zona as string,",
+				"          M2 as string,",
+				"          Cubicaje as integer,",
+				"          semana as integer,",
+				"          meta as integer,",
+				"          TimePeriodId as date,",
+				"          Week as integer,",
+				"          Year as integer,",
+				"          Month as integer,",
+				"          DayOfMonth as integer,",
+				"          Meta_Distribuida as integer",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:['Meta_Sellout.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Locales,",
+				"          marca = {marca },",
+				"          genero,",
+				"          Numero_Local,",
+				"          Cod_LOCAL_SAP,",
+				"          CLIENTE,",
+				"          Cluster,",
+				"          Zona,",
+				"          M2,",
+				"          Cubicaje,",
+				"          TimePeriodId,",
+				"          Week,",
+				"          Year,",
+				"          Month,",
+				"          DayOfMonth,",
+				"          Meta_Distribuida",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

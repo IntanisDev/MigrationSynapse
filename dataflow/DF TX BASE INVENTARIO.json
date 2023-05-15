@@ -1,0 +1,67 @@
+{
+	"name": "DF TX BASE INVENTARIO",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_BASE_INVENTARIO_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "TX_BASE_INVENTARIO_CON",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          COD_CENTRO as string,",
+				"          COD_ALMACEN as string,",
+				"          COD_ARTICULO as string,",
+				"          STOCK as string,",
+				"          STOCK_VALORIZADO as string,",
+				"          STOCK_CONSIGNACION as string,",
+				"          STOCK_BLOQUEADO as string,",
+				"          STOCK_CONF as string,",
+				"          STOCK_ENTREGA as string,",
+				"          STOCK_DISPONIBLE as string,",
+				"          TIMEPERIODID as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(STOCK = toDecimal(STOCK,18,2),",
+				"          STOCK_VALORIZADO = toDecimal(STOCK_VALORIZADO,18,2),",
+				"          STOCK_CONSIGNACION = toDecimal(STOCK_CONSIGNACION,18,2),",
+				"          STOCK_BLOQUEADO = toDecimal(STOCK_BLOQUEADO,18,2),",
+				"          STOCK_CONF = toDecimal(STOCK_CONF,18,2),",
+				"          STOCK_ENTREGA = toDecimal(STOCK_ENTREGA,18,2),",
+				"          STOCK_DISPONIBLE = toDecimal(STOCK_DISPONIBLE,18,2),",
+				"          TIMEPERIODID = toDate(TIMEPERIODID)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:[(concat('TX_BASE_INVENTARIO_',toString(addDays(currentDate(), -1),'yyyyMMdd'),'.parquet') )],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

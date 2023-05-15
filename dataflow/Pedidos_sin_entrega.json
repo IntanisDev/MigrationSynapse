@@ -1,0 +1,66 @@
+{
+	"name": "Pedidos_sin_entrega",
+	"properties": {
+		"folder": {
+			"name": "Cubo_Logistico"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "fact_pedidos",
+						"type": "DatasetReference"
+					},
+					"name": "factPedidos"
+				},
+				{
+					"dataset": {
+						"referenceName": "ZCLMM039_WM_STOCK_ACTUAL",
+						"type": "DatasetReference"
+					},
+					"name": "Stock"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "fact_pedidos_sin_entrega",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CalculaStock"
+				},
+				{
+					"name": "StockDisponible"
+				},
+				{
+					"name": "stockPivote"
+				},
+				{
+					"name": "Join1"
+				},
+				{
+					"name": "FiltraCentroAlmacen"
+				},
+				{
+					"name": "stockAsignado"
+				},
+				{
+					"name": "sinStock"
+				},
+				{
+					"name": "stockBExterna"
+				},
+				{
+					"name": "AsignaStockBExterna"
+				}
+			],
+			"script": "source(output(\n\t\tFechaExtrae as date,\n\t\torigen as string,\n\t\tPEDIDO as string,\n\t\tSOCIEDAD as string,\n\t\tFEC_CREACION as date,\n\t\tcentro_su as string,\n\t\tClasedoc as string,\n\t\tposicion as string,\n\t\tStoreCode as string,\n\t\tCustomerTaxCode as string,\n\t\tTienda_Cliente as string,\n\t\tMarca as string,\n\t\tTipo_Local as string,\n\t\tmaterial as string,\n\t\tCantPedido as integer,\n\t\tCantPedidoDia as integer,\n\t\tTemporada as string,\n\t\tano as string,\n\t\tcantEntrega as integer,\n\t\tcantEntregaDia as integer,\n\t\tcantEmbalada as integer,\n\t\tcantEmbaladaDia as integer,\n\t\tCantDespachado as integer,\n\t\tCantDespachadoDia as integer,\n\t\tCantRecepcionado as integer,\n\t\tSinEntrega as integer,\n\t\tCantRecepcionadoDia as integer,\n\t\tenproceso as integer,\n\t\tentransito as integer,\n\t\tIndBorrado as string,\n\t\tIndEntreFin as string,\n\t\ttuboCD as integer,\n\t\tWIPEmbaladas as integer,\n\t\tCONTADOR as integer,\n\t\tlead_time as integer,\n\t\tlead_time_despacho as integer,\n\t\tfecha_entrega as date,\n\t\tfecha_embalaje as date,\n\t\tfecha_despacho as date,\n\t\tfecha_movimiento as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'SELECT [FechaExtrae]\\n      ,[origen]\\n      ,[PEDIDO]\\n      ,[SOCIEDAD]\\n      ,[FEC_CREACION]\\n      ,[centro_su]\\n      ,[Clasedoc]\\n      ,[posicion]\\n      ,[StoreCode]\\n      ,[CustomerTaxCode]\\n      ,[Tienda_Cliente]\\n      ,[Marca]\\n      ,[Tipo_Local]\\n      ,[material]\\n      ,[CantPedido]\\n      ,[CantPedidoDia]\\n      ,[Temporada]\\n      ,[ano]\\n      ,[cantEntrega]\\n      ,[cantEntregaDia]\\n      ,[cantEmbalada]\\n      ,[cantEmbaladaDia]\\n      ,[CantDespachado]\\n      ,[CantDespachadoDia]\\n      ,[CantRecepcionado]\\n      ,[SinEntrega]\\n      ,[CantRecepcionadoDia]\\n      ,[enproceso]\\n      ,[entransito]\\n      ,[IndBorrado]\\n      ,[IndEntreFin]\\n      ,[tuboCD]\\n      ,[WIPEmbaladas]\\n      ,[CONTADOR]\\n      ,[lead_time]\\n      ,[lead_time_despacho]\\n      ,[fecha_entrega]\\n      ,[fecha_embalaje]\\n      ,[fecha_despacho]\\n      ,[fecha_movimiento]\\n  FROM [logistica].[fact_pedidos]\\n  where SinEntrega != 0\\n  and FechaExtrae= DATEADD(day, -1, CAST( GETDATE() AS Date ))',\n\tformat: 'query',\n\tstaged: true,\n\tpartitionBy('hash', 1)) ~> factPedidos\nsource(output(\n\t\tFECHA_EJECUCION as date,\n\t\tCENTRO as string,\n\t\tALMACEN as string,\n\t\tNRO_ALMACEN as string,\n\t\tTIPO_ALMACEN as string,\n\t\tNRO_ARTICULO as string,\n\t\tSTOCK_DISPONIBLE as integer,\n\t\tSTOCK_TOTAL as integer,\n\t\tCONTADOR as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table',\n\tstaged: true,\n\tpartitionBy('hash', 1)) ~> Stock\nJoin1 derive(Stock_CeDi = iifNull(stock_tipo_almacen_BAC, 0, stock_tipo_almacen_BAC)+iifNull(stock_tipo_almacen_BPI, 0, stock_tipo_almacen_BPI),\n\t\tStock_Bodega_Externa = iifNull(stock_tipo_almacen_BDE, 0, stock_tipo_almacen_BDE)) ~> CalculaStock\nCalculaStock window(over(FechaExtrae,\n\t\tmaterial),\n\tasc(FEC_CREACION, true),\n\tasc(PEDIDO, true),\n\tendRowOffset: 0L,\n\tfila = denseRank(),\n\t\tstock_disponible_cd = case(Stock_CeDi>=sum(SinEntrega), Stock_CeDi-sum(SinEntrega), toLong(0))) ~> StockDisponible\nFiltraCentroAlmacen pivot(groupBy(FECHA_EJECUCION,\n\t\tCENTRO,\n\t\tALMACEN,\n\t\tNRO_ALMACEN,\n\t\tNRO_ARTICULO),\n\tpivotBy(TIPO_ALMACEN, ['BPI', 'BAC', 'BDE']),\n\t{} = toLong(sum(STOCK_DISPONIBLE)),\n\tcolumnNaming: 'stock_$Ntipo_almacen_$V',\n\tlateral: true,\n\tpartitionBy('hash', 1)) ~> stockPivote\nfactPedidos, stockPivote join(material == NRO_ARTICULO\n\t&& FechaExtrae == FECHA_EJECUCION,\n\tjoinType:'left',\n\tmatchType:'exact',\n\tignoreSpaces: false,\n\tbroadcast: 'auto')~> Join1\nStock filter(CENTRO=='DC01'&&ALMACEN=='0009'&&(TIPO_ALMACEN == 'BPI' ||TIPO_ALMACEN == 'BDE' ||TIPO_ALMACEN =='BAC')) ~> FiltraCentroAlmacen\nStockDisponible window(over(FechaExtrae,\n\t\tmaterial),\n\tasc(FEC_CREACION, true),\n\tasc(PEDIDO, true),\n\tstartRowOffset: -1L,\n\tendRowOffset: 0L,\n\tstock_asignado_cd = case(fila==1, (Stock_CeDi)-(stock_disponible_cd), case(first(stock_disponible_cd,true())>0, first(stock_disponible_cd,true())-last(stock_disponible_cd,true()), toLong(0)))) ~> stockAsignado\nstockAsignado derive(sin_stock = SinEntrega-stock_asignado_cd) ~> sinStock\nsinStock window(over(material),\n\tasc(FEC_CREACION, true),\n\tasc(PEDIDO, true),\n\tendRowOffset: 0L,\n\tstock_disponible_be = case(Stock_Bodega_Externa>=sum(sin_stock), Stock_Bodega_Externa-sum(sin_stock), toLong(0))) ~> stockBExterna\nstockBExterna window(over(material),\n\tasc(FEC_CREACION, true),\n\tasc(PEDIDO, true),\n\tstartRowOffset: -1L,\n\tendRowOffset: 0L,\n\tstock_asignado_be = case(fila==1, (Stock_Bodega_Externa)-(stock_disponible_be), case(first(stock_disponible_be,true())>0, first(stock_disponible_be,true())-last(stock_disponible_be,true()), toLong(0)))) ~> AsignaStockBExterna\nAsignaStockBExterna sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tFechaExtrae as date,\n\t\torigen as string,\n\t\tPEDIDO as string,\n\t\tSOCIEDAD as string,\n\t\tFEC_CREACION as date,\n\t\tcentro_su as string,\n\t\tClasedoc as string,\n\t\tposicion as string,\n\t\tStoreCode as string,\n\t\tCustomerTaxCode as string,\n\t\tTienda_Cliente as string,\n\t\tMarca as string,\n\t\tTipo_Local as string,\n\t\tmaterial as string,\n\t\tCantPedido as integer,\n\t\tCantPedidoDia as integer,\n\t\tTemporada as string,\n\t\tano as string,\n\t\tcantEntrega as integer,\n\t\tcantEntregaDia as integer,\n\t\tcantEmbalada as integer,\n\t\tcantEmbaladaDia as integer,\n\t\tCantDespachado as integer,\n\t\tCantDespachadoDia as integer,\n\t\tCantRecepcionado as integer,\n\t\tSinEntrega as integer,\n\t\tCantRecepcionadoDia as integer,\n\t\tenproceso as integer,\n\t\tentransito as integer,\n\t\tIndBorrado as string,\n\t\tIndEntreFin as string,\n\t\ttuboCD as integer,\n\t\tWIPEmbaladas as integer,\n\t\tCONTADOR as integer,\n\t\tlead_time as integer,\n\t\tlead_time_despacho as integer,\n\t\tfecha_entrega as date,\n\t\tfecha_embalaje as date,\n\t\tfecha_despacho as date,\n\t\tfecha_movimiento as date,\n\t\tStock_CeDi as integer,\n\t\tStock_Bodega_Externa as integer,\n\t\tstock_asignado_cd as integer,\n\t\tstock_disponible_cd as integer,\n\t\tsin_stock as integer,\n\t\tstock_asignado_be as integer,\n\t\tprioridad_asignacion_stock as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tFechaExtrae,\n\t\torigen,\n\t\tPEDIDO,\n\t\tSOCIEDAD,\n\t\tFEC_CREACION,\n\t\tcentro_su,\n\t\tClasedoc,\n\t\tposicion,\n\t\tStoreCode,\n\t\tCustomerTaxCode,\n\t\tTienda_Cliente,\n\t\tMarca,\n\t\tTipo_Local,\n\t\tmaterial,\n\t\tCantPedido,\n\t\tCantPedidoDia,\n\t\tTemporada,\n\t\tano,\n\t\tcantEntrega,\n\t\tcantEntregaDia,\n\t\tcantEmbalada,\n\t\tcantEmbaladaDia,\n\t\tCantDespachado,\n\t\tCantDespachadoDia,\n\t\tCantRecepcionado,\n\t\tSinEntrega,\n\t\tCantRecepcionadoDia,\n\t\tenproceso,\n\t\tentransito,\n\t\tIndBorrado,\n\t\tIndEntreFin,\n\t\ttuboCD,\n\t\tWIPEmbaladas,\n\t\tCONTADOR,\n\t\tlead_time,\n\t\tlead_time_despacho,\n\t\tfecha_entrega,\n\t\tfecha_embalaje,\n\t\tfecha_despacho,\n\t\tfecha_movimiento,\n\t\tStock_CeDi,\n\t\tStock_Bodega_Externa,\n\t\tstock_asignado_cd,\n\t\tstock_disponible_cd,\n\t\tprioridad_asignacion_stock = fila,\n\t\tsin_stock,\n\t\tstock_asignado_be\n\t)) ~> sink1"
+		}
+	}
+}

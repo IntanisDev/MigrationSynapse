@@ -1,0 +1,32 @@
+{
+	"name": "Orquestador Sellin Sellout",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Orquestador Cubo Sellin Sellout",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-02-15T08:15:00",
+				"timeZone": "Argentina Standard Time",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						8
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,149 @@
+{
+	"name": "2_AttendanceBook_PE",
+	"properties": {
+		"activities": [
+			{
+				"name": "Vendedor",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"dataset": {
+						"referenceName": "userListActivosParquet_PE",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Busca_ingresos_egresos",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Vendedor",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Vendedor').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"batchCount": 4,
+					"activities": [
+						{
+							"name": "Busca_Asistencia",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "POST",
+									"requestBody": {
+										"value": "@concat('{ \"StartDate\":\"',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-35)), 'yyyyMMdd'),'000000\"',',\n    \"EndDate\":\"',formatDateTime(formatDateTime(adddays(formatDateTime(utcnow(), 'yyyy-MM-dd'),-1)), 'yyyyMMdd'),'235959\"',',\n    \"UserIDs\":\"',item().Identifier,'\"}')",
+										"type": "Expression"
+									},
+									"additionalHeaders": {
+										"Authorization": {
+											"value": "@pipeline().parameters.Token",
+											"type": "Expression"
+										},
+										"Content-Type": "application/json"
+									},
+									"paginationRules": {
+										"supportRFC5988": "true"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings",
+										"filePattern": "setOfObjects"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "AttendanceBookREST",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AttendanceBookJson_PE",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "ValidaArchivos",
+				"type": "Validation",
+				"dependsOn": [
+					{
+						"activity": "Busca_ingresos_egresos",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "AttendanceBookJson_PE",
+						"type": "DatasetReference"
+					},
+					"timeout": "7.00:00:00",
+					"sleep": 10,
+					"childItems": true
+				}
+			}
+		],
+		"parameters": {
+			"Token": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DataLake_Levis/RRHH/GeoVictoria_PE"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-02T22:49:54Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

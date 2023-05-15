@@ -1,0 +1,364 @@
+{
+	"name": "InstoreView_Stock_DL_Peru_Automatico_3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/InstoreView/02 Raw"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('InstoreView_Stock_Peru_',formatDateTime(adddays(utcnow(),-3),'yyyyMMdd') ,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "1_raw_data/DATALAKE/DL_INSTOREVIEW/Stock",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "'"
+		},
+		"schema": [
+			{
+				"name": "Fechas",
+				"type": "String"
+			},
+			{
+				"name": "Cód. Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Sub Cadena",
+				"type": "String"
+			},
+			{
+				"name": "Rut",
+				"type": "String"
+			},
+			{
+				"name": "Región",
+				"type": "String"
+			},
+			{
+				"name": "Local",
+				"type": "String"
+			},
+			{
+				"name": "Comuna",
+				"type": "String"
+			},
+			{
+				"name": "Nombre de Local",
+				"type": "String"
+			},
+			{
+				"name": "Código Local",
+				"type": "String"
+			},
+			{
+				"name": "Dirección",
+				"type": "String"
+			},
+			{
+				"name": "Linea",
+				"type": "String"
+			},
+			{
+				"name": "SKU",
+				"type": "String"
+			},
+			{
+				"name": "Marca",
+				"type": "String"
+			},
+			{
+				"name": "Descripción Producto",
+				"type": "String"
+			},
+			{
+				"name": "Genero",
+				"type": "String"
+			},
+			{
+				"name": "Modelo",
+				"type": "String"
+			},
+			{
+				"name": "Temporada",
+				"type": "String"
+			},
+			{
+				"name": "Estilo",
+				"type": "String"
+			},
+			{
+				"name": "Categoría",
+				"type": "String"
+			},
+			{
+				"name": "Stock Locales en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock CD en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock Total en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 30 días en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Promedio Diario Ventas en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock Sugerido en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 7 días (Ajuste) en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Locales en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock CD en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Total en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Stock Locales en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock CD en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock Total en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 30 días en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Promedio Diario Ventas en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock Sugerido en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 7 días (Ajuste) en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Locales en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock CD en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Total en Costos B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock Locales en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock CD en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock Total en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 30 días en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Promedio Diario Ventas en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock Sugerido en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 7 días (Ajuste) en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Locales en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock CD en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Total en Ventas B2B",
+				"type": "String"
+			},
+			{
+				"name": "Stock Locales en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Stock CD en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Stock Total en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 30 días en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Promedio Diario Ventas en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Stock Sugerido en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 7 días (Ajuste) en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Locales en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock CD en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Total en Contribución",
+				"type": "String"
+			},
+			{
+				"name": "Stock Locales en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Stock CD en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Stock Total en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 30 días en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Promedio Diario Ventas en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Stock Sugerido en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 7 días (Ajuste) en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Locales en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock CD en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Total en MG (%)",
+				"type": "String"
+			},
+			{
+				"name": "Stock Locales en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Stock CD en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Stock Total en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 30 días en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Promedio Diario Ventas en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Stock Sugerido en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Venta últimos 7 días (Ajuste) en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Locales en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock CD en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Días Stock Total en Ventas PVP s/IVA",
+				"type": "String"
+			},
+			{
+				"name": "Mix en Unidades",
+				"type": "String"
+			},
+			{
+				"name": "Quiebres",
+				"type": "String"
+			},
+			{
+				"name": "Stock en Tránsito en Unidades",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "Crea_tabla_pedidos_parquet",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'edwlakeprd_edwlakeprd_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [edwlakeprd_edwlakeprd_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://edwlakeprd@edwlakeprd.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE pedidos (\n\t[FechaExtrae] date,\n\t[origen] nvarchar(4000),\n\t[PEDIDO] nvarchar(4000),\n\t[SOCIEDAD] nvarchar(4000),\n\t[FEC_CREACION] date,\n\t[centro_su] nvarchar(4000),\n\t[Clasedoc] nvarchar(4000),\n\t[posicion] nvarchar(4000),\n\t[StoreCode] nvarchar(4000),\n\t[CustomerTaxCode] nvarchar(4000),\n\t[Tienda_Cliente] nvarchar(4000),\n\t[Marca] nvarchar(4000),\n\t[Tipo_Local] nvarchar(4000),\n\t[material] nvarchar(4000),\n\t[CantPedido] int,\n\t[CantPedidoDia] int,\n\t[Temporada] nvarchar(4000),\n\t[ano] nvarchar(4000),\n\t[cantEntrega] int,\n\t[cantEntregaDia] int,\n\t[cantEmbalada] int,\n\t[cantEmbaladaDia] int,\n\t[CantDespachado] int,\n\t[CantDespachadoDia] int,\n\t[CantRecepcionado] int,\n\t[SinEntrega] int,\n\t[CantRecepcionadoDia] int,\n\t[enproceso] int,\n\t[entransito] int,\n\t[IndBorrado] nvarchar(4000),\n\t[IndEntreFin] nvarchar(4000),\n\t[tuboCD] int,\n\t[WIPEmbaladas] int,\n\t[CONTADOR] int,\n\t[lead_time] int,\n\t[lead_time_despacho] int,\n\t[fecha_entrega] date,\n\t[fecha_embalaje] date,\n\t[fecha_despacho] date,\n\t[fecha_movimiento] date\n\t)\n\tWITH (\n\tLOCATION = '3_consumption_zone/Logistica/Pedidos/**',\n\tDATA_SOURCE = [edwlakeprd_edwlakeprd_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\n\nSELECT TOP 100 * FROM dbo.pedidos\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "consumption",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

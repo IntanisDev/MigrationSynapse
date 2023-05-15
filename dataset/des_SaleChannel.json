@@ -1,0 +1,42 @@
+{
+	"name": "des_SaleChannel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Synapse_desarrollo",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Synapse_Desarrollo/Venta"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SaleChannelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "ChannelCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SetNetSaleField",
+				"type": "varchar"
+			},
+			{
+				"name": "BusinessType",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sales",
+			"table": "SaleChannel"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

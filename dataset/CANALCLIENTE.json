@@ -1,0 +1,44 @@
+{
+	"name": "CANALCLIENTE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo_Logistico/SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "kunnr",
+				"type": "varchar"
+			},
+			{
+				"name": "nombre",
+				"type": "varchar"
+			},
+			{
+				"name": "cod_canal",
+				"type": "varchar"
+			},
+			{
+				"name": "nom_canal",
+				"type": "varchar"
+			},
+			{
+				"name": "TipoCliente",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "masterdata",
+			"table": "cliente_canal"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

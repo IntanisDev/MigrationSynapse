@@ -1,0 +1,17 @@
+{
+	"name": "SQL_DL_SAPPRD_AZRE",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "Base datos de paso para procesos SAP a Datalake\nVersión Azure",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=10.20.100.71;initial catalog=DL_SAPPRD;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjNTU1YmI0Ni0wNjJhLTRjOWItOGM5NC0yY2U3YTRlNWEyMmUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "edw-pivote-prd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

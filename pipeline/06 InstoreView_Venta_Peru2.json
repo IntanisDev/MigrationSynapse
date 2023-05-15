@@ -1,0 +1,180 @@
+{
+	"name": "06 InstoreView_Venta_Peru2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Token",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.instoreview.cl/api/v2/download-zone/sales/",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Authorization": "ISVToken 7e7d4a4149754f90831a8d5b8b0af7e8",
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"view_type": "diario",
+						"dates": [
+							"2023-05-01",
+							"2023-05-02",
+							"2023-05-03",
+							"2023-05-04",
+							"2023-05-05",
+							"2023-05-06",
+							"2023-05-07",
+							"2023-05-08",
+							"2023-05-09",
+							"2023-05-10",
+							"2023-05-11",
+							"2023-05-12",
+							"2023-05-13",
+							"2023-05-14",
+							"2023-05-15",
+							"2023-05-16",
+							"2023-05-17",
+							"2023-05-18",
+							"2023-05-19",
+							"2023-05-20",
+							"2023-05-21",
+							"2023-05-22",
+							"2023-05-23",
+							"2023-05-24",
+							"2023-05-25",
+							"2023-05-26",
+							"2023-05-27",
+							"2023-05-28",
+							"2023-05-29",
+							"2023-05-30",
+							"2023-05-31"
+						],
+						"views": [
+							"Unidades",
+							"Costos B2B",
+							"Ventas B2B",
+							"Precios B2B",
+							"Contribución",
+							"MG (%)",
+							"Ventas PVP s/IVA"
+						],
+						"compress": false,
+						"chain_codes": [],
+						"hierarchy": {
+							"Rut": [],
+							"Cadena": [],
+							"Sub Cadena": [],
+							"Región": [],
+							"Local": [],
+							"Comuna": [],
+							"Nombre de Local": [],
+							"Linea": [],
+							"SKU": [],
+							"EAN": [],
+							"Marca": [],
+							"Descripción Producto": [],
+							"Genero": [],
+							"Modelo": [],
+							"Talla": [],
+							"Temporada": [],
+							"Estilo": [],
+							"Código Local": [],
+							"Dirección": [],
+							"Categoría": []
+						}
+					},
+					"httpRequestTimeout": "00:10:00"
+				}
+			},
+			{
+				"name": "Copiar InstoreView",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "salida:@{activity('Token').output.download_url}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InstoreView_Fuente_Ventas_Peru",
+						"type": "DatasetReference",
+						"parameters": {
+							"nombre_archivo": "@{activity('Token').output.download_url}"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InstoreView_Venta_DL_Peru2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/03 InstoreView/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-04-28T17:41:54Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

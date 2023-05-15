@@ -1,0 +1,44 @@
+{
+	"name": "BASE_TRAFICO_DIARIO_FUPBI_TIENDAS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "edw_prd"
+			}
+		},
+		"folder": {
+			"name": "Cubo Venta/03_SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "foreign_id",
+				"type": "varchar"
+			},
+			{
+				"name": "country_id",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "BASE_TRAFICO_DIARIO_FUPBI_TIENDAS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,81 @@
+{
+	"name": "Dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TX_STOCK_ST",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DL_PQT_STOCK",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          MANDT as string,",
+				"          WERKS as string,",
+				"          LGORT as string,",
+				"          MATNR as string,",
+				"          LABST as string,",
+				"          VALCOST as string,",
+				"          SPEME as string,",
+				"          S_PED as string,",
+				"          S_ENT as string,",
+				"          S_DISP as string,",
+				"          FECHA as string,",
+				"          HORA as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(LABST = toDecimal(LABST,13,3),",
+				"          VALCOST = toDecimal(VALCOST,13,3),",
+				"          SPEME = toDecimal(SPEME,13,3),",
+				"          S_PED = toDecimal(S_PED,13,3),",
+				"          S_ENT = toDecimal(S_ENT,13,3),",
+				"          S_DISP = toDecimal(S_DISP,13,3),",
+				"          FECHA_STOCK = '2022-03-31') ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     truncate: true,",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          MANDT,",
+				"          WERKS,",
+				"          LGORT,",
+				"          MATNR,",
+				"          LABST,",
+				"          VALCOST,",
+				"          SPEME,",
+				"          S_PED,",
+				"          S_ENT,",
+				"          S_DISP,",
+				"          FECHA,",
+				"          HORA,",
+				"          FECHA_STOCK",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

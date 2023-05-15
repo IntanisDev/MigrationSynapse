@@ -1,0 +1,21 @@
+{
+	"name": "Dynamic_SAP_TX",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SAP_PRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 Fuente"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/sap/bc/srt/rfc/sap/zws_datalake/500/zws_datalake/zws_datalake"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,75 @@
+{
+	"name": "SQL_TX_BASE_INVENTARIO",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy base inventario",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"additionalColumns": [
+							{
+								"name": "TIMEPERIODID",
+								"value": {
+									"value": "@STRING(formatDateTime(adddays(utcnow(), -1),'yyyy-MM-dd'))",
+									"type": "Expression"
+								}
+							}
+						],
+						"sqlReaderQuery": "SELECT CONJUNTO.COD_CENTRO,\nCONJUNTO.COD_ALMACEN,\nCONJUNTO.COD_ARTICULO,\nCONJUNTO.STOCK,\nCONJUNTO.STOCK_VALORIZADO,\nCONJUNTO.STOCK_CONSIGNACION,\nCONJUNTO.STOCK_BLOQUEADO,\nCONJUNTO.STOCK_CONF,\nCONJUNTO.STOCK_ENTREGA,\nCONJUNTO.STOCK_DISPONIBLE\nFROM (\nSELECT\n  COD_CENTRO,\n  COD_ALMACEN,\n  COD_ARTICULO,\n  SUM(CAST(CASE WHEN SUBSTRING(REPLACE(REPLACE(STOCK,'.',''),',','.'),LEN(REPLACE(REPLACE(STOCK,'.',''),',','.')),1)='-' THEN '-'+ SUBSTRING(REPLACE(REPLACE(STOCK,'.',''),',','.'),1,LEN(REPLACE(REPLACE(STOCK,'.',''),',','.'))-1) ELSE REPLACE(REPLACE(STOCK,'.',''),',','.')   END  AS DECIMAL)) STOCK,\n  SUM(CAST(CASE WHEN SUBSTRING(REPLACE(REPLACE(STOCK_VALORIZADO,'.',''),',',''),LEN(REPLACE(REPLACE(STOCK_VALORIZADO,'.',''),',','')),1)='-' THEN '-'+ SUBSTRING(REPLACE(REPLACE(STOCK_VALORIZADO,'.',''),',',''),1,LEN(REPLACE(REPLACE(STOCK_VALORIZADO,'.',''),',',''))-1) ELSE REPLACE(REPLACE(STOCK_VALORIZADO,'.',''),',','')   END  AS DECIMAL)) STOCK_VALORIZADO,\n  SUM(CAST(CASE WHEN SUBSTRING(REPLACE(REPLACE(STOCK_CONSIGNACION,'.',''),',','.'),LEN(REPLACE(REPLACE(STOCK_CONSIGNACION,'.',''),',','.')),1)='-' THEN '-'+ SUBSTRING(REPLACE(REPLACE(STOCK_CONSIGNACION,'.',''),',','.'),1,LEN(REPLACE(REPLACE(STOCK_CONSIGNACION,'.',''),',','.'))-1) ELSE REPLACE(REPLACE(STOCK_CONSIGNACION,'.',''),',','.')   END  AS DECIMAL)) STOCK_CONSIGNACION,\n  SUM(CAST(CASE WHEN SUBSTRING(REPLACE(REPLACE(STOCK_BLOQUEADO,'.',''),',','.'),LEN(REPLACE(REPLACE(STOCK_BLOQUEADO,'.',''),',','.')),1)='-' THEN '-'+ SUBSTRING(REPLACE(REPLACE(STOCK_BLOQUEADO,'.',''),',','.'),1,LEN(REPLACE(REPLACE(STOCK_BLOQUEADO,'.',''),',','.'))-1) ELSE REPLACE(REPLACE(STOCK_BLOQUEADO,'.',''),',','.')   END  AS DECIMAL)) STOCK_BLOQUEADO,\n  SUM(CAST(CASE WHEN SUBSTRING(REPLACE(REPLACE(STOCK_CONF,'.',''),',',''),LEN(REPLACE(REPLACE(STOCK_CONF,'.',''),',','')),1)='-' THEN '-'+ SUBSTRING(REPLACE(REPLACE(STOCK_CONF,'.',''),',',''),1,LEN(REPLACE(REPLACE(STOCK_CONF,'.',''),',',''))-1) ELSE REPLACE(REPLACE(STOCK_CONF,'.',''),',','')   END  AS DECIMAL)) STOCK_CONF,\n  SUM(CAST(CASE WHEN SUBSTRING(REPLACE(REPLACE(STOCK_ENTREGA,'.',''),',','.'),LEN(REPLACE(REPLACE(STOCK_ENTREGA,'.',''),',','.')),1)='-' THEN '-'+ SUBSTRING(REPLACE(REPLACE(STOCK_ENTREGA,'.',''),',','.'),1,LEN(REPLACE(REPLACE(STOCK_ENTREGA,'.',''),',','.'))-1) ELSE REPLACE(REPLACE(STOCK_ENTREGA,'.',''),',','.')   END  AS DECIMAL)) STOCK_ENTREGA,\n  SUM(CAST(CASE WHEN SUBSTRING(REPLACE(REPLACE(STOCK_DISPONIBLE,'.',''),',','.'),LEN(REPLACE(REPLACE(STOCK_DISPONIBLE,'.',''),',','.')),1)='-' THEN '-'+ SUBSTRING(REPLACE(REPLACE(STOCK_DISPONIBLE,'.',''),',','.'),1,LEN(REPLACE(REPLACE(STOCK_DISPONIBLE,'.',''),',','.'))-1) ELSE REPLACE(REPLACE(STOCK_DISPONIBLE,'.',''),',','.')   END  AS DECIMAL)) STOCK_DISPONIBLE\nFROM [STAGING].[BASE_INVENTARIO]\nGROUP BY\n  COD_CENTRO,\n  COD_ALMACEN,\n  COD_ARTICULO\n  ) AS CONJUNTO\n  WHERE NOT CONJUNTO.STOCK =0\n\n\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TX_Base_Inventario",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "TX_BASE_INVENTARIO_RW",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-03T04:47:00Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

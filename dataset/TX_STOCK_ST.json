@@ -1,0 +1,77 @@
+{
+	"name": "TX_STOCK_ST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edw-prd-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/03 Standard"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "TX_STOCK.csv",
+				"folderPath": "2_standar_zone/DATALAKE/DL_STOCK",
+				"fileSystem": "edwlakeprd"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "WERKS",
+				"type": "String"
+			},
+			{
+				"name": "LGORT",
+				"type": "String"
+			},
+			{
+				"name": "MATNR",
+				"type": "String"
+			},
+			{
+				"name": "LABST",
+				"type": "String"
+			},
+			{
+				"name": "VALCOST",
+				"type": "String"
+			},
+			{
+				"name": "SPEME",
+				"type": "String"
+			},
+			{
+				"name": "S_PED",
+				"type": "String"
+			},
+			{
+				"name": "S_ENT",
+				"type": "String"
+			},
+			{
+				"name": "S_DISP",
+				"type": "String"
+			},
+			{
+				"name": "FECHA",
+				"type": "String"
+			},
+			{
+				"name": "HORA",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [MANDT]\n,[WERKS]\n,[LGORT]\n,[MATNR]\n,[LABST]\n,[VALCOST]\n,[SPEME]\n,[S_PED]\n,[S_ENT]\n,[S_DISP]\n,[FECHA]\n,[HORA]\n,[FECHA_STOCK]\n FROM [dbo].[Stock]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "consumption",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

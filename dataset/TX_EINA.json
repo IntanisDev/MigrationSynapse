@@ -1,0 +1,186 @@
+{
+	"name": "TX_EINA",
+	"properties": {
+		"description": "Registo info: Datos Generales",
+		"linkedServiceName": {
+			"referenceName": "SQL_DL_SAPPRD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DataLake_Levis/Transacciones/01 Fuente"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "varchar"
+			},
+			{
+				"name": "INFNR",
+				"type": "varchar"
+			},
+			{
+				"name": "MATNR",
+				"type": "varchar"
+			},
+			{
+				"name": "MATKL",
+				"type": "varchar"
+			},
+			{
+				"name": "LIFNR",
+				"type": "varchar"
+			},
+			{
+				"name": "LOEKZ",
+				"type": "varchar"
+			},
+			{
+				"name": "ERDAT",
+				"type": "varchar"
+			},
+			{
+				"name": "ERNAM",
+				"type": "varchar"
+			},
+			{
+				"name": "TXZ01",
+				"type": "varchar"
+			},
+			{
+				"name": "SORTL",
+				"type": "varchar"
+			},
+			{
+				"name": "MEINS",
+				"type": "varchar"
+			},
+			{
+				"name": "UMREZ",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 0
+			},
+			{
+				"name": "UMREN",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 0
+			},
+			{
+				"name": "IDNLF",
+				"type": "varchar"
+			},
+			{
+				"name": "VERKF",
+				"type": "varchar"
+			},
+			{
+				"name": "TELF1",
+				"type": "varchar"
+			},
+			{
+				"name": "MAHN1",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "MAHN2",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "MAHN3",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 0
+			},
+			{
+				"name": "URZNR",
+				"type": "varchar"
+			},
+			{
+				"name": "URZDT",
+				"type": "varchar"
+			},
+			{
+				"name": "URZLA",
+				"type": "varchar"
+			},
+			{
+				"name": "URZTP",
+				"type": "varchar"
+			},
+			{
+				"name": "URZZT",
+				"type": "varchar"
+			},
+			{
+				"name": "LMEIN",
+				"type": "varchar"
+			},
+			{
+				"name": "REGIO",
+				"type": "varchar"
+			},
+			{
+				"name": "VABME",
+				"type": "varchar"
+			},
+			{
+				"name": "LTSNR",
+				"type": "varchar"
+			},
+			{
+				"name": "LTSSF",
+				"type": "varchar"
+			},
+			{
+				"name": "WGLIF",
+				"type": "varchar"
+			},
+			{
+				"name": "RUECK",
+				"type": "varchar"
+			},
+			{
+				"name": "LIFAB",
+				"type": "varchar"
+			},
+			{
+				"name": "LIFBI",
+				"type": "varchar"
+			},
+			{
+				"name": "KOLIF",
+				"type": "varchar"
+			},
+			{
+				"name": "ANZPU",
+				"type": "decimal",
+				"precision": 13,
+				"scale": 3
+			},
+			{
+				"name": "PUNEI",
+				"type": "varchar"
+			},
+			{
+				"name": "RELIF",
+				"type": "varchar"
+			},
+			{
+				"name": "MFRNR",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "EINA"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
